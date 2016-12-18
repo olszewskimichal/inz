@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <sonar.coverage.exclusions>com.inz.praca.SklepApplication,com.inz.praca.SklepApplicationTests</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>
@@ -105,7 +106,10 @@
                 <configuration>
                     <excludes>
                         <exclude>
-                            com.inz.praca.SklepApplication.*
+                            com.inz.praca.SklepApplication
+                        </exclude>
+                        <exclude>
+                            com.inz.praca.SklepApplicationTests
                         </exclude>
                     </excludes>
                 </configuration>
