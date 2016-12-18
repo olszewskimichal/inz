@@ -15,6 +15,8 @@ public class ProductEntityTest extends EntityTestBase {
         assertThat(product.getName()).isEqualTo("nazwa");
         assertThat(product.getDescription()).isEqualTo("opis");
         assertThat(product.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(10).stripTrailingZeros());
+        assertThat(product.getImageUrl()).isEqualTo("url");
         assertThat(product.getId()).isNotNull();
+        assertThat(product.toString()).isNotNull().isNotEmpty().contains("nazwa");
     }
 }
