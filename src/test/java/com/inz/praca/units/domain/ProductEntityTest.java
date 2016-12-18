@@ -57,4 +57,15 @@ public class ProductEntityTest {
             Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
         }
     }
+
+    @Test
+    public void shouldCreateProductWhenAllValuesAreCorrect2() {
+        try {
+            new Product("nazwa", "opis", "url", BigDecimal.ZERO);
+        } catch (IllegalArgumentException e) {
+            Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
+        }
+    }
+
+
 }

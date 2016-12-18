@@ -34,7 +34,7 @@ public class Product {
     public Product(String name, String description, String imageUrl, BigDecimal price) {
         Assert.hasLength(name, "Nie moze być pusta nazwa produktu");
         Assert.notNull(price, "Cena nie moze byc nullem");
-        Assert.isTrue(price.compareTo(BigDecimal.ZERO) > 0, "Cena nie moze być mniejsza od 0");
+        Assert.isTrue(price.compareTo(BigDecimal.ZERO) >= 0, "Cena nie moze być mniejsza od 0");
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
