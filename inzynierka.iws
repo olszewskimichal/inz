@@ -25,16 +25,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="111" column="63" lean-forward="false" selection-start-line="111" selection-start-column="63" selection-end-line="111" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SklepApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/SklepApplication.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,16 +34,6 @@
                 <element signature="e#241#242#0" expanded="true" />
                 <element signature="e#299#300#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -106,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SklepApplicationTests.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SklepApplicationTests.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/SklepApplicationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="204">
+              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -170,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/UserEntityTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/ProductEntityTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/SklepApplicationTests.java" />
       </list>
     </option>
   </component>
@@ -496,33 +477,7 @@
       <recent name="C:\Users\Admin\ProgramowanieJEE\inzynierka" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductEntityTest.shouldPersistProductWhenObjectIsCorrect">
-    <configuration default="false" name="UserEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.inz.praca.units.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="inzynierka" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.inz.praca.domain" />
-      <option name="MAIN_CLASS_NAME" value="com.inz.praca.domain.UserEntityTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.SklepApplicationTests">
     <configuration default="false" name="UserEntityTest.saveShouldPersistData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -615,6 +570,32 @@
       <option name="MAIN_CLASS_NAME" value="com.inz.praca.integration.domain.ProductEntityTest" />
       <option name="METHOD_NAME" value="shouldPersistProductWhenObjectIsCorrect" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="SklepApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.inz.praca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="inzynierka" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.inz.praca" />
+      <option name="MAIN_CLASS_NAME" value="com.inz.praca.SklepApplicationTests" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -804,19 +785,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.SklepApplication" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.UserEntityTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.UserEntityTest.saveShouldPersistData" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.UserEntityTest (1)" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.ProductEntityTest.shouldPersistProductWhenObjectIsCorrect" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.UserEntityTest.saveShouldPersistData" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.UserEntityTest (1)" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ProductEntityTest.shouldPersistProductWhenObjectIsCorrect" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.SklepApplicationTests" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ProductEntityTest.shouldPersistProductWhenObjectIsCorrect" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.UserEntityTest (1)" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.UserEntityTest.saveShouldPersistData" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.UserEntityTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SklepApplicationTests" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ProductEntityTest.shouldPersistProductWhenObjectIsCorrect" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.UserEntityTest (1)" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.UserEntityTest.saveShouldPersistData" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -830,20 +811,20 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
-    <history-entry file="ProductEntityTest - 2016.12.18 at 12h 30m 46s.xml">
-      <configuration name="ProductEntityTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ProductEntityTest - 2016.12.18 at 12h 31m 24s.xml">
-      <configuration name="ProductEntityTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ProductEntityTest - 2016.12.18 at 12h 33m 12s.xml">
       <configuration name="ProductEntityTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ProductEntityTest_shouldPersistProductWhenObjectIsCorrect - 2016.12.18 at 13h 24m 27s.xml">
       <configuration name="ProductEntityTest.shouldPersistProductWhenObjectIsCorrect" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ProductEntityTest_shouldThrownExceptionWhenPriceIsNull - 2016.12.18 at 12h 30m 25s.xml">
-      <configuration name="ProductEntityTest.shouldThrownExceptionWhenPriceIsNull" configurationId="JUnit" />
+    <history-entry file="SklepApplicationTests - 2016.12.18 at 13h 43m 42s.xml">
+      <configuration name="SklepApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SklepApplicationTests - 2016.12.18 at 13h 44m 32s.xml">
+      <configuration name="SklepApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SklepApplicationTests - 2016.12.18 at 13h 45m 57s.xml">
+      <configuration name="SklepApplicationTests" configurationId="JUnit" />
     </history-entry>
     <history-entry file="UserEntityTest - 2016.12.18 at 12h 33m 56s.xml">
       <configuration name="UserEntityTest" configurationId="JUnit" />
@@ -872,7 +853,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5028653" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293011" sideWeight="0.49713466" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293011" sideWeight="0.49713466" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25716332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -996,14 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/SklepApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1012,21 +985,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/SklepApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-          <folding>
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#299#300#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/domain/UserEntityTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-459">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/ProductEntityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="59" lean-forward="true" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1043,28 +1023,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/ProductEntityTest.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="59" lean-forward="true" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="238">
+          <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/SklepApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="111" column="63" lean-forward="false" selection-start-line="111" selection-start-column="63" selection-end-line="111" selection-end-column="63" />
+        <state relative-caret-position="85">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding>
+            <element signature="e#241#242#0" expanded="true" />
+            <element signature="e#299#300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/SklepApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding />
         </state>
       </provider>

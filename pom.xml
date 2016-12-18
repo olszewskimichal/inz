@@ -22,7 +22,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <sonar.coverage.exclusions>com.inz.praca.SklepApplication,com.inz.praca.SklepApplicationTests</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>
@@ -103,16 +102,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.8</version>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            com.inz.praca.SklepApplication
-                        </exclude>
-                        <exclude>
-                            com.inz.praca.SklepApplicationTests
-                        </exclude>
-                    </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
