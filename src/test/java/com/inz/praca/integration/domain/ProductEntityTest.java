@@ -1,13 +1,14 @@
 package com.inz.praca.integration.domain;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class ProductEntityTest extends EntityTestBase {
+public class ProductEntityTest extends JpaTestBase {
 
     @Test
     public void shouldPersistProductWhenObjectIsCorrect(){

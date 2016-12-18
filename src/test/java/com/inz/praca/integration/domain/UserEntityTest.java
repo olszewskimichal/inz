@@ -1,11 +1,12 @@
 package com.inz.praca.integration.domain;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class UserEntityTest extends EntityTestBase {
+public class UserEntityTest extends JpaTestBase {
     @Test
     public void shouldPersistUserWhenObjectIsCorrect() throws Exception {
         User user = this.entityManager.persistFlushFind(new User("prawidlowyEmail@o2.pl", "imie", "nazwisko", "hash"));
