@@ -1,0 +1,167 @@
+package com.inz.praca.units.service;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import com.inz.praca.domain.Product;
+import com.inz.praca.exceptions.ProductNotFoundException;
+import com.inz.praca.repository.ProductRepository;
+import com.inz.praca.service.ProductService;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
+public class ProductServiceTest {
+
+	private static final String NAME = "name";
+
+	private static final Long ID = 1L;
+
+	private ProductService productService;
+
+	@Mock
+	private ProductRepository productRepository;
+
+	@Before
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+		this.productService = new ProductService(productRepository);
+	}
+
+	@Test
+	public void shouldThrownIllegalArgumentExceptionWhenNameIsNull() {
+		try {
+			this.productService.getProductByName(null);
+			Assert.fail("Nie mozna podac nullowego argumentu");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Podano pusta nazwe produktu");
+		}
+	}
+
+	@Test
+	public void shouldThrownProductNotFoundExceptionWhenProductByNameNotExist() {
+		try {
+			given(this.productRepository.findByName(anyString())).willReturn(Optional.empty());
+			this.productService.getProductByName(NAME);
+			Assert.fail("Nie powinno znalezc produktu o podanej nazwie");
+		}
+		catch (ProductNotFoundException e) {
+			assertThat(e.getMessage()).isEqualTo("Nie znaleziono produktu o nazwie name");
+		}
+	}
+
+	@Test
+	public void shouldReturnProductWhenProductByNameExists() {
+		given(this.productRepository.findByName(NAME)).willReturn(
+				Optional.of(new Product(NAME, "desc", "url", BigDecimal.TEN)));
+		Product productByName = this.productService.getProductByName(NAME);
+		assertThat(productByName).isNotNull();
+		assertThat(productByName.getName()).isEqualTo(NAME);
+	}
+
+	@Test
+	public void shouldThrownIllegalArgumentExceptionWhenIdIsNull() {
+		try {
+			this.productService.getProductById(null);
+			Assert.fail("Nie mozna podac nullowego argumentu");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Podano pusty id produktu");
+		}
+	}
+
+	@Test
+	public void shouldThrownProductNotFoundExceptionWhenProductByIdNotExist() {
+		try {
+			given(this.productRepository.findById(anyLong())).willReturn(Optional.empty());
+			this.productService.getProductById(ID);
+			Assert.fail("Nie powinno znalezc produktu o podanej nazwie");
+		}
+		catch (ProductNotFoundException e) {
+			assertThat(e.getMessage()).isEqualTo("Nie znaleziono produktu o id 1");
+		}
+	}
+
+	@Test
+	public void shouldReturnProductWhenProductByIdExists() {
+		given(this.productRepository.findById(ID)).willReturn(
+				Optional.of(new Product(NAME, "desc", "url", BigDecimal.TEN)));
+		Product productById = this.productService.getProductById(ID);
+		assertThat(productById).isNotNull();
+		assertThat(productById.getName()).isEqualTo(NAME);
+	}
+
+	@Test
+	public void shouldThrownIllegalArgumentExceptionWhenSizeOrPageNumberIsIncorrect() {
+		try {
+			this.productService.getProducts(-1, 2, null);
+			Assert.fail("Nie mozna podac minusowej strony");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Podano nieprawidlowy numer strony");
+		}
+
+		try {
+			this.productService.getProducts(0, 0, null);
+			Assert.fail("Nie mozna podac rozmiaru mniejszego od 1");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Podano rozmiar mniejszy od 1");
+		}
+	}
+
+	@Test
+	public void shouldReturn1ProductsAscByIdOnFirstPage() {
+		Page<Product> products = new PageImpl<>(
+				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN)));
+		given(this.productRepository.findAll(new PageRequest(0, 1, Sort.Direction.ASC, "id"))).willReturn(products);
+		List<Product> asc = this.productService.getProducts(1, 1, "asc");
+		assertThat(asc).isNotNull().isNotEmpty();
+		assertThat(asc.size()).isEqualTo(1);
+		assertThat(asc.get(0).getName()).isEqualTo("name3");
+	}
+
+	@Test
+	public void shouldReturn20ProductsOnPageWhenDefaultSettings() {
+		Page<Product> products = new PageImpl<>(
+				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
+						new Product("name2", "desc", "url", BigDecimal.TEN)));
+		given(this.productRepository.findAll(new PageRequest(0, 5, null, "id"))).willReturn(products);
+		List<Product> asc = this.productService.getProducts(null, null, null);
+		assertThat(asc).isNotNull().isNotEmpty();
+		assertThat(asc.size()).isEqualTo(2);
+		assertThat(asc.get(0).getName()).isEqualTo("name3");
+		assertThat(asc.get(1).getName()).isEqualTo("name2");
+	}
+
+	@Test
+	public void shouldReturn2ProductsOnPageWhenSizeIsMoreThenDefault() {
+		Page<Product> products = new PageImpl<>(
+				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
+						new Product("name2", "desc", "url", BigDecimal.TEN)));
+		given(this.productRepository.findAll(new PageRequest(0, 20, null, "id"))).willReturn(products);
+		List<Product> asc = this.productService.getProducts(1, 20, null);
+		assertThat(asc).isNotNull().isNotEmpty();
+		assertThat(asc.size()).isEqualTo(2);
+		assertThat(asc.get(0).getName()).isEqualTo("name3");
+		assertThat(asc.get(1).getName()).isEqualTo("name2");
+	}
+
+
+
+}
