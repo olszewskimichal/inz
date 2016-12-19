@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse navbar-fixed-top"
+     xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="home"><a href="/"><i class="fa fa-home">&nbsp;Strona główna</i></a></li>
+                <li id="products"><a href="/products"><i class="fa fa-folder">&nbsp;Produkty</i></a></li>
+                <li sec:authorize="hasAuthority('ADMIN')" id="addProduct"><a href="/addProduct"><i class="fa fa-plus">
+                    &nbsp;Dodaj
+                    Produkt</i></a></li>
+                <li id="contact"><a href="/contact"><i class="fa fa-envelope">&nbsp;Kontakt</i></a></li>
+            </ul>
+            <div sec:authorize="!isAuthenticated()">
+                <form class="navbar-form navbar-right" th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control" name='username'/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Hasło" class="form-control" name='password'/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Zaloguj się</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<form id="my_form" th:action="@{/logout}" method="post">
+</form>
