@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.service.ProductService;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,19 +25,15 @@ public class ProductServiceTest extends IntegrationTestBase {
 
 	@Before
 	public void setUp() {
-		for (int i = 0; i < 30; i++) {
-			repository.save(new Product("nazwa" + i, "opis", "url", BigDecimal.ZERO));
-		}
-
-	}
-
-	@After
-	public void tearUp() {
 		repository.deleteAll();
 	}
 
+
 	@Test
 	public void shouldReturn20ProductAscSortByIdWhenSizeArgumentIsEqualTo30() {
+		for (int i = 0; i < 30; i++) {
+			repository.save(new Product("nazwa" + i, "opis", "url", BigDecimal.ZERO));
+		}
 		List<Product> products = this.productService.getProducts(1, 30, "desc");
 		assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService
 		Long firstId = products.get(0).getId();
@@ -45,4 +41,20 @@ public class ProductServiceTest extends IntegrationTestBase {
 		assertThat(firstId > lastId).isTrue();
 		assertThat(firstId - lastId).isEqualTo(19L);
 	}
+
+	@Test
+	public void shouldCreateProductWhenDtoIsCorrect() {
+		assertThat(repository.findAll().size()).isEqualTo(0);
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setName("nazwa");
+		productDTO.setDescription("desc");
+		productDTO.setPrice(BigDecimal.TEN);
+
+		Product product = productService.createProduct(productDTO);
+
+		assertThat(product.getName()).isEqualTo("nazwa");
+		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
+		assertThat(repository.findAll().size()).isEqualTo(1);
+	}
+
 }

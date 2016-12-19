@@ -1,0 +1,25 @@
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>Strona główna</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Witamy w Naszym sklepie</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a
+                jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+                unique.</p>
+            <p><a class="btn btn-primary btn-lg" href="/register" role="button">Zarejestruj się &raquo;</a></p>
+        </div>
+    </div>
+</div>
+</body>
+<div layout:fragment="script">
+    <script>
+        document.getElementById("home").className = 'active';
+    </script>
+</div>
+</html>

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,13 @@ public class ProductService {
 		PageRequest pageRequest = new PageRequest(setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort), DEFAULT_SORT_BY_ID);
 		log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}", setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
 		return productRepository.findAll(pageRequest).getContent().stream().collect(Collectors.toList());
+	}
+
+	public Product createProduct(ProductDTO productDTO) {
+		Product product = new Product(productDTO.getName(), productDTO.getDescription(), productDTO.getImageUrl(), productDTO.getPrice());
+		productRepository.save(product);
+		log.debug("Stworzono nowy produkt o id {}", product.getId());
+		return product;
 	}
 
 	private int setReturnPage(final Integer pageNumber) {

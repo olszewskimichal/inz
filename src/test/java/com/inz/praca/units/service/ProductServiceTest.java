@@ -2,8 +2,10 @@ package com.inz.praca.units.service;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doAnswer;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.service.ProductService;
@@ -134,6 +137,9 @@ public class ProductServiceTest {
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(1);
 		assertThat(asc.get(0).getName()).isEqualTo("name3");
+		assertThat(asc.get(0).getDescription()).isEqualTo("desc");
+		assertThat(asc.get(0).getImageUrl()).isEqualTo("url");
+		assertThat(asc.get(0).getPrice()).isEqualTo(BigDecimal.TEN);
 	}
 
 	@Test
@@ -162,6 +168,39 @@ public class ProductServiceTest {
 		assertThat(asc.get(1).getName()).isEqualTo("name2");
 	}
 
+	@Test
+	public void shouldCreateProductFromDTO() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setName("nazwa");
+		productDTO.setDescription("opis");
+		productDTO.setImageUrl("url");
+		productDTO.setPrice(BigDecimal.TEN);
 
+		doAnswer(invocation -> {
+			Product argument = (Product) invocation.getArguments()[0];
+			argument.setId(1L);
+			return argument;
+		}).when(productRepository).save(any(Product.class));
 
+		Product product = productService.createProduct(productDTO);
+		assertThat(product.getId()).isEqualTo(1L);
+		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
+		assertThat(product.getImageUrl()).isEqualTo(productDTO.getImageUrl());
+		assertThat(product.getDescription()).isEqualTo(productDTO.getDescription());
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenCreateProductFromDTO() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setDescription("opis");
+		productDTO.setImageUrl("url");
+		productDTO.setPrice(BigDecimal.TEN);
+		try {
+			productService.createProduct(productDTO);
+			Assert.fail();
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Nie moze być pusta nazwa produktu");
+		}
+	}
 }

@@ -2,12 +2,15 @@ package com.inz.praca.units.service;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doAnswer;
 
 import java.util.Optional;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;
 import com.inz.praca.service.UserService;
@@ -111,5 +114,29 @@ public class UserServiceTest {
 		given(userRepository.findByEmail("email@o2.pl")).willReturn(Optional.of(new User("email@o2.pl", "imie", "nazwisko", "hash")));
 		User userByEmail = this.userService.getUserByEmail("email@o2.pl");
 		assertThat(userByEmail.getEmail()).isEqualTo("email@o2.pl");
+	}
+
+
+	@Test
+	public void shouldCreateUserWhenFormIsCorrect() {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setConfirmPassword("psx");
+		userDTO.setPassword("psx");
+		userDTO.setEmail("email");
+		userDTO.setName("name");
+		userDTO.setLastName("last");
+
+		doAnswer(invocation -> {
+			User argument = (User) invocation.getArguments()[0];
+			argument.setId(1L);
+			return argument;
+		}).when(userRepository).save(any(User.class));
+
+		User user = userService.create(userDTO);
+		assertThat(user.getEmail()).isEqualTo("email");
+		assertThat(user.getName()).isEqualTo("name");
+		assertThat(user.getLastName()).isEqualTo("last");
+		assertThat(user.getPasswordHash()).isEqualTo("psx");
+		assertThat(user.getId()).isEqualTo(1L);
 	}
 }

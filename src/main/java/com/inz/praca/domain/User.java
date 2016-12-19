@@ -44,4 +44,7 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 }
