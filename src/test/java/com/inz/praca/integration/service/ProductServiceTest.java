@@ -49,11 +49,14 @@ public class ProductServiceTest extends IntegrationTestBase {
 		productDTO.setName("nazwa");
 		productDTO.setDescription("desc");
 		productDTO.setPrice(BigDecimal.TEN);
+		productDTO.setImageUrl("url");
 
 		Product product = productService.createProduct(productDTO);
 
 		assertThat(product.getName()).isEqualTo("nazwa");
 		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
+		assertThat(product.getDescription()).isEqualTo("desc");
+		assertThat(product.getImageUrl()).isEqualTo("url");
 		assertThat(repository.findAll().size()).isEqualTo(1);
 	}
 

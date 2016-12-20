@@ -133,10 +133,10 @@ public class UserServiceTest {
 		}).when(userRepository).save(any(User.class));
 
 		User user = userService.create(userDTO);
-		assertThat(user.getEmail()).isEqualTo("email");
-		assertThat(user.getName()).isEqualTo("name");
-		assertThat(user.getLastName()).isEqualTo("last");
-		assertThat(user.getPasswordHash()).isEqualTo("psx");
+		assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
+		assertThat(user.getName()).isEqualTo(userDTO.getName());
+		assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
+		assertThat(user.getPasswordHash()).isEqualTo(userDTO.getPassword());
 		assertThat(user.getId()).isEqualTo(1L);
 	}
 }
