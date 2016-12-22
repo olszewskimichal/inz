@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import java.util.List;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +30,9 @@ public class User {
 	private final String lastName;
 	private final String passwordHash;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "USER_ORDER")
-	private List<Order> shippingDetails;
+	private Set<Order> orders;
 
 	@Id
 	@GeneratedValue

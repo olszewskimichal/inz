@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,16 +30,22 @@ public class Cart {
 	@GeneratedValue
 	private Long id;
 
+	//TODO transient price
+
 	@ManyToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "CART_PRODUCTS",
 			joinColumns = @JoinColumn(name = "cart_id"),
 			inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<Product> products;
-	private final LocalDateTime dateTime;
+	private Set<Product> products;
+	private LocalDateTime dateTime;
 
-	public Cart(List<Product> products, LocalDateTime dateTime) {
+	public Cart(Set<Product> products) {
 		Assert.notNull(products, "Lista produktów nie może być nullem");
 		this.products = products;
-		this.dateTime = dateTime;
+	}
+
+	@PrePersist
+	public void initialize() {
+		this.dateTime = LocalDateTime.now();
 	}
 }

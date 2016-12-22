@@ -1,5 +1,6 @@
 package com.inz.praca.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,12 +27,12 @@ public class Order {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "CART_ID")
 	private final Cart cart;
 	private final BigDecimal price;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "DETAIL_ID")
 	private final ShippingDetail shippingDetail;
 
