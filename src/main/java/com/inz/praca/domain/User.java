@@ -1,11 +1,17 @@
 package com.inz.praca.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,23 +21,22 @@ import org.springframework.util.Assert;
 @Getter
 @ToString
 @Slf4j
+@Setter
+@NoArgsConstructor(force = true)
 public class User {
 	@Column(unique = true)
 	private final String email;
 	private final String name;
 	private final String lastName;
 	private final String passwordHash;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ORDER")
+	private List<Order> shippingDetails;
+
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	protected User() {
-		this.email = null;
-		this.name = null;
-		this.lastName = null;
-		this.passwordHash = null;
-		log.debug("Pusty konstuktor dla hibernate, chce wiedzieć kiedy jest wykonywany {}", this);
-	}
 
 	public User(String email, String name, String lastName, String passwordHash) {
 		Assert.hasLength(passwordHash, "Nie może być puste hasło");

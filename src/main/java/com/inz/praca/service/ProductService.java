@@ -66,7 +66,7 @@ public class ProductService {
 	}
 
 	private int setProductOnPageLimit(final Integer size) {
-		return size >= MAX_PRODUCT_ON_PAGE ? MAX_PRODUCT_ON_PAGE : size;
+		return size > MAX_PRODUCT_ON_PAGE ? MAX_PRODUCT_ON_PAGE : size;
 	}
 
 	private Sort.Direction setSortDirection(final String sort) {

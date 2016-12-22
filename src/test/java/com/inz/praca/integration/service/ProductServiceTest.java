@@ -60,4 +60,6 @@ public class ProductServiceTest extends IntegrationTestBase {
 		assertThat(repository.findAll().size()).isEqualTo(1);
 	}
 
+
+
 }

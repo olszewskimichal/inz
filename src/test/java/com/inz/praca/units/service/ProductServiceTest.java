@@ -156,7 +156,7 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void shouldReturn2ProductsOnPageWhenSizeIsMoreThenDefault() {
+	public void shouldReturn2ProductsOnPageWhenSizeIsEqualThenMax() {
 		Page<Product> products = new PageImpl<>(
 				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
 						new Product("name2", "desc", "url", BigDecimal.TEN)));
