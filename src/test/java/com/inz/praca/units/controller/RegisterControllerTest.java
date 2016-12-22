@@ -1,6 +1,10 @@
 package com.inz.praca.units.controller;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import com.inz.praca.controller.RegisterController;
@@ -13,7 +17,7 @@ import org.mockito.Mock;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-public class RegisterControllerTests {
+public class RegisterControllerTest {
 
 	@Mock
 	private Model model;
@@ -46,6 +50,32 @@ public class RegisterControllerTests {
 		userDTO.setName("name");
 		userDTO.setLastName("last");
 		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("index");
+	}
+
+	@Test
+	public void shouldFailedRegisterWithExistingUser() {
+		given(userService.create(any(UserDTO.class))).willThrow(new IllegalArgumentException());
+
+		UserDTO userDTO = new UserDTO();
+		userDTO.setName("imie");
+		userDTO.setLastName("nazw");
+		userDTO.setEmail("email");
+		userDTO.setPassword("pass");
+		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("register");
+
+		verify(model).addAttribute("userCreateForm", userDTO);
+		verifyNoMoreInteractions(model);
+	}
+
+	@Test
+	public void shouldShowAgainFormWhenErrorOnCreate() {
+		given(bindingResult.hasErrors()).willReturn(true);
+
+		UserDTO userDTO = new UserDTO();
+		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("register");
+
+		verify(model).addAttribute("userCreateForm", userDTO);
+		verifyNoMoreInteractions(model);
 	}
 
 }

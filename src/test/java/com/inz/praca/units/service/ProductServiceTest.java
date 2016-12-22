@@ -156,7 +156,7 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void shouldReturn2ProductsOnPageWhenSizeIsMoreThenDefault() {
+	public void shouldReturn2ProductsOnPageWhenSizeIsEqualThenMax() {
 		Page<Product> products = new PageImpl<>(
 				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
 						new Product("name2", "desc", "url", BigDecimal.TEN)));
@@ -184,7 +184,8 @@ public class ProductServiceTest {
 
 		Product product = productService.createProduct(productDTO);
 		assertThat(product.getId()).isEqualTo(1L);
-		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
+		assertThat(product.getName()).isEqualTo(productDTO.getName());
+		assertThat(product.getPrice()).isEqualTo(productDTO.getPrice());
 		assertThat(product.getImageUrl()).isEqualTo(productDTO.getImageUrl());
 		assertThat(product.getDescription()).isEqualTo(productDTO.getDescription());
 	}
