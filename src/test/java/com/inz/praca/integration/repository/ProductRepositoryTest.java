@@ -39,6 +39,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 
 	@Test
 	public void shouldFindAllPageable() {
+		productRepository.deleteAll();
 		this.entityManager.persist(new Product("nazwa1", "opis", "url", BigDecimal.TEN));
 		this.entityManager.persist(new Product("nazwa2", "opis", "url", BigDecimal.TEN));
 		this.entityManager.persist(new Product("nazwa3", "opis", "url", BigDecimal.TEN));
