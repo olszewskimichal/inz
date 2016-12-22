@@ -22,7 +22,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 
 	@Test
 	public void shouldFindProductByName() {
-		this.entityManager.persist(new Product(NAME, "opis", "url", BigDecimal.TEN));
+		this.entityManager.persistFlushFind(new Product(NAME, "opis", "url", BigDecimal.TEN));
 		Optional<Product> byName = this.productRepository.findByName(NAME);
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isTrue();
@@ -31,7 +31,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 
 	@Test
 	public void shouldNotFindProductByName() {
-		this.entityManager.persist(new Product(NAME, "opis", "url", BigDecimal.TEN));
+		this.entityManager.persistFlushFind(new Product(NAME, "opis", "url", BigDecimal.TEN));
 		Optional<Product> byName = this.productRepository.findByName("innaNazwa");
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isFalse();
