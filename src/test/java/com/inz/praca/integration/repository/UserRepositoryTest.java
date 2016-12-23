@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserRepositoryTest extends JpaTestBase {
-	private static final String EMAIL = "email@o2.pl";
+	private static final String EMAIL = "email_a@o2.pl";
 
 	@Autowired
 	private UserRepository repository;
@@ -31,7 +31,7 @@ public class UserRepositoryTest extends JpaTestBase {
 	@Test
 	public void shouldNotFindUserByEmail() {
 		repository.deleteAll();
-		this.entityManager.persistFlushFind(new UserBuilder().withEmail(EMAIL).withPasswordHash("hash").build());
+		this.entityManager.persistFlushFind(new UserBuilder().withEmail("innyEmail@o2.pl").withPasswordHash("hash").build());
 		Optional<User> byEmail = this.repository.findByEmail("innyEmail");
 		assertThat(byEmail).isNotNull();
 		assertThat(byEmail.isPresent()).isFalse();
