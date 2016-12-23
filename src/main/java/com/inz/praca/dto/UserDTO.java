@@ -26,6 +26,7 @@ public class UserDTO {
 	@Size(max = 50)
 	private String email;
 
+	//TODO validacjaHasla
 	@Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{3,}$")
 	private String password;
 
