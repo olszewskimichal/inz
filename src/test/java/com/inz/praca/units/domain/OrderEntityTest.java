@@ -9,7 +9,7 @@ import java.util.Set;
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
-import com.inz.praca.domain.Product;
+import com.inz.praca.domain.ProductBuilder;
 import com.inz.praca.domain.ShippingDetail;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,7 +54,7 @@ public class OrderEntityTest {
 		try {
 			Set<CartItem> cartItems = new HashSet<>();
 			for (int i = 0; i < 4; i++) {
-				cartItems.add(new CartItem(new Product("nazwa", "desc", "url", BigDecimal.valueOf(i + 1)), 1L));
+				cartItems.add(new CartItem(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.valueOf(i + 1)).createProduct(), 1L));
 			}
 			Cart cart = new Cart(cartItems);
 			Order order = new Order(cart, new ShippingDetail());

@@ -16,7 +16,18 @@ public class UserEntityTest {
 			Assert.fail("Nie mozna stworzyc uzytkownika z pustym emailem");
 		}
 		catch (IllegalArgumentException e) {
-			assertThat(e.getMessage()).isEqualTo("Email nie moze być pusty");
+			assertThat(e.getMessage()).isEqualTo("Email nie może być pusty");
+		}
+	}
+
+	@Test
+	public void shouldThrownExceptionWhenEmailIsNotCorrect() {
+		try {
+			new User("email", "imie", "nazwisko", "hashZHaslem");
+			Assert.fail("Nie mozna stworzyc uzytkownika z pustym emailem");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("To nie jest prawidłowy adres Email");
 		}
 	}
 
@@ -27,7 +38,7 @@ public class UserEntityTest {
 			Assert.fail("Nie mozna stworzyc uzytkownika z pustym emailem");
 		}
 		catch (IllegalArgumentException e) {
-			assertThat(e.getMessage()).isEqualTo("Email nie moze być pusty");
+			assertThat(e.getMessage()).isEqualTo("To nie jest prawidłowy adres Email");
 		}
 	}
 

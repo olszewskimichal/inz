@@ -5,7 +5,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 
 import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.Product;
+import com.inz.praca.domain.ProductBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class CartItemEntityTest {
 	@Test
 	public void shouldCreateCartItem() {
 		try {
-			CartItem cartItem = new CartItem(new Product("name", "desc", "url", BigDecimal.TEN), 0L);
+			CartItem cartItem = new CartItem(new ProductBuilder().withName("name").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct(), 0L);
 			assertThat(cartItem.getProduct()).isNotNull();
 			assertThat(cartItem.getQuantity()).isNotNull().isEqualTo(0L);
 			cartItem.setId(1L);
@@ -39,7 +39,7 @@ public class CartItemEntityTest {
 	@Test
 	public void shouldNotCreateCartItemWhenQuantityIsNull() {
 		try {
-			new CartItem(new Product("name", "desc", "url", BigDecimal.TEN), null);
+			new CartItem(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct(), null);
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {
@@ -50,7 +50,7 @@ public class CartItemEntityTest {
 	@Test
 	public void shouldNotCreateCartItemWhenQuantityIsNegative() {
 		try {
-			new CartItem(new Product("name", "desc", "url", BigDecimal.TEN), -1L);
+			new CartItem(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct(), -1L);
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {

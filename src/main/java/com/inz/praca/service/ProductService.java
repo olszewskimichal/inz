@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.domain.ProductBuilder;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.ProductRepository;
@@ -51,7 +52,7 @@ public class ProductService {
 	}
 
 	public Product createProduct(ProductDTO productDTO) {
-		Product product = new Product(productDTO.getName(), productDTO.getDescription(), productDTO.getImageUrl(), productDTO.getPrice());
+		Product product = new ProductBuilder().createProduct(productDTO);
 		productRepository.save(product);
 		log.debug("Stworzono nowy produkt o id {}", product.getId());
 		return product;

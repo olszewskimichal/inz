@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.Product;
+import com.inz.praca.domain.ProductBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
@@ -27,8 +27,8 @@ public class CartEntityTest extends JpaTestBase {
 	public void shouldAdd2ProductsAndRemove1ToCart() {
 		Cart cart = entityManager.persistFlushFind(new Cart(new HashSet<>()));
 		assertThat(cart.getId()).isNotNull();
-		cart.getCartItems().add(new CartItem(new Product("name", "desc", "url", BigDecimal.TEN), 1L));
-		cart.getCartItems().add(new CartItem(new Product("name1", "desc2", "url", BigDecimal.ONE), 1L));
+		cart.getCartItems().add(new CartItem(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct(), 1L));
+		cart.getCartItems().add(new CartItem(new ProductBuilder().withName("name1").withPrice(BigDecimal.ONE).createProduct(), 1L));
 
 		this.entityManager.persistAndFlush(cart);
 

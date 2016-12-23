@@ -30,7 +30,6 @@ public class UserService {
 		return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 	}
 
-	//TODO test Integracyjny co sie wydarzy przy tworzeniu tego samego itd
 	public User create(UserDTO form) {
 		User user = new User(form.getEmail(), form.getName(), form.getLastName(), form.getPassword());
 		userRepository.save(user);

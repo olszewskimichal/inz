@@ -122,7 +122,7 @@ public class UserServiceTest {
 		UserDTO userDTO = new UserDTO();
 		userDTO.setConfirmPassword("psx");
 		userDTO.setPassword("psx");
-		userDTO.setEmail("email");
+		userDTO.setEmail("email@o2.pl");
 		userDTO.setName("name");
 		userDTO.setLastName("last");
 

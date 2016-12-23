@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.domain.ProductBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import com.inz.praca.repository.ProductRepository;
 import org.junit.Test;
@@ -23,7 +24,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 	@Test
 	public void shouldFindProductByName() {
 		productRepository.deleteAll();
-		this.entityManager.persistAndFlush(new Product(NAME, "opis", "url", BigDecimal.TEN));
+		this.entityManager.persistAndFlush(new ProductBuilder().withName(NAME).withPrice(BigDecimal.TEN).createProduct());
 		Optional<Product> byName = this.productRepository.findByName(NAME);
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isTrue();
@@ -33,7 +34,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 	@Test
 	public void shouldNotFindProductByName() {
 		productRepository.deleteAll();
-		this.entityManager.persistAndFlush(new Product(NAME, "opis", "url", BigDecimal.TEN));
+		this.entityManager.persistAndFlush(new ProductBuilder().withName(NAME).withPrice(BigDecimal.TEN).createProduct());
 		Optional<Product> byName = this.productRepository.findByName("innaNazwa");
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isFalse();
@@ -42,9 +43,9 @@ public class ProductRepositoryTest extends JpaTestBase {
 	@Test
 	public void shouldFindAllPageable() {
 		productRepository.deleteAll();
-		this.entityManager.persist(new Product("nazwa1", "opis", "url", BigDecimal.TEN));
-		this.entityManager.persist(new Product("nazwa2", "opis", "url", BigDecimal.TEN));
-		this.entityManager.persist(new Product("nazwa3", "opis", "url", BigDecimal.TEN));
+		this.entityManager.persist(new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).createProduct());
+		this.entityManager.persist(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).createProduct());
+		this.entityManager.persist(new ProductBuilder().withName("nazwa3").withPrice(BigDecimal.TEN).createProduct());
 		List<Product> content = this.productRepository.findAll(new PageRequest(0, 2)).getContent();
 		assertThat(content.size()).isEqualTo(2);
 		assertThat(content.get(0).getName()).isEqualTo("nazwa1");
