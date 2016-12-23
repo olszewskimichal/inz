@@ -99,8 +99,8 @@
       <file leaf-file-name="UserRepositoryTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/repository/UserRepositoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="102">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1398,59 +1398,7 @@
       <recent name="C:\Users\Admin\ProgramowanieJEE\inzynierka" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.sonar">
-    <configuration default="false" name="com in inzynierka" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="inzynierka" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="PriceValidatorTest.shouldReturnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.inz.praca.units.validators.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="inzynierka" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.inz.praca.units.validators" />
-      <option name="MAIN_CLASS_NAME" value="com.inz.praca.units.validators.PriceValidatorTest" />
-      <option name="METHOD_NAME" value="shouldReturnTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.UserRepositoryTest">
     <configuration default="false" name="LocalDateTImeConverterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1512,6 +1460,58 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="UserRepositoryTest.shouldFindUserByEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.inz.praca.integration.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="inzynierka" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.inz.praca.integration.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.inz.praca.integration.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldFindUserByEmail" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="UserRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.inz.praca.integration.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="inzynierka" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.inz.praca.integration.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.inz.praca.integration.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1787,19 +1787,19 @@
       <item index="0" class="java.lang.String" itemvalue="Maven.sonar" />
       <item index="1" class="java.lang.String" itemvalue="Maven.sklep [pitest:mutationCoverage]" />
       <item index="2" class="java.lang.String" itemvalue="Spring Boot.SklepApplication" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.PriceValidatorTest.shouldReturnTrue" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest.shouldConvertLocalDateTimeToTimestamp" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest.shouldConvertLocalDateTimeToTimestamp" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest.shouldFindUserByEmail" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest.shouldConvertLocalDateTimeToTimestamp" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PriceValidatorTest.shouldReturnTrue" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest.shouldFindUserByEmail" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.LocalDateTImeConverterTest.shouldConvertLocalDateTimeToTimestamp" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -1813,12 +1813,6 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_inzynierka - 2016.12.23 at 23h 37m 01s.xml">
-      <configuration name="All in inzynierka" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LocalDateTImeConverterTest - 2016.12.23 at 23h 17m 53s.xml">
-      <configuration name="LocalDateTImeConverterTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="LocalDateTImeConverterTest - 2016.12.23 at 23h 19m 44s.xml">
       <configuration name="LocalDateTImeConverterTest" configurationId="JUnit" />
     </history-entry>
@@ -1833,6 +1827,12 @@
     </history-entry>
     <history-entry file="PriceValidatorTest_shouldReturnTrue - 2016.12.23 at 22h 46m 13s.xml">
       <configuration name="PriceValidatorTest.shouldReturnTrue" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserRepositoryTest - 2016.12.23 at 23h 44m 22s.xml">
+      <configuration name="UserRepositoryTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserRepositoryTest_shouldFindUserByEmail - 2016.12.23 at 23h 43m 50s.xml">
+      <configuration name="UserRepositoryTest.shouldFindUserByEmail" configurationId="JUnit" />
     </history-entry>
     <history-entry file="com_in_inzynierka - 2016.12.23 at 22h 48m 35s.xml">
       <configuration name="com in inzynierka" configurationId="JUnit" />
@@ -1864,23 +1864,23 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24327958" sideWeight="0.5057307" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37903225" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29369628" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39784947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37903225" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39784947" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2297,8 +2297,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/repository/UserRepositoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="102">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
