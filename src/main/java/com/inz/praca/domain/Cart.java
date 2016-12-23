@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,6 @@ import org.springframework.util.Assert;
 @ToString
 @Setter
 @Slf4j
-@NoArgsConstructor(force = true)
 public class Cart {
 	@Id
 	@GeneratedValue
@@ -32,16 +30,20 @@ public class Cart {
 
 	//TODO transient price
 
-	@ManyToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = CartItem.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "CART_PRODUCTS",
-			joinColumns = @JoinColumn(name = "cart_id"),
-			inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private Set<Product> products;
+			joinColumns = @JoinColumn(name = "CART_ID"),
+			inverseJoinColumns = @JoinColumn(name = "CART_ITEM_ID"))
+	private Set<CartItem> cartItems;
 	private LocalDateTime dateTime;
 
-	public Cart(Set<Product> products) {
-		Assert.notNull(products, "Lista produktów nie może być nullem");
-		this.products = products;
+	public Cart(Set<CartItem> cartItems) {
+		Assert.notNull(cartItems, "Lista elementów koszyka nie może być nullem");
+		this.cartItems = cartItems;
+	}
+
+	private Cart() {
+
 	}
 
 	@PrePersist

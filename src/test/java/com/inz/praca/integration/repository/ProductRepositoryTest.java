@@ -24,7 +24,6 @@ public class ProductRepositoryTest extends JpaTestBase {
 	public void shouldFindProductByName() {
 		productRepository.deleteAll();
 		this.entityManager.persistAndFlush(new Product(NAME, "opis", "url", BigDecimal.TEN));
-		System.out.println(productRepository.findAll());
 		Optional<Product> byName = this.productRepository.findByName(NAME);
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isTrue();

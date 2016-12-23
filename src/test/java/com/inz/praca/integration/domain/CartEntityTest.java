@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 
 import com.inz.praca.domain.Cart;
+import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class CartEntityTest extends JpaTestBase {
 		assertThat(cart).isNotNull();
 		assertThat(cart.getId()).isNotNull();
 		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
-		assertThat(cart.getProducts()).isNotNull().isEmpty();
+		assertThat(cart.getCartItems()).isNotNull().isEmpty();
 		assertThat(cart.toString()).contains("Cart(id=");
 	}
 
@@ -26,25 +27,28 @@ public class CartEntityTest extends JpaTestBase {
 	public void shouldAdd2ProductsAndRemove1ToCart() {
 		Cart cart = entityManager.persistFlushFind(new Cart(new HashSet<>()));
 		assertThat(cart.getId()).isNotNull();
-		cart.getProducts().add(new Product("name", "desc", "url", BigDecimal.TEN));
-		cart.getProducts().add(new Product("name1", "desc2", "url", BigDecimal.ONE));
-		this.entityManager.persistAndFlush(cart);
-		assertThat(cart.getId()).isNotNull();
-		assertThat(cart.getProducts()).isNotNull().isNotEmpty();
-		assertThat(cart.getProducts().size()).isEqualTo(2);
-		for (Product product : cart.getProducts()) {
-			assertThat(product.getId()).isNotNull();
-		}
+		cart.getCartItems().add(new CartItem(new Product("name", "desc", "url", BigDecimal.TEN), 1L));
+		cart.getCartItems().add(new CartItem(new Product("name1", "desc2", "url", BigDecimal.ONE), 1L));
 
+		this.entityManager.persistAndFlush(cart);
+
+		assertThat(cart.getId()).isNotNull();
+		assertThat(cart.getCartItems()).isNotNull().isNotEmpty();
+		assertThat(cart.getCartItems().size()).isEqualTo(2);
+		for (CartItem cartItem : cart.getCartItems()) {
+			assertThat(cartItem.getId()).isNotNull();
+		}
 		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
 
-		cart.getProducts().removeIf(v->v.getName().equalsIgnoreCase("name"));
+		cart.getCartItems().removeIf(v -> v.getProduct().getName().equalsIgnoreCase("name"));
+
 		this.entityManager.persistAndFlush(cart);
+
 		assertThat(cart.getId()).isNotNull();
-		assertThat(cart.getProducts()).isNotNull().isNotEmpty();
-		assertThat(cart.getProducts().size()).isEqualTo(1);
-		for (Product product : cart.getProducts()) {
-			assertThat(product.getId()).isNotNull();
+		assertThat(cart.getCartItems()).isNotNull().isNotEmpty();
+		assertThat(cart.getCartItems().size()).isEqualTo(1);
+		for (CartItem cartItem : cart.getCartItems()) {
+			assertThat(cartItem.getId()).isNotNull();
 		}
 		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
 	}

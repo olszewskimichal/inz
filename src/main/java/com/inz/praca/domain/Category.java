@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,6 @@ import org.springframework.util.Assert;
 @Setter
 @Slf4j
 @Getter
-@NoArgsConstructor(force = true)
 public class Category {
 	private final String name;
 	private final String description;
@@ -30,6 +28,11 @@ public class Category {
 		Assert.hasLength(name, "Nie moze być pusta nazwa kategorii");
 		this.name = name;
 		this.description = description;
+	}
+
+	private Category() {
+		this.name = null;
+		this.description = null;
 	}
 
 	public void setId(long id) {
