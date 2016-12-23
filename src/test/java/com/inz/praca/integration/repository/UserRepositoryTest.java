@@ -5,6 +5,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.util.Optional;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import com.inz.praca.repository.UserRepository;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class UserRepositoryTest extends JpaTestBase {
 
 	@Test
 	public void shouldFindUserByEmail() {
-		this.entityManager.persist(new User(EMAIL, "imie", "nazwisko", "hash"));
+		this.entityManager.persist(new UserBuilder().withEmail(EMAIL).withPasswordHash("hash").build());
 		Optional<User> byEmail = this.repository.findByEmail(EMAIL);
 		assertThat(byEmail).isNotNull();
 		assertThat(byEmail.isPresent()).isTrue();
@@ -28,7 +29,7 @@ public class UserRepositoryTest extends JpaTestBase {
 
 	@Test
 	public void shouldNotFindUserByEmail() {
-		this.entityManager.persist(new User(EMAIL, "imie", "nazwisko", "hash"));
+		this.entityManager.persist(new UserBuilder().withEmail(EMAIL).withPasswordHash("hash").build());
 		Optional<User> byEmail = this.repository.findByEmail("innyEmail");
 		assertThat(byEmail).isNotNull();
 		assertThat(byEmail.isPresent()).isFalse();

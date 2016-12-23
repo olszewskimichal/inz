@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.ProductBuilder;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 

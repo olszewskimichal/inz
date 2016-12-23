@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.inz.praca.domain.Product;
-import com.inz.praca.domain.ProductBuilder;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.repository.ProductRepository;

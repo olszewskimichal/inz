@@ -10,6 +10,7 @@ import static org.mockito.Mockito.doAnswer;
 import java.util.Optional;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;
@@ -103,7 +104,7 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldFoundUserById() {
-		given(userRepository.findById(1L)).willReturn(Optional.of(new User("email@o2.pl", "imie", "nazwisko", "hash")));
+		given(userRepository.findById(1L)).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()));
 		User userById = this.userService.getUserById(1L);
 		assertThat(userById.getEmail()).isEqualTo("email@o2.pl");
 
@@ -111,7 +112,7 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldFoundUserByEmail() {
-		given(userRepository.findByEmail("email@o2.pl")).willReturn(Optional.of(new User("email@o2.pl", "imie", "nazwisko", "hash")));
+		given(userRepository.findByEmail("email@o2.pl")).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()));
 		User userByEmail = this.userService.getUserByEmail("email@o2.pl");
 		assertThat(userByEmail.getEmail()).isEqualTo("email@o2.pl");
 	}

@@ -9,7 +9,7 @@ import java.util.Set;
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
-import com.inz.praca.domain.ProductBuilder;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.ShippingDetail;
 import org.junit.Assert;
 import org.junit.Test;

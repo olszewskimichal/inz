@@ -11,9 +11,10 @@ import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
 import com.inz.praca.domain.Product;
-import com.inz.praca.domain.ProductBuilder;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.ShippingDetail;
 import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
@@ -21,7 +22,7 @@ import org.junit.Test;
 public class UserEntityTest extends JpaTestBase {
 	@Test
 	public void shouldPersistUserWhenObjectIsCorrect() throws Exception {
-		User user = this.entityManager.persistFlushFind(new User("prawidlowyEmail@o2.pl", "imie", "nazwisko", "hash"));
+		User user = this.entityManager.persistFlushFind(new UserBuilder().withEmail("prawidlowyEmail@o2.pl").withPasswordHash("hash").build());
 		assertThat(user.getEmail()).isEqualTo("prawidlowyEmail@o2.pl");
 		assertThat(user.getName()).isEqualTo("imie");
 		assertThat(user.getLastName()).isEqualTo("nazwisko");
@@ -32,7 +33,7 @@ public class UserEntityTest extends JpaTestBase {
 
 	@Test
 	public void shouldAddOrderToUser() {
-		User user = this.entityManager.persistFlushFind(new User("prawidlowyEmail@o2.pl", "imie", "nazwisko", "hash"));
+		User user = this.entityManager.persistFlushFind(new UserBuilder().withEmail("prawidlowyEmail@o2.pl").withPasswordHash("hash").build());
 		ShippingDetail shippingDetail = new ShippingDetail("ulica", "miasto", "46", "code");
 		Set<CartItem> cartItems = new HashSet<>();
 		Product product = new ProductBuilder().withName("name").withPrice(BigDecimal.ONE).createProduct();

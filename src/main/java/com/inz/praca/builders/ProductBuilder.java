@@ -1,7 +1,8 @@
-package com.inz.praca.domain;
+package com.inz.praca.builders;
 
 import java.math.BigDecimal;
 
+import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 
 public class ProductBuilder {

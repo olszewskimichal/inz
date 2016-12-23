@@ -5,7 +5,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 
 import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.ProductBuilder;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 

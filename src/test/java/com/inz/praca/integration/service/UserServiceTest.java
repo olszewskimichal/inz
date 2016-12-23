@@ -3,6 +3,7 @@ package com.inz.praca.integration.service;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.repository.UserRepository;
@@ -31,7 +32,7 @@ public class UserServiceTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldFindUserByEmail() {
-		repository.save(new User("email" + 1+"@o2.pl", "imie", "nazwisko", "hash")).getId();
+		repository.save(new UserBuilder().withEmail("email" + 1 + "@o2.pl").withPasswordHash("hash").build()).getId();
 		User userByEmail = userService.getUserByEmail("email1@o2.pl");
 		assertThat(userByEmail).isNotNull();
 		assertThat(userByEmail.getEmail()).isEqualTo("email1@o2.pl");
@@ -40,7 +41,7 @@ public class UserServiceTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldFindUserById() {
-		Long id = repository.save(new User("email@o2.pl", "imie", "nazwisko", "hash")).getId();
+		Long id = repository.save(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()).getId();
 		User userById = userService.getUserById(id);
 		assertThat(userById).isNotNull();
 		assertThat(userById.getId()).isNotNull();
