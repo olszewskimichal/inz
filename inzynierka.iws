@@ -28,11 +28,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="577">
               <caret line="84" column="24" lean-forward="false" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -120,8 +140,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/units/service/ProductServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/inz/praca/validators/EmailValidator.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/newProduct.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" />
       </list>
     </option>
   </component>
@@ -1265,7 +1285,7 @@
       <recent name="C:\Users\Admin\ProgramowanieJEE\inzynierka" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.sonar">
+  <component name="RunManager" selected="JUnit.com in inzynierka">
     <configuration default="false" name="All in inzynierka" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="inzynierka" />
@@ -1667,10 +1687,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PasswordValidatorTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest.shouldFindUserByEmail" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in inzynierka" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.PasswordValidatorTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.UserRepositoryTest.shouldFindUserByEmail" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -1684,14 +1704,11 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
+    <history-entry file="All_in_inzynierka - 2016.12.24 at 15h 20m 47s.xml">
+      <configuration name="All in inzynierka" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="PasswordValidatorTest - 2016.12.24 at 14h 44m 54s.xml">
       <configuration name="PasswordValidatorTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PriceValidatorTest_shouldReturnTrue - 2016.12.23 at 22h 46m 00s.xml">
-      <configuration name="PriceValidatorTest.shouldReturnTrue" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PriceValidatorTest_shouldReturnTrue - 2016.12.23 at 22h 46m 13s.xml">
-      <configuration name="PriceValidatorTest.shouldReturnTrue" configurationId="JUnit" />
     </history-entry>
     <history-entry file="UserRepositoryTest - 2016.12.23 at 23h 44m 22s.xml">
       <configuration name="UserRepositoryTest" configurationId="JUnit" />
@@ -1712,6 +1729,9 @@
       <configuration name="com in inzynierka" configurationId="JUnit" />
     </history-entry>
     <history-entry file="com_in_inzynierka - 2016.12.24 at 14h 47m 13s.xml">
+      <configuration name="com in inzynierka" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_in_inzynierka - 2016.12.24 at 15h 24m 47s.xml">
       <configuration name="com in inzynierka" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1735,7 +1755,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24327958" sideWeight="0.5057307" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37882653" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37882653" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29799426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1768,13 +1788,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/domain/OrderEntityTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="56" column="81" lean-forward="false" selection-start-line="56" selection-start-column="81" selection-end-line="56" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/domain/ProductEntityTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-429">
@@ -2140,14 +2153,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/validators/EmailValidator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -2176,6 +2181,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
           <caret line="84" column="24" lean-forward="false" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
           <folding />
         </state>
       </provider>
