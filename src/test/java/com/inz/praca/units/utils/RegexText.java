@@ -3,13 +3,14 @@ package com.inz.praca.units.utils;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.inz.praca.validators.EmailValidator;
+import com.inz.praca.validators.PasswordValidator;
 import org.junit.Test;
 
 public class RegexText {
 
 	@Test
 	public void checkPasswordRegex() throws Exception {
-		String regex = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{3,}$";
+		String regex = PasswordValidator.PASS_REGEX_PATTERN;
 		assertThat("zaq1@WSX".matches(regex)).isTrue();
 		assertThat("zaqWS".matches(regex)).isFalse();
 		assertThat("1111111111".matches(regex)).isFalse();

@@ -1,9 +1,9 @@
 package com.inz.praca.dto;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.inz.praca.validators.ValidEmail;
+import com.inz.praca.validators.ValidPassword;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,8 +26,7 @@ public class UserDTO {
 	@Size(max = 50)
 	private String email;
 
-	//TODO validacjaHasla
-	@Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{3,}$")
+	@ValidPassword
 	private String password;
 
 	private String confirmPassword;

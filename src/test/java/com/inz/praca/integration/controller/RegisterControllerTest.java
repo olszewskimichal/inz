@@ -51,7 +51,7 @@ public class RegisterControllerTest extends IntegrationTestBase {
 		mvc.perform(post("/register"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("register"))
-				.andExpect(model().errorCount(3));
+				.andExpect(model().errorCount(4));
 	}
 
 	@Test

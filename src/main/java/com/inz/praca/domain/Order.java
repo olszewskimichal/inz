@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
 @Getter
 @Setter
 @ToString
-@Table(name = "ORDERS_TABLE")
+@Table(name = "ORDERS")
 public class Order {
 	@Id
 	@GeneratedValue

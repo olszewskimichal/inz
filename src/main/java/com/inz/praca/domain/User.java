@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -26,6 +27,7 @@ import org.springframework.util.Assert;
 @Slf4j
 @Setter
 @NoArgsConstructor(force = true)
+@Table(name = "USERS")
 public class User {
 	@Column(unique = true)
 	private final String email;
@@ -45,7 +47,7 @@ public class User {
 		Assert.hasLength(passwordHash, "Nie może być puste hasło");
 		Assert.hasLength(name, "Imie nie może być puste");
 		Assert.hasLength(lastName, "Nazwisko nie może być puste");
-		Assert.notNull(email,"Email nie może być pusty");
+		Assert.notNull(email, "Email nie może być pusty");
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 		Assert.isTrue(pattern.matcher(email).matches(), "To nie jest prawidłowy adres Email");
 		this.email = email;

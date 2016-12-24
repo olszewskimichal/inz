@@ -31,8 +31,6 @@ public class ProductController {
 		return NEW_PRODUCT;
 	}
 
-	//TODO zrobic oddzielny profil Test do testowania aplikacji
-
 	@PostMapping("/addProduct")
 	public String confirmNewProduct(@Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model) {
 		log.info("Proba dodania nowego produktu {}", productDTO);
