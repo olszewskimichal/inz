@@ -11,8 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 
 	public static final String EMAIL_PATTERN = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-	private Pattern pattern;
-	private Matcher matcher;
 
 	@Override
 	public void initialize(ValidEmail value) {
@@ -24,8 +22,8 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 		if (value == null) {
 			return false;
 		}
-		pattern = Pattern.compile(EMAIL_PATTERN);
-		matcher = pattern.matcher(value);
+		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+		Matcher matcher = pattern.matcher(value);
 		return matcher.matches();
 	}
 }

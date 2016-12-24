@@ -9,6 +9,7 @@ import static org.mockito.Mockito.doAnswer;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -132,7 +133,7 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturn1ProductsAscByIdOnFirstPage() {
 		Page<Product> products = new PageImpl<>(
-				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
+				Collections.singletonList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 1, Sort.Direction.ASC, "id"))).willReturn(products);
 		List<Product> asc = this.productService.getProducts(1, 1, "asc");
 		assertThat(asc).isNotNull().isNotEmpty();
