@@ -2,5 +2,6 @@ target/
 .idea/
 .mvn/
 *.iml
+*.iws
 
 *.class

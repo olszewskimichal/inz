@@ -2,8 +2,7 @@ package com.inz.praca.units.domain;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.inz.praca.domain.Cart;
 import org.junit.Assert;
@@ -14,21 +13,20 @@ public class CartEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenProductsIsNull() {
 		try {
-			new Cart(null, LocalDateTime.MAX);
+			new Cart(null);
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {
-			assertThat(e.getMessage()).isEqualTo("Lista produktów nie może być nullem");
+			assertThat(e.getMessage()).isEqualTo("Lista elementów koszyka nie może być nullem");
 		}
 	}
 
 	@Test
 	public void shouldCreateCart() {
 		try {
-			Cart cart = new Cart(new ArrayList<>(), LocalDateTime.now());
+			Cart cart = new Cart(new HashSet<>());
 			assertThat(cart).isNotNull();
-			assertThat(cart.getProducts()).isEmpty();
-			assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
+			assertThat(cart.getCartItems()).isEmpty();
 			cart.setId(1L);
 			assertThat(cart.getId()).isEqualTo(1L);
 			assertThat(cart.toString()).contains("id=1");

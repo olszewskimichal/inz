@@ -1,10 +1,9 @@
 package com.inz.praca.dto;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
+import com.inz.praca.validators.ValidPrice;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,9 +22,6 @@ public class ProductDTO {
 
 	private String description;
 
-	@NotNull
-	//@Pattern(regexp = "^\\d{0,9}(\\.\\d{1,9})?$")
-	//TODO napisac validator do tego
-	@DecimalMin(value = "0")
+	@ValidPrice
 	private BigDecimal price;
 }

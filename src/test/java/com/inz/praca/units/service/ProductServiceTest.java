@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.ProductRepository;
@@ -71,7 +72,7 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturnProductWhenProductByNameExists() {
 		given(this.productRepository.findByName(NAME)).willReturn(
-				Optional.of(new Product(NAME, "desc", "url", BigDecimal.TEN)));
+				Optional.of(new ProductBuilder().withName(NAME).withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		Product productByName = this.productService.getProductByName(NAME);
 		assertThat(productByName).isNotNull();
 		assertThat(productByName.getName()).isEqualTo(NAME);
@@ -103,7 +104,7 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturnProductWhenProductByIdExists() {
 		given(this.productRepository.findById(ID)).willReturn(
-				Optional.of(new Product(NAME, "desc", "url", BigDecimal.TEN)));
+				Optional.of(new ProductBuilder().withName(NAME).withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		Product productById = this.productService.getProductById(ID);
 		assertThat(productById).isNotNull();
 		assertThat(productById.getName()).isEqualTo(NAME);
@@ -131,13 +132,13 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturn1ProductsAscByIdOnFirstPage() {
 		Page<Product> products = new PageImpl<>(
-				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN)));
+				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 1, Sort.Direction.ASC, "id"))).willReturn(products);
 		List<Product> asc = this.productService.getProducts(1, 1, "asc");
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(1);
 		assertThat(asc.get(0).getName()).isEqualTo("name3");
-		assertThat(asc.get(0).getDescription()).isEqualTo("desc");
+		assertThat(asc.get(0).getDescription()).isEqualTo("opis");
 		assertThat(asc.get(0).getImageUrl()).isEqualTo("url");
 		assertThat(asc.get(0).getPrice()).isEqualTo(BigDecimal.TEN);
 	}
@@ -145,8 +146,8 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturn20ProductsOnPageWhenDefaultSettings() {
 		Page<Product> products = new PageImpl<>(
-				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
-						new Product("name2", "desc", "url", BigDecimal.TEN)));
+				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
+						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 5, null, "id"))).willReturn(products);
 		List<Product> asc = this.productService.getProducts(null, null, null);
 		assertThat(asc).isNotNull().isNotEmpty();
@@ -158,8 +159,8 @@ public class ProductServiceTest {
 	@Test
 	public void shouldReturn2ProductsOnPageWhenSizeIsEqualThenMax() {
 		Page<Product> products = new PageImpl<>(
-				Arrays.asList(new Product("name3", "desc", "url", BigDecimal.TEN),
-						new Product("name2", "desc", "url", BigDecimal.TEN)));
+				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
+						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 20, null, "id"))).willReturn(products);
 		List<Product> asc = this.productService.getProducts(1, 20, null);
 		assertThat(asc).isNotNull().isNotEmpty();

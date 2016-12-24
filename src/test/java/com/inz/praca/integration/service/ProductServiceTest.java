@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.inz.praca.domain.Product;
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.repository.ProductRepository;
@@ -32,7 +33,7 @@ public class ProductServiceTest extends IntegrationTestBase {
 	@Test
 	public void shouldReturn20ProductAscSortByIdWhenSizeArgumentIsEqualTo30() {
 		for (int i = 0; i < 30; i++) {
-			repository.save(new Product("nazwa" + i, "opis", "url", BigDecimal.ZERO));
+			repository.save(new ProductBuilder().withName("nazwa" + i).withPrice(BigDecimal.ZERO).createProduct());
 		}
 		List<Product> products = this.productService.getProducts(1, 30, "desc");
 		assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService

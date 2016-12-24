@@ -1,6 +1,7 @@
 package com.inz.praca.service;
 
 import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;
@@ -30,9 +31,8 @@ public class UserService {
 		return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 	}
 
-	//TODO test Integracyjny co sie wydarzy przy tworzeniu tego samego itd
 	public User create(UserDTO form) {
-		User user = new User(form.getEmail(), form.getName(), form.getLastName(), form.getPassword());
+		User user = new UserBuilder().build(form);
 		userRepository.save(user);
 		log.info("Stworzono uzytkownika o id {}", user.getId());
 		return user;

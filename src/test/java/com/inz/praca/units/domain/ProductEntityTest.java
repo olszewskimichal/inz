@@ -4,7 +4,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.domain.Product;
+import com.inz.praca.builders.ProductBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenNameIsEmpty() {
 		try {
-			new Product("", "", "", BigDecimal.ONE);
+			new ProductBuilder().withName("").withDescription("").withUrl("").withPrice(BigDecimal.ONE).createProduct();
 			Assert.fail("Nie mozna stworzyc produktu bez nazwy");
 		}
 		catch (IllegalArgumentException e) {
@@ -23,7 +23,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenNameIsNull() {
 		try {
-			new Product(null, "", "", BigDecimal.ONE);
+			new ProductBuilder().withName(null).withDescription("").withUrl("").withPrice(BigDecimal.ONE).createProduct();
 			Assert.fail("Nie mozna stworzyc produktu bez nazwy");
 		}
 		catch (IllegalArgumentException e) {
@@ -34,7 +34,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenPriceIsNull() {
 		try {
-			new Product("Nazwa", "", "", null);
+			new ProductBuilder().withName("Nazwa").withDescription("").withUrl("").withPrice(null).createProduct();
 			Assert.fail("Nie mozna stworzyc produktu bez ceny");
 		}
 		catch (IllegalArgumentException e) {
@@ -45,7 +45,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenPriceIsNotPositiveNumber() {
 		try {
-			new Product("Nazwa", "", "", BigDecimal.valueOf(-1L));
+			new ProductBuilder().withName("Nazwa").withDescription("").withUrl("").withPrice(BigDecimal.valueOf(-1L)).createProduct();
 			Assert.fail("Nie mozna stworzyc produktu z ujemna cena");
 		}
 		catch (IllegalArgumentException e) {
@@ -56,7 +56,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldCreateProductWhenAllValuesAreCorrect() {
 		try {
-			new Product("nazwa", "opis", "url", BigDecimal.TEN);
+			new ProductBuilder().withName("nazwa").withDescription("opis").withUrl("url").withPrice(BigDecimal.TEN).createProduct();
 		}
 		catch (IllegalArgumentException e) {
 			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
@@ -66,7 +66,7 @@ public class ProductEntityTest {
 	@Test
 	public void shouldCreateProductWhenAllValuesAreCorrect2() {
 		try {
-			new Product("nazwa", "opis", "url", BigDecimal.ZERO);
+			new ProductBuilder().withName("nazwa").withDescription("opis").withUrl("url").withPrice(BigDecimal.ZERO).createProduct();
 		}
 		catch (IllegalArgumentException e) {
 			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");

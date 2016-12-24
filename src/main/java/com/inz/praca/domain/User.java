@@ -1,5 +1,7 @@
 package com.inz.praca.domain;
 
+import static com.inz.praca.validators.EmailValidator.EMAIL_PATTERN;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,9 +33,9 @@ public class User {
 	private final String lastName;
 	private final String passwordHash;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "USER_ORDER")
-	private List<Order> shippingDetails;
+	private Set<Order> orders;
 
 	@Id
 	@GeneratedValue
@@ -42,7 +45,9 @@ public class User {
 		Assert.hasLength(passwordHash, "Nie może być puste hasło");
 		Assert.hasLength(name, "Imie nie może być puste");
 		Assert.hasLength(lastName, "Nazwisko nie może być puste");
-		Assert.hasLength(email, "Email nie moze być pusty"); //TODO zrobic asercje maila
+		Assert.notNull(email,"Email nie może być pusty");
+		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+		Assert.isTrue(pattern.matcher(email).matches(), "To nie jest prawidłowy adres Email");
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
