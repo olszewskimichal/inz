@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Produkty</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/order}" th:object="${cartDTO}" method="post" class="form">
+        <div class="jumbotron">
+            <h1>Koszyk</h1>
+            <p>Twój koszyk</p>
+        </div>
+        <section class="container">
+            <div>
+                <div>
+                    <a class="btn btn-danger pull-left"> <span class="glyphicon glyphicon-remove-sign"></span>
+                        Wyczyść koszyk
+                    </a>
+                    <a th:href="@{/order}" class="btn btn-success pull-right"> <span class="glyphicon-shopping-cart glyphicon"></span>
+                        Kupuję
+                    </a>
+                </div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Cena za sztukę</th>
+                        <!-- <th>Liczba sztuk</th> -->
+                        <th>Cena</th>
+                        <th>Akcja</th>
+                    </tr>
+                    <tr th:each="row,rowStat : *{items}">
+                        <td th:text="*{items[__${rowStat.index}__].name}"></td>
+                        <td th:text="*{items[__${rowStat.index}__].price}"></td>
+                        <!--  <td><select ng-attr-id="{{'quantitySelect'+item.id}}" ng-model="item.quantity"
+                                      ng-options="n for n in [] | range:1:11"
+                                      ng-change="changeItems(item.id)"></select></td>-->
+                        <td th:text="*{items[__${rowStat.index}__].price}"></td>
+                        <td>
+                            <a th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger" >
+                            <span class="glyphicon glyphicon-remove">
+                            </span> Usuń
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Razem</th>
+                        <th th:text="${cartDTO.totalPrice}+' PLN'"></th>
+                        <th></th>
+                    </tr>
+                </table>
+
+                <a th:href="@{/products}" href="" class="btn btn-default">
+                    <span class="glyphicon-hand-left glyphicon"></span> Kontynuuj zakupy
+                </a>
+            </div>
+        </section>
+    </form>
+</div>
+</body>
+<div layout:fragment="script">
+    <script>
+        document.getElementById("cart").className = 'active';
+    </script>
+</div>
+</html>

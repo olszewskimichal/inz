@@ -9,6 +9,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.math.BigDecimal;
 
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.controller.ProductController;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.service.ProductService;
@@ -78,5 +79,11 @@ public class ProductControllerTest {
 
 		verify(model).addAttribute("productCreateForm", productDTO);
 		verifyNoMoreInteractions(model);
+	}
+
+	@Test
+	public void shouldShowProductDetails() {
+		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
+		assertThat(controller.showProductDetail(1L, model)).isEqualTo("product");
 	}
 }

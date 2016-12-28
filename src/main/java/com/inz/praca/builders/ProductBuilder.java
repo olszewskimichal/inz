@@ -35,6 +35,10 @@ public class ProductBuilder {
 		return new Product(name, description, imageUrl, price);
 	}
 
+	public ProductDTO createProductDTO() {
+		return new ProductDTO(new Product(name, description, imageUrl, price));
+	}
+
 	public Product createProduct(ProductDTO productDTO) {
 		return new Product(productDTO.getName(), productDTO.getDescription(), productDTO.getImageUrl(), productDTO.getPrice());
 	}

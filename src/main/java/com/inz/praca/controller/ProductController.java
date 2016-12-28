@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -19,6 +20,7 @@ public class ProductController {
 
 	private static final String NEW_PRODUCT = "newProduct";
 	private static final String PRODUCT_FORM = "productCreateForm";
+	private static final String PRODUCT = "product";
 	private final ProductService productService;
 
 	public ProductController(ProductService productService) {
@@ -48,6 +50,14 @@ public class ProductController {
 			model.addAttribute(PRODUCT_FORM, productDTO);
 		}
 		return NEW_PRODUCT;
+	}
+
+	@GetMapping(value = "/products/product/{id}")
+	public String showProductDetail(@PathVariable Long id, Model model) {
+		log.debug("Pobranie produktu o id {}", id);
+		ProductDTO productDTO = new ProductDTO(productService.getProductById(id));
+		model.addAttribute(productDTO);
+		return PRODUCT;
 	}
 
 }

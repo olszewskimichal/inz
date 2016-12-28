@@ -4,11 +4,11 @@ import static java.util.Objects.isNull;
 import static org.springframework.data.domain.Sort.Direction.fromString;
 import static org.springframework.util.StringUtils.isEmpty;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.inz.praca.domain.Product;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.ProductRepository;
@@ -48,7 +48,7 @@ public class ProductService {
 		Assert.isTrue(setReturnPage(page) >= 0, "Podano nieprawidlowy numer strony");
 		PageRequest pageRequest = new PageRequest(setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort), DEFAULT_SORT_BY_ID);
 		log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}", setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
-		return productRepository.findAll(pageRequest).getContent().stream().collect(Collectors.toList());
+		return new ArrayList<>(productRepository.findAll(pageRequest).getContent());
 	}
 
 	public Product createProduct(ProductDTO productDTO) {

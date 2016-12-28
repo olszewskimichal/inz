@@ -6,26 +6,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.math.BigDecimal;
+
+import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Product;
 import com.inz.praca.integration.IntegrationTestBase;
-import org.junit.Before;
+import com.inz.praca.service.ProductService;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 public class ProductControllerTest extends IntegrationTestBase {
 
 	@Autowired
-	private WebApplicationContext wac;
-
-	private MockMvc mvc;
-
-	@Before
-	public void setUp() throws Exception {
-		this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+	ProductService productService;
 
 	@Test
 	public void should_show_register_page() throws Exception {
@@ -60,6 +54,18 @@ public class ProductControllerTest extends IntegrationTestBase {
 				.param("description", "opis")
 				.param("price", "a1.0"))
 				.andExpect(model().errorCount(1));
+	}
+
+	@Test
+	public void shouldShowProductDetailsPage() throws Exception {
+		Product product = productService.createProduct(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProductDTO());
+		mvc.perform(get("/products/product/" + product.getId())
+				.param("name","name")
+				.param("imageUrl","url")
+				.param("description","desc")
+				.param("price","10"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("product"));
 	}
 
 }

@@ -3,6 +3,8 @@ package com.inz.praca.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 import lombok.Getter;
@@ -25,6 +27,10 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "CATEGORY_ID")
+	public Category category;
 
 	public Product(String name, String description, String imageUrl, BigDecimal price) {
 		Assert.hasLength(name, "Nie moze być pusta nazwa produktu");
