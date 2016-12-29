@@ -7,7 +7,6 @@ import java.io.IOException;
 import com.inz.praca.integration.selenium.configuration.ScreenshotTestRule;
 import com.inz.praca.integration.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.integration.selenium.pageObjects.NewProductPage;
-import com.inz.praca.integration.selenium.pageObjects.ProductPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -43,12 +42,5 @@ public class CreateProductSeleniumTest extends SeleniumTestBase {
 		productPage.clickOnCreateProductButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
-
-		driver.get("http://localhost:" + port + "/products/product/1");
-		ProductPage page = new ProductPage(driver);
-		assertThat(page.getName()).isEqualTo("test");
-		assertThat(page.getDescription()).isEqualTo("test2");
-		assertThat(page.getPrice()).isEqualTo("3.00 PLN");
-		page.clickProductsButton();
 	}
 }
