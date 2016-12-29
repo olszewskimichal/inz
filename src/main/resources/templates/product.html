@@ -18,22 +18,22 @@
             </div>
 
             <div class="col-md-5">
-                <h3 th:text="${productDTO.name}"></h3>
-                <p th:text="${productDTO.description}"></p>
+                <h3 id="name" th:text="${productDTO.name}"></h3>
+                <p id="description" th:text="${productDTO.description}"></p>
 
                 <!--     <p><strong>Liczba sztuk w magazynie: </strong>
                          <span th:text="${product.unitsInStock}"/>
                      </p> -->
-                <h4 th:text="${productDTO.price}+' PLN'"></h4>
+                <h4 id="price" th:text="${productDTO.price}+' PLN'"></h4>
                 <p>
-                    <a th:href="@{/cart/add/{id}(id=${id})}" class="btn btn-warning btn-large">
+                    <a id="order" th:href="@{/cart/add/{id}(id=${id})}" class="btn btn-warning btn-large">
                         <span class="glyphicon-shopping-cart glyphicon"></span> Zamów teraz </a>
 
-                    <a th:href="@{/cart/}" class="btn btn-default">
+                    <a id="cart" th:href="@{/cart/}" class="btn btn-default">
                         <span class="glyphicon-hand-right glyphicon"></span> Koszyk
                     </a>
 
-                    <a th:href="@{/products}" class="btn btn-default">
+                    <a id="products" th:href="@{/products}" class="btn btn-default">
                         <span class="glyphicon-hand-left glyphicon"></span> Wstecz
                     </a>
 
