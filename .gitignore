@@ -3,5 +3,6 @@ target/
 .mvn/
 *.iml
 *.iws
+inzynierka.ipr
 
 *.class

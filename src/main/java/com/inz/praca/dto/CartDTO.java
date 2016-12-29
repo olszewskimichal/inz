@@ -10,14 +10,13 @@ import com.inz.praca.validators.ValidPrice;
 import lombok.Getter;
 import lombok.ToString;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 @ToString
 @Getter
 @Component
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@SessionScope
 public class CartDTO implements Serializable {
 	@NotNull
 	transient List<ProductDTO> items;

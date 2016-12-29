@@ -1,0 +1,45 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorator="layout">
+<head>
+    <title>Produkty</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="jumbotron">
+        <h1>Produkty</h1>
+        <p>
+            Wszystkie produkty
+        </p>
+    </div>
+    <section class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <span th:each="row,rowStat : *{products}" >
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{product.imageURL}}" style="width:160px;height:160px" alt="image"/>
+                                <div class="caption">
+                                    <h4 th:text="*{products[__${rowStat.index}__].name}"></h4>
+                                    <h4 th:text="${products[__${rowStat.index}__].price}+' zł'"></h4>
+                                    <!--<p>Liczba dostępnych sztuk: {{product.unitsInStock}}</p>-->
+                                    <p>
+                                        <a th:href="@{/products/product/{id}(id=*{products[__${rowStat.index}__].id})}" class=" btn btn-primary">
+                                            <span class="glyphicon-info-sign glyphicon"></span> Szczegóły
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+<div layout:fragment="script">
+    <script>
+        document.getElementById("products").className = 'active';
+    </script>
+</div>
+</html>

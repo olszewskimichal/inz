@@ -86,4 +86,9 @@ public class ProductControllerTest {
 		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
 		assertThat(controller.showProductDetail(1L, model)).isEqualTo("product");
 	}
+
+	@Test
+	public void shouldShowAllProducts(){
+		assertThat(controller.showProducts(model,null,null)).isEqualTo("products");
+	}
 }
