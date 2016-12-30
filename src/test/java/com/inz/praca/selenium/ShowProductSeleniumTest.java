@@ -1,4 +1,4 @@
-package com.inz.praca.integration.selenium;
+package com.inz.praca.selenium;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Product;
-import com.inz.praca.integration.selenium.configuration.ScreenshotTestRule;
-import com.inz.praca.integration.selenium.configuration.SeleniumTestBase;
-import com.inz.praca.integration.selenium.pageObjects.ProductPage;
+import com.inz.praca.selenium.configuration.ScreenshotTestRule;
+import com.inz.praca.selenium.configuration.SeleniumTestBase;
+import com.inz.praca.selenium.pageObjects.ProductPage;
 import com.inz.praca.repository.ProductRepository;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

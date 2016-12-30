@@ -13,10 +13,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.inz.praca.domain.Product;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.service.ProductService;
 import org.junit.Assert;
@@ -41,10 +42,13 @@ public class ProductServiceTest {
 	@Mock
 	private ProductRepository productRepository;
 
+	@Mock
+	private CategoryRepository categoryRepository;
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.productService = new ProductService(productRepository);
+		this.productService = new ProductService(productRepository, categoryRepository);
 	}
 
 	@Test

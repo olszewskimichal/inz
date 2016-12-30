@@ -1,4 +1,4 @@
-package com.inz.praca.integration.selenium.pageObjects;
+package com.inz.praca.selenium.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

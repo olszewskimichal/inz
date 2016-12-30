@@ -2,6 +2,7 @@ package com.inz.praca.units.controller;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.math.BigDecimal;
 
@@ -12,7 +13,6 @@ import com.inz.praca.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 public class CartControllerTest {
 	private CartController controller;
@@ -22,7 +22,7 @@ public class CartControllerTest {
 
 	@Before
 	public void setUp() {
-		MockitoAnnotations.initMocks(this);
+		initMocks(this);
 		controller = new CartController(productService, new CartDTO());
 	}
 

@@ -2,8 +2,11 @@ package com.inz.praca.integration.domain;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
+import javax.persistence.PersistenceException;
+
 import com.inz.praca.domain.Category;
 import com.inz.praca.integration.JpaTestBase;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CategoryEntityTest extends JpaTestBase {
@@ -15,5 +18,18 @@ public class CategoryEntityTest extends JpaTestBase {
 		assertThat(category.getDescription()).isEqualTo("opis");
 		assertThat(category.getId()).isNotNull();
 		assertThat(category.toString()).contains("nazwa");
+	}
+
+	@Test
+	public void shouldNotPersistWithNotUniqueName() {
+		try {
+			entityManager.persistFlushFind(new Category("nazwa", "opis"));
+			entityManager.persistFlushFind(new Category("nazwa", "opis"));
+			Assert.fail();
+		}
+		catch (PersistenceException e) {
+			assertThat(true);
+		}
+
 	}
 }

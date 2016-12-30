@@ -22,7 +22,7 @@ public class ProductControllerTest extends IntegrationTestBase {
 	ProductService productService;
 
 	@Test
-	public void should_show_register_page() throws Exception {
+	public void should_show_newProduct_page() throws Exception {
 		mvc.perform(get("/addProduct"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("newProduct"));

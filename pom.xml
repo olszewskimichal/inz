@@ -114,7 +114,8 @@
                         <param>com.inz.praca.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>com.inz.praca.*</param>
+                        <param>com.inz.praca.units.*</param>
+                        <param>com.inz.praca.integration.*</param>
                     </targetTests>
                     <outputFormats>
                         <outputFormat>XML</outputFormat>

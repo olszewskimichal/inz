@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
+import com.inz.praca.dto.CategoryDTO;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,8 +32,11 @@ public class ProductService {
 
 	private final ProductRepository productRepository;
 
-	public ProductService(ProductRepository productRepository) {
+	private final CategoryRepository categoryRepository;
+
+	public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
 		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
 	public Product getProductById(Long id) {
@@ -56,6 +62,13 @@ public class ProductService {
 		productRepository.save(product);
 		log.debug("Stworzono nowy produkt o id {}", product.getId());
 		return product;
+	}
+
+	public Category createCategory(CategoryDTO categoryDTO) {
+		Category category = new Category(categoryDTO.getName(), categoryDTO.getDescription());
+		categoryRepository.save(category);
+		log.debug("Stworzono kategorie o id {} ", category.getId());
+		return category;
 	}
 
 	private int setReturnPage(final Integer pageNumber) {

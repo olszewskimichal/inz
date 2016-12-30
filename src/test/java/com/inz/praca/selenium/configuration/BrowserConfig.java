@@ -1,4 +1,4 @@
-package com.inz.praca.integration.selenium.configuration;
+package com.inz.praca.selenium.configuration;
 
 import java.io.BufferedReader;
 import java.io.File;
