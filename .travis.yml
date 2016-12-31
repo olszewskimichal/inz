@@ -15,7 +15,7 @@ before_script:
  - sleep 3 # give xvfb some time to start
 
 addons:
-  firefox: "48.0"
+  firefox: "47.0.1"
 cache:
   directories:
   - $HOME/.m2
