@@ -16,7 +16,8 @@ public class OrderEntityTest extends JpaTestBase {
 	public void shouldCreateOrder() {
 		Order order = this.entityManager.persistFlushFind(new Order(new Cart(new HashSet<>()), new ShippingDetail("ulica", "miasto", "num", "code")));
 		assertThat(order.getId()).isNotNull();
-		assertThat(order.toString()).contains("Order(id");
+		assertThat(order.toString()).contains("Cart");
+		assertThat(order.toString()).contains("ShippingDetail");
 	}
 
 	@Test

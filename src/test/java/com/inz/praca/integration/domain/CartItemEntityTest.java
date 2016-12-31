@@ -19,6 +19,6 @@ public class CartItemEntityTest extends JpaTestBase {
 		assertThat(cartItem.getProduct()).isNotNull();
 		assertThat(cartItem.getProduct().getId()).isNotNull();
 		assertThat(cartItem.getProduct().getName()).isEqualTo("aaa");
-		assertThat(cartItem.toString()).contains("CartItem(id=");
+		assertThat(cartItem.toString()).contains("Product");
 	}
 }

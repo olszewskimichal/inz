@@ -16,6 +16,6 @@ public class ShippingDetailTest extends JpaTestBase {
 		assertThat(shippingDetail.getPostCode()).isEqualTo("85-791");
 		assertThat(shippingDetail.getHouseNum()).isEqualTo("46");
 		assertThat(shippingDetail.getStreet()).isEqualTo("ulica");
-		assertThat(shippingDetail.toString()).contains("ShippingDetail(id");
+		assertThat(shippingDetail.toString()).contains("street");
 	}
 }
