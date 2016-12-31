@@ -1,6 +1,6 @@
 package com.inz.praca.units.config;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class LocalDateTImeConverterTest {
 	@Test
 	public void shouldConvertTimestampToLocalDateTime() {
 		LocalDateTime dateTime = converter.convertToEntityAttribute(Timestamp.valueOf(LocalDateTime.now()));
-		assertThat(dateTime).isNotNull().isLessThanOrEqualTo(LocalDateTime.now());
+		assertThat(dateTime).isNotNull().isBeforeOrEqualTo(LocalDateTime.now());
 
 		dateTime = converter.convertToEntityAttribute(null);
 		assertThat(dateTime).isNull();

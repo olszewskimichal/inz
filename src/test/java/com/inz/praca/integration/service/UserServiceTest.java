@@ -1,6 +1,6 @@
 package com.inz.praca.integration.service;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.inz.praca.domain.User;
 import com.inz.praca.domain.UserBuilder;

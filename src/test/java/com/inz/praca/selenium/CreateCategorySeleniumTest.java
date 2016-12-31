@@ -6,14 +6,14 @@ import java.io.IOException;
 
 import com.inz.praca.selenium.configuration.ScreenshotTestRule;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
-import com.inz.praca.selenium.pageObjects.NewProductPage;
+import com.inz.praca.selenium.pageObjects.NewCategoryPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-public class CreateProductSeleniumTest extends SeleniumTestBase {
+public class CreateCategorySeleniumTest extends SeleniumTestBase {
 
 	public static WebDriver driver;
 
@@ -32,14 +32,12 @@ public class CreateProductSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldCreateNewProductWithCorrectData() {
-		driver.get("http://localhost:" + port + "/addProduct");
-		NewProductPage productPage = new NewProductPage(driver);
-		productPage.typeName("test");
-		productPage.typeDesctiption("test2");
-		productPage.typePrice("3.0");
-		productPage.typeUrl("url");
-		productPage.clickOnCreateProductButton();
+	public void shouldCreateNewCategoryWithCorrectData() {
+		driver.get("http://localhost:" + port + "/addCategory");
+		NewCategoryPage categoryPage = new NewCategoryPage(driver);
+		categoryPage.typeName("test");
+		categoryPage.typeDesctiption("testy opis");
+		categoryPage.clickOnCreateCategoryButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 	}

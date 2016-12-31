@@ -1,6 +1,6 @@
 package com.inz.praca.integration.domain;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ public class CartEntityTest extends JpaTestBase {
 		Cart cart = entityManager.persistFlushFind(new Cart(new HashSet<>()));
 		assertThat(cart).isNotNull();
 		assertThat(cart.getId()).isNotNull();
-		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
+		assertThat(cart.getDateTime()).isBeforeOrEqualTo(LocalDateTime.now());
 		assertThat(cart.getCartItems()).isNotNull().isEmpty();
 		assertThat(cart.toString()).contains("Cart(id=");
 	}
@@ -38,7 +38,7 @@ public class CartEntityTest extends JpaTestBase {
 		for (CartItem cartItem : cart.getCartItems()) {
 			assertThat(cartItem.getId()).isNotNull();
 		}
-		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
+		assertThat(cart.getDateTime()).isBeforeOrEqualTo(LocalDateTime.now());
 
 		cart.getCartItems().removeIf(v -> v.getProduct().getName().equalsIgnoreCase("name"));
 
@@ -50,6 +50,6 @@ public class CartEntityTest extends JpaTestBase {
 		for (CartItem cartItem : cart.getCartItems()) {
 			assertThat(cartItem.getId()).isNotNull();
 		}
-		assertThat(cart.getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
+		assertThat(cart.getDateTime()).isBeforeOrEqualTo(LocalDateTime.now());
 	}
 }

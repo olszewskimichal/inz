@@ -1,6 +1,6 @@
 package com.inz.praca.integration.repository;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class CartRepositoryTest extends JpaTestBase {
 		assertThat(cartOptional).isNotNull();
 		assertThat(cartOptional.isPresent()).isTrue();
 		assertThat(cartOptional.get().getId()).isNotNull();
-		assertThat(cartOptional.get().getDateTime()).isLessThanOrEqualTo(LocalDateTime.now());
+		assertThat(cartOptional.get().getDateTime()).isBeforeOrEqualTo(LocalDateTime.now());
 		assertThat(cartOptional.get().getCartItems().size()).isEqualTo(0);
 	}
 

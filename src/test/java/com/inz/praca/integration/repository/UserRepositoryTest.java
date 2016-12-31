@@ -1,6 +1,6 @@
 package com.inz.praca.integration.repository;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 

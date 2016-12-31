@@ -1,6 +1,6 @@
 package com.inz.praca.units.domain;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.inz.praca.domain.Category;
 import org.junit.Assert;

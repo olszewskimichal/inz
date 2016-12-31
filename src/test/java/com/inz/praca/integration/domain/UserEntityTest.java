@@ -1,6 +1,6 @@
 package com.inz.praca.integration.domain;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -51,7 +51,7 @@ public class UserEntityTest extends JpaTestBase {
 			assertThat(order.getCart()).isNotNull();
 			assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(4).stripTrailingZeros());
 			assertThat(order.getCart().getId()).isNotNull();
-			assertThat(order.getCart().getDateTime()).isNotNull().isLessThanOrEqualTo(LocalDateTime.now());
+			assertThat(order.getCart().getDateTime()).isNotNull().isBeforeOrEqualTo(LocalDateTime.now());
 		}
 
 		user.getOrders().removeIf(v -> v.getShippingDetail().getStreet().equalsIgnoreCase("ulica2"));
