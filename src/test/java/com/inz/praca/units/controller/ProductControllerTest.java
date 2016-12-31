@@ -67,6 +67,7 @@ public class ProductControllerTest {
 		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("newProduct");
 
 		verify(model).addAttribute("productCreateForm", productDTO);
+		verify(model).addAttribute("categoryList", productService.findAllCategory());
 		verifyNoMoreInteractions(model);
 	}
 
@@ -78,6 +79,7 @@ public class ProductControllerTest {
 		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("newProduct");
 
 		verify(model).addAttribute("productCreateForm", productDTO);
+		verify(model).addAttribute("categoryList", productService.findAllCategory());
 		verifyNoMoreInteractions(model);
 	}
 
@@ -88,7 +90,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void shouldShowAllProducts(){
-		assertThat(controller.showProducts(model,null,null)).isEqualTo("products");
+	public void shouldShowAllProducts() {
+		assertThat(controller.showProducts(model, null, null)).isEqualTo("products");
 	}
 }

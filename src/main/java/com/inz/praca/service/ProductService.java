@@ -12,6 +12,7 @@ import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
 import com.inz.praca.dto.CategoryDTO;
 import com.inz.praca.dto.ProductDTO;
+import com.inz.praca.exceptions.CategoryNotFoundException;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 @Service
@@ -57,10 +59,13 @@ public class ProductService {
 		return new ArrayList<>(productRepository.findAll(pageRequest).getContent());
 	}
 
+	@Transactional
 	public Product createProduct(ProductDTO productDTO) {
 		Product product = new ProductBuilder().createProduct(productDTO);
 		productRepository.save(product);
-		log.debug("Stworzono nowy produkt o id {}", product.getId());
+		Category category = categoryRepository.findByName(productDTO.getCategory()).orElseThrow(() -> new CategoryNotFoundException(productDTO.getCategory()));
+		product.setCategory(category);
+		log.info("Stworzono nowy produkt {}", product);
 		return product;
 	}
 
@@ -69,6 +74,10 @@ public class ProductService {
 		categoryRepository.save(category);
 		log.debug("Stworzono kategorie o id {} ", category.getId());
 		return category;
+	}
+
+	public List<Category> findAllCategory() {
+		return categoryRepository.findAll();
 	}
 
 	private int setReturnPage(final Integer pageNumber) {

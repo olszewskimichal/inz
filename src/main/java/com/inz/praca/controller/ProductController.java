@@ -24,6 +24,7 @@ public class ProductController {
 	private static final String NEW_PRODUCT = "newProduct";
 	private static final String PRODUCT_FORM = "productCreateForm";
 	private static final String PRODUCT = "product";
+	private static final String CATEGORY_LIST = "categoryList";
 	private final ProductService productService;
 
 	public ProductController(ProductService productService) {
@@ -33,6 +34,7 @@ public class ProductController {
 	@GetMapping("/addProduct")
 	public String addNewProductPage(Model model) {
 		model.addAttribute(PRODUCT_FORM, new ProductDTO());
+		model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
 		return NEW_PRODUCT;
 	}
 
@@ -42,6 +44,7 @@ public class ProductController {
 		if (result.hasErrors()) {
 			log.debug("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
 			model.addAttribute(PRODUCT_FORM, productDTO);
+			model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
 			return NEW_PRODUCT;
 		}
 		try {
@@ -51,6 +54,7 @@ public class ProductController {
 		catch (IllegalArgumentException e) {
 			log.debug(e.getMessage());
 			model.addAttribute(PRODUCT_FORM, productDTO);
+			model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
 		}
 		return NEW_PRODUCT;
 	}

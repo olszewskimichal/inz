@@ -19,15 +19,13 @@ import org.springframework.util.Assert;
 @Setter
 public class CartItem {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "PRODUCT_ID")
 	private final Product product;
-
 	private final Long quantity;
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	public CartItem(Product product, Long quantity) {
 		Assert.notNull(quantity, "Ilosc produktów nie może być nullem");

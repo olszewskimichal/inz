@@ -28,10 +28,22 @@ public class ProductDTO {
 	@ValidPrice
 	private BigDecimal price;
 
+	@NotBlank
+	private String category;
+
+	public ProductDTO(Product product, String category) {
+		this.name = product.getName();
+		this.imageUrl = product.getImageUrl();
+		this.description = product.getDescription();
+		this.price = product.getPrice();
+		this.category = category;
+	}
+
 	public ProductDTO(Product product) {
 		this.name = product.getName();
 		this.imageUrl = product.getImageUrl();
 		this.description = product.getDescription();
 		this.price = product.getPrice();
+		this.category = category;
 	}
 }

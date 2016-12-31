@@ -1,9 +1,9 @@
 package com.inz.praca.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
@@ -24,13 +24,12 @@ public class Product {
 	private final String description;
 	private final BigDecimal price;
 	private final String imageUrl;
+	@ManyToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "CATEGORY_ID")
+	public Category category;
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	@ManyToOne
-	@JoinColumn(name = "CATEGORY_ID")
-	public Category category;
 
 	public Product(String name, String description, String imageUrl, BigDecimal price) {
 		Assert.hasLength(name, "Nie moze być pusta nazwa produktu");
@@ -42,7 +41,11 @@ public class Product {
 		this.price = price;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

@@ -5,10 +5,12 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.inz.praca.domain.Product;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Category;
+import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.integration.IntegrationTestBase;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.service.ProductService;
 import org.junit.Before;
@@ -23,6 +25,9 @@ public class ProductServiceTest extends IntegrationTestBase {
 
 	@Autowired
 	ProductRepository repository;
+
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	@Before
 	public void setUp() {
@@ -45,12 +50,14 @@ public class ProductServiceTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldCreateProductWhenDtoIsCorrect() {
+		categoryRepository.save(new Category("nowa", "testowa"));
 		assertThat(repository.findAll().size()).isEqualTo(0);
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName("nazwa");
 		productDTO.setDescription("desc");
 		productDTO.setPrice(BigDecimal.TEN);
 		productDTO.setImageUrl("url");
+		productDTO.setCategory("nowa");
 
 		Product product = productService.createProduct(productDTO);
 
@@ -58,9 +65,8 @@ public class ProductServiceTest extends IntegrationTestBase {
 		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
 		assertThat(product.getDescription()).isEqualTo("desc");
 		assertThat(product.getImageUrl()).isEqualTo("url");
+		assertThat(product.getCategory()).isNotNull();
 		assertThat(repository.findAll().size()).isEqualTo(1);
 	}
-
-
 
 }

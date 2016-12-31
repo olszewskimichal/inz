@@ -43,9 +43,23 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-10">
-                        <label for="imageURL">adres URL</label>
+                        <label for="imageURL">Adres URL</label>
                         <div class="input">
                             <input id="imageURL" type="text" class="form-control" th:field="*{imageUrl}" placeholder="Podaj adres URL do zdjęcia"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        <label for="category">Kategoria produktu</label>
+                        <div class="input">
+                            <select class="form-control" id="category" name="category" th:field="*{category}">
+                                <option th:each="part : ${categoryList}"
+                                        th:selected="${part.description}"
+                                        th:value="${part.name}"
+                                        th:text="${part.description}">Nazwa kategorii
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>

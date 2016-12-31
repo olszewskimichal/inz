@@ -10,6 +10,7 @@ public class ProductBuilder {
 	private String description = "opis";
 	private String imageUrl = "url";
 	private BigDecimal price;
+	private String category;
 
 	public ProductBuilder withName(String name) {
 		this.name = name;
@@ -31,12 +32,17 @@ public class ProductBuilder {
 		return this;
 	}
 
+	public ProductBuilder withCategory(String category) {
+		this.category = category;
+		return this;
+	}
+
 	public Product createProduct() {
 		return new Product(name, description, imageUrl, price);
 	}
 
 	public ProductDTO createProductDTO() {
-		return new ProductDTO(new Product(name, description, imageUrl, price));
+		return new ProductDTO(new Product(name, description, imageUrl, price), category);
 	}
 
 	public Product createProduct(ProductDTO productDTO) {

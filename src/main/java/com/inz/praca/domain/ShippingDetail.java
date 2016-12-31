@@ -18,17 +18,13 @@ import org.springframework.util.Assert;
 @NoArgsConstructor(force = true)
 public class ShippingDetail {
 
+	private final String street;
+	private final String city;
+	private final String houseNum;
+	private final String postCode;
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	private final String street;
-
-	private final String city;
-
-	private final String houseNum;
-
-	private final String postCode;
 
 	public ShippingDetail(String street, String city, String houseNum, String postCode) {
 		Assert.hasLength(city, "Miasto nie moze byc puste");

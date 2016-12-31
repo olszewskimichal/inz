@@ -34,7 +34,8 @@ public class ProductControllerTest extends IntegrationTestBase {
 				.param("name", "nazwa")
 				.param("imageUrl", "http://localhost")
 				.param("description", "opis")
-				.param("price", "1.0"))
+				.param("price", "1.0")
+				.param("category", "inne"))
 				.andExpect(model().errorCount(0));
 	}
 
@@ -43,7 +44,7 @@ public class ProductControllerTest extends IntegrationTestBase {
 		mvc.perform(post("/addProduct"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("newProduct"))
-				.andExpect(model().errorCount(2));
+				.andExpect(model().errorCount(3));
 	}
 
 	@Test
@@ -52,18 +53,29 @@ public class ProductControllerTest extends IntegrationTestBase {
 				.param("name", "nazwa")
 				.param("imageUrl", "http://localhost")
 				.param("description", "opis")
-				.param("price", "a1.0"))
+				.param("price", "a1.0")
+				.param("category", "category"))
+				.andExpect(model().errorCount(1));
+	}
+
+	@Test
+	public void should_failed_withNotCorrectCategory() throws Exception {
+		mvc.perform(post("/addProduct")
+				.param("name", "nazwa")
+				.param("imageUrl", "http://localhost")
+				.param("description", "opis")
+				.param("price", "1.0"))
 				.andExpect(model().errorCount(1));
 	}
 
 	@Test
 	public void shouldShowProductDetailsPage() throws Exception {
-		Product product = productService.createProduct(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProductDTO());
+		Product product = productService.createProduct(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
 		mvc.perform(get("/products/product/" + product.getId())
-				.param("name","name")
-				.param("imageUrl","url")
-				.param("description","desc")
-				.param("price","10"))
+				.param("name", "name")
+				.param("imageUrl", "url")
+				.param("description", "desc")
+				.param("price", "10"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("product"));
 	}

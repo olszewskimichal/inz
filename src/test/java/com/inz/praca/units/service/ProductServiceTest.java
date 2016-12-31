@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.exceptions.ProductNotFoundException;
@@ -181,12 +182,15 @@ public class ProductServiceTest {
 		productDTO.setDescription("opis");
 		productDTO.setImageUrl("url");
 		productDTO.setPrice(BigDecimal.TEN);
+		productDTO.setCategory("inne");
 
 		doAnswer(invocation -> {
 			Product argument = (Product) invocation.getArguments()[0];
 			argument.setId(1L);
 			return argument;
 		}).when(productRepository).save(any(Product.class));
+
+		given(categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
 
 		Product product = productService.createProduct(productDTO);
 		assertThat(product.getId()).isEqualTo(1L);

@@ -1,6 +1,6 @@
 package com.inz.praca.validators;
 
-import static java.util.regex.Pattern.*;
+import static java.util.regex.Pattern.compile;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

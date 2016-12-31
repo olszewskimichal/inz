@@ -21,18 +21,16 @@ import org.springframework.util.Assert;
 @ToString
 @Table(name = "ORDERS")
 public class Order {
-	@Id
-	@GeneratedValue
-	private Long id;
-
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "CART_ID")
 	private final Cart cart;
 	private final BigDecimal price;
-
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "DETAIL_ID")
 	private final ShippingDetail shippingDetail;
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	public Order(Cart cart, ShippingDetail shippingDetail) {
 		Assert.notNull(cart, "Zamowienie musi zawierac jakis koszyk");
