@@ -23,6 +23,7 @@ public class CreateCategorySeleniumTest extends SeleniumTestBase {
 	@BeforeClass
 	public static void setBrowser() throws IOException {
 		driver = browserConfiguration.firefox();
+		System.out.println(driver);
 		driver.manage().window().maximize();
 	}
 
