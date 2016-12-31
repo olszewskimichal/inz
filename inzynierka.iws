@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CreateCategorySeleniumTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
+              <caret line="29" column="15" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,12 +40,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="272">
+              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryEntityTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/domain/CategoryEntityTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryEntityTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CategoryEntityTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/CategoryPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/NewCategoryPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CartItemEntityTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CategoryEntityTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/repository/CartRepositoryTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/units/config/LocalDateTImeConverterTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CartEntityTest.java" />
@@ -163,6 +184,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/configuration/BrowserConfig.java" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CategoryEntityTest.java" />
       </list>
     </option>
   </component>
@@ -1360,7 +1382,7 @@
       <recent name="C:\Users\Admin\ProgramowanieJEE\inzynierka" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CreateCategorySeleniumTest">
+  <component name="RunManager" selected="Maven.sonar">
     <configuration default="false" name="com in inzynierka" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1865,7 +1887,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24327958" sideWeight="0.5057307" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34408602" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34408602" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3252149" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1907,30 +1929,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/ProductPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#415#416#0" expanded="false" />
-            <element signature="e#448#449#0" expanded="false" />
-            <element signature="e#483#484#0" expanded="false" />
-            <element signature="e#537#538#0" expanded="false" />
-            <element signature="e#571#572#0" expanded="false" />
-            <element signature="e#624#625#0" expanded="false" />
-            <element signature="e#662#663#0" expanded="false" />
-            <element signature="e#719#720#0" expanded="false" />
-            <element signature="e#747#748#0" expanded="false" />
-            <element signature="e#798#799#0" expanded="false" />
-            <element signature="e#833#834#0" expanded="false" />
-            <element signature="e#891#892#0" expanded="false" />
-            <element signature="e#920#921#0" expanded="false" />
-            <element signature="e#972#973#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/RegisterSeleniumTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1993,7 +1991,7 @@
         <state relative-caret-position="469">
           <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2003,7 +2001,7 @@
         <state relative-caret-position="332">
           <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2025,7 +2023,7 @@
         <state relative-caret-position="301">
           <caret line="48" column="95" lean-forward="false" selection-start-line="48" selection-start-column="95" selection-end-line="48" selection-end-column="95" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2066,7 +2064,7 @@
         <state relative-caret-position="357">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2084,7 +2082,7 @@
         <state relative-caret-position="452">
           <caret line="41" column="37" lean-forward="false" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2134,7 +2132,7 @@
         <state relative-caret-position="-9">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2160,7 +2158,7 @@
         <state relative-caret-position="195">
           <caret line="62" column="19" lean-forward="false" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2170,7 +2168,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2180,7 +2178,7 @@
         <state relative-caret-position="357">
           <caret line="67" column="54" lean-forward="false" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2190,7 +2188,7 @@
         <state relative-caret-position="9">
           <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2234,14 +2232,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CategoryEntityTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="45" lean-forward="false" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/repository/CartRepositoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -2254,7 +2244,7 @@
         <state relative-caret-position="523">
           <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2288,7 +2278,7 @@
         <state relative-caret-position="51">
           <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2344,7 +2334,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CreateCategorySeleniumTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
+          <caret line="29" column="15" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2361,9 +2351,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="272">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/domain/CategoryEntityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/domain/CategoryEntityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

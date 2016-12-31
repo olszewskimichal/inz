@@ -28,7 +28,7 @@ public class CategoryEntityTest extends JpaTestBase {
 			Assert.fail();
 		}
 		catch (PersistenceException e) {
-			assertThat(true);
+			assertThat(true).isEqualTo(true);
 		}
 
 	}
