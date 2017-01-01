@@ -25,19 +25,17 @@
                     <tr>
                         <th>Produkt</th>
                         <th>Cena za sztukę</th>
-                        <!-- <th>Liczba sztuk</th> -->
+                        <th>Liczba sztuk</th>
                         <th>Cena</th>
                         <th>Akcja</th>
                     </tr>
                     <tr th:each="row,rowStat : *{items}">
-                        <td th:text="*{items[__${rowStat.index}__].name}"></td>
-                        <td th:text="*{items[__${rowStat.index}__].price}"></td>
-                        <!--  <td><select ng-attr-id="{{'quantitySelect'+item.id}}" ng-model="item.quantity"
-                                      ng-options="n for n in [] | range:1:11"
-                                      ng-change="changeItems(item.id)"></select></td>-->
+                        <td th:text="*{items[__${rowStat.index}__].item.name}"></td>
+                        <td th:text="*{items[__${rowStat.index}__].item.price}"></td>
+                        <td th:text="*{items[__${rowStat.index}__].quantity}"></td>
                         <td th:text="*{items[__${rowStat.index}__].price}"></td>
                         <td>
-                            <a th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger" >
+                            <a th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
                             <span class="glyphicon glyphicon-remove">
                             </span> Usuń
                             </a>

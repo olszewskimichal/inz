@@ -17,6 +17,7 @@ import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
+import com.inz.praca.exceptions.CategoryNotFoundException;
 import com.inz.praca.exceptions.ProductNotFoundException;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
@@ -104,6 +105,30 @@ public class ProductServiceTest {
 		}
 		catch (ProductNotFoundException e) {
 			assertThat(e.getMessage()).isEqualTo("Nie znaleziono produktu o id 1");
+		}
+	}
+
+	@Test
+	public void shouldThrownCategoryNotFoundExceptionWhenCategoryByNameNotExists() {
+		try {
+			given(categoryRepository.findByName(anyString())).willReturn(Optional.empty());
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setName("nazwa");
+			productDTO.setDescription("opis");
+			productDTO.setImageUrl("url");
+			productDTO.setPrice(BigDecimal.TEN);
+			productDTO.setCategory("inne");
+
+			doAnswer(invocation -> {
+				Product argument = (Product) invocation.getArguments()[0];
+				argument.setId(1L);
+				return argument;
+			}).when(productRepository).save(any(Product.class));
+			productService.createProduct(productDTO);
+			Assert.fail();
+		}
+		catch (CategoryNotFoundException e) {
+			assertThat(e.getMessage()).isEqualTo("Nie znaleziono kategorii o nazwie inne");
 		}
 	}
 

@@ -5,15 +5,11 @@ import java.math.BigDecimal;
 
 import com.inz.praca.domain.Product;
 import com.inz.praca.validators.ValidPrice;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 public class ProductDTO {
 
@@ -44,6 +40,5 @@ public class ProductDTO {
 		this.imageUrl = product.getImageUrl();
 		this.description = product.getDescription();
 		this.price = product.getPrice();
-		this.category = category;
 	}
 }

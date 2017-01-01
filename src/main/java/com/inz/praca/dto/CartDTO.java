@@ -19,14 +19,22 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class CartDTO implements Serializable {
 	@NotNull
-	transient List<ProductDTO> items;
+	transient List<CartItemDTO> items;
 	@ValidPrice
 	private BigDecimal totalPrice = BigDecimal.ZERO;
 
 	public void addProductDTO(ProductDTO productDTO) {
 		if (items == null)
 			items = new ArrayList<>();
-		items.add(productDTO);
+		for (CartItemDTO cartItemDTO : items) {
+			if (cartItemDTO.getItem().equals(productDTO)) {
+				cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
+				cartItemDTO.setPrice(cartItemDTO.getItem().getPrice().multiply(BigDecimal.valueOf(cartItemDTO.getQuantity())));
+				updatePrice();
+				return;
+			}
+		}
+		items.add(new CartItemDTO(productDTO));
 		updatePrice();
 	}
 
@@ -40,6 +48,6 @@ public class CartDTO implements Serializable {
 	}
 
 	private void updatePrice() {
-		totalPrice = items.stream().map(ProductDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+		totalPrice = items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
 	}
 }

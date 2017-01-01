@@ -128,6 +128,9 @@
                     <timeoutConstant>
                         80000
                     </timeoutConstant>
+                    <timestampedReports>
+                        false
+                    </timestampedReports>
                 </configuration>
             </plugin>
             <plugin>
@@ -161,6 +164,13 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.8</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            LOMBOK.DATA
+                        </exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
