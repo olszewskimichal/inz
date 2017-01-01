@@ -21,7 +21,7 @@
                         Kupuję
                     </a>
                 </div>
-                <table class="table table-hover">
+                <table id="cartTable" class="table table-hover">
                     <tr>
                         <th>Produkt</th>
                         <th>Cena za sztukę</th>
@@ -29,13 +29,13 @@
                         <th>Cena</th>
                         <th>Akcja</th>
                     </tr>
-                    <tr th:each="row,rowStat : *{items}">
-                        <td th:text="*{items[__${rowStat.index}__].item.name}"></td>
-                        <td th:text="*{items[__${rowStat.index}__].item.price}"></td>
-                        <td th:text="*{items[__${rowStat.index}__].quantity}"></td>
-                        <td th:text="*{items[__${rowStat.index}__].price}"></td>
+                    <tr th:id="'cartItem'+${rowStat.index}" th:each="row,rowStat : *{items}">
+                        <td th:id="'cartItemName'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].item.name}"></td>
+                        <td th:id="'cartItemProductPrice'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].item.price}"></td>
+                        <td th:id="'cartItemQuantity'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].quantity}"></td>
+                        <td th:id="'cartItemPrice'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].price}"></td>
                         <td>
-                            <a th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
+                            <a th:id="'cartItemRemove'+${rowStat.index}" th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
                             <span class="glyphicon glyphicon-remove">
                             </span> Usuń
                             </a>
@@ -45,7 +45,7 @@
                         <th></th>
                         <th></th>
                         <th>Razem</th>
-                        <th th:text="${cartDTO.totalPrice}+' PLN'"></th>
+                        <th th:id="'cartPrice'" th:text="${cartDTO.totalPrice}+' PLN'"></th>
                         <th></th>
                     </tr>
                 </table>
@@ -59,8 +59,5 @@
 </div>
 </body>
 <div layout:fragment="script">
-    <script>
-        document.getElementById("cart").className = 'active';
-    </script>
 </div>
 </html>
