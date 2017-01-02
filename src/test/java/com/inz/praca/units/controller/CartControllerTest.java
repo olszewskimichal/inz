@@ -51,7 +51,19 @@ public class CartControllerTest {
 		controller.removeRow(1);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(1);
 		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(10).stripTrailingZeros());
+	}
 
+	@Test
+	public void shouldAdd2ProductAndClearCart() {
+		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
+		given(productService.getProductById(2L)).willReturn(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.ONE).createProduct());
+		controller.addRow(1L);
+		controller.addRow(2L);
+		assertThat(controller.getForm().getItems().size()).isEqualTo(2);
+		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(11).stripTrailingZeros());
 
+		controller.clearCart();
+		assertThat(controller.getForm().getItems().size()).isEqualTo(0);
+		assertThat(controller.getForm().getTotalPrice()).isEqualTo(BigDecimal.ZERO);
 	}
 }

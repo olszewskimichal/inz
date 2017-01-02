@@ -144,7 +144,7 @@ public class ProductServiceTest {
 	@Test
 	public void shouldThrownIllegalArgumentExceptionWhenSizeOrPageNumberIsIncorrect() {
 		try {
-			this.productService.getProducts(-1, 2, null);
+			this.productService.getProducts(-1, 2, null, null);
 			Assert.fail("Nie mozna podac minusowej strony");
 		}
 		catch (IllegalArgumentException e) {
@@ -152,7 +152,7 @@ public class ProductServiceTest {
 		}
 
 		try {
-			this.productService.getProducts(0, 0, null);
+			this.productService.getProducts(0, 0, null, null);
 			Assert.fail("Nie mozna podac rozmiaru mniejszego od 1");
 		}
 		catch (IllegalArgumentException e) {
@@ -165,7 +165,7 @@ public class ProductServiceTest {
 		Page<Product> products = new PageImpl<>(
 				Collections.singletonList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 1, Sort.Direction.ASC, "id"))).willReturn(products);
-		List<Product> asc = this.productService.getProducts(1, 1, "asc");
+		List<Product> asc = this.productService.getProducts(1, 1, "asc", null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(1);
 		assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -180,7 +180,7 @@ public class ProductServiceTest {
 				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
 						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		given(this.productRepository.findAll(new PageRequest(0, 5, null, "id"))).willReturn(products);
-		List<Product> asc = this.productService.getProducts(null, null, null);
+		List<Product> asc = this.productService.getProducts(null, null, null, null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(2);
 		assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -192,8 +192,8 @@ public class ProductServiceTest {
 		Page<Product> products = new PageImpl<>(
 				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
 						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
-		given(this.productRepository.findAll(new PageRequest(0, 20, null, "id"))).willReturn(products);
-		List<Product> asc = this.productService.getProducts(1, 20, null);
+		given(this.productRepository.findAll(new PageRequest(0, 19, null, "id"))).willReturn(products);
+		List<Product> asc = this.productService.getProducts(1, 19, null, null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(2);
 		assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -238,5 +238,20 @@ public class ProductServiceTest {
 		catch (IllegalArgumentException e) {
 			assertThat(e.getMessage()).isEqualTo("Nie moze być pusta nazwa produktu");
 		}
+	}
+
+	@Test
+	public void shouldReturnProductsOnPageByCategory() {
+		Page<Product> products = new PageImpl<>(
+				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
+						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
+		Category category = new Category("category", "aaa");
+		given(categoryRepository.findByName("category")).willReturn(Optional.of(category));
+		given(this.productRepository.findByCategory(new PageRequest(0, 5, null, "id"),category)).willReturn(products);
+		List<Product> asc = this.productService.getProducts(null, null, null, "category").getContent();
+		assertThat(asc).isNotNull().isNotEmpty();
+		assertThat(asc.size()).isEqualTo(2);
+		assertThat(asc.get(0).getName()).isEqualTo("name3");
+		assertThat(asc.get(1).getName()).isEqualTo("name2");
 	}
 }

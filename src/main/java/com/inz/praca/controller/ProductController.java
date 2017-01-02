@@ -1,13 +1,14 @@
 package com.inz.praca.controller;
 
 import javax.validation.Valid;
-import java.util.List;
 
 import com.inz.praca.domain.Product;
 import com.inz.praca.dto.ProductDTO;
 import com.inz.praca.service.ProductService;
+import com.inz.praca.utils.Pager;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,12 @@ public class ProductController {
 	private static final String PRODUCT = "product";
 	private static final String CATEGORY_LIST = "categoryList";
 	private final ProductService productService;
+
+	private static final int BUTTONS_TO_SHOW = 5;
+	private static final int INITIAL_PAGE = 1;
+	private static final int INITIAL_PAGE_SIZE = 6;
+	private static final int[] PAGE_SIZES = {6, 12, 18};
+
 
 	public ProductController(ProductService productService) {
 		this.productService = productService;
@@ -68,10 +75,19 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/products")
-	public String showProducts(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "pageSize", required = false) Integer pageSize) {
-		List<Product> products = productService.getProducts(page, pageSize, null);
-		log.debug("Pobrano produktów {}", products.size());
+	public String showProducts(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "pageSize", required = false) Integer pageSize, @RequestParam(value = "category", required = false) String category) {
+		log.info("{} {}", page, pageSize);
+		int evalPageSize = pageSize == null ? INITIAL_PAGE_SIZE : pageSize;
+		int evalPage = page == null ? INITIAL_PAGE:page;
+		String evalCategory = category!=null && category.trim().length() < 1 ? null : category;
+		log.info("Strona {} elementow na stronie {}", evalPage, evalPageSize);
+		Page<Product> products = productService.getProducts(evalPage, evalPageSize, null, evalCategory);
 		model.addAttribute("products", products);
+		model.addAttribute("categoryList", productService.findAllCategory());
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pager", new Pager(products.getTotalPages(), products.getNumber(), BUTTONS_TO_SHOW));
+		model.addAttribute("category", category);
+		model.addAttribute("pageSizes", PAGE_SIZES);
 		return "products";
 	}
 

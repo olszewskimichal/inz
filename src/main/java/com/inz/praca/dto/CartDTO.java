@@ -47,6 +47,11 @@ public class CartDTO implements Serializable {
 		}
 	}
 
+	public void clearCart() {
+		items = new ArrayList<>();
+		updatePrice();
+	}
+
 	private void updatePrice() {
 		totalPrice = items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
 	}

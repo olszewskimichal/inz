@@ -8,15 +8,21 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.controller.ProductController;
+import com.inz.praca.domain.Category;
 import com.inz.praca.dto.ProductDTO;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.service.ProductService;
+import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import org.springframework.data.domain.PageImpl;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -27,6 +33,9 @@ public class ProductControllerTest {
 
 	@Mock
 	private ProductService productService;
+
+	@Mock
+	private CategoryRepository categoryRepository;
 
 	@Mock
 	private BindingResult bindingResult;
@@ -45,7 +54,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void shouldCreateUserAndRedirectToIndex() {
+	public void shouldCreateProductAndRedirectToIndex() {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName("name");
 		productDTO.setDescription("desc");
@@ -91,6 +100,33 @@ public class ProductControllerTest {
 
 	@Test
 	public void shouldShowAllProducts() {
-		assertThat(controller.showProducts(model, null, null)).isEqualTo("products");
+		given(productService.getProducts(1, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+		assertThat(controller.showProducts(model, null, null, null)).isEqualTo("products");
+	}
+
+	@Test
+	public void shouldShowAllProducts2() {
+		given(productService.getProducts(2, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+		assertThat(controller.showProducts(model, 2, 6, null)).isEqualTo("products");
+	}
+
+	@Test
+	public void shouldShowAllProductsByCategory() {
+		given(categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a","a")));
+		given(productService.getProducts(2, 6, null, "a")).willReturn(new PageImpl<>(new ArrayList<>()));
+		assertThat(controller.showProducts(model, 2, 6, "a")).isEqualTo("products");
+		verify(model).addAttribute("pager", new Pager(1,1,5));
+	}
+
+	@Test
+	public void shouldShowAllProductsWithEmptyCategory() {
+		given(productService.getProducts(1, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+		assertThat(controller.showProducts(model, null, null, "")).isEqualTo("products");
+	}
+
+	@Test
+	public void shouldShowAllProducts3() {
+		given(productService.getProducts(2, 2, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+		assertThat(controller.showProducts(model, 2, 2, null)).isEqualTo("products");
 	}
 }

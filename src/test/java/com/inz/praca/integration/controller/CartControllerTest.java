@@ -38,4 +38,10 @@ public class CartControllerTest extends IntegrationTestBase {
 				.andExpect(redirectedUrl("/cart"));
 	}
 
+	@Test
+	public void shouldRedirectAfterClearCart() throws Exception {
+		mvc.perform(get("/cart/clear"))
+				.andExpect(redirectedUrl("/cart"));
+	}
+
 }

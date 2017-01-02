@@ -21,7 +21,7 @@ public class DevDBConfig {
 	@PostConstruct
 	public void populateDatabase() {
 		log.info("ładowanie bazy testowej");
-		categoryRepository.save(new CategoryBuilder().withName("kategoria1").withDescription("Komputery").createCategory());
+		categoryRepository.save(new CategoryBuilder().withName("Komputery").withDescription("Jakies super kompy").createCategory());
 		categoryRepository.save(new CategoryBuilder().withName("inne").withDescription("Nie zdefiniowane").createCategory());
 	}
 }

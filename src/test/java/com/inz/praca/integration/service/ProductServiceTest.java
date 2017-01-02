@@ -40,7 +40,7 @@ public class ProductServiceTest extends IntegrationTestBase {
 		for (int i = 0; i < 30; i++) {
 			repository.save(new ProductBuilder().withName("nazwa" + i).withPrice(BigDecimal.ZERO).createProduct());
 		}
-		List<Product> products = this.productService.getProducts(1, 30, "desc");
+		List<Product> products = this.productService.getProducts(1, 30, "desc", null).getContent();
 		assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService
 		Long firstId = products.get(0).getId();
 		Long lastId = products.get(products.size() - 1).getId();

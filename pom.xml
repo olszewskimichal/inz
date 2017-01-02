@@ -107,6 +107,9 @@
                     <targetClasses>
                         <param>com.inz.praca.*</param>
                     </targetClasses>
+                    <excludedClasses>
+                        <class>com.inz.praca.utils.Pager</class>
+                    </excludedClasses>
                     <targetTests>
                         <param>com.inz.praca.units.*</param>
                         <param>com.inz.praca.integration.*</param>

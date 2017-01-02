@@ -10,12 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
 public class CartController {
 	private static final String CART = "cart";
+	private static final String REDIRECT_CART = "redirect:/cart";
 
 	private final ProductService productService;
 	private CartDTO cartDTO;
@@ -41,13 +41,21 @@ public class CartController {
 	public String addRow(@PathVariable Long productId) {
 		log.info("addProduct id {} cart {}", productId, cartDTO);
 		cartDTO.addProductDTO(new ProductDTO(productService.getProductById(productId)));
-		return "redirect:/cart";
+		return REDIRECT_CART;
 	}
 
-	@RequestMapping(value = "/cart/remove/{rowId}")
+	@GetMapping(value = "/cart/remove/{rowId}")
 	public String removeRow(@PathVariable Integer rowId) {
 		log.info("removeProduct rowId {} z {} ", rowId, cartDTO);
 		cartDTO.removeProductDTO(rowId);
-		return "redirect:/cart";
+		return REDIRECT_CART;
 	}
+
+	@GetMapping(value = "/cart/clear")
+	public String clearCart() {
+		log.info("Czyszczenie koszyka");
+		cartDTO.clearCart();
+		return REDIRECT_CART;
+	}
+
 }

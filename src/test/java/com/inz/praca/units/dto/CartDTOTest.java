@@ -47,4 +47,16 @@ public class CartDTOTest {
 		assertThat(cartDTO.getItems().size()).isEqualTo(0);
 		assertThat(cartDTO.getTotalPrice()).isEqualTo(BigDecimal.ZERO);
 	}
+
+	@Test
+	public void shouldClearCart(){
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.addProductDTO(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
+		cartDTO.addProductDTO(new ProductBuilder().withName("aaab").withPrice(BigDecimal.TEN).createProductDTO());
+		assertThat(cartDTO.getTotalPrice()).isEqualTo(BigDecimal.valueOf(20));
+		assertThat(cartDTO.getItems().size()).isEqualTo(2);
+		cartDTO.clearCart();
+		assertThat(cartDTO.getItems().size()).isEqualTo(0);
+		assertThat(cartDTO.getTotalPrice()).isEqualTo(BigDecimal.ZERO);
+	}
 }
