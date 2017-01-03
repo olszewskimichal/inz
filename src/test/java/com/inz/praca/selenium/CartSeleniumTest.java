@@ -9,16 +9,16 @@ import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.selenium.configuration.ScreenshotTestRule;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
+import com.inz.praca.selenium.pageObjects.CartPage;
 import com.inz.praca.selenium.pageObjects.NewProductPage;
+import com.inz.praca.selenium.pageObjects.ProductListPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;
 import org.assertj.core.api.Assertions;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -47,42 +47,25 @@ public class CartSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void test() throws InterruptedException {
-		repository.deleteAll();
-		categoryRepository.save(new Category("a", "b"));
+	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws InterruptedException {
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
-		productPage.typeName("test");
-		productPage.typeDesctiption("test2");
-		productPage.typePrice("3.0");
-		productPage.typeUrl("url");
-/*		WebElement select = driver.findElement(By.name("category"));
-		Select dropDown = new Select(select);
-		String selected = dropDown.getFirstSelectedOption().getText();
-		List<WebElement> Options = dropDown.getOptions();
-		for (WebElement option : Options) {
-			if (option.getText().equals("inne")) {
-				option.click();
-			}
-		}*/
-
+		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
 		productPage.clickOnCreateProductButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		productPage = new NewProductPage(driver);
-		productPage.typeName("test2");
-		productPage.typeDesctiption("test2");
-		productPage.typePrice("35.0");
-		productPage.typeUrl("url");
+		productPage.fillCreateProductForm("test2", "test2", "35.0", "url");
 		productPage.clickOnCreateProductButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 
 		driver.get("http://localhost:" + port + "/products");
-		WebElement product0 = driver.findElement(By.id("product0"));
-		product0.click();
+		ProductListPage productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(0);
+
 		ProductPage page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -90,8 +73,8 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/products");
-		WebElement product1 = driver.findElement(By.id("product1"));
-		product1.click();
+		productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(1);
 		page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test2");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -99,8 +82,8 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/products");
-		product1 = driver.findElement(By.id("product1"));
-		product1.click();
+		productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(1);
 		page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test2");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -108,66 +91,45 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/cart");
-		int rowCount = driver.findElements(By.xpath("//table[@id='cartTable']/tbody/tr")).size();
-		assertThat(rowCount).isEqualTo(4);
-		WebElement cartItem0 = driver.findElement(By.id("cartItem0"));
+		CartPage cartPage = new CartPage(driver);
+		assertThat(cartPage.getCartTableSize()).isEqualTo(4);
+		assertThat(cartPage.getCartItemName(0)).isEqualTo("test");
+		assertThat(cartPage.getCartItemName(1)).isEqualTo("test2");
+		assertThat(cartPage.getCartItemProductPrice(0)).isEqualTo("3.00");
+		assertThat(cartPage.getCartItemProductPrice(1)).isEqualTo("35.00");
+		assertThat(cartPage.getCartItemPrice(0)).isEqualTo("3.00");
+		assertThat(cartPage.getCartItemPrice(1)).isEqualTo("70.00");
+		assertThat(cartPage.getCartPrice()).isEqualTo("73.00 PLN");
 
-		assertThat(cartItem0).isNotNull();
-		WebElement cartItemName0 = driver.findElement(By.id("cartItemName0"));
-		WebElement cartItemName1 = driver.findElement(By.id("cartItemName1"));
-		assertThat(cartItemName0.getText()).isEqualTo("test");
-		assertThat(cartItemName1.getText()).isEqualTo("test2");
-
-		WebElement cartItemProductPrice0 = driver.findElement(By.id("cartItemProductPrice0"));
-		WebElement cartItemProductPrice1 = driver.findElement(By.id("cartItemProductPrice1"));
-		assertThat(cartItemProductPrice0.getText()).isEqualTo("3.00");
-		assertThat(cartItemProductPrice1.getText()).isEqualTo("35.00");
-
-		WebElement cartItemPrice0 = driver.findElement(By.id("cartItemPrice0"));
-		WebElement cartItemPrice1 = driver.findElement(By.id("cartItemPrice1"));
-		assertThat(cartItemPrice0.getText()).isEqualTo("3.00");
-		assertThat(cartItemPrice1.getText()).isEqualTo("70.00");
-
-		WebElement cartPrice = driver.findElement(By.id("cartPrice"));
-		assertThat(cartPrice.getText()).isEqualTo("73.00 PLN");
-
-		WebElement cartItemRemove0 = driver.findElement(By.id("cartItemRemove0"));
-		cartItemRemove0.click();
-		rowCount = driver.findElements(By.xpath("//table[@id='cartTable']/tbody/tr")).size();
-		assertThat(rowCount).isEqualTo(3);
-
-		cartPrice = driver.findElement(By.id("cartPrice"));
-		assertThat(cartPrice.getText()).isEqualTo("70.00 PLN");
+		cartPage.removeItem(0);
+		assertThat(cartPage.getCartTableSize()).isEqualTo(3);
+		assertThat(cartPage.getCartPrice()).isEqualTo("70.00 PLN");
+		cartPage.clearCart();
 	}
 
 	@Test
-	public void test2() {
+	public void shouldCreate2ProductAndAddToCartAndClearCart() {
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
+
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
-		productPage.typeName("test");
-		productPage.typeDesctiption("test2");
-		productPage.typePrice("3.0");
-		productPage.typeUrl("url");
+		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
 		productPage.clickOnCreateProductButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		productPage = new NewProductPage(driver);
-		productPage.typeName("test2");
-		productPage.typeDesctiption("test2");
-		productPage.typePrice("35.0");
-		productPage.typeUrl("url");
+		productPage.fillCreateProductForm("test2", "test2", "35.0", "url");
 		productPage.clickOnCreateProductButton();
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 
 		driver.get("http://localhost:" + port + "/products");
-		WebElement product0 = driver.findElement(By.id("product0"));
-		product0.click();
+		ProductListPage productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(0);
 		ProductPage page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -175,8 +137,8 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/products");
-		WebElement product1 = driver.findElement(By.id("product1"));
-		product1.click();
+		productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(1);
 		page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test2");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -184,8 +146,8 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/products");
-		product1 = driver.findElement(By.id("product1"));
-		product1.click();
+		productListPage = new ProductListPage(driver);
+		productListPage.clickOnProductInfo(1);
 		page = new ProductPage(driver);
 		Assertions.assertThat(page.getName()).isEqualTo("test2");
 		Assertions.assertThat(page.getDescription()).isEqualTo("test2");
@@ -193,16 +155,10 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/cart");
-		int rowCount = driver.findElements(By.xpath("//table[@id='cartTable']/tbody/tr")).size();
-		assertThat(rowCount).isEqualTo(4);
-
-		WebElement cartClear = driver.findElement(By.id("cartClear"));
-		cartClear.click();
-
-		rowCount = driver.findElements(By.xpath("//table[@id='cartTable']/tbody/tr")).size();
-		assertThat(rowCount).isEqualTo(2);
-
-		WebElement cartPrice = driver.findElement(By.id("cartPrice"));
-		assertThat(cartPrice.getText()).isEqualTo("0 PLN");
+		CartPage cartPage = new CartPage(driver);
+		assertThat(cartPage.getCartTableSize()).isEqualTo(4);
+		cartPage.clearCart();
+		assertThat(cartPage.getCartTableSize()).isEqualTo(2);
+		assertThat(cartPage.getCartPrice()).isEqualTo("0 PLN");
 	}
 }

@@ -2,6 +2,8 @@ package com.inz.praca.selenium.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage {
 	By name = By.id("name");
@@ -10,6 +12,8 @@ public class ProductPage {
 	By orderButton = By.id("order");
 	By cartButton = By.id("cart");
 	By productsButton = By.id("products");
+	By category = By.id("category");
+
 
 	private WebDriver webDriver;
 
@@ -19,6 +23,20 @@ public class ProductPage {
 
 	public void clickOrderButton() {
 		webDriver.findElement(this.orderButton).click();
+	}
+
+	public String getSelectedCategory() {
+		Select categorySelect = new Select(webDriver.findElement(category));
+		return categorySelect.getFirstSelectedOption().getText();
+	}
+
+	public void chooseCategoryByText(String name) {
+		Select categorySelect = new Select(webDriver.findElement(category));
+		for (WebElement option : categorySelect.getOptions()) {
+			if (option.getText().equals(name)) {
+				option.click();
+			}
+		}
 	}
 
 	public void clickCartButton() {

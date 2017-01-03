@@ -35,4 +35,11 @@ public class NewProductPage {
 	public void clickOnCreateProductButton() {
 		webDriver.findElement(submitButton).click();
 	}
+
+	public void fillCreateProductForm(String name, String description, String price, String url) {
+		typeName(name);
+		typeDesctiption(description);
+		typePrice(price);
+		typeUrl(url);
+	}
 }
