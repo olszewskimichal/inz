@@ -33,6 +33,8 @@ public class CartPage {
 
 	By cartClearButton = By.id("cartClear");
 
+	By order = By.id("order");
+
 	public String getCartItemPrice(Integer id) {
 		return webDriver.findElement(cartItemPrice(id)).getText();
 	}
@@ -59,6 +61,10 @@ public class CartPage {
 
 	public void clearCart() {
 		webDriver.findElement(cartClearButton).click();
+	}
+
+	public void clickOrder() {
+		webDriver.findElement(order).click();
 	}
 
 }
