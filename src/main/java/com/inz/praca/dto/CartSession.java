@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.inz.praca.validators.ValidPrice;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import org.springframework.stereotype.Component;
@@ -17,15 +18,14 @@ import org.springframework.web.context.annotation.SessionScope;
 @Getter
 @Component
 @SessionScope
-public class CartDTO implements Serializable {
+@NoArgsConstructor
+public class CartSession implements Serializable {
 	@NotNull
-	transient List<CartItemDTO> items;
+	private List<CartItemDTO> items = new ArrayList<>();
 	@ValidPrice
 	private BigDecimal totalPrice = BigDecimal.ZERO;
 
 	public void addProductDTO(ProductDTO productDTO) {
-		if (items == null)
-			items = new ArrayList<>();
 		for (CartItemDTO cartItemDTO : items) {
 			if (cartItemDTO.getItem().equals(productDTO)) {
 				cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
@@ -39,8 +39,6 @@ public class CartDTO implements Serializable {
 	}
 
 	public void removeProductDTO(int rowId) {
-		if (items == null)
-			items = new ArrayList<>();
 		if (!items.isEmpty()) {
 			items.remove(rowId);
 			updatePrice();

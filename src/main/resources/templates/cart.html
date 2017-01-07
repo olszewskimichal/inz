@@ -6,7 +6,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <form th:action="@{/order}" th:object="${cartDTO}" method="post" class="form">
+    <form th:action="@{/order}" th:object="${cartSession}" method="post" class="form">
         <div class="jumbotron">
             <h1>Koszyk</h1>
             <p>Twój koszyk</p>
@@ -45,7 +45,7 @@
                         <th></th>
                         <th></th>
                         <th>Razem</th>
-                        <th th:id="'cartPrice'" th:text="${cartDTO.totalPrice}+' PLN'"></th>
+                        <th th:id="'cartPrice'" th:text="${cartSession.totalPrice}+' PLN'"></th>
                         <th></th>
                     </tr>
                 </table>

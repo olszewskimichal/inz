@@ -109,6 +109,7 @@
                     </targetClasses>
                     <excludedClasses>
                         <class>com.inz.praca.utils.Pager</class>
+                        <class>com.inz.praca.domain.ShippingDetail</class>
                     </excludedClasses>
                     <targetTests>
                         <param>com.inz.praca.units.*</param>
@@ -169,6 +170,9 @@
                 <version>0.7.8</version>
                 <configuration>
                     <excludes>
+                        <exclude>
+                            com.inz.praca.domain.ShippingDetail
+                        </exclude>
                         <exclude>
                             LOMBOK.DATA
                         </exclude>

@@ -1,5 +1,6 @@
 package com.inz.praca.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import lombok.Getter;
@@ -11,7 +12,7 @@ import org.springframework.util.Assert;
 @ToString
 @Getter
 @Setter
-public class CartItemDTO {
+public class CartItemDTO implements Serializable {
 	private ProductDTO item;
 
 	private Integer quantity;

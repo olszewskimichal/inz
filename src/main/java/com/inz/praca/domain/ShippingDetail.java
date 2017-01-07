@@ -3,25 +3,23 @@ package com.inz.praca.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import org.springframework.util.Assert;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor(force = true)
-public class ShippingDetail {
+public class ShippingDetail implements Serializable {
 
-	private final String street;
-	private final String city;
-	private final String houseNum;
-	private final String postCode;
+	private String street;
+	private String city;
+	private String houseNum;
+	private String postCode;
+	private String phoneNumber;
 	@Id
 	@GeneratedValue
 	private Long id;

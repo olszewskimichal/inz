@@ -18,23 +18,31 @@ public class Pager {
 
 		int halfPagesToShow = this.buttonsToShow / 2;
 
-		if (totalPages <= this.buttonsToShow) {
+		if (totalPages == 0) {
+			this.startPage = 1;
+			this.endPage = 1;
+		}
+		else if (totalPages <= this.buttonsToShow) {
 			this.startPage = 1;
 			this.endPage = totalPages;
 
-		} else if ((currentPage - halfPagesToShow) <= 0) {
+		}
+		else if ((currentPage - halfPagesToShow) <= 0) {
 			this.startPage = 1;
 			this.endPage = this.getButtonsToShow();
 
-		} else if ((currentPage + halfPagesToShow) == totalPages) {
+		}
+		else if ((currentPage + halfPagesToShow) == totalPages) {
 			this.startPage = currentPage - halfPagesToShow;
 			this.endPage = totalPages;
 
-		} else if (currentPage + halfPagesToShow > totalPages) {
+		}
+		else if (currentPage + halfPagesToShow > totalPages) {
 			this.setStartPage(totalPages - this.getButtonsToShow() + 1);
 			this.setEndPage(totalPages);
 
-		} else {
+		}
+		else {
 			this.setStartPage(currentPage - halfPagesToShow);
 			this.setEndPage(currentPage + halfPagesToShow);
 		}

@@ -1,6 +1,7 @@
 package com.inz.praca.dto;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.inz.praca.domain.Product;
@@ -11,7 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductDTO implements Serializable {
 
 	@NotBlank //TODO moze wykorzystac notBlank do pokazania Chlebakowi
 	@Size(min = 4, max = 15)
