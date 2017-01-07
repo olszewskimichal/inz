@@ -6,9 +6,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import com.inz.praca.domain.Product;
+import com.inz.praca.builders.CategoryBuilder;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Category;
+import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import org.junit.Test;
 
@@ -20,6 +23,9 @@ public class ProductRepositoryTest extends JpaTestBase {
 	private static final String NAME = "nazwa";
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Test
 	public void shouldFindProductByName() {
@@ -54,5 +60,30 @@ public class ProductRepositoryTest extends JpaTestBase {
 		content = this.productRepository.findAll(new PageRequest(1, 2)).getContent();
 		assertThat(content.size()).isEqualTo(1);
 		assertThat(content.get(0).getName()).isEqualTo("nazwa3");
+	}
+
+	@Test
+	public void shouldCountProductByCategory() {
+		productRepository.deleteAll();
+
+		Category category = new CategoryBuilder().withName("nazwa1").createCategory();
+		Category category2 = new CategoryBuilder().withName("nazwa2").createCategory();
+		entityManager.persistAndFlush(category);
+		entityManager.persistAndFlush(category2);
+		Product product = new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).withCategory("nazwa1").createProduct();
+		product.setCategory(category);
+		Product product1 = new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).withCategory("nazwa1").createProduct();
+		product1.setCategory(category);
+		Product product2 = new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).withCategory("nazwa2").createProduct();
+		product2.setCategory(category2);
+		entityManager.persistAndFlush(product);
+		entityManager.persistAndFlush(product1);
+		entityManager.persistAndFlush(product2);
+
+		List<Object[]> categoryNameAndCountProducts = productRepository.findCategoryNameAndCountProducts();
+		assertThat((String) categoryNameAndCountProducts.get(0)[0]).isEqualTo("nazwa1");
+		assertThat((Long) categoryNameAndCountProducts.get(0)[1]).isEqualTo(2L);
+		assertThat((String) categoryNameAndCountProducts.get(1)[0]).isEqualTo("nazwa2");
+		assertThat((Long) categoryNameAndCountProducts.get(1)[1]).isEqualTo(1L);
 	}
 }

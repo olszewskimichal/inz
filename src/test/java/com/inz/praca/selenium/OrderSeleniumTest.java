@@ -4,6 +4,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import java.io.IOException;
 
+import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.selenium.configuration.ScreenshotTestRule;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
@@ -18,10 +19,14 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderSeleniumTest extends SeleniumTestBase {
 
 	public static WebDriver driver;
+
+	@Autowired
+	private ProductRepository repository;
 
 	@Rule
 	public ScreenshotTestRule screenshotTestRule = new ScreenshotTestRule(driver);
@@ -39,6 +44,7 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreateOrder() throws InterruptedException {
+		repository.deleteAll();
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
