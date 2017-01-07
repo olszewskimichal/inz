@@ -50,6 +50,10 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreateOrder() throws InterruptedException {
+		driver.get("http://localhost:" + port + "/cart");
+		CartPage cartPage = new CartPage(driver);
+		cartPage.clearCart();
+
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
@@ -71,7 +75,7 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/cart");
-		CartPage cartPage = new CartPage(driver);
+		cartPage = new CartPage(driver);
 		assertThat(cartPage.getCartTableSize()).isEqualTo(3);
 		assertThat(cartPage.getCartItemName(0)).isEqualTo("test");
 		assertThat(cartPage.getCartItemProductPrice(0)).isEqualTo("3.00");

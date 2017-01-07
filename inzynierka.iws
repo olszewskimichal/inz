@@ -31,8 +31,8 @@
       <file leaf-file-name="OrderSeleniumTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+            <state relative-caret-position="190">
+              <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShippingDetailPage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShippingDetailPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/ShippingDetailPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            <state relative-caret-position="204">
+              <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CartSeleniumTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CartSeleniumTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="52" selection-end-column="56" />
+            <state relative-caret-position="509">
+              <caret line="167" column="8" lean-forward="false" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -228,10 +228,10 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/orderConfirmation.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/inz/praca/repository/ProductRepository.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/integration/repository/ProductRepositoryTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/OrderPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/ShippingDetailPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java" />
       </list>
     </option>
   </component>
@@ -1638,7 +1638,7 @@
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="" />
-    <property name="SearchEverywhereHistoryKey" value="CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java&#10;Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java&#10;conf&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;Co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/collectCustomerInfo.html&#10;CartControllerTest&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;CartCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/controller/CartControllerTest.java&#10;Or&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Cart&#9;PSI&#9;JAVA://com.inz.praca.domain.Cart&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;FlowDefinition&#9;PSI&#9;JAVA://org.springframework.webflow.definition.FlowDefinition&#10;Pag&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/utils/Pager.java&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;DevD&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/DevDBConfig.java&#10;CartCont&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/CartController.java&#10;produ&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;ProductCon&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;produc&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;cart.ht&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ca&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ProductService&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/ProductServiceTest.java&#10;UserNo&#9;PSI&#9;JAVA://com.inz.praca.units.service.UserServiceTest#shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists" />
+    <property name="SearchEverywhereHistoryKey" value="Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java&#10;CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java&#10;conf&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;Co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/collectCustomerInfo.html&#10;CartControllerTest&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;CartCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/controller/CartControllerTest.java&#10;Or&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Cart&#9;PSI&#9;JAVA://com.inz.praca.domain.Cart&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;FlowDefinition&#9;PSI&#9;JAVA://org.springframework.webflow.definition.FlowDefinition&#10;Pag&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/utils/Pager.java&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;DevD&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/DevDBConfig.java&#10;CartCont&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/CartController.java&#10;produ&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;ProductCon&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;produc&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;cart.ht&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ca&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ProductService&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/ProductServiceTest.java&#10;UserNo&#9;PSI&#9;JAVA://com.inz.praca.units.service.UserServiceTest#shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -2108,9 +2108,6 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
-    <history-entry file="OrderSeleniumTest - 2017.01.07 at 20h 52m 32s.xml">
-      <configuration name="OrderSeleniumTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="OrderSeleniumTest - 2017.01.07 at 20h 53m 35s.xml">
       <configuration name="OrderSeleniumTest" configurationId="JUnit" />
     </history-entry>
@@ -2138,6 +2135,9 @@
     <history-entry file="com_in_inzynierka - 2017.01.07 at 21h 51m 24s.xml">
       <configuration name="com in inzynierka" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="com_in_inzynierka - 2017.01.07 at 21h 54m 25s.xml">
+      <configuration name="com in inzynierka" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2159,7 +2159,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24327958" sideWeight="0.5057307" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26913264" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26913264" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27005732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2641,24 +2641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="52" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="34" column="50" lean-forward="false" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/NewProductPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2679,11 +2661,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/ShippingDetailPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="204">
+          <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="77" column="8" lean-forward="false" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="167" column="8" lean-forward="false" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

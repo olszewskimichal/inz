@@ -48,6 +48,10 @@ public class CartSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws InterruptedException {
+		driver.get("http://localhost:" + port + "/cart");
+		CartPage cartPage = new CartPage(driver);
+		cartPage.clearCart();
+
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
@@ -94,7 +98,7 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/cart");
-		CartPage cartPage = new CartPage(driver);
+		cartPage = new CartPage(driver);
 		assertThat(cartPage.getCartTableSize()).isEqualTo(4);
 		assertThat(cartPage.getCartItemName(0)).isEqualTo("test");
 		assertThat(cartPage.getCartItemName(1)).isEqualTo("test2");
@@ -112,6 +116,9 @@ public class CartSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreate2ProductAndAddToCartAndClearCart() {
+		driver.get("http://localhost:" + port + "/cart");
+		CartPage cartPage = new CartPage(driver);
+		cartPage.clearCart();
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
@@ -158,7 +165,7 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		page.clickOrderButton();
 
 		driver.get("http://localhost:" + port + "/cart");
-		CartPage cartPage = new CartPage(driver);
+		cartPage = new CartPage(driver);
 		assertThat(cartPage.getCartTableSize()).isEqualTo(4);
 		cartPage.clearCart();
 		assertThat(cartPage.getCartTableSize()).isEqualTo(2);
