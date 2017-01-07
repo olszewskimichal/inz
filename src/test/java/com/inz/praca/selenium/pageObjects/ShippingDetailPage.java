@@ -1,10 +1,9 @@
 package com.inz.praca.selenium.pageObjects;
 
-import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ShippingDetailPage extends SeleniumTestBase {
+public class ShippingDetailPage {
 	private WebDriver webDriver;
 	By houseNum = By.id("houseNum");
 	By street = By.id("streetName");

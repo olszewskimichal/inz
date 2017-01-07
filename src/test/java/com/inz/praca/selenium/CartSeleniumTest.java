@@ -48,6 +48,9 @@ public class CartSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws InterruptedException {
+		repository.deleteAll();
+		categoryRepository.deleteAll();
+		categoryRepository.save(new Category("a", "b"));
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
