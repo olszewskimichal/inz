@@ -48,7 +48,7 @@ public class CategoryControllerTest {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setName("name");
 		categoryDTO.setName("desc");
-		assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("index");
+		assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("redirect:/");
 	}
 
 	@Test

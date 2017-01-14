@@ -49,14 +49,14 @@ public class ProductController {
 	public String confirmNewProduct(@Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model) {
 		log.info("Proba dodania nowego produktu {}", productDTO);
 		if (result.hasErrors()) {
-			log.debug("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
+			log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
 			model.addAttribute(PRODUCT_FORM, productDTO);
 			model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
 			return NEW_PRODUCT;
 		}
 		try {
 			productService.createProduct(productDTO);
-			return "index";
+			return "redirect:/products";
 		}
 		catch (IllegalArgumentException e) {
 			log.debug(e.getMessage());

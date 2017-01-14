@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CategoryDTO {
 
 	@NotNull
-	@Size(min = 4, max = 15)
+	@Size(min = 4, max = 20)
 	private String name;
 
 	@NotNull

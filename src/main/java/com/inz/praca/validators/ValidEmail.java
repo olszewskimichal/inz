@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = EmailValidator.class)
 @Documented
 public @interface ValidEmail {
-	String message() default "{ValidEmail}";
+	String message() default "Nieprawidłowy adres email";
 
 	Class<?>[] groups() default {};
 

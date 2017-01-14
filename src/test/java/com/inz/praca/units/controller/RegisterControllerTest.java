@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -49,11 +50,11 @@ public class RegisterControllerTest {
 		userDTO.setEmail("email");
 		userDTO.setName("name");
 		userDTO.setLastName("last");
-		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("index");
+		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("redirect:/");
 	}
 
 	@Test
-	public void shouldFailedRegisterWithExistingUser() {
+	public void shouldFailedRegisterWithNotCorrectUser() {
 		given(userService.create(any(UserDTO.class))).willThrow(new IllegalArgumentException());
 
 		UserDTO userDTO = new UserDTO();
@@ -64,6 +65,22 @@ public class RegisterControllerTest {
 		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("register");
 
 		verify(model).addAttribute("userCreateForm", userDTO);
+		verifyNoMoreInteractions(model);
+	}
+
+	@Test
+	public void shouldFailedRegisterWithExistingUser() {
+		given(userService.create(any(UserDTO.class))).willThrow(new DataIntegrityViolationException("msg"));
+
+		UserDTO userDTO = new UserDTO();
+		userDTO.setName("imie");
+		userDTO.setLastName("nazw");
+		userDTO.setEmail("email");
+		userDTO.setPassword("pass");
+		assertThat(registerController.confirmRegistration(userDTO, bindingResult, model)).isEqualTo("register");
+
+		verify(model).addAttribute("userCreateForm", userDTO);
+		verify(model).addAttribute("uzytkownikIstnieje", true);
 		verifyNoMoreInteractions(model);
 	}
 

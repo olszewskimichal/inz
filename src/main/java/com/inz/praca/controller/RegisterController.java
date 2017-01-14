@@ -6,6 +6,7 @@ import com.inz.praca.dto.UserDTO;
 import com.inz.praca.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,11 +42,16 @@ public class RegisterController {
 		}
 		try {
 			userService.create(userCreateForm);
-			return "index";
+			return "redirect:/";
 		}
 		catch (IllegalArgumentException e) {
 			log.debug(e.getMessage());
 			model.addAttribute(FORM, userCreateForm);
+		}
+		catch (DataIntegrityViolationException ex){
+			log.debug(ex.getMessage());
+			model.addAttribute(FORM, userCreateForm);
+			model.addAttribute("uzytkownikIstnieje", true);
 		}
 		return REGISTER;
 	}

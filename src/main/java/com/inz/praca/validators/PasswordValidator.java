@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 
-	public static final String PASS_REGEX_PATTERN = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{3,}$";
+	public static final String PASS_REGEX_PATTERN = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$";
 	private Pattern pattern = compile(PASS_REGEX_PATTERN);
 
 	@Override

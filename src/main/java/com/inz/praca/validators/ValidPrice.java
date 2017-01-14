@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = PriceValidator.class)
 @Documented
 public @interface ValidPrice {
-	String message() default "Nieprawidłowa cena";
+	String message() default "Nieprawidłowo podana cena";
 
 	Class<?>[] groups() default {};
 

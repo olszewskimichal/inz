@@ -61,7 +61,7 @@ public class ProductControllerTest {
 		productDTO.setPrice(BigDecimal.TEN);
 		productDTO.setImageUrl("url");
 
-		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("index");
+		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("redirect:/products");
 	}
 
 	@Test

@@ -40,7 +40,7 @@ public class CreateProductSeleniumTest extends SeleniumTestBase {
 		productPage.typePrice("3.0");
 		productPage.typeUrl("url");
 		productPage.clickOnCreateProductButton();
-		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
-		assertThat(driver.getTitle()).isEqualTo("Strona główna");
+		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
+		assertThat(driver.getTitle()).isEqualTo("Produkty");
 	}
 }

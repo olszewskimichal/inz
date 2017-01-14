@@ -59,17 +59,16 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
 		productPage.clickOnCreateProductButton();
-		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
-		assertThat(driver.getTitle()).isEqualTo("Strona główna");
+		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
+		assertThat(driver.getTitle()).isEqualTo("Produkty");
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test2", "test2", "35.0", "url");
 		productPage.clickOnCreateProductButton();
-		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
-		assertThat(driver.getTitle()).isEqualTo("Strona główna");
+		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
+		assertThat(driver.getTitle()).isEqualTo("Produkty");
 
-		driver.get("http://localhost:" + port + "/products");
 		ProductListPage productListPage = new ProductListPage(driver);
 		productListPage.clickOnProductInfo(0);
 
@@ -127,17 +126,16 @@ public class CartSeleniumTest extends SeleniumTestBase {
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
 		productPage.clickOnCreateProductButton();
-		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
-		assertThat(driver.getTitle()).isEqualTo("Strona główna");
+		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
+		assertThat(driver.getTitle()).isEqualTo("Produkty");
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test2", "test2", "35.0", "url");
 		productPage.clickOnCreateProductButton();
-		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
-		assertThat(driver.getTitle()).isEqualTo("Strona główna");
+		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
+		assertThat(driver.getTitle()).isEqualTo("Produkty");
 
-		driver.get("http://localhost:" + port + "/products");
 		ProductListPage productListPage = new ProductListPage(driver);
 		productListPage.clickOnProductInfo(0);
 		ProductPage page = new ProductPage(driver);

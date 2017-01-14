@@ -23,7 +23,6 @@ public class UserDTO {
 	private String lastName;
 
 	@ValidEmail
-	@Size(max = 50)
 	private String email;
 
 	@ValidPassword
