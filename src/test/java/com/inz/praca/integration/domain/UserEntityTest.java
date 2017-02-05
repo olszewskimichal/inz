@@ -7,16 +7,18 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
 import com.inz.praca.domain.Product;
-import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.ShippingDetail;
 import com.inz.praca.domain.User;
 import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 public class UserEntityTest extends JpaTestBase {
@@ -26,7 +28,7 @@ public class UserEntityTest extends JpaTestBase {
 		assertThat(user.getEmail()).isEqualTo("prawidlowyEmail@o2.pl");
 		assertThat(user.getName()).isEqualTo("imie");
 		assertThat(user.getLastName()).isEqualTo("nazwisko");
-		assertThat(user.getPasswordHash()).isEqualTo("hash");
+		assertThat(new BCryptPasswordEncoder().matches("hash", user.getPasswordHash())).isTrue();
 		assertThat(user.getId()).isNotNull();
 		assertThat(user.toString()).isNotNull().isNotEmpty().contains("imie");
 	}

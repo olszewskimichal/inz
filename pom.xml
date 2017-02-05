@@ -99,22 +99,14 @@
             <artifactId>cucumber-spring</artifactId>
             <version>1.2.5</version>
         </dependency>
-
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>1.2.5</version>
         </dependency>
-
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
             <version>1.2.5</version>
         </dependency>
         <dependency>
@@ -127,6 +119,20 @@
             <groupId>info.cukes</groupId>
             <artifactId>gherkin</artifactId>
             <version>2.12.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <version>2.1.2.RELEASE</version>
         </dependency>
 
 
@@ -146,6 +152,8 @@
                     <excludedClasses>
                         <class>com.inz.praca.utils.Pager</class>
                         <class>com.inz.praca.domain.ShippingDetail</class>
+                        <class>com.inz.praca.config.*</class>
+                        <class>com.inz.praca.dto.CurrentUser</class>
                     </excludedClasses>
                     <targetTests>
                         <param>com.inz.praca.units.*</param>

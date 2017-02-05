@@ -27,10 +27,10 @@
                         <form th:action="@{/login}" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Adres email" name='username' type="text"/>
+                                    <input class="form-control" placeholder="Adres email" id="username" name='username' type="text"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Hasło" name='password' type="password" value=""/>
+                                    <input class="form-control" placeholder="Hasło" id="password" name='password' type="password" value=""/>
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -39,10 +39,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się"/>
+                                        <input type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block" value="Zaloguj się"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <a th:href="@{/register}" class="btn btn-lg btn-primary btn-block">Zarejestruj się</a>
+                                        <a id="register" th:href="@{/register}" class="btn btn-lg btn-primary btn-block">Zarejestruj się</a>
                                     </div>
                                 </div>
                             </fieldset>

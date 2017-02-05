@@ -19,6 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
 
 @Entity
@@ -53,7 +54,7 @@ public class User {
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;
-		this.passwordHash = passwordHash;
+		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
 	}
 
 	public void setId(long id) {

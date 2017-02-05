@@ -2,12 +2,9 @@ package com.inz.praca.selenium;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-import java.io.IOException;
-
 import com.inz.praca.domain.Category;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
-import com.inz.praca.selenium.configuration.ScreenshotTestRule;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
 import com.inz.praca.selenium.pageObjects.NewProductPage;
@@ -16,37 +13,17 @@ import com.inz.praca.selenium.pageObjects.ProductListPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;
 import com.inz.praca.selenium.pageObjects.ShippingDetailPage;
 import org.assertj.core.api.Assertions;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrderSeleniumTest extends SeleniumTestBase {
-
-	public static WebDriver driver;
 
 	@Autowired
 	private ProductRepository repository;
 
 	@Autowired
 	private CategoryRepository categoryRepository;
-
-	@Rule
-	public ScreenshotTestRule screenshotTestRule = new ScreenshotTestRule(driver);
-
-	@BeforeClass
-	public static void setBrowser() throws IOException {
-		driver = browserConfiguration.firefox();
-		driver.manage().window().maximize();
-	}
-
-	@AfterClass
-	public static void tearDown() {
-		driver.quit();
-	}
 
 	@Test
 	public void shouldCreateOrder() throws InterruptedException {

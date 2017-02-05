@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 public class UserServiceTest extends IntegrationTestBase {
@@ -64,7 +65,9 @@ public class UserServiceTest extends IntegrationTestBase {
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
 		assertThat(user.getEmail()).isEqualTo("email@o2.pl");
-		assertThat(user.getPasswordHash()).isEqualTo("aaa");
+		assertThat(new BCryptPasswordEncoder().matches("aaa", user.getPasswordHash())).isTrue();
+
+
 	}
 
 	@Test
@@ -84,7 +87,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
 		assertThat(user.getEmail()).isEqualTo("email@o2.pl");
-		assertThat(user.getPasswordHash()).isEqualTo("aaa");
+		assertThat(new BCryptPasswordEncoder().matches("aaa", user.getPasswordHash())).isTrue();
 
 		try {
 			userService.create(userDTO);

@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 public class UserServiceTest {
 
 	@Mock
@@ -137,7 +139,7 @@ public class UserServiceTest {
 		assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
 		assertThat(user.getName()).isEqualTo(userDTO.getName());
 		assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
-		assertThat(user.getPasswordHash()).isEqualTo(userDTO.getPassword());
+		assertThat(new BCryptPasswordEncoder().matches(userDTO.getPassword(), user.getPasswordHash())).isTrue();
 		assertThat(user.getId()).isEqualTo(1L);
 	}
 }
