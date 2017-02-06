@@ -80,4 +80,6 @@ public class ProductControllerTest extends IntegrationTestBase {
 				.andExpect(view().name("product"));
 	}
 
+
+
 }

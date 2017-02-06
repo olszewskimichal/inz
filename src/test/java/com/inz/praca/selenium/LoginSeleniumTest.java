@@ -27,8 +27,8 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 		loginPage.typePassword("zaq1@WSX");
 		loginPage.clickOnLoginButton();
 
-		assertThat(driver.getPageSource()).contains("Wszystkie produkty");
-		assertThat(driver.getTitle()).isEqualTo("Produkty");
+		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
+		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 		AuthenticatedNavigation authenticatedNavigation = new AuthenticatedNavigation(driver);
 		assertThat(authenticatedNavigation.getLoginName()).isEqualTo("adminTest2@email.pl");
 		authenticatedNavigation.clickOnLoginName();

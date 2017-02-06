@@ -93,11 +93,18 @@ public class ProductService {
 	}
 
 	private int setProductOnPageLimit(final Integer size) {
-		return size > MAX_PRODUCT_ON_PAGE-1 ? MAX_PRODUCT_ON_PAGE : size;
+		return size > MAX_PRODUCT_ON_PAGE - 1 ? MAX_PRODUCT_ON_PAGE : size;
 	}
 
 	private Sort.Direction setSortDirection(final String sort) {
 		return isEmpty(sort) ? null : fromString(sort);
 	}
 
+	public void updateProduct(Long id, ProductDTO productDTO) {
+		productRepository.updateProduct(productDTO.getName(), productDTO.getDescription(), productDTO.getPrice(), productDTO.getImageUrl(), id);
+	}
+
+	public Long deleteProductById(Long id) {
+		return productRepository.deleteProductById(id);
+	}
 }

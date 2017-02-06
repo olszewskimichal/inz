@@ -61,7 +61,7 @@ public class LoginControllerTest extends IntegrationTestBase {
 		//then
 		mvc.perform(requestBuilder)
 				.andDo(print())
-				.andExpect(redirectedUrl("/products"))
+				.andExpect(redirectedUrl("/"))
 				.andExpect(authenticated().withUsername("emailTest@o2.pl"));
 	}
 

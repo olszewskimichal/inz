@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 @EnableWebSecurity
 @Profile("development")
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String REMEMBER_ME = "remember-me";
 
@@ -49,7 +51,6 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.formLogin()
 				.loginPage("/login")
-				.defaultSuccessUrl("/products")
 				.failureUrl("/login-error")
 				.permitAll()
 				.and()

@@ -11,7 +11,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	transient User user;
 
 	public CurrentUser(User user) {
-		super(user.getEmail(), user.getPasswordHash(), true, true, true, true, AuthorityUtils.createAuthorityList("ADMIN"));
+		super(user.getEmail(), user.getPasswordHash(), true, true, true, true, AuthorityUtils.createAuthorityList(user.getRole().name()));
 		this.user = user;
 	}
 

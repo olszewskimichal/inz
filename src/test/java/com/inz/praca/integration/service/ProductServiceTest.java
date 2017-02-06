@@ -69,4 +69,22 @@ public class ProductServiceTest extends IntegrationTestBase {
 		assertThat(repository.findAll().size()).isEqualTo(1);
 	}
 
+	@Test
+	public void shouldUpdateProduct() {
+		Product product = repository.save(new ProductBuilder().withName("nazwaUpdate").withPrice(BigDecimal.ZERO).createProduct());
+		ProductDTO productDTO = new ProductDTO(product);
+		productDTO.setPrice(BigDecimal.TEN);
+
+		productService.updateProduct(product.getId(), productDTO);
+		Product updateProduct = productService.getProductById(product.getId());
+		assertThat(updateProduct.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.TEN.stripTrailingZeros());
+	}
+
+	@Test
+	public void shouldDeleteProduct() {
+		Product product = repository.save(new ProductBuilder().withName("nazwaUpdate").withPrice(BigDecimal.ZERO).createProduct());
+		Integer size = repository.findAll().size();
+		productService.deleteProductById(product.getId());
+		assertThat(repository.findAll().size()).isEqualTo(size - 1);
+	}
 }

@@ -13,6 +13,9 @@ public class ProductPage {
 	By cartButton = By.id("cart");
 	By productsButton = By.id("products");
 	By category = By.id("category");
+	By editButton = By.id("editProduct");
+	By removeButton = By.id("removeProduct");
+	public By submitDelete = By.id("submitdelete");
 
 
 	private WebDriver webDriver;
@@ -42,6 +45,19 @@ public class ProductPage {
 	public void clickCartButton() {
 		webDriver.findElement(this.cartButton).click();
 	}
+
+	public void clickOnEditProductButton() {
+		webDriver.findElement(this.editButton).click();
+	}
+
+	public void clickOnRemoveProductButton() {
+		webDriver.findElement(this.removeButton).click();
+	}
+
+	public void clickOnConfirmRemoveProduct(){
+		webDriver.findElement(this.submitDelete).click();
+	}
+
 
 	public void clickProductsButton() {
 		webDriver.findElement(this.productsButton).click();

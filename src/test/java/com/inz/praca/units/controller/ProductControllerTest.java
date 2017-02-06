@@ -20,6 +20,7 @@ import com.inz.praca.service.ProductService;
 import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 
 import org.springframework.data.domain.PageImpl;
@@ -54,7 +55,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void shouldCreateProductAndRedirectToIndex() {
+	public void shouldCreateProductAndRedirectToProducts() {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName("name");
 		productDTO.setDescription("desc");
@@ -112,10 +113,10 @@ public class ProductControllerTest {
 
 	@Test
 	public void shouldShowAllProductsByCategory() {
-		given(categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a","a")));
+		given(categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a", "a")));
 		given(productService.getProducts(2, 6, null, "a")).willReturn(new PageImpl<>(new ArrayList<>()));
 		assertThat(controller.showProducts(model, 2, 6, "a")).isEqualTo("products");
-		verify(model).addAttribute("pager", new Pager(1,1,5));
+		verify(model).addAttribute("pager", new Pager(1, 1, 5));
 	}
 
 	@Test
@@ -128,5 +129,39 @@ public class ProductControllerTest {
 	public void shouldShowAllProducts3() {
 		given(productService.getProducts(2, 2, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
 		assertThat(controller.showProducts(model, 2, 2, null)).isEqualTo("products");
+	}
+
+	@Test
+	public void shouldReturnEditProductPage() {
+		given(productService.getProductById(Matchers.anyLong())).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
+		assertThat(controller.editProduct(Matchers.anyLong(), model)).isEqualTo("editProduct");
+	}
+
+	@Test
+	public void shouldEditProductAndRedirectToProducts() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setName("name");
+		productDTO.setDescription("desc");
+		productDTO.setPrice(BigDecimal.TEN);
+		productDTO.setImageUrl("url");
+
+		assertThat(controller.confirmEditProduct(1L, productDTO, bindingResult, model)).isEqualTo("redirect:/products/product/1");
+	}
+
+	@Test
+	public void shouldShowAgainFormWhenErrorOnEdit() {
+		given(bindingResult.hasErrors()).willReturn(true);
+		ProductDTO productDTO = new ProductDTO();
+		assertThat(controller.confirmEditProduct(1L, productDTO, bindingResult, model)).isEqualTo("editProduct");
+
+		verify(model).addAttribute("productCreateForm", productDTO);
+		verify(model).addAttribute("categoryList", productService.findAllCategory());
+		verify(model).addAttribute("productId",1L);
+		verifyNoMoreInteractions(model);
+	}
+
+	@Test
+	public void shouldDeleteProductAndRedirectToProducts() {
+		assertThat(controller.deleteProduct(1L)).isEqualTo("redirect:/products");
 	}
 }

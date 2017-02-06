@@ -5,6 +5,8 @@ import static com.inz.praca.validators.EmailValidator.EMAIL_PATTERN;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -40,6 +42,9 @@ public class User {
 	@JoinColumn(name = "USER_ORDER")
 	private Set<Order> orders;
 
+	@Enumerated(EnumType.ORDINAL)
+	private Role role;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -55,9 +60,11 @@ public class User {
 		this.name = name;
 		this.lastName = lastName;
 		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
+		this.role = Role.USER;
 	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
+
 }
