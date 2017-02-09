@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -61,10 +62,17 @@ public class User {
 		this.lastName = lastName;
 		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
 		this.role = Role.USER;
+		this.orders = new HashSet<>();
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Set<Order> getOrders() {
+		if (orders == null)
+			orders = new HashSet<>();
+		return orders;
 	}
 
 }

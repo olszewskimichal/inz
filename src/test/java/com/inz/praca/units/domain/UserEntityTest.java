@@ -2,6 +2,7 @@ package com.inz.praca.units.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.inz.praca.domain.User;
 import com.inz.praca.domain.UserBuilder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -83,5 +84,13 @@ public class UserEntityTest {
 		catch (IllegalArgumentException e) {
 			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
 		}
+	}
+
+	@Test
+	public void shouldOrdersNotBeNull() {
+		User user = new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("hash").build();
+		assertThat(user.getOrders()).isNotNull().isEmpty();
+		user.setOrders(null);
+		assertThat(user.getOrders()).isNotNull().isEmpty();
 	}
 }

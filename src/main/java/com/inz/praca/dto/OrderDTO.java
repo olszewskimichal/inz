@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.springframework.util.Assert;
+
 @ToString
 @NoArgsConstructor
 @Setter
@@ -17,6 +19,8 @@ public class OrderDTO implements Serializable {
 	private ShippingDetail shippingDetail;
 
 	public OrderDTO(CartSession cartSession, ShippingDetail shippingDetail) {
+		Assert.notNull(shippingDetail);
+		Assert.notEmpty(cartSession.getItems());
 		this.cartSession = cartSession;
 		this.shippingDetail = shippingDetail;
 	}

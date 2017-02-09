@@ -3,10 +3,15 @@ package com.inz.praca.selenium;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import com.inz.praca.domain.Category;
+import com.inz.praca.domain.Role;
+import com.inz.praca.domain.User;
+import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
+import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
+import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.NewProductPage;
 import com.inz.praca.selenium.pageObjects.OrderPage;
 import com.inz.praca.selenium.pageObjects.ProductListPage;
@@ -16,7 +21,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("development")
 public class OrderSeleniumTest extends SeleniumTestBase {
 
 	@Autowired
@@ -25,16 +32,27 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private UserRepository userRepository;
+
 	@Test
 	public void shouldCreateOrder() throws InterruptedException {
+		driver.manage().deleteAllCookies();
+		userRepository.deleteAll();
+		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
+		admin.setRole(Role.ADMIN);
+		userRepository.save(admin);
+
 		driver.get("http://localhost:" + port + "/cart");
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 		CartPage cartPage = new CartPage(driver);
 		cartPage.clearCart();
-
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
 		driver.get("http://localhost:" + port + "/addProduct");
+
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
 		productPage.clickOnCreateProductButton();

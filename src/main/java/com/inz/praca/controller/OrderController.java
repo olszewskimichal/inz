@@ -4,12 +4,16 @@ import javax.validation.Valid;
 
 import com.inz.praca.domain.ShippingDetail;
 import com.inz.praca.dto.CartSession;
+import com.inz.praca.dto.CurrentUser;
 import com.inz.praca.dto.OrderDTO;
 import com.inz.praca.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +33,7 @@ public class OrderController {
 
 	@GetMapping(value = "/order")
 	public String getShippingDetail(Model model) {
+		Assert.notEmpty(cartSession.getItems());
 		model.addAttribute(new ShippingDetail());
 		log.info("getShippingDetail");
 		return "collectCustomerInfo";
@@ -37,10 +42,19 @@ public class OrderController {
 	@PostMapping(value = "/order")
 	public String postShippingDetail(@Valid @ModelAttribute ShippingDetail detail, Model model) {
 		log.info("postShipping" + detail.toString());
+		CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		OrderDTO orderDTO = new OrderDTO(cartSession, detail);
-		orderService.createOrder(orderDTO);
+		orderService.createOrder(user.getUser(), orderDTO);
 		model.addAttribute(orderDTO);
 		return "orderConfirmation";
+	}
+
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+	@GetMapping(value = "/orderList")
+	public String getOrderList(Model model) {
+		CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("orders", user.getUser().getOrders());
+		return "orderList";
 	}
 
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      lang="pl"
+      layout:decorator="layout">
+<head>
+    <title>Zamówienia</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="jumbotron">
+        <h1>Twoje zamówienia</h1>
+    </div>
+    <section class="container">
+
+        <table class="table table-striped table-bordered grid" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Id zamowienia</th>
+                <th>Cena</th>
+                <th>Ile produktow</th>
+                <th>Zrealizowano</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.price}"></td>
+                <td th:text="${order.cart.cartItems.size()}"></td>
+                <td>TAK</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div> <!-- /container -->
+</body>
+<script layout:fragment="customScripts">
+    document.getElementById("usersTab").className = "active";
+</script>
+</html>

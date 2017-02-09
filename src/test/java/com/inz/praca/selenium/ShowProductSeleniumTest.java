@@ -20,7 +20,6 @@ public class ShowProductSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldShowProductInfo() {
-		repository.deleteAll();
 		Product product = repository.save(new ProductBuilder().withName("test").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		ProductPage page = new ProductPage(driver);
