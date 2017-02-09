@@ -41,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProductController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/controller/ProductController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="397">
@@ -49,6 +49,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartSeleniumTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +131,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/pageObjects/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/configuration/SeleniumTestBase.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CreateCategorySeleniumTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CreateProductSeleniumTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/RegisterSeleniumTest.java" />
@@ -169,6 +178,7 @@
         <option value="$PROJECT_DIR$/src/test/resources/createCategory.feature" />
         <option value="$PROJECT_DIR$/src/main/java/com/inz/praca/dto/ProductDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/inz/praca/controller/ProductController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java" />
       </list>
     </option>
   </component>
@@ -1595,7 +1605,7 @@
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="" />
-    <property name="SearchEverywhereHistoryKey" value="Product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;User&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/domain/User.java&#10;prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;product.htm&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;edit&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/editProduct.html&#10;pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;ProductCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;Pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/repository/ProductRepository.java&#10;hea&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/fragments/header.html&#10;login&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/login.html&#10;Curr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/service/CurrentUserDetailsService.java&#10;pom.&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;Produ&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java&#10;CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java&#10;conf&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;Co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/collectCustomerInfo.html&#10;CartControllerTest&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;CartCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/controller/CartControllerTest.java&#10;Or&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Cart&#9;PSI&#9;JAVA://com.inz.praca.domain.Cart&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;FlowDefinition&#9;PSI&#9;JAVA://org.springframework.webflow.definition.FlowDefinition&#10;Pag&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/utils/Pager.java&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;DevD&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/DevDBConfig.java&#10;CartCont&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/CartController.java&#10;produ&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;produc&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;cart.ht&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ca&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ProductService&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/ProductServiceTest.java&#10;UserNo&#9;PSI&#9;JAVA://com.inz.praca.units.service.UserServiceTest#shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists" />
+    <property name="SearchEverywhereHistoryKey" value="CartSele&#9;PSI&#9;JAVA://com.inz.praca.selenium.CartSeleniumTest&#10;Product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;User&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/domain/User.java&#10;prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;product.htm&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;edit&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/editProduct.html&#10;pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;ProductCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;Pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/repository/ProductRepository.java&#10;hea&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/fragments/header.html&#10;login&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/login.html&#10;Curr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/service/CurrentUserDetailsService.java&#10;pom.&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;Produ&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/OrderSeleniumTest.java&#10;CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java&#10;conf&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html&#10;Co&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/collectCustomerInfo.html&#10;CartControllerTest&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;CartCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/controller/CartControllerTest.java&#10;Or&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Cart&#9;PSI&#9;JAVA://com.inz.praca.domain.Cart&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;FlowDefinition&#9;PSI&#9;JAVA://org.springframework.webflow.definition.FlowDefinition&#10;Pag&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/utils/Pager.java&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;DevD&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/DevDBConfig.java&#10;CartCont&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/CartController.java&#10;produ&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;produc&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/products.html&#10;cart.ht&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ca&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/CartControllerTest.java&#10;car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/cart.html&#10;ProductService&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/ProductServiceTest.java&#10;UserNo&#9;PSI&#9;JAVA://com.inz.praca.units.service.UserServiceTest#shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.standard" value="" />
   </component>
@@ -1621,7 +1631,7 @@
       <recent name="C:\Users\Admin\ProgramowanieJEE\inzynierka\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.sonar">
+  <component name="RunManager" selected="JUnit.CartSeleniumTest">
     <configuration default="false" name="Scenario: Próba tworzenia produktu" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1636,30 +1646,6 @@
       <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Próba tworzenia produktu$&quot;" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="inzynierka" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="Scenario: Próba tworzenia produktu z za krotka nazwa" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cucumber.api.cli.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="myFilePath" value="$PROJECT_DIR$/src/test/resources/createProduct.feature" />
-      <option name="GLUE" value="cucumber.api.spring com.inz.praca.integration.cucumber" />
-      <option name="myNameFilter" value="^Próba tworzenia produktu z za krotka nazwa$" />
-      <option name="myGeneratedName" value="Scenario: Próba tworzenia produktu z za krotka nazwa" />
-      <option name="MAIN_CLASS_NAME" value="cucumber.api.cli.Main" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^Próba tworzenia produktu z za krotka nazwa$&quot;" />
       <option name="WORKING_DIRECTORY" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -1732,6 +1718,32 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.inz.praca.units.controller" />
       <option name="MAIN_CLASS_NAME" value="com.inz.praca.units.controller.ProductControllerTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CartSeleniumTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.inz.praca.selenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="inzynierka" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.inz.praca.selenium" />
+      <option name="MAIN_CLASS_NAME" value="com.inz.praca.selenium.CartSeleniumTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -2041,18 +2053,18 @@
       <item index="2" class="java.lang.String" itemvalue="Maven.sklep [pitest:mutationCoverage]" />
       <item index="3" class="java.lang.String" itemvalue="Spring Boot.SklepApplication" />
       <item index="4" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu" />
-      <item index="5" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z za krotka nazwa" />
-      <item index="6" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z nieprawidłowa cena" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.CucumberTests" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.ProductControllerTest" />
+      <item index="5" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z nieprawidłowa cena" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.CucumberTests" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.ProductControllerTest" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.CartSeleniumTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ProductControllerTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CucumberTests" />
-        <item index="2" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z nieprawidłowa cena" />
-        <item index="3" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu" />
-        <item index="4" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z za krotka nazwa" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CartSeleniumTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ProductControllerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CucumberTests" />
+        <item index="3" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu z nieprawidłowa cena" />
+        <item index="4" class="java.lang.String" itemvalue="Cucumber java.Scenario: Próba tworzenia produktu" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -2130,7 +2142,7 @@
       <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25672042" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25672042" sideWeight="0.49426934" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23638968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2206,7 +2218,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/target/seleniumTest-reports/screenshot-shouldGetErrorWhenTryEditProductAsUser85d7dfec-657e-4c98-aa27-adf5f8d02795.png" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/config/WebSercurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -2605,6 +2616,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 import com.inz.praca.domain.Category;
 import com.inz.praca.repository.CategoryRepository;
+import com.inz.praca.repository.OrderRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
@@ -23,15 +24,21 @@ public class CartSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private OrderRepository orderRepository;
+
 	@Test
 	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws InterruptedException {
+		orderRepository.deleteAll();
+		repository.deleteAll();
+		categoryRepository.deleteAll();
+		categoryRepository.save(new Category("a", "b"));
+
 		driver.get("http://localhost:" + port + "/cart");
 		CartPage cartPage = new CartPage(driver);
 		cartPage.clearCart();
 
-		repository.deleteAll();
-		categoryRepository.deleteAll();
-		categoryRepository.save(new Category("a", "b"));
+
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
 		productPage.fillCreateProductForm("test", "test2", "3.0", "url");
@@ -92,12 +99,15 @@ public class CartSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldCreate2ProductAndAddToCartAndClearCart() {
-		driver.get("http://localhost:" + port + "/cart");
-		CartPage cartPage = new CartPage(driver);
-		cartPage.clearCart();
+		orderRepository.deleteAll();
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
+
+		driver.get("http://localhost:" + port + "/cart");
+		CartPage cartPage = new CartPage(driver);
+		cartPage.clearCart();
+
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
