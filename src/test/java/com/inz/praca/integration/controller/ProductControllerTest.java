@@ -70,9 +70,9 @@ public class ProductControllerTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldShowProductDetailsPage() throws Exception {
-		Product product = productService.createProduct(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
+		Product product = productService.createProduct(new ProductBuilder().withName("nameTest123").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
 		mvc.perform(get("/products/product/" + product.getId())
-				.param("name", "name")
+				.param("name", "nameTest123")
 				.param("imageUrl", "url")
 				.param("description", "desc")
 				.param("price", "10"))

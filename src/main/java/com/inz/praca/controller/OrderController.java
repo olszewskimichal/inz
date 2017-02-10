@@ -43,8 +43,10 @@ public class OrderController {
 	public String postShippingDetail(@Valid @ModelAttribute ShippingDetail detail, Model model) {
 		log.info("postShipping" + detail.toString());
 		CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		OrderDTO orderDTO = new OrderDTO(cartSession, detail);
+		CartSession cartSession1 = new CartSession(cartSession);
+		OrderDTO orderDTO = new OrderDTO(cartSession1, detail);
 		orderService.createOrder(user.getUser(), orderDTO);
+		cartSession.clearCart();
 		model.addAttribute(orderDTO);
 		return "orderConfirmation";
 	}

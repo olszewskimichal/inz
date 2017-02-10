@@ -1,6 +1,5 @@
 package com.inz.praca.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,8 +17,7 @@ import org.springframework.util.Assert;
 @Getter
 @Setter
 public class CartItem {
-
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne
 	@JoinColumn(name = "PRODUCT_ID")
 	private final Product product;
 	private final Long quantity;

@@ -12,7 +12,7 @@ public class CreateProductSeleniumTest extends SeleniumTestBase {
 	public void shouldCreateNewProductWithCorrectData() {
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
-		productPage.typeName("test");
+		productPage.typeName("nameTest12345");
 		productPage.typeDesctiption("test2");
 		productPage.typePrice("3.0");
 		productPage.typeUrl("url");

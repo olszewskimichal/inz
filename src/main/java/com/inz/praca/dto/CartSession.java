@@ -15,15 +15,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 @ToString
-@Getter
 @Component
 @SessionScope
+@Getter
 @NoArgsConstructor
 public class CartSession implements Serializable {
 	@NotNull
 	private List<CartItemDTO> items = new ArrayList<>();
 	@ValidPrice
 	private BigDecimal totalPrice = BigDecimal.ZERO;
+
+	public CartSession(CartSession cartSession) {
+		this.items = cartSession.getItems();
+		this.totalPrice = cartSession.getTotalPrice();
+	}
 
 	public void addProductDTO(ProductDTO productDTO) {
 		for (CartItemDTO cartItemDTO : items) {
@@ -52,5 +57,11 @@ public class CartSession implements Serializable {
 
 	private void updatePrice() {
 		totalPrice = items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+	}
+
+	public List<CartItemDTO> getItems() {
+		if (items == null)
+			items = new ArrayList<>();
+		return items;
 	}
 }

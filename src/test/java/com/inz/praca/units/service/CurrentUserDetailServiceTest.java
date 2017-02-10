@@ -4,7 +4,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 import com.inz.praca.dto.CurrentUser;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.service.CurrentUserDetailsService;
 import com.inz.praca.service.UserService;
 import org.junit.Before;

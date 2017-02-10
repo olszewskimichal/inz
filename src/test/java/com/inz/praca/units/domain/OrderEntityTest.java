@@ -6,10 +6,11 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Cart;
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
-import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Product;
 import com.inz.praca.domain.ShippingDetail;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +31,10 @@ public class OrderEntityTest {
 	@Test
 	public void shouldNotCreateWhenShippingDetailIsNull() {
 		try {
-			new Order(new Cart(new HashSet<>()), null);
+			Set<CartItem> cartItems = new HashSet<>();
+			Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
+			cartItems.add(new CartItem(product, 1L));
+			new Order(new Cart(cartItems), null);
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {
@@ -41,8 +45,11 @@ public class OrderEntityTest {
 	@Test
 	public void shouldCreateWhenObjectIsOk() {
 		try {
-			Order order = new Order(new Cart(new HashSet<>()), new ShippingDetail());
-			assertThat(order.getPrice()).isEqualTo(BigDecimal.ZERO);
+			Set<CartItem> cartItems = new HashSet<>();
+			Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
+			cartItems.add(new CartItem(product, 1L));
+			Order order = new Order(new Cart(cartItems), new ShippingDetail());
+			assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.TEN.stripTrailingZeros());
 		}
 		catch (IllegalArgumentException e) {
 			Assert.fail();

@@ -2,7 +2,7 @@ package com.inz.praca.selenium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.AuthenticatedNavigation;

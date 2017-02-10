@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Set;
 
 import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Cart;
-import com.inz.praca.dto.CartSession;
+import com.inz.praca.domain.CartItem;
+import com.inz.praca.domain.Product;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +18,7 @@ public class CartEntityTest {
 	@Test
 	public void shouldThrownExceptionWhenProductsIsEmpty() {
 		try {
-			new Cart(new CartSession());
+			new Cart(new HashSet<>());
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {
@@ -27,9 +29,9 @@ public class CartEntityTest {
 	@Test
 	public void shouldCreateCartFromCartSession() {
 
-		CartSession cartSession = new CartSession();
-		cartSession.addProductDTO(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProductDTO());
-		Cart cart = new Cart(cartSession);
+		Set<CartItem> cartItems = new HashSet<>();
+		cartItems.add(new CartItem(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct(), 1l));
+		Cart cart = new Cart(cartItems);
 		assertThat(cart).isNotNull();
 		assertThat(cart.getCartItems()).isNotEmpty();
 		assertThat(cart.getCartItems().size()).isEqualTo(1);
@@ -37,9 +39,12 @@ public class CartEntityTest {
 
 	@Test
 	public void shouldCreateCart() {
-		Cart cart = new Cart(new HashSet<>());
+		Set<CartItem> cartItems = new HashSet<>();
+		Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
+		cartItems.add(new CartItem(product, 1L));
+		Cart cart = new Cart(cartItems);
 		assertThat(cart).isNotNull();
-		assertThat(cart.getCartItems()).isEmpty();
+		assertThat(cart.getCartItems()).isNotEmpty();
 		cart.setId(1L);
 		assertThat(cart.getId()).isEqualTo(1L);
 		assertThat(cart.toString()).contains("id=1");

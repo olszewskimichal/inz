@@ -14,7 +14,7 @@ import com.inz.praca.domain.Order;
 import com.inz.praca.domain.Product;
 import com.inz.praca.domain.ShippingDetail;
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
@@ -38,7 +38,8 @@ public class UserEntityTest extends JpaTestBase {
 		User user = this.entityManager.persistFlushFind(new UserBuilder().withEmail("prawidlowyEmail@o2.pl").withPasswordHash("hash").build());
 		ShippingDetail shippingDetail = new ShippingDetail("ulica", "miasto", "46", "code");
 		Set<CartItem> cartItems = new HashSet<>();
-		Product product = new ProductBuilder().withName("name").withPrice(BigDecimal.ONE).createProduct();
+		Product product = new ProductBuilder().withName("nameTest1234").withPrice(BigDecimal.ONE).createProduct();
+		this.entityManager.persist(product);
 		cartItems.add(new CartItem(product, 4L));
 		Cart cart = new Cart(cartItems);
 		user.getOrders().add(new Order(cart, shippingDetail));

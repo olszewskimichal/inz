@@ -1,5 +1,6 @@
-package com.inz.praca.domain;
+package com.inz.praca.builders;
 
+import com.inz.praca.domain.User;
 import com.inz.praca.dto.UserDTO;
 
 public class UserBuilder {

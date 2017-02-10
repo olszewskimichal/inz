@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 import com.inz.praca.domain.CartItem;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 
@@ -13,12 +14,13 @@ public class CartItemEntityTest extends JpaTestBase {
 
 	@Test
 	public void shouldPersistCategoryWhenObjectIsCorrect() {
-		CartItem cartItem = entityManager.persistFlushFind(new CartItem(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProduct(), 4L));
+		Product product = entityManager.persist(new ProductBuilder().withName("aaaTest123").withPrice(BigDecimal.TEN).createProduct());
+		CartItem cartItem = entityManager.persistFlushFind(new CartItem(product, 4L));
 		assertThat(cartItem.getId()).isNotNull();
 		assertThat(cartItem.getQuantity()).isEqualTo(4L);
 		assertThat(cartItem.getProduct()).isNotNull();
 		assertThat(cartItem.getProduct().getId()).isNotNull();
-		assertThat(cartItem.getProduct().getName()).isEqualTo("aaa");
+		assertThat(cartItem.getProduct().getName()).isEqualTo("aaaTest123");
 		assertThat(cartItem.toString()).contains("Product");
 	}
 }

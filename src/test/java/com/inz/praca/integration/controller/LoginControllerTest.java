@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.repository.UserRepository;
 import org.junit.Before;

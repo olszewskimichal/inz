@@ -1,7 +1,7 @@
 package com.inz.praca.service;
 
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;

@@ -3,7 +3,7 @@ package com.inz.praca.units.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 

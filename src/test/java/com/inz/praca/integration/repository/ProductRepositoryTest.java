@@ -11,7 +11,6 @@ import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
-import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import org.junit.Test;
 
@@ -23,9 +22,6 @@ public class ProductRepositoryTest extends JpaTestBase {
 	private static final String NAME = "nazwa";
 	@Autowired
 	private ProductRepository productRepository;
-
-	@Autowired
-	private CategoryRepository categoryRepository;
 
 	@Test
 	public void shouldFindProductByName() {

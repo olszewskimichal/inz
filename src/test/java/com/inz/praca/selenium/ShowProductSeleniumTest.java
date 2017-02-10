@@ -20,10 +20,10 @@ public class ShowProductSeleniumTest extends SeleniumTestBase {
 
 	@Test
 	public void shouldShowProductInfo() {
-		Product product = repository.save(new ProductBuilder().withName("test").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
+		Product product = repository.save(new ProductBuilder().withName("nameTest123456").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		ProductPage page = new ProductPage(driver);
-		assertThat(page.getName()).isEqualTo("test");
+		assertThat(page.getName()).isEqualTo("nameTest123456");
 		assertThat(page.getDescription()).isEqualTo("test2");
 		assertThat(page.getPrice()).isEqualTo("3.00 PLN");
 		page.clickProductsButton();

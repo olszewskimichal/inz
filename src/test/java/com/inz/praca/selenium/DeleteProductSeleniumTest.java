@@ -9,7 +9,7 @@ import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Product;
 import com.inz.praca.domain.Role;
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
@@ -36,7 +36,7 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
 		admin.setRole(Role.ADMIN);
 		userRepository.save(admin);
 
-		Product product = repository.save(new ProductBuilder().withName("test").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
+		Product product = repository.save(new ProductBuilder().withName("nameTest1234567").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
 		int size = repository.findAll().size();
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		LoginPage loginPage = new LoginPage(driver);

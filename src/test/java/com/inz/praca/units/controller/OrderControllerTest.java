@@ -8,14 +8,17 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Set;
 
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.controller.OrderController;
 import com.inz.praca.domain.Cart;
+import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Order;
+import com.inz.praca.domain.Product;
 import com.inz.praca.domain.ShippingDetail;
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
 import com.inz.praca.dto.CartSession;
 import com.inz.praca.dto.CurrentUser;
 import com.inz.praca.dto.OrderDTO;
@@ -59,7 +62,10 @@ public class OrderControllerTest {
 	public void shouldConfirmOrder() {
 		Authentication auth = new UsernamePasswordAuthenticationToken(new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("aaa").build()), null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		given(orderService.createOrder(Matchers.any(User.class), Matchers.any(OrderDTO.class))).willReturn(new Order(new Cart(new HashSet<>()), new ShippingDetail("a", "b", "c", "d")));
+		Set<CartItem> cartItems = new HashSet<>();
+		Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
+		cartItems.add(new CartItem(product, 1L));
+		given(orderService.createOrder(Matchers.any(User.class), Matchers.any(OrderDTO.class))).willReturn(new Order(new Cart(cartItems), new ShippingDetail("a", "b", "c", "d")));
 		assertThat(orderController.postShippingDetail(new ShippingDetail(), model)).isEqualTo("orderConfirmation");
 	}
 

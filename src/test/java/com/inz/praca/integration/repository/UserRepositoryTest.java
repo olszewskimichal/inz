@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
 
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.integration.JpaTestBase;
 import com.inz.praca.repository.UserRepository;
 import org.junit.Test;

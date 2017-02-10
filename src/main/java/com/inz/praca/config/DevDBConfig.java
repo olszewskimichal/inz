@@ -7,7 +7,7 @@ import com.inz.praca.builders.CategoryBuilder;
 import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Role;
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.repository.UserRepository;

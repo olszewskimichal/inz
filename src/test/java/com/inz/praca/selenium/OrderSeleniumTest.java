@@ -5,7 +5,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Role;
 import com.inz.praca.domain.User;
-import com.inz.praca.domain.UserBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.repository.UserRepository;
@@ -92,6 +92,10 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 		assertThat(orderPage.getDate()).contains("Data wysyłki: ");
 		assertThat(driver.getPageSource()).contains("Rachunek");
 		assertThat(driver.getTitle()).isEqualTo("Potwierdzenie zamówienia");
+
+		driver.get("http://localhost:" + port + "/cart");
+		cartPage = new CartPage(driver);
+		assertThat(cartPage.getCartTableSize()).isEqualTo(2);
 	}
 
 }
