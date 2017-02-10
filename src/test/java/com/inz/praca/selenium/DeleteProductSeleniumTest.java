@@ -10,6 +10,7 @@ import com.inz.praca.domain.Product;
 import com.inz.praca.domain.Role;
 import com.inz.praca.domain.User;
 import com.inz.praca.builders.UserBuilder;
+import com.inz.praca.repository.OrderRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
@@ -29,13 +30,18 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	OrderRepository orderRepository;
+
 	@Test
 	public void shouldDeleteProduct() throws InterruptedException {
+		orderRepository.deleteAll();
+		repository.deleteAll();
 		userRepository.deleteAll();
 		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
 		admin.setRole(Role.ADMIN);
 		userRepository.save(admin);
-
+		
 		Product product = repository.save(new ProductBuilder().withName("nameTest1234567").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
 		int size = repository.findAll().size();
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
