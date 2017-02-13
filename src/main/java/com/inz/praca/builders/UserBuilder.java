@@ -8,6 +8,7 @@ public class UserBuilder {
 	private String name = "imie";
 	private String lastName = "nazwisko";
 	private String passwordHash;
+	private Boolean active = false;
 
 	public UserBuilder withEmail(String email) {
 		this.email = email;
@@ -29,11 +30,16 @@ public class UserBuilder {
 		return this;
 	}
 
+	public UserBuilder activate() {
+		this.active = true;
+		return this;
+	}
+
 	public User build() {
-		return new User(email, name, lastName, passwordHash);
+		return new User(email, name, lastName, passwordHash, active);
 	}
 
 	public User build(UserDTO userDTO) {
-		return new User(userDTO.getEmail(), userDTO.getName(), userDTO.getLastName(), userDTO.getPassword());
+		return new User(userDTO.getEmail(), userDTO.getName(), userDTO.getLastName(), userDTO.getPassword(), false);
 	}
 }

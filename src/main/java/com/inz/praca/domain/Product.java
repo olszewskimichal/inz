@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
@@ -26,8 +27,11 @@ public class Product {
 	private final String description;
 	private final BigDecimal price;
 	private final String imageUrl;
+
+	@Column(columnDefinition = "tinyint(1) default 1")
+	private Boolean active;
 	@ManyToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "CATEGORY_ID")
+	@JoinColumn(name = "CATEGORY_ID")
 	public Category category;
 	@Id
 	@GeneratedValue
@@ -41,6 +45,7 @@ public class Product {
 		this.description = description;
 		this.imageUrl = imageUrl;
 		this.price = price;
+		this.active = true;
 	}
 
 	public void setId(Long id) {
@@ -49,5 +54,9 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }

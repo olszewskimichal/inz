@@ -18,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	@Override
-	Page<Product> findAll(Pageable page);
+	Page<Product> findAllByActive(Pageable page, Boolean active);
 
 	Page<Product> findByCategory(Pageable page, Category category);
 

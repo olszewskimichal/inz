@@ -17,6 +17,7 @@ import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -60,7 +61,7 @@ public class ProductService {
 			return productRepository.findByCategory(pageRequest, category);
 		}
 		log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}", setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
-		return productRepository.findAll(pageRequest);
+		return productRepository.findAllByActive(pageRequest, true);
 	}
 
 	@Transactional
@@ -105,6 +106,15 @@ public class ProductService {
 	}
 
 	public Long deleteProductById(Long id) {
-		return productRepository.deleteProductById(id);
+		try {
+			productRepository.deleteProductById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			log.error("Podany produkt zostal juz zamowiony wiec nie mozna go usunac ale mozna go zdeaktywowac");
+			Product productById = getProductById(id);
+			productById.setActive(false);
+			productRepository.save(productById);
+		}
+		return id;
 	}
 }

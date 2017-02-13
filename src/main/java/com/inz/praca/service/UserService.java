@@ -1,12 +1,14 @@
 package com.inz.praca.service;
 
-import com.inz.praca.domain.User;
 import com.inz.praca.builders.UserBuilder;
+import com.inz.praca.domain.User;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -14,6 +16,7 @@ import org.springframework.util.Assert;
 @Slf4j
 public class UserService {
 	private final UserRepository userRepository;
+	private static final int MAX_USERS_ON_PAGE = 20;
 
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -31,10 +34,22 @@ public class UserService {
 		return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
 	}
 
+	public Page<User> getAllUsers(Integer page) {
+		PageRequest pageRequest = new PageRequest(page, MAX_USERS_ON_PAGE);
+		return userRepository.findAll(pageRequest);
+	}
+
 	public User create(UserDTO form) {
 		User user = new UserBuilder().build(form);
 		userRepository.save(user);
 		log.info("Stworzono uzytkownika o id {}", user.getId());
 		return user;
+	}
+
+	public String changeUserActive(Long id) {
+		User user = getUserById(id);
+		user.setActive(!user.getActive());
+		userRepository.save(user);
+		return String.format(user.getActive() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s", user.getEmail());
 	}
 }

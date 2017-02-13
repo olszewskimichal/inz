@@ -48,12 +48,12 @@ public class ProductRepositoryTest extends JpaTestBase {
 		this.entityManager.persist(new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).createProduct());
 		this.entityManager.persist(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).createProduct());
 		this.entityManager.persist(new ProductBuilder().withName("nazwa3").withPrice(BigDecimal.TEN).createProduct());
-		List<Product> content = this.productRepository.findAll(new PageRequest(0, 2)).getContent();
+		List<Product> content = this.productRepository.findAllByActive(new PageRequest(0, 2), true).getContent();
 		assertThat(content.size()).isEqualTo(2);
 		assertThat(content.get(0).getName()).isEqualTo("nazwa1");
 		assertThat(content.get(1).getName()).isEqualTo("nazwa2");
 
-		content = this.productRepository.findAll(new PageRequest(1, 2)).getContent();
+		content = this.productRepository.findAllByActive(new PageRequest(1, 2), true).getContent();
 		assertThat(content.size()).isEqualTo(1);
 		assertThat(content.get(0).getName()).isEqualTo("nazwa3");
 	}

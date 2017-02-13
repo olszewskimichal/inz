@@ -7,10 +7,11 @@ import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 
+import java.util.Arrays;
 import java.util.Optional;
 
-import com.inz.praca.domain.User;
 import com.inz.praca.builders.UserBuilder;
+import com.inz.praca.domain.User;
 import com.inz.praca.dto.UserDTO;
 import com.inz.praca.exceptions.UserNotFoundException;
 import com.inz.praca.repository.UserRepository;
@@ -21,6 +22,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserServiceTest {
@@ -141,5 +145,28 @@ public class UserServiceTest {
 		assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
 		assertThat(new BCryptPasswordEncoder().matches(userDTO.getPassword(), user.getPasswordHash())).isTrue();
 		assertThat(user.getId()).isEqualTo(1L);
+	}
+
+	@Test
+	public void shouldGetAllUsers() {
+		Page<User> users = new PageImpl<>(Arrays.asList(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("abcde").build(), new UserBuilder().withEmail("name4@o2.pl").withPasswordHash("abcde").build()));
+		given(this.userRepository.findAll(new PageRequest(0, 20))).willReturn(users);
+		Page<User> allUsers = userService.getAllUsers(0);
+		assertThat(allUsers).isNotEmpty();
+		assertThat(allUsers.getTotalElements()).isEqualTo(2);
+	}
+
+	@Test
+	public void shouldActivateUser() {
+		doAnswer(invocation -> {
+			User argument = (User) invocation.getArguments()[0];
+			argument.setId(1L);
+			return argument;
+		}).when(userRepository).save(any(User.class));
+		given(userRepository.findById(1L)).willReturn(Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("abcde").build()));
+		String result = userService.changeUserActive(1L);
+		assertThat(result).isEqualTo("Aktywowano uzytkownika name3@o2.pl");
+		result = userService.changeUserActive(1L);
+		assertThat(result).isEqualTo("Deaktywowano uzytkownika name3@o2.pl");
 	}
 }

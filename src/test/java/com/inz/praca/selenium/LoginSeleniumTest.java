@@ -18,9 +18,15 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+		userRepository.deleteAll();
+	}
+
 	@Test
 	public void shouldLoginWithCorrectAuthenticationAndLogoutAfterThat() {
-		userRepository.save(new UserBuilder().withEmail("adminTest2@email.pl").withPasswordHash("zaq1@WSX").build());
+		userRepository.save(new UserBuilder().withEmail("adminTest2@email.pl").withPasswordHash("zaq1@WSX").activate().build());
 		driver.get("http://localhost:" + port + "/login");
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.typeUserName("adminTest2@email.pl");
@@ -44,6 +50,18 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 		loginPage.typePassword("dupa");
 		loginPage.clickOnLoginButton();
 		assertThat(driver.getPageSource()).contains("Niepoprawny użytkownik lub hasło");
+		assertThat(driver.getTitle()).isEqualTo("Logowanie");
+	}
+
+	@Test
+	public void shouldGetErrorWhenUserIsNotActive() {
+		userRepository.save(new UserBuilder().withEmail("adminTest2@email.pl").withPasswordHash("zaq1@WSX").build());
+		driver.get("http://localhost:" + port + "/login");
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.typeUserName("adminTest2@email.pl");
+		loginPage.typePassword("zaq1@WSX");
+		loginPage.clickOnLoginButton();
+		assertThat(driver.getPageSource()).contains("Twoje konto nie jest aktywne");
 		assertThat(driver.getTitle()).isEqualTo("Logowanie");
 	}
 

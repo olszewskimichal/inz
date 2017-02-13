@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 
 import com.inz.praca.builders.CategoryBuilder;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.domain.Role;
 import com.inz.praca.domain.User;
-import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.repository.UserRepository;
@@ -38,6 +38,7 @@ public class DevDBConfig {
 		categoryRepository.save(new CategoryBuilder().withName("inne").withDescription("Nie zdefiniowane").createCategory());
 		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
 		admin.setRole(Role.ADMIN);
+		admin.setActive(true);
 		userRepository.save(admin);
 		userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
 

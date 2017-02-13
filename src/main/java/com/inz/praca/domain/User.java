@@ -38,6 +38,7 @@ public class User {
 	private final String name;
 	private final String lastName;
 	private final String passwordHash;
+	private Boolean active;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "USER_ORDER")
@@ -50,7 +51,7 @@ public class User {
 	@GeneratedValue
 	private Long id;
 
-	public User(String email, String name, String lastName, String passwordHash) {
+	public User(String email, String name, String lastName, String passwordHash, Boolean active) {
 		Assert.hasLength(passwordHash, "Nie może być puste hasło");
 		Assert.hasLength(name, "Imie nie może być puste");
 		Assert.hasLength(lastName, "Nazwisko nie może być puste");
@@ -63,6 +64,7 @@ public class User {
 		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
 		this.role = Role.USER;
 		this.orders = new HashSet<>();
+		this.active = active;
 	}
 
 	public void setId(long id) {
@@ -75,4 +77,7 @@ public class User {
 		return orders;
 	}
 
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 }

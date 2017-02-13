@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
@@ -23,6 +24,9 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+
+	@Autowired
+	private AuthenticationFailureHandler authenticationFailureHandler;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -52,6 +56,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginPage("/login")
 				.failureUrl("/login-error")
+				.failureHandler(authenticationFailureHandler)
 				.permitAll()
 				.and()
 				.rememberMe()
@@ -72,6 +77,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
 				.ignoring()
 				.antMatchers("/resources/**");
 	}
+
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth

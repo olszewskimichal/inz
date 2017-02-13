@@ -48,10 +48,10 @@ public class LoginControllerTest extends IntegrationTestBase {
 	}
 
 	@Test
-	public void shouldLoginWithCorrectLoginAndPassword() throws Exception {
+	public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
 		//given
 		//given
-		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("hash").build()).getId();
+		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("hash").activate().build()).getId();
 		String userLogin = "emailTest@o2.pl";
 		String password = "hash";
 		//when
@@ -91,7 +91,7 @@ public class LoginControllerTest extends IntegrationTestBase {
 				.andExpect(status().isOk())
 				.andExpect(content().string(
 						allOf(
-								containsString("<p>Niepoprawny użytkownik lub hasło</p>")
+								containsString("<div class=\"alert alert-danger\" role=\"alert\">")
 						))
 				)
 				.andExpect(view().name("login"));

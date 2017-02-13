@@ -164,7 +164,7 @@ public class ProductServiceTest {
 	public void shouldReturn1ProductsAscByIdOnFirstPage() {
 		Page<Product> products = new PageImpl<>(
 				Collections.singletonList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
-		given(this.productRepository.findAll(new PageRequest(0, 1, Sort.Direction.ASC, "id"))).willReturn(products);
+		given(this.productRepository.findAllByActive(new PageRequest(0, 1, Sort.Direction.ASC, "id"), true)).willReturn(products);
 		List<Product> asc = this.productService.getProducts(1, 1, "asc", null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(1);
@@ -179,7 +179,7 @@ public class ProductServiceTest {
 		Page<Product> products = new PageImpl<>(
 				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
 						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
-		given(this.productRepository.findAll(new PageRequest(0, 5, null, "id"))).willReturn(products);
+		given(this.productRepository.findAllByActive(new PageRequest(0, 5, null, "id"), true)).willReturn(products);
 		List<Product> asc = this.productService.getProducts(null, null, null, null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(2);
@@ -192,7 +192,7 @@ public class ProductServiceTest {
 		Page<Product> products = new PageImpl<>(
 				Arrays.asList(new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct(),
 						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
-		given(this.productRepository.findAll(new PageRequest(0, 19, null, "id"))).willReturn(products);
+		given(this.productRepository.findAllByActive(new PageRequest(0, 19, null, "id"), true)).willReturn(products);
 		List<Product> asc = this.productService.getProducts(1, 19, null, null).getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(2);
@@ -247,7 +247,7 @@ public class ProductServiceTest {
 						new ProductBuilder().withName("name2").withDescription("desc").withUrl("url").withPrice(BigDecimal.TEN).createProduct()));
 		Category category = new Category("category", "aaa");
 		given(categoryRepository.findByName("category")).willReturn(Optional.of(category));
-		given(this.productRepository.findByCategory(new PageRequest(0, 5, null, "id"),category)).willReturn(products);
+		given(this.productRepository.findByCategory(new PageRequest(0, 5, null, "id"), category)).willReturn(products);
 		List<Product> asc = this.productService.getProducts(null, null, null, "category").getContent();
 		assertThat(asc).isNotNull().isNotEmpty();
 		assertThat(asc.size()).isEqualTo(2);

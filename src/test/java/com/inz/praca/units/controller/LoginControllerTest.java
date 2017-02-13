@@ -5,6 +5,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 import com.inz.praca.controller.LoginController;
@@ -12,6 +14,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.ui.Model;
 
 public class LoginControllerTest {
@@ -34,10 +38,13 @@ public class LoginControllerTest {
 
 	@Test
 	public void shouldReturnErrorLoginPage() {
-		assertThat(controller.loginError(model)).isEqualTo("login");
+		HttpServletRequest request = new MockHttpServletRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, "Nieprawidłowy użytkownik");
+		assertThat(controller.loginError(model, request)).isEqualTo("login");
 		verify(model).addAttribute("loginError", true);
+		verify(model).addAttribute("errorMessage", "Nieprawidłowy użytkownik");
 		verifyNoMoreInteractions(model);
 	}
-
 
 }
