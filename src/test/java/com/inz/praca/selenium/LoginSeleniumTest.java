@@ -2,7 +2,6 @@ package com.inz.praca.selenium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.AuthenticatedNavigation;
@@ -10,9 +9,7 @@ import com.inz.praca.selenium.pageObjects.LoginPage;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles("development")
 public class LoginSeleniumTest extends SeleniumTestBase {
 
 	@Autowired
@@ -25,25 +22,26 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldLoginWithCorrectAuthenticationAndLogoutAfterThat() {
-		userRepository.save(new UserBuilder().withEmail("adminTest2@email.pl").withPasswordHash("zaq1@WSX").activate().build());
+	public void shouldLoginWithCorrectAuthenticationAndLogoutAfterThat() throws Exception {
+		prepareBeforeTest();
 		driver.get("http://localhost:" + port + "/login");
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.typeUserName("adminTest2@email.pl");
+		loginPage.typeUserName("admin@email.pl");
 		loginPage.typePassword("zaq1@WSX");
 		loginPage.clickOnLoginButton();
 
 		assertThat(driver.getPageSource()).contains("Witamy w Naszym sklepie");
 		assertThat(driver.getTitle()).isEqualTo("Strona główna");
 		AuthenticatedNavigation authenticatedNavigation = new AuthenticatedNavigation(driver);
-		assertThat(authenticatedNavigation.getLoginName()).isEqualTo("adminTest2@email.pl");
+		assertThat(authenticatedNavigation.getLoginName()).isEqualTo("admin@email.pl");
 		authenticatedNavigation.clickOnLoginName();
 		authenticatedNavigation.clickOnLogout();
 		assertThat(driver.getTitle()).isEqualTo("Logowanie");
 	}
 
 	@Test
-	public void shouldGetErrorWhenLoginWithIncorrectAuthentication() {
+	public void shouldGetErrorWhenLoginWithIncorrectAuthentication() throws Exception {
+		prepareBeforeTest();
 		driver.get("http://localhost:" + port + "/login");
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.typeUserName("admin");
@@ -54,11 +52,11 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldGetErrorWhenUserIsNotActive() {
-		userRepository.save(new UserBuilder().withEmail("adminTest2@email.pl").withPasswordHash("zaq1@WSX").build());
+	public void shouldGetErrorWhenUserIsNotActive() throws Exception {
+		prepareBeforeTest();
 		driver.get("http://localhost:" + port + "/login");
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.typeUserName("adminTest2@email.pl");
+		loginPage.typeUserName("nieaktywny@email.pl");
 		loginPage.typePassword("zaq1@WSX");
 		loginPage.clickOnLoginButton();
 		assertThat(driver.getPageSource()).contains("Twoje konto nie jest aktywne");
@@ -66,7 +64,8 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldRedirectToRegisterPage() {
+	public void shouldRedirectToRegisterPage() throws Exception {
+		prepareBeforeTest();
 		driver.get("http://localhost:" + port + "/login");
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.clickOnRegisterLink();

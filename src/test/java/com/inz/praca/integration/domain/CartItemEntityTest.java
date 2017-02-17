@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.domain.CartItem;
 import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.domain.CartItem;
 import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import org.junit.Test;
 public class CartItemEntityTest extends JpaTestBase {
 
 	@Test
-	public void shouldPersistCategoryWhenObjectIsCorrect() {
+	public void shouldPersistCartItemWhenObjectIsCorrect() {
 		Product product = entityManager.persist(new ProductBuilder().withName("aaaTest123").withPrice(BigDecimal.TEN).createProduct());
 		CartItem cartItem = entityManager.persistFlushFind(new CartItem(product, 4L));
 		assertThat(cartItem.getId()).isNotNull();

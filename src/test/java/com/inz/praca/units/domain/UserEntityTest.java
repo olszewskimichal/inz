@@ -2,8 +2,8 @@ package com.inz.praca.units.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.domain.User;
 import com.inz.praca.builders.UserBuilder;
+import com.inz.praca.domain.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -77,9 +77,20 @@ public class UserEntityTest {
 	}
 
 	@Test
-	public void shouldCreateProductWhenAllValuesAreCorrect() {
+	public void shouldThrownExceptionWhenPasswordIsNotCorrect() {
 		try {
-			new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("hash").build();
+			new UserBuilder().withEmail("email@o2.pl").withPasswordHash("a").build();
+			Assert.fail("Nie mozna stworzyc uzytkownika z tak prostym haslem");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Podane hasło jest zbyt proste");
+		}
+	}
+
+	@Test
+	public void shouldCreateUserWhenAllValuesAreCorrect() {
+		try {
+			new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("zaq1@WSX").build();
 		}
 		catch (IllegalArgumentException e) {
 			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
@@ -87,8 +98,8 @@ public class UserEntityTest {
 	}
 
 	@Test
-	public void shouldOrdersNotBeNull() {
-		User user = new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("hash").build();
+	public void shouldOrdersNeverBeNull() {
+		User user = new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("zaq1@WSX").build();
 		assertThat(user.getOrders()).isNotNull().isEmpty();
 		user.setOrders(null);
 		assertThat(user.getOrders()).isNotNull().isEmpty();

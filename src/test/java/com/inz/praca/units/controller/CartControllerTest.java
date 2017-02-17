@@ -40,36 +40,27 @@ public class CartControllerTest {
 	@Test
 	public void shouldAddProductToCart() {
 		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-		controller.addRow(model, 1L);
+		controller.addProductToCart(model, 1L);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(1);
 		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.TEN.stripTrailingZeros());
 	}
 
 	@Test
-	public void shouldAdd2ProductAndRemove1ProductFromCart() {
+	public void shouldAdd2ProductAndRemove1ProductFromCartAndClearCart() {
 		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
 		given(productService.getProductById(2L)).willReturn(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.ONE).createProduct());
-		controller.addRow(model, 1L);
-		controller.addRow(model, 2L);
+		controller.addProductToCart(model, 1L);
+		controller.addProductToCart(model, 2L);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(2);
 		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(11).stripTrailingZeros());
 
-		controller.removeRow(1);
+		controller.removeProductFromCart(1);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(1);
 		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(10).stripTrailingZeros());
-	}
-
-	@Test
-	public void shouldAdd2ProductAndClearCart() {
-		given(productService.getProductById(1L)).willReturn(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-		given(productService.getProductById(2L)).willReturn(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.ONE).createProduct());
-		controller.addRow(model, 1L);
-		controller.addRow(model, 2L);
-		assertThat(controller.getForm().getItems().size()).isEqualTo(2);
-		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(11).stripTrailingZeros());
 
 		controller.clearCart(model);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(0);
 		assertThat(controller.getForm().getTotalPrice()).isEqualTo(BigDecimal.ZERO);
 	}
+
 }

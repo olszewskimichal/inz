@@ -2,12 +2,14 @@ package com.inz.praca.integration.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import javax.persistence.PersistenceException;
 import java.math.BigDecimal;
 
 import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
 import com.inz.praca.integration.JpaTestBase;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ProductEntityTest extends JpaTestBase {
@@ -29,9 +31,21 @@ public class ProductEntityTest extends JpaTestBase {
 		Product product = entityManager.persistFlushFind(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
 		product.setCategory(category);
 		entityManager.persistAndFlush(product);
-
 		Product result = entityManager.find(Product.class, product.getId());
 		assertThat(result.getCategory()).isNotNull();
+	}
+
+	@Test
+	public void shouldNotPersistWithNotUniqueName() {
+		try {
+			entityManager.persistFlushFind(new ProductBuilder().withName("nazwax12345").withPrice(BigDecimal.TEN).createProduct());
+			entityManager.persistFlushFind(new ProductBuilder().withName("nazwax12345").withPrice(BigDecimal.ONE).createProduct());
+			Assert.fail();
+		}
+		catch (PersistenceException e) {
+			assertThat(true).isEqualTo(true);
+		}
+
 	}
 
 }

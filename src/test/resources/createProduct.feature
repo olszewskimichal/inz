@@ -12,8 +12,8 @@ Feature: Tworzenie nowych produktów
       | nazwa1 | opis        | 3.0   | inne     | 0          |
       | nazwa2 | opis2       | 2,5   | inne     | 1          |
       | nazwa3 | o           | -3    | inne3    | 1          |
-      | na     |             |       |          | 3          |
-      |        |             |       |          | 4          |
+      | na     | o           | a     | c        | 2          |
+
   Scenario: Próba tworzenia produktu z nieprawidłowa cena
     Given Podajac  nazwe= nazwa z opisem = opis cena = -4.0 oraz wybrana kategoria inne
     When Przy kliknieciu dodaj

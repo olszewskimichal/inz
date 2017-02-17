@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -51,7 +52,7 @@ public class ProductController {
 
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/addProduct")
-	public String confirmNewProduct(@Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model) {
+	public String confirmNewProduct(@Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		log.info("Proba dodania nowego produktu {}", productDTO);
 		if (result.hasErrors()) {
 			log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
@@ -61,6 +62,7 @@ public class ProductController {
 		}
 		try {
 			productService.createProduct(productDTO);
+			redirectAttributes.addFlashAttribute("createProductDone", true);
 			return "redirect:/products";
 		}
 		catch (IllegalArgumentException e) {

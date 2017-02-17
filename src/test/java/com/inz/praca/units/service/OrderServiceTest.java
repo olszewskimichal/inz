@@ -41,7 +41,7 @@ public class OrderServiceTest {
 		CartSession cartSession = new CartSession();
 		cartSession.addProductDTO(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
 		OrderDTO orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-		Order order = orderService.createOrder(new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("aaaaa").build(), orderDTO);
+		Order order = orderService.createOrder(new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
 		assertThat(order).isNotNull();
 	}
 }

@@ -2,6 +2,7 @@ package com.inz.praca.units.controller;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -32,6 +33,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public class OrderControllerTest {
 
@@ -53,14 +55,26 @@ public class OrderControllerTest {
 
 	@Test
 	public void shouldShowShippingDetailForm() {
-		assertThat(orderController.getShippingDetail(model)).isEqualTo("collectCustomerInfo");
+		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
+		assertThat(orderController.getShippingDetail(model, redirectAttributes)).isEqualTo("collectCustomerInfo");
 		verify(model).addAttribute(new ShippingDetail());
 		verifyNoMoreInteractions(model);
 	}
 
 	@Test
+	public void shouldRedirectToCartWhenCartIsEmpty() {
+		CartSession cartSession = new CartSession();
+		orderController = new OrderController(cartSession, orderService);
+
+		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
+		assertThat(orderController.getShippingDetail(model, redirectAttributes)).isEqualTo("redirect:/cart");
+		verify(redirectAttributes).addFlashAttribute("emptyCart", true);
+		verifyNoMoreInteractions(model);
+	}
+
+	@Test
 	public void shouldConfirmOrder() {
-		Authentication auth = new UsernamePasswordAuthenticationToken(new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("aaa").build()), null);
+		Authentication auth = new UsernamePasswordAuthenticationToken(new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("zaq1@WSX").build()), null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		Set<CartItem> cartItems = new HashSet<>();
 		Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
@@ -71,7 +85,7 @@ public class OrderControllerTest {
 
 	@Test
 	public void shouldShowOrderLists() {
-		Authentication auth = new UsernamePasswordAuthenticationToken(new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("aaa").build()), null);
+		Authentication auth = new UsernamePasswordAuthenticationToken(new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("zaq1@WSX").build()), null);
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
 		assertThat(orderController.getOrderList(model)).isEqualTo("orderList");

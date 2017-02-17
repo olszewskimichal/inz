@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import com.inz.praca.controller.UsersController;
 import com.inz.praca.domain.User;
 import com.inz.praca.service.UserService;
+import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 
 import org.springframework.data.domain.Page;
@@ -41,8 +43,21 @@ public class UsersControllerTest {
 	public void shouldReturnUsersPage() {
 		Page<User> users = new PageImpl<>(new ArrayList<>());
 		given(userService.getAllUsers(0)).willReturn(users);
-		assertThat(usersController.getUsersPage(model)).isEqualTo("users");
+		assertThat(usersController.getUsersPage(model, 1)).isEqualTo("users");
 		verify(model).addAttribute("Users", users);
+		verify(model).addAttribute("selectedPageSize", 0);
+		verify(model).addAttribute(Matchers.eq("pager"), Matchers.any(Pager.class));
+		verifyNoMoreInteractions(model);
+	}
+
+	@Test
+	public void shouldReturnUsersPageWhenNullArgument() {
+		Page<User> users = new PageImpl<>(new ArrayList<>());
+		given(userService.getAllUsers(0)).willReturn(users);
+		assertThat(usersController.getUsersPage(model, null)).isEqualTo("users");
+		verify(model).addAttribute("Users", users);
+		verify(model).addAttribute("selectedPageSize", 0);
+		verify(model).addAttribute(Matchers.eq("pager"), Matchers.any(Pager.class));
 		verifyNoMoreInteractions(model);
 	}
 

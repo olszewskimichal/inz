@@ -38,7 +38,7 @@ public class CartController {
 	}
 
 	@GetMapping(value = "/cart/add/{productId}")
-	public String addRow(Model model, @PathVariable Long productId) {
+	public String addProductToCart(Model model, @PathVariable Long productId) {
 		log.info("addProduct id {} cart {}", productId, cartSession);
 		cartSession.addProductDTO(new ProductDTO(productService.getProductById(productId)));
 		model.addAttribute(getForm());
@@ -46,7 +46,7 @@ public class CartController {
 	}
 
 	@GetMapping(value = "/cart/remove/{rowId}")
-	public String removeRow(@PathVariable Integer rowId) {
+	public String removeProductFromCart(@PathVariable Integer rowId) {
 		log.info("removeProduct rowId {} z {} ", rowId, cartSession);
 		cartSession.removeProductDTO(rowId);
 		return REDIRECT_CART;

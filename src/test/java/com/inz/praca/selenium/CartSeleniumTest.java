@@ -8,6 +8,7 @@ import com.inz.praca.repository.OrderRepository;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
+import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.NewProductPage;
 import com.inz.praca.selenium.pageObjects.ProductListPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;
@@ -28,16 +29,20 @@ public class CartSeleniumTest extends SeleniumTestBase {
 	private OrderRepository orderRepository;
 
 	@Test
-	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws InterruptedException {
+	public void shouldCreate2RroductAndAddToCartAndRemoveOneOfThem() throws Exception {
 		orderRepository.deleteAll();
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
+		prepareBeforeTest();
+
+		driver.get("http://localhost:" + port + "/login");
+		loginPage = new LoginPage(driver);
+		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
 		driver.get("http://localhost:" + port + "/cart");
 		CartPage cartPage = new CartPage(driver);
 		cartPage.clearCart();
-
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);
@@ -98,16 +103,20 @@ public class CartSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldCreate2ProductAndAddToCartAndClearCart() {
+	public void shouldCreate2ProductAndAddToCartAndClearCart() throws Exception {
 		orderRepository.deleteAll();
 		repository.deleteAll();
 		categoryRepository.deleteAll();
 		categoryRepository.save(new Category("a", "b"));
+		prepareBeforeTest();
+
+		driver.get("http://localhost:" + port + "/login");
+		loginPage = new LoginPage(driver);
+		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
 		driver.get("http://localhost:" + port + "/cart");
 		CartPage cartPage = new CartPage(driver);
 		cartPage.clearCart();
-
 
 		driver.get("http://localhost:" + port + "/addProduct");
 		NewProductPage productPage = new NewProductPage(driver);

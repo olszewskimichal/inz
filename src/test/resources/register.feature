@@ -14,7 +14,7 @@ Feature: Rejestracja
       | Imie | Nazwisko | email2@o2.pl | zaq1@WS  | zaq1@WS         | 1          |
       | Imie | Nazwisko | email3@o2    | zaq1@WSX | zaq1@WSX        | 1          |
       | Im   | Nazwisko | email4@o2.pl | zaq1@WSX | zaq1@WSX        | 1          |
-      |      |          |              |          |                 | 6          |
+      | I    | N        | e@o2.pl      | z        | a               | 3          |
 
   Scenario: Próba stworzenia istniejącego już użytkownika
     Given Podajac imie= imie nazwisko = nazwisko email = istniejacyemail@o2.pl oraz hasło zaq1@WSX i potwierdzeniu zaq1@WSX
@@ -35,6 +35,7 @@ Feature: Rejestracja
     Given Podajac imie=  nazwisko = nazwisko email = nowy@o2.pl oraz hasło zaq1@WSX i potwierdzeniu zaq1@WSX
     When Przy kliknieciu zarejestruj
     Then Otrzymamy bład że Imie nie moze byc puste
+
   Scenario: Próba stworzenia uzytkownika z nieprawidłowym adresem email
     Given Podajac imie= imie  nazwisko = nazwisko email = nowy.pl oraz hasło zaq1@WSX i potwierdzeniu zaq1@WSX
     When Przy kliknieciu zarejestruj

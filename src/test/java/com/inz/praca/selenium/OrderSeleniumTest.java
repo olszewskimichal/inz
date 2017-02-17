@@ -36,7 +36,8 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 	private UserRepository userRepository;
 
 	@Test
-	public void shouldCreateOrder() throws InterruptedException {
+	public void shouldCreateOrder() throws Exception {
+		prepareBeforeTest();
 		driver.manage().deleteAllCookies();
 		userRepository.deleteAll();
 		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();

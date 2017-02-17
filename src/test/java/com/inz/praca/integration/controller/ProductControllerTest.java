@@ -15,7 +15,9 @@ import com.inz.praca.service.ProductService;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 public class ProductControllerTest extends IntegrationTestBase {
 
 	@Autowired
@@ -79,7 +81,5 @@ public class ProductControllerTest extends IntegrationTestBase {
 				.andExpect(status().isOk())
 				.andExpect(view().name("product"));
 	}
-
-
 
 }

@@ -54,6 +54,17 @@ public class ProductEntityTest {
 	}
 
 	@Test
+	public void shouldThrownExceptionWhenPriceIsNotCorrectNumber() {
+		try {
+			new ProductBuilder().withName("Nazwa").withDescription("14,4a").withUrl("").withPrice(BigDecimal.valueOf(-1L)).createProduct();
+			Assert.fail("To nie jest liczba");
+		}
+		catch (IllegalArgumentException e) {
+			assertThat(e.getMessage()).isEqualTo("Cena nie moze być mniejsza od 0");
+		}
+	}
+
+	@Test
 	public void shouldCreateProductWhenAllValuesAreCorrect() {
 		try {
 			new ProductBuilder().withName("nazwa").withDescription("opis").withUrl("url").withPrice(BigDecimal.TEN).createProduct();
@@ -62,15 +73,4 @@ public class ProductEntityTest {
 			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
 		}
 	}
-
-	@Test
-	public void shouldCreateProductWhenAllValuesAreCorrect2() {
-		try {
-			new ProductBuilder().withName("nazwa").withDescription("opis").withUrl("url").withPrice(BigDecimal.ZERO).createProduct();
-		}
-		catch (IllegalArgumentException e) {
-			Assert.fail("Nie moze wystapić wyjatek przy prawidłowej deklaracji obiektu");
-		}
-	}
-
 }

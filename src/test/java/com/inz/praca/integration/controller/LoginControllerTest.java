@@ -50,10 +50,9 @@ public class LoginControllerTest extends IntegrationTestBase {
 	@Test
 	public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
 		//given
-		//given
-		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("hash").activate().build()).getId();
+		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build()).getId();
 		String userLogin = "emailTest@o2.pl";
-		String password = "hash";
+		String password = "zaq1@WSX";
 		//when
 		RequestBuilder requestBuilder = post("/login")
 				.param("username", userLogin)

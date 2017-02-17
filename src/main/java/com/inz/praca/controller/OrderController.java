@@ -13,10 +13,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -32,8 +32,11 @@ public class OrderController {
 	}
 
 	@GetMapping(value = "/order")
-	public String getShippingDetail(Model model) {
-		Assert.notEmpty(cartSession.getItems());
+	public String getShippingDetail(Model model, RedirectAttributes redirectAttributes) {
+		if (cartSession.getItems().isEmpty()) {
+			redirectAttributes.addFlashAttribute("emptyCart", true);
+			return "redirect:/cart";
+		}
 		model.addAttribute(new ShippingDetail());
 		log.info("getShippingDetail");
 		return "collectCustomerInfo";

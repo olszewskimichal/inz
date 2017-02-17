@@ -110,7 +110,7 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldFoundUserById() {
-		given(userRepository.findById(1L)).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()));
+		given(userRepository.findById(1L)).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
 		User userById = this.userService.getUserById(1L);
 		assertThat(userById.getEmail()).isEqualTo("email@o2.pl");
 
@@ -118,7 +118,7 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldFoundUserByEmail() {
-		given(userRepository.findByEmail("email@o2.pl")).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()));
+		given(userRepository.findByEmail("email@o2.pl")).willReturn(Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
 		User userByEmail = this.userService.getUserByEmail("email@o2.pl");
 		assertThat(userByEmail.getEmail()).isEqualTo("email@o2.pl");
 	}
@@ -127,8 +127,8 @@ public class UserServiceTest {
 	@Test
 	public void shouldCreateUserWhenFormIsCorrect() {
 		UserDTO userDTO = new UserDTO();
-		userDTO.setConfirmPassword("psx");
-		userDTO.setPassword("psx");
+		userDTO.setConfirmPassword("zaq1@WSX");
+		userDTO.setPassword("zaq1@WSX");
 		userDTO.setEmail("email@o2.pl");
 		userDTO.setName("name");
 		userDTO.setLastName("last");
@@ -149,7 +149,7 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldGetAllUsers() {
-		Page<User> users = new PageImpl<>(Arrays.asList(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("abcde").build(), new UserBuilder().withEmail("name4@o2.pl").withPasswordHash("abcde").build()));
+		Page<User> users = new PageImpl<>(Arrays.asList(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build(), new UserBuilder().withEmail("name4@o2.pl").withPasswordHash("zaq1@WSX").build()));
 		given(this.userRepository.findAll(new PageRequest(0, 20))).willReturn(users);
 		Page<User> allUsers = userService.getAllUsers(0);
 		assertThat(allUsers).isNotEmpty();
@@ -163,7 +163,7 @@ public class UserServiceTest {
 			argument.setId(1L);
 			return argument;
 		}).when(userRepository).save(any(User.class));
-		given(userRepository.findById(1L)).willReturn(Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("abcde").build()));
+		given(userRepository.findById(1L)).willReturn(Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build()));
 		String result = userService.changeUserActive(1L);
 		assertThat(result).isEqualTo("Aktywowano uzytkownika name3@o2.pl");
 		result = userService.changeUserActive(1L);

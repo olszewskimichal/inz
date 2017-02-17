@@ -27,7 +27,7 @@ public class CurrentUserDetailServiceTest {
 
 	@Test
 	public void shouldGetCurrentUser() {
-		given(userService.getUserByEmail("admin@email.pl")).willReturn(new UserBuilder().withEmail("admin@email.pl").withPasswordHash("hash").build());
+		given(userService.getUserByEmail("admin@email.pl")).willReturn(new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build());
 
 		CurrentUser admin = currentUserDetailsService.loadUserByUsername("admin@email.pl");
 		assertThat(admin).isNotNull();

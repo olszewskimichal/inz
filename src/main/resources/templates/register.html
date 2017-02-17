@@ -16,7 +16,7 @@
             </div>
             <div class="panel-body">
                 <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
-                    <p th:each="err:${#fields.allErrors()}" th:text="${err}">...</p>
+                    <p class="error" th:each="err:${#fields.allErrors()}" th:text="${err}">...</p>
                 </div>
                 <div th:if="${uzytkownikIstnieje}" class="alert alert-danger" role="alert">
                     <span th:text="#{existingUserMessageError}"></span>

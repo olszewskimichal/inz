@@ -21,10 +21,12 @@ public class PasswordValidatorTest {
 		assertThat(validator.isValid("aaaa", constraintValidatorContext)).isFalse();
 		assertThat(validator.isValid("zaq12wsx", constraintValidatorContext)).isFalse();
 		assertThat(validator.isValid("     zaq1@", constraintValidatorContext)).isFalse();
+		assertThat(validator.isValid(null, constraintValidatorContext)).isFalse();
 	}
 
 	@Test
 	public void shouldReturnTrueWhenPasswordIsCorrect() {
 		assertThat(validator.isValid("zaq1@WSX", constraintValidatorContext)).isTrue();
+		validator.initialize(null);
 	}
 }

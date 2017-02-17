@@ -33,7 +33,7 @@ public class UserServiceTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldFindUserByEmail() {
-		repository.save(new UserBuilder().withEmail("email" + 1 + "@o2.pl").withPasswordHash("hash").build()).getId();
+		repository.save(new UserBuilder().withEmail("email" + 1 + "@o2.pl").withPasswordHash("zaq1@WSX").build()).getId();
 		User userByEmail = userService.getUserByEmail("email1@o2.pl");
 		assertThat(userByEmail).isNotNull();
 		assertThat(userByEmail.getEmail()).isEqualTo("email1@o2.pl");
@@ -42,7 +42,7 @@ public class UserServiceTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldFindUserById() {
-		Long id = repository.save(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("hash").build()).getId();
+		Long id = repository.save(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()).getId();
 		User userById = userService.getUserById(id);
 		assertThat(userById).isNotNull();
 		assertThat(userById.getId()).isNotNull();
@@ -57,7 +57,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		userDTO.setName("name");
 		userDTO.setLastName("lastName");
 		userDTO.setEmail("email@o2.pl");
-		userDTO.setPassword("aaa");
+		userDTO.setPassword("zaq1@WSX");
 
 		//when
 		User user = userService.create(userDTO);
@@ -65,7 +65,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
 		assertThat(user.getEmail()).isEqualTo("email@o2.pl");
-		assertThat(new BCryptPasswordEncoder().matches("aaa", user.getPasswordHash())).isTrue();
+		assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
 
 
 	}
@@ -79,7 +79,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		userDTO.setName("name");   //UserDTO ->Builder
 		userDTO.setLastName("lastName");
 		userDTO.setEmail("email@o2.pl");
-		userDTO.setPassword("aaa");
+		userDTO.setPassword("zaq1@WSX");
 
 		//when
 		User user = userService.create(userDTO);
@@ -87,7 +87,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
 		assertThat(user.getEmail()).isEqualTo("email@o2.pl");
-		assertThat(new BCryptPasswordEncoder().matches("aaa", user.getPasswordHash())).isTrue();
+		assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
 
 		try {
 			userService.create(userDTO);

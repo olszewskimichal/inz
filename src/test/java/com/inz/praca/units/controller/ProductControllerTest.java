@@ -3,6 +3,7 @@ package com.inz.praca.units.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -26,6 +27,7 @@ import org.mockito.Mock;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public class ProductControllerTest {
 
@@ -56,17 +58,20 @@ public class ProductControllerTest {
 
 	@Test
 	public void shouldCreateProductAndRedirectToProducts() {
+		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName("name");
 		productDTO.setDescription("desc");
 		productDTO.setPrice(BigDecimal.TEN);
 		productDTO.setImageUrl("url");
 
-		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("redirect:/products");
+		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo("redirect:/products");
+		verify(redirectAttributes).addFlashAttribute("createProductDone", true);
 	}
 
 	@Test
 	public void shouldFailedCreateProduct() {
+		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
 		given(productService.createProduct(any(ProductDTO.class))).willThrow(new IllegalArgumentException());
 
 		ProductDTO productDTO = new ProductDTO();
@@ -74,7 +79,7 @@ public class ProductControllerTest {
 		productDTO.setDescription("desc");
 		productDTO.setPrice(BigDecimal.TEN);
 		productDTO.setImageUrl("url");
-		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("newProduct");
+		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo("newProduct");
 
 		verify(model).addAttribute("productCreateForm", productDTO);
 		verify(model).addAttribute("categoryList", productService.findAllCategory());
@@ -83,10 +88,11 @@ public class ProductControllerTest {
 
 	@Test
 	public void shouldShowAgainFormWhenErrorOnCreate() {
+		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
 		given(bindingResult.hasErrors()).willReturn(true);
 
 		ProductDTO productDTO = new ProductDTO();
-		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model)).isEqualTo("newProduct");
+		assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo("newProduct");
 
 		verify(model).addAttribute("productCreateForm", productDTO);
 		verify(model).addAttribute("categoryList", productService.findAllCategory());
@@ -156,7 +162,7 @@ public class ProductControllerTest {
 
 		verify(model).addAttribute("productCreateForm", productDTO);
 		verify(model).addAttribute("categoryList", productService.findAllCategory());
-		verify(model).addAttribute("productId",1L);
+		verify(model).addAttribute("productId", 1L);
 		verifyNoMoreInteractions(model);
 	}
 

@@ -16,7 +16,7 @@ import org.junit.Test;
 public class CartEntityTest {
 
 	@Test
-	public void shouldThrownExceptionWhenProductsIsEmpty() {
+	public void shouldThrownExceptionWhenCartItemsIsEmpty() {
 		try {
 			new Cart(new HashSet<>());
 			Assert.fail();
@@ -24,17 +24,6 @@ public class CartEntityTest {
 		catch (IllegalArgumentException e) {
 			assertThat(e.getMessage()).isEqualTo("Koszyk musi zawierac jakies produkty");
 		}
-	}
-
-	@Test
-	public void shouldCreateCartFromCartSession() {
-
-		Set<CartItem> cartItems = new HashSet<>();
-		cartItems.add(new CartItem(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct(), 1l));
-		Cart cart = new Cart(cartItems);
-		assertThat(cart).isNotNull();
-		assertThat(cart.getCartItems()).isNotEmpty();
-		assertThat(cart.getCartItems().size()).isEqualTo(1);
 	}
 
 	@Test

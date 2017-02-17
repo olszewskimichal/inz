@@ -11,6 +11,8 @@
         </p>
     </div>
     <section class="container">
+        <div th:if="${createProductDone}" class="alert alert-success" role="alert"> Pomyślnie dodano produkt
+        </div>
         <div class="row">
             <div class="col-md-2">
                 <p class="lead">Kategorie</p>
@@ -51,7 +53,8 @@
                 <ul class="pagination">
                     <li th:class="${products.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a></li>
                     <li th:class="${products.getNumber() == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${products.getNumber()},category=${category})}">&larr;</a></li>
+                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${products.getNumber()},category=${category})}">&larr;</a>
+                    </li>
                     <li th:class="${products.getNumber() == (page - 1)} ? 'active pointer-disabled'"
                         th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink"
                                                                                                            th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}"

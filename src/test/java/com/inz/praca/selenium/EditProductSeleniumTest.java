@@ -5,12 +5,10 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 
 import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.builders.UserBuilder;
+import com.inz.praca.domain.Category;
 import com.inz.praca.domain.Product;
-import com.inz.praca.domain.Role;
-import com.inz.praca.domain.User;
+import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
-import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.EditProductPage;
 import com.inz.praca.selenium.pageObjects.LoginPage;
@@ -27,19 +25,17 @@ public class EditProductSeleniumTest extends SeleniumTestBase {
 	ProductRepository repository;
 
 	@Autowired
-	UserRepository userRepository;
+	CategoryRepository categoryRepository;
 
 	@Test
-	public void shouldEditProduct() {
+	public void shouldEditProduct() throws Exception {
+		prepareBeforeTest();
 		driver.manage().deleteAllCookies();
-		userRepository.deleteAll();
-		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
-		admin.setRole(Role.ADMIN);
-		admin.setActive(true);
-		userRepository.save(admin);
 
 		repository.deleteAll();
+		categoryRepository.deleteAll();
 		Product product = repository.save(new ProductBuilder().withName("test").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
+		categoryRepository.save(new Category("test", "opis"));
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
@@ -53,16 +49,16 @@ public class EditProductSeleniumTest extends SeleniumTestBase {
 	}
 
 	@Test
-	public void shouldGetErrorWhenTryEditProductAsUser() {
+	public void shouldGetErrorWhenTryEditProductAsUser() throws Exception {
+		prepareBeforeTest();
 		driver.manage().deleteAllCookies();
-		userRepository.deleteAll();
-		User user = new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").activate().build();
-		userRepository.save(user);
 		repository.deleteAll();
+		categoryRepository.deleteAll();
 		Product product = repository.save(new ProductBuilder().withName("test").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
+		categoryRepository.save(new Category("test", "opis"));
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.logInToApp("user@email.pl", "zaq1@WSX");
+		loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
 		driver.get("http://localhost:" + port + "/products/product/edit/" + product.getId());
 		assertThat(driver.getPageSource().contains("zabroniony")).isTrue();
 	}

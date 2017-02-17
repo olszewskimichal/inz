@@ -12,6 +12,8 @@
             <p>Twój koszyk</p>
         </div>
         <section class="container">
+            <div th:if="${emptyCart}" class="alert alert-danger" role="alert"> Twój koszyk jest pusty
+            </div>
             <div>
                 <div>
                     <a id="cartClear" th:href="@{/cart/clear}" class="btn btn-danger pull-left"> <span class="glyphicon glyphicon-remove-sign"></span>

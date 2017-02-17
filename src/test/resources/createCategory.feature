@@ -11,7 +11,7 @@ Feature: Tworzenie nowej kategori
       | name   | description | errorCount |
       | nazwa1 | opisDlugi   | 0          |
       | nazwa1 | opis        | 1          |
-      |        |             | 2          |
+      | n      | o           | 2          |
 
   Scenario: Próba tworzenia kategorii z za ktotka nazwa
     Given Mając  nazwe kategori  na z opisem  description

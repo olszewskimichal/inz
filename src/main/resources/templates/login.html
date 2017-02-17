@@ -21,9 +21,10 @@
                     </div>
                     <div class="panel-body">
                         <div th:if="${loginError}" class="alert alert-danger" role="alert">
-                            <p th:text="${errorMessage}"></p>
+                            <p id="errorMsg" th:text="${errorMessage}"></p>
                         </div>
-
+                        <div th:if="${registerDone}" class="alert alert-success" role="alert"> Pomyślnie zarejestrowano konto, skontaktuj się za administratorem by je aktywować
+                        </div>
                         <form th:action="@{/login}" method="post">
                             <fieldset>
                                 <div class="form-group">

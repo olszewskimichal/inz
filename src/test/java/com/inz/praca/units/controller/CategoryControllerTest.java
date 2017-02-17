@@ -52,15 +52,12 @@ public class CategoryControllerTest {
 	}
 
 	@Test
-	public void shouldFailedCreateProduct() {
+	public void shouldFailedCreateCategory() {
 		given(productService.createCategory(any(CategoryDTO.class))).willThrow(new PersistenceException());
-
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setName("name");
 		categoryDTO.setDescription("desc");
-
 		assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("newCategory");
-
 		verify(model).addAttribute("categoryCreateForm", categoryDTO);
 		verifyNoMoreInteractions(model);
 	}
@@ -68,10 +65,8 @@ public class CategoryControllerTest {
 	@Test
 	public void shouldShowAgainFormWhenErrorOnCreate() {
 		given(bindingResult.hasErrors()).willReturn(true);
-
 		CategoryDTO categoryDTO = new CategoryDTO();
 		assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("newCategory");
-
 		verify(model).addAttribute("categoryCreateForm", categoryDTO);
 		verifyNoMoreInteractions(model);
 	}

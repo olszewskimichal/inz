@@ -12,7 +12,7 @@
     </div>
     <section class="container">
         <div class="panel-body">
-            <div th:if="${activate}" class="alert alert-success" role="alert" th:text="${activateMessage}">Usunieto uzytkownika
+            <div id="activationMsg" th:if="${activate}" class="alert alert-success" role="alert" th:text="${activateMessage}">Usunieto uzytkownika
             </div>
             <table class="table table-striped table-bordered grid" cellspacing="0" width="100%">
                 <thead>
@@ -24,22 +24,42 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${Users}">
+                <tr th:each="user,rowStat : ${Users}">
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.name + ' ' + user.lastName}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
-                        <a th:if="!${user.active}" th:href=" ${'/user/active/' + user.id}">Aktywacja
+                        <a th:id="'user'+${rowStat.index}" th:if="!${user.active}" th:href=" ${'/user/active/' + user.id}">Aktywacja
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
-                        <a th:if="${user.active}" th:href=" ${'/user/active/' +user.id}">Dezaktywacja
+                        <a th:id="'user'+${rowStat.index}" th:if="${user.active}" th:href=" ${'/user/active/' +user.id}">Dezaktywacja
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <!-- modal -->
+            <div class="row">
+
+                <div th:if="${Users.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink" th:href="@{/users(page=1)}">&laquo;</a></li>
+                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink"
+                                                                               th:href="@{/users(page=${Users.getNumber()})}">&larr;</a>
+                        </li>
+                        <li th:class="${Users.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+                            th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a class="pageLink"
+                                                                                                               th:href="@{/users(page=${page})}"
+                                                                                                               th:text="${page}"></a></li>
+                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
+                                                                                                       th:href="@{/users(page=${Users.getNumber() + 2})}">&rarr;</a>
+                        </li>
+                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
+                                                                                                       th:href="@{/users(page=${Users.getTotalPages()})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 </div> <!-- /container -->

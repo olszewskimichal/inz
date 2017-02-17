@@ -17,10 +17,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@ActiveProfiles("development")
 @ContextConfiguration
 @Category(IntegrationTest.class)
-public abstract class IntegrationTestBase {
+public abstract class SeleniumProfileTestBase {
 
 	@LocalServerPort
 	public int port;
@@ -34,5 +34,4 @@ public abstract class IntegrationTestBase {
 	public void setUp() throws Exception {
 		this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
-
 }

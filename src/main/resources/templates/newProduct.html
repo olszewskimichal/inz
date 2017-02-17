@@ -13,7 +13,7 @@
               class="form-horizontal" enctype="multipart/form-data" name="productForm">
             <fieldset>
                 <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
-                    <p th:each="err:${#fields.allErrors()}" th:text="${err}">...</p>
+                    <p class="error" th:each="err:${#fields.allErrors()}" th:text="${err}">...</p>
                 </div>
 
                 <div class="row">

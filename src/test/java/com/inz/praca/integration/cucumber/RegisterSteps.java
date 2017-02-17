@@ -1,42 +1,25 @@
 package com.inz.praca.integration.cucumber;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.integration.IntegrationTestBase;
-import com.inz.praca.repository.UserRepository;
+import com.inz.praca.selenium.configuration.SeleniumTestBase;
+import com.inz.praca.selenium.pageObjects.RegisterPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-public class RegisterSteps extends IntegrationTestBase {
+public class RegisterSteps extends SeleniumTestBase {
 	private String name;
 	private String lastName;
 	private String email;
 	private String password;
 	private String confirmPassword;
 
-	ResultActions perform;
-
-	@Autowired
-	private UserRepository userRepository;
-
-
 	@Given("Podajac imie= (.*) nazwisko = (.*) email = (.*) oraz hasło (.*) i potwierdzeniu (.*)")
-	public void useRegisterData(String name, String lastName, String email, String password, String confirmPassword) {
-		userRepository.deleteAll();
-		userRepository.save(new UserBuilder().withEmail("istniejacyemail@o2.pl").withPasswordHash("zaq1@WSX").build());
-		mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+	public void useRegisterData(String name, String lastName, String email, String password, String confirmPassword) throws Exception {
+		prepareBeforeTest();
 		this.name = name;
 		this.lastName = lastName;
 		this.email = email;
@@ -46,25 +29,24 @@ public class RegisterSteps extends IntegrationTestBase {
 
 	@When("Przy kliknieciu zarejestruj")
 	public void shouldPerformRegister() throws Exception {
-		perform = mvc.perform(post("/register")
-				.param("name", name)
-				.param("lastName", lastName)
-				.param("email", email)
-				.param("password", password)
-				.param("confirmPassword", confirmPassword));
+		driver.get("http://localhost:" + port + "/register");
+		RegisterPage registerPage = new RegisterPage(driver);
+		registerPage.typeName(name);
+		registerPage.typeLastName(lastName);
+		registerPage.typeEmail(email);
+		registerPage.typePassword(password);
+		registerPage.typeConfirmPassword(confirmPassword);
+		registerPage.clickOnRegisterButton();
 	}
 
 	@Then("Dostane (.*) komunikatów błedu")
 	public void shouldGetResponseWithHttpStatusCode(int errorCount) throws Exception {
-		perform.andExpect(model().errorCount(errorCount));
+		assertThat(driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
 	}
 
 	@Then("Otrzymamy bład że (.*)")
 	public void shouldGetErrorWithExistingEmail(String error) throws Exception {
-		perform.andExpect(content().string(
-				allOf(
-						containsString(error)
-				))).andDo(print());
+		driver.getPageSource().contains(error);
 	}
 
 	@Test

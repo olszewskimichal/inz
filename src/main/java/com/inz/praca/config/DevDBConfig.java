@@ -36,12 +36,10 @@ public class DevDBConfig {
 		log.info("ładowanie bazy testowej");
 		categoryRepository.save(new CategoryBuilder().withName("Komputery").withDescription("Jakies super kompy").createCategory());
 		categoryRepository.save(new CategoryBuilder().withName("inne").withDescription("Nie zdefiniowane").createCategory());
-		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
+		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
 		admin.setRole(Role.ADMIN);
-		admin.setActive(true);
 		userRepository.save(admin);
 		userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
-
 		productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN).withName("name").createProduct());
 	}
 }

@@ -8,6 +8,7 @@ public class LoginPage {
 	By password = By.id("password");
 	By loginButton = By.id("loginSubmit");
 	By registerLink = By.id("register");
+	By errorMsg = By.id("errorMsg");
 	private WebDriver webDriver;
 
 	public LoginPage(WebDriver webDriver) {
@@ -27,7 +28,10 @@ public class LoginPage {
 
 	public void typePassword(String pass) {
 		webDriver.findElement(password).sendKeys(pass);
+	}
 
+	public String getErrorMsg() {
+		return webDriver.findElement(errorMsg).getText();
 	}
 
 	public void clickOnLoginButton() {

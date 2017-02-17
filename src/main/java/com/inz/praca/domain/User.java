@@ -1,6 +1,7 @@
 package com.inz.praca.domain;
 
 import static com.inz.praca.validators.EmailValidator.EMAIL_PATTERN;
+import static com.inz.praca.validators.PasswordValidator.PASS_REGEX_PATTERN;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,6 +59,8 @@ public class User {
 		Assert.notNull(email, "Email nie może być pusty");
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 		Assert.isTrue(pattern.matcher(email).matches(), "To nie jest prawidłowy adres Email");
+		pattern = Pattern.compile(PASS_REGEX_PATTERN);
+		Assert.isTrue(pattern.matcher(passwordHash).matches(), "Podane hasło jest zbyt proste");
 		this.email = email;
 		this.name = name;
 		this.lastName = lastName;

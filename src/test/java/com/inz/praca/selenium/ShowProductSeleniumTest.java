@@ -8,6 +8,7 @@ import com.inz.praca.builders.ProductBuilder;
 import com.inz.praca.domain.Product;
 import com.inz.praca.repository.ProductRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
+import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;
 import org.junit.Test;
 
@@ -19,7 +20,12 @@ public class ShowProductSeleniumTest extends SeleniumTestBase {
 	ProductRepository repository;
 
 	@Test
-	public void shouldShowProductInfo() {
+	public void shouldShowProductInfo() throws Exception {
+		prepareBeforeTest();
+		driver.get("http://localhost:" + port + "/login");
+		loginPage = new LoginPage(driver);
+		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
+
 		Product product = repository.save(new ProductBuilder().withName("nameTest123456").withDescription("test2").withPrice(BigDecimal.valueOf(3)).createProduct());
 		driver.get("http://localhost:" + port + "/products/product/" + product.getId());
 		ProductPage page = new ProductPage(driver);
