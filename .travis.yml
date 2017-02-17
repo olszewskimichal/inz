@@ -6,9 +6,6 @@ jdk:
 before_install:
   - chmod ugo+x mvnw
 
-install:
-  - mvn compile
-
 before_script:
  - "sudo apt-get install xvfb"
  - "export DISPLAY=:99.0"
