@@ -12,9 +12,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.UrlPathHelper;
 
-/**
- * Created by Pitek on 2015-12-04.
- */
 @Configuration
 public class LocaleConfig extends WebMvcConfigurerAdapter {
 

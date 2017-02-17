@@ -15,7 +15,6 @@ public class CreateProductSteps extends SeleniumTestBase {
 	private String name;
 	private String description;
 	private String price;
-	private String category;
 
 
 	@Given("Podajac  nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
@@ -29,7 +28,6 @@ public class CreateProductSteps extends SeleniumTestBase {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.category = category;
 	}
 
 	@When("Przy kliknieciu dodaj")

@@ -9,7 +9,6 @@ public class SklepApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		SklepApplication sklepApplication = new SklepApplication();
 		SklepApplication.main(new String[] {"aa"});
 	}
 

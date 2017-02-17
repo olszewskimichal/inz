@@ -103,7 +103,7 @@ public class ProductServiceTest extends IntegrationTestBase {
 	@Test
 	public void shouldSetActiveFalseWhenTryDeleteProductWhichIsOrdered() {
 		Product product = repository.save(new ProductBuilder().withName("nazwaUpdate1").withPrice(BigDecimal.ZERO).createProduct());
-		Product product1 = repository.save(new ProductBuilder().withName("nazwaUpdate2").withPrice(BigDecimal.ZERO).createProduct());
+		repository.save(new ProductBuilder().withName("nazwaUpdate2").withPrice(BigDecimal.ZERO).createProduct());
 		Set<CartItem> cartItems = new HashSet<>();
 		cartItems.add(new CartItem(product, 1L));
 		orderRepository.save(new Order(new Cart(cartItems), new ShippingDetail("a", "b", "c", "d")));

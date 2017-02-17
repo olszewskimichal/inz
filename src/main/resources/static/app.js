@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function changePageAndSize() {
-    $('#pageSizeSelect').change(function(evt) {
+    $('#pageSizeSelect').change(function() {
         window.location.replace("/products?pageSize=" + this.value + "&page=1");
     });
 }

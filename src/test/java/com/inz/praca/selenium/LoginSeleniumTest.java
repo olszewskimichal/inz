@@ -15,9 +15,7 @@ public class LoginSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Override
 	public void setUp() throws Exception {
-		super.setUp();
 		userRepository.deleteAll();
 	}
 
