@@ -18,6 +18,7 @@ addons:
   firefox: "46.0"
 cache:
   directories:
+  - .autoconf
   - $HOME/.m2
 
 script:
