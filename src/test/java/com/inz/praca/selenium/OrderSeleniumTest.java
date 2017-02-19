@@ -2,13 +2,9 @@ package com.inz.praca.selenium;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-import com.inz.praca.builders.UserBuilder;
 import com.inz.praca.domain.Category;
-import com.inz.praca.domain.Role;
-import com.inz.praca.domain.User;
 import com.inz.praca.repository.CategoryRepository;
 import com.inz.praca.repository.ProductRepository;
-import com.inz.praca.repository.UserRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.CartPage;
 import com.inz.praca.selenium.pageObjects.LoginPage;
@@ -32,18 +28,9 @@ public class OrderSeleniumTest extends SeleniumTestBase {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-	@Autowired
-	private UserRepository userRepository;
-
 	@Test
 	public void shouldCreateOrder() throws Exception {
 		prepareBeforeTest();
-		driver.manage().deleteAllCookies();
-		userRepository.deleteAll();
-		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build();
-		admin.setRole(Role.ADMIN);
-		admin.setActive(true);
-		userRepository.save(admin);
 
 		driver.get("http://localhost:" + port + "/cart");
 		LoginPage loginPage = new LoginPage(driver);
