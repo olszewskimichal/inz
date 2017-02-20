@@ -10,12 +10,12 @@ import static org.mockito.Mockito.doAnswer;
 import java.util.Arrays;
 import java.util.Optional;
 
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.User;
-import com.inz.praca.dto.UserDTO;
-import com.inz.praca.exceptions.UserNotFoundException;
-import com.inz.praca.repository.UserRepository;
-import com.inz.praca.service.UserService;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.registration.User;
+import com.inz.praca.registration.UserDTO;
+import com.inz.praca.registration.UserNotFoundException;
+import com.inz.praca.registration.UserRepository;
+import com.inz.praca.registration.UserService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

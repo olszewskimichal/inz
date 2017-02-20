@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.domain.Cart;
-import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.Product;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.cart.Cart;
+import com.inz.praca.cart.CartItem;
+import com.inz.praca.products.Product;
 import org.junit.Assert;
 import org.junit.Test;
 

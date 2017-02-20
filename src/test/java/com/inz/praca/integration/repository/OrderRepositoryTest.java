@@ -6,15 +6,15 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.domain.Cart;
-import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.Order;
-import com.inz.praca.domain.Product;
-import com.inz.praca.domain.ShippingDetail;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.cart.Cart;
+import com.inz.praca.cart.CartItem;
+import com.inz.praca.orders.Order;
+import com.inz.praca.products.Product;
+import com.inz.praca.orders.ShippingDetail;
 import com.inz.praca.integration.JpaTestBase;
-import com.inz.praca.repository.OrderRepository;
-import com.inz.praca.repository.ProductRepository;
+import com.inz.praca.orders.OrderRepository;
+import com.inz.praca.products.ProductRepository;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

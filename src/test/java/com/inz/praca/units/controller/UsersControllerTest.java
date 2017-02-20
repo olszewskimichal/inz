@@ -9,9 +9,9 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.ArrayList;
 
-import com.inz.praca.controller.UsersController;
-import com.inz.praca.domain.User;
-import com.inz.praca.service.UserService;
+import com.inz.praca.registration.UsersController;
+import com.inz.praca.registration.User;
+import com.inz.praca.registration.UserService;
 import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;

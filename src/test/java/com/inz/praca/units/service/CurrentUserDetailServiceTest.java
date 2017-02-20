@@ -3,10 +3,10 @@ package com.inz.praca.units.service;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-import com.inz.praca.dto.CurrentUser;
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.service.CurrentUserDetailsService;
-import com.inz.praca.service.UserService;
+import com.inz.praca.registration.CurrentUser;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.login.CurrentUserDetailsService;
+import com.inz.praca.registration.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

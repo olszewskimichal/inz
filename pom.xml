@@ -199,9 +199,9 @@
                     </targetClasses>
                     <excludedClasses>
                         <class>com.inz.praca.utils.Pager</class>
-                        <class>com.inz.praca.domain.ShippingDetail</class>
+                        <class>com.inz.praca.orders.ShippingDetail</class>
                         <class>com.inz.praca.config.*</class>
-                        <class>com.inz.praca.dto.CurrentUser</class>
+                        <class>com.inz.praca.registration.CurrentUser</class>
                     </excludedClasses>
                     <targetTests>
                         <param>com.inz.praca.units.*</param>
@@ -263,7 +263,7 @@
                 <configuration>
                     <excludes>
                         <exclude>
-                            com.inz.praca.domain.ShippingDetail
+                            com.inz.praca.orders.ShippingDetail
                         </exclude>
                         <exclude>
                             LOMBOK.DATA

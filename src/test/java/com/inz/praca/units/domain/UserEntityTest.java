@@ -2,8 +2,8 @@ package com.inz.praca.units.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.User;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.registration.User;
 import org.junit.Assert;
 import org.junit.Test;
 

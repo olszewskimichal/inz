@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.dto.CartSession;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.cart.CartSession;
 import org.junit.Test;
 
 public class CartSessionTest {

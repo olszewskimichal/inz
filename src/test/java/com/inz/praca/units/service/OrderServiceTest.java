@@ -5,15 +5,15 @@ import static org.mockito.BDDMockito.given;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.Order;
-import com.inz.praca.domain.ShippingDetail;
-import com.inz.praca.dto.CartSession;
-import com.inz.praca.dto.OrderDTO;
-import com.inz.praca.repository.OrderRepository;
-import com.inz.praca.repository.ProductRepository;
-import com.inz.praca.service.OrderService;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.orders.Order;
+import com.inz.praca.orders.ShippingDetail;
+import com.inz.praca.cart.CartSession;
+import com.inz.praca.orders.OrderDTO;
+import com.inz.praca.orders.OrderRepository;
+import com.inz.praca.products.ProductRepository;
+import com.inz.praca.orders.OrderService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

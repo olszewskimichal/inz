@@ -8,9 +8,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-import com.inz.praca.controller.RegisterController;
-import com.inz.praca.dto.UserDTO;
-import com.inz.praca.service.UserService;
+import com.inz.praca.registration.RegisterController;
+import com.inz.praca.registration.UserDTO;
+import com.inz.praca.registration.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

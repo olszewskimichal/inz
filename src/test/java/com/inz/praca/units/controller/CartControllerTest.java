@@ -6,10 +6,10 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.controller.CartController;
-import com.inz.praca.dto.CartSession;
-import com.inz.praca.service.ProductService;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.cart.CartController;
+import com.inz.praca.cart.CartSession;
+import com.inz.praca.products.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -2,7 +2,7 @@ package com.inz.praca.integration.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.domain.ShippingDetail;
+import com.inz.praca.orders.ShippingDetail;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 

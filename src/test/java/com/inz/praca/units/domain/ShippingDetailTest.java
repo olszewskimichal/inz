@@ -2,7 +2,7 @@ package com.inz.praca.units.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.inz.praca.domain.ShippingDetail;
+import com.inz.praca.orders.ShippingDetail;
 import org.junit.Assert;
 import org.junit.Test;
 

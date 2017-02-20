@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
+import com.inz.praca.products.ProductBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 

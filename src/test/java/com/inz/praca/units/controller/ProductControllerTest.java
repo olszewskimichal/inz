@@ -12,12 +12,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.controller.ProductController;
-import com.inz.praca.domain.Category;
-import com.inz.praca.dto.ProductDTO;
-import com.inz.praca.repository.CategoryRepository;
-import com.inz.praca.service.ProductService;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.products.ProductController;
+import com.inz.praca.category.Category;
+import com.inz.praca.products.ProductDTO;
+import com.inz.praca.category.CategoryRepository;
+import com.inz.praca.products.ProductService;
 import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;

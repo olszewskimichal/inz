@@ -9,9 +9,9 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import javax.persistence.PersistenceException;
 
-import com.inz.praca.controller.CategoryController;
-import com.inz.praca.dto.CategoryDTO;
-import com.inz.praca.service.ProductService;
+import com.inz.praca.category.CategoryController;
+import com.inz.praca.category.CategoryDTO;
+import com.inz.praca.products.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

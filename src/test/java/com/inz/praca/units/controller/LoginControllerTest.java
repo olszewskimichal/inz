@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
-import com.inz.praca.controller.LoginController;
+import com.inz.praca.login.LoginController;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

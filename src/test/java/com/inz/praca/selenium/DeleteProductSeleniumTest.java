@@ -5,10 +5,10 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.domain.Product;
-import com.inz.praca.repository.OrderRepository;
-import com.inz.praca.repository.ProductRepository;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.products.Product;
+import com.inz.praca.orders.OrderRepository;
+import com.inz.praca.products.ProductRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;

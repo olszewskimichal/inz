@@ -7,15 +7,15 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.Cart;
-import com.inz.praca.domain.CartItem;
-import com.inz.praca.domain.Order;
-import com.inz.praca.domain.Product;
-import com.inz.praca.domain.Role;
-import com.inz.praca.domain.ShippingDetail;
-import com.inz.praca.domain.User;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.cart.Cart;
+import com.inz.praca.cart.CartItem;
+import com.inz.praca.orders.Order;
+import com.inz.praca.products.Product;
+import com.inz.praca.login.Role;
+import com.inz.praca.orders.ShippingDetail;
+import com.inz.praca.registration.User;
 import com.inz.praca.integration.JpaTestBase;
 import org.junit.Test;
 

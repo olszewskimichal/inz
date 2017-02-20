@@ -6,9 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.inz.praca.dto.CategoryDTO;
+import com.inz.praca.category.CategoryDTO;
 import com.inz.praca.integration.IntegrationTestBase;
-import com.inz.praca.service.ProductService;
+import com.inz.praca.products.ProductService;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

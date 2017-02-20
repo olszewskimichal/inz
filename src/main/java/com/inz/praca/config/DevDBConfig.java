@@ -3,14 +3,14 @@ package com.inz.praca.config;
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.CategoryBuilder;
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.Role;
-import com.inz.praca.domain.User;
-import com.inz.praca.repository.CategoryRepository;
-import com.inz.praca.repository.ProductRepository;
-import com.inz.praca.repository.UserRepository;
+import com.inz.praca.category.CategoryBuilder;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.login.Role;
+import com.inz.praca.registration.User;
+import com.inz.praca.category.CategoryRepository;
+import com.inz.praca.products.ProductRepository;
+import com.inz.praca.registration.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;

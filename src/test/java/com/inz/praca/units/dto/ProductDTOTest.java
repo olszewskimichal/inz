@@ -2,8 +2,8 @@ package com.inz.praca.units.dto;
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.dto.ProductDTO;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.products.ProductDTO;
 
 public class ProductDTOTest extends LocalEqualsHashCodeTest {
 

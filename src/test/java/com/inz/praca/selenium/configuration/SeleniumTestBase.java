@@ -1,10 +1,10 @@
 package com.inz.praca.selenium.configuration;
 
-import com.inz.praca.builders.UserBuilder;
-import com.inz.praca.domain.Role;
-import com.inz.praca.domain.User;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.login.Role;
+import com.inz.praca.registration.User;
 import com.inz.praca.integration.SeleniumProfileTestBase;
-import com.inz.praca.repository.UserRepository;
+import com.inz.praca.registration.UserRepository;
 import com.inz.praca.selenium.pageObjects.LoginPage;
 import org.junit.Rule;
 import org.openqa.selenium.WebDriver;

@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import com.inz.praca.builders.CategoryBuilder;
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.domain.Category;
-import com.inz.praca.domain.Product;
+import com.inz.praca.category.CategoryBuilder;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.category.Category;
+import com.inz.praca.products.Product;
 import com.inz.praca.integration.JpaTestBase;
-import com.inz.praca.repository.ProductRepository;
+import com.inz.praca.products.ProductRepository;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

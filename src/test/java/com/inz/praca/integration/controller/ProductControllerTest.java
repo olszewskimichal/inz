@@ -8,10 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.math.BigDecimal;
 
-import com.inz.praca.builders.ProductBuilder;
-import com.inz.praca.domain.Product;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.products.Product;
 import com.inz.praca.integration.IntegrationTestBase;
-import com.inz.praca.service.ProductService;
+import com.inz.praca.products.ProductService;
 import org.junit.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
