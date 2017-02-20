@@ -1,6 +1,6 @@
 Feature: Koszyk sklepu
 
-  Klient musi mieć możliwośc zamawiania produktów do koszyka. ktory automatycznie bedzie przeliczał kwotę do zapłaty oraz ilość
+  Klient musi mieć możliwośc dodawania produktów do koszyka, ktory automatycznie bedzie przeliczał kwotę do zapłaty oraz ilość
   zamowionych tych samych przedmiotów. Uzytkownik musi miec też możliwość usuwania elementów z koszyka
 
 
