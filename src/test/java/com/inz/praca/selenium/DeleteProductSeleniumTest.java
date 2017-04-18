@@ -5,14 +5,15 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
-import com.inz.praca.products.ProductBuilder;
-import com.inz.praca.products.Product;
 import com.inz.praca.orders.OrderRepository;
+import com.inz.praca.products.Product;
+import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.products.ProductRepository;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.ProductPage;
 import org.junit.Test;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -39,8 +40,12 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
 		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 		ProductPage productPage = new ProductPage(driver);
 		productPage.clickOnRemoveProductButton();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		productPage.clickOnConfirmRemoveProduct();
-		assertThat(repository.findAll().size()).isEqualTo(size - 1);
+		if (driver instanceof HtmlUnitDriver) {
+		}
+		else {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			productPage.clickOnConfirmRemoveProduct();
+			assertThat(repository.findAll().size()).isEqualTo(size - 1);
+		}
 	}
 }

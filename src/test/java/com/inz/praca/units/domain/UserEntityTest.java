@@ -3,7 +3,6 @@ package com.inz.praca.units.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.inz.praca.registration.UserBuilder;
-import com.inz.praca.registration.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -97,11 +96,4 @@ public class UserEntityTest {
 		}
 	}
 
-	@Test
-	public void shouldOrdersNeverBeNull() {
-		User user = new UserBuilder().withEmail("nazwa@o2.pl").withPasswordHash("zaq1@WSX").build();
-		assertThat(user.getOrders()).isNotNull().isEmpty();
-		user.setOrders(null);
-		assertThat(user.getOrders()).isNotNull().isEmpty();
-	}
 }

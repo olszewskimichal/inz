@@ -13,15 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.inz.praca.orders.Order;
 import com.inz.praca.login.Role;
+import com.inz.praca.orders.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,6 @@ import org.springframework.util.Assert;
 @Getter
 @ToString
 @Slf4j
-@Setter
 @NoArgsConstructor(force = true)
 @Table(name = "USERS")
 public class User {
@@ -72,17 +71,30 @@ public class User {
 		this.active = active;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public Set<Order> getOrders() {
 		if (orders == null)
 			orders = new HashSet<>();
-		return orders;
+		return Collections.unmodifiableSet(orders);
 	}
 
-	public void setActive(Boolean active) {
-		this.active = active;
+
+	public void changeActivity() {
+		active = !active;
+	}
+
+	public Boolean isActivated() {
+		return active;
+	}
+
+	public void giveAdminAuthorization() {
+		role = Role.ADMIN;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void addOrder(Order order) {
+		orders.add(order);
 	}
 }

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @NoArgsConstructor
 public class ProductDTO implements Serializable {
 
-	@NotBlank //TODO moze wykorzystac notBlank do pokazania Chlebakowi
+	@NotBlank
 	@Size(min = 4, max = 15)
 	private String name;
 
@@ -43,5 +43,6 @@ public class ProductDTO implements Serializable {
 		this.imageUrl = product.getImageUrl();
 		this.description = product.getDescription();
 		this.price = product.getPrice();
+		this.id = product.getId();
 	}
 }

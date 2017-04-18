@@ -39,10 +39,10 @@ public class UsersController {
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(value = "/user/active/{id}", method = RequestMethod.GET)
-	public String activateUser(@PathVariable final Long id, RedirectAttributes redirectAttributes) {
-		log.debug("Aktywacja uzytkownika o id {}", id);
-		String message = userService.changeUserActive(id);
+	@RequestMapping(value = "/user/active/{userId}", method = RequestMethod.GET)
+	public String activateUser(@PathVariable final Long userId, RedirectAttributes redirectAttributes) {
+		log.debug("Aktywacja uzytkownika o userId {}", userId);
+		String message = userService.changeUserActive(userId);
 		redirectAttributes.addFlashAttribute("activate", true);
 		redirectAttributes.addFlashAttribute("activateMessage", message);
 		return "redirect:/users";

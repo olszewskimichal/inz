@@ -19,9 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 public class OrderController {
 
-	private final CartSession cartSession;
-
 	private final OrderService orderService;
+	private final CartSession cartSession;
 
 	public OrderController(CartSession cartSession, OrderService orderService) {
 		this.cartSession = cartSession;
@@ -42,11 +41,7 @@ public class OrderController {
 	@PostMapping(value = "/order")
 	public String postShippingDetail(@Valid @ModelAttribute ShippingDetail detail, Model model) {
 		log.info("postShipping" + detail.toString());
-		CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		CartSession cartSession1 = new CartSession(cartSession);
-		OrderDTO orderDTO = new OrderDTO(cartSession1, detail);
-		orderService.createOrder(user.getUser(), orderDTO);
-		cartSession.clearCart();
+		OrderDTO orderDTO = orderService.confirmShippingDetail(detail);
 		model.addAttribute(orderDTO);
 		return "orderConfirmation";
 	}

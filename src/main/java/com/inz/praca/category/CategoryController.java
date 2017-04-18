@@ -42,7 +42,7 @@ public class CategoryController {
 		}
 		try {
 			log.debug("tworzy kategorie");
-			productService.createCategory(categoryDTO);
+			productService.createCategoryFromDTO(categoryDTO);
 			return "redirect:/";
 		}
 		catch (IllegalArgumentException | PersistenceException | DataIntegrityViolationException e) {

@@ -53,7 +53,7 @@ public class CategoryControllerTest {
 
 	@Test
 	public void shouldFailedCreateCategory() {
-		given(productService.createCategory(any(CategoryDTO.class))).willThrow(new PersistenceException());
+		given(productService.createCategoryFromDTO(any(CategoryDTO.class))).willThrow(new PersistenceException());
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setName("name");
 		categoryDTO.setDescription("desc");

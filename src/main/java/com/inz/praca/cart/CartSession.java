@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.inz.praca.products.ProductDTO;
@@ -31,7 +32,7 @@ public class CartSession implements Serializable {
 		this.totalPrice = cartSession.getTotalPrice();
 	}
 
-	public void addProductDTO(ProductDTO productDTO) {
+	public void addProduct(ProductDTO productDTO) {
 		for (CartItemDTO cartItemDTO : items) {
 			if (cartItemDTO.getItem().equals(productDTO)) {
 				cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
@@ -44,7 +45,7 @@ public class CartSession implements Serializable {
 		updatePrice();
 	}
 
-	public void removeProductDTO(int rowId) {
+	public void removeProductById(int rowId) {
 		if (!items.isEmpty()) {
 			items.remove(rowId);
 			updatePrice();
@@ -63,6 +64,6 @@ public class CartSession implements Serializable {
 	public List<CartItemDTO> getItems() {
 		if (items == null)
 			items = new ArrayList<>();
-		return items;
+		return Collections.unmodifiableList(items);
 	}
 }

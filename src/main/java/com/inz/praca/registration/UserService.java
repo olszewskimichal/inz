@@ -34,7 +34,7 @@ public class UserService {
 		return userRepository.findAll(pageRequest);
 	}
 
-	public User create(UserDTO form) {
+	public User createUserFromDTO(UserDTO form) {
 		User user = new UserBuilder().build(form);
 		userRepository.save(user);
 		log.info("Stworzono uzytkownika o id {}", user.getId());
@@ -43,8 +43,8 @@ public class UserService {
 
 	public String changeUserActive(Long id) {
 		User user = getUserById(id);
-		user.setActive(!user.getActive());
+		user.changeActivity();
 		userRepository.save(user);
-		return String.format(user.getActive() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s", user.getEmail());
+		return String.format(user.isActivated() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s", user.getEmail());
 	}
 }

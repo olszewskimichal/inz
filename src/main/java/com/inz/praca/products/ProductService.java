@@ -37,6 +37,11 @@ public class ProductService {
 		this.categoryRepository = categoryRepository;
 	}
 
+	public ProductDTO getProductDTOById(Long id) {
+		Assert.notNull(id, "Podano pusty id produktu");
+		return new ProductDTO(productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id)));
+	}
+
 	public Product getProductById(Long id) {
 		Assert.notNull(id, "Podano pusty id produktu");
 		return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
@@ -60,7 +65,7 @@ public class ProductService {
 	}
 
 	@Transactional
-	public Product createProduct(ProductDTO productDTO) {
+	public Product createProductFromDTO(ProductDTO productDTO) {
 		Product product = new ProductBuilder().createProduct(productDTO);
 		productRepository.save(product);
 		Category category = categoryRepository.findByName(productDTO.getCategory()).orElseThrow(() -> new CategoryNotFoundException(productDTO.getCategory()));
@@ -69,7 +74,7 @@ public class ProductService {
 		return product;
 	}
 
-	public Category createCategory(CategoryDTO categoryDTO) {
+	public Category createCategoryFromDTO(CategoryDTO categoryDTO) {
 		Category category = new Category(categoryDTO.getName(), categoryDTO.getDescription());
 		categoryRepository.save(category);
 		log.debug("Stworzono kategorie o id {} ", category.getId());
@@ -100,7 +105,7 @@ public class ProductService {
 		productRepository.updateProduct(productDTO.getName(), productDTO.getDescription(), productDTO.getPrice(), productDTO.getImageUrl(), id);
 	}
 
-	public Long deleteProductById(Long id) {
+	public void deleteProductById(Long id) {
 		try {
 			productRepository.deleteProductById(id);
 		}
@@ -110,6 +115,5 @@ public class ProductService {
 			productById.setActive(false);
 			productRepository.save(productById);
 		}
-		return id;
 	}
 }

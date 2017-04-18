@@ -49,7 +49,7 @@ public class OrderControllerTest {
 	public void setUp() {
 		initMocks(this);
 		CartSession cartSession = new CartSession();
-		cartSession.addProductDTO(new ProductBuilder().withName("aaaa").withPrice(BigDecimal.TEN).createProductDTO());
+		cartSession.addProduct(new ProductBuilder().withName("aaaa").withPrice(BigDecimal.TEN).createProductDTO());
 		orderController = new OrderController(cartSession, orderService);
 	}
 

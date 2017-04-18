@@ -139,7 +139,7 @@ public class UserServiceTest {
 			return argument;
 		}).when(userRepository).save(any(User.class));
 
-		User user = userService.create(userDTO);
+		User user = userService.createUserFromDTO(userDTO);
 		assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
 		assertThat(user.getName()).isEqualTo(userDTO.getName());
 		assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());

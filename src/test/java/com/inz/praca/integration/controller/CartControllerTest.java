@@ -29,7 +29,7 @@ public class CartControllerTest extends IntegrationTestBase {
 
 	@Test
 	public void shouldRedirectAfterAddProductToCart() throws Exception {
-		Product product = productService.createProduct(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
+		Product product = productService.createProductFromDTO(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
 		mvc.perform(get("/cart/add/" + product.getId()))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/cart"));

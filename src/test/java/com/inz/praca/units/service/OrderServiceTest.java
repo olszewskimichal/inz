@@ -32,14 +32,14 @@ public class OrderServiceTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.orderService = new OrderService(orderRepository, productRepository);
+		this.orderService = new OrderService(orderRepository, productRepository, null);
 	}
 
 	@Test
 	public void shouldCreateOrder() {
 		given(productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProduct()));
 		CartSession cartSession = new CartSession();
-		cartSession.addProductDTO(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
+		cartSession.addProduct(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
 		OrderDTO orderDTO = new OrderDTO(cartSession, new ShippingDetail());
 		Order order = orderService.createOrder(new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
 		assertThat(order).isNotNull();

@@ -51,6 +51,7 @@ public class ProductController {
 	@PostMapping("/addProduct")
 	public String confirmNewProduct(@Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 		log.info("Proba dodania nowego produktu {}", productDTO);
+
 		if (result.hasErrors()) {
 			log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
 			model.addAttribute(PRODUCT_FORM, productDTO);
@@ -58,7 +59,7 @@ public class ProductController {
 			return NEW_PRODUCT;
 		}
 		try {
-			productService.createProduct(productDTO);
+			productService.createProductFromDTO(productDTO);
 			redirectAttributes.addFlashAttribute("createProductDone", true);
 			return "redirect:/products";
 		}
@@ -70,10 +71,10 @@ public class ProductController {
 		return NEW_PRODUCT;
 	}
 
-	@GetMapping(value = "/products/product/{id}")
-	public String showProductDetail(@PathVariable Long id, Model model) {
-		log.debug("Pobranie produktu o id {}", id);
-		ProductDTO productDTO = new ProductDTO(productService.getProductById(id));
+	@GetMapping(value = "/products/product/{productId}")
+	public String showProductDetail(@PathVariable Long productId, Model model) {
+		log.debug("Pobranie produktu o productId {}", productId);
+		ProductDTO productDTO = productService.getProductDTOById(productId);
 		model.addAttribute(productDTO);
 		return PRODUCT;
 	}
@@ -99,7 +100,7 @@ public class ProductController {
 	@GetMapping(value = "/products/product/edit/{id}")
 	public String editProduct(@PathVariable Long id, Model model) {
 		log.info("Formularz edycji produktu o id {}", id);
-		ProductDTO productDTO = new ProductDTO(productService.getProductById(id));
+		ProductDTO productDTO = productService.getProductDTOById(id);
 		model.addAttribute(PRODUCT_FORM, productDTO);
 		model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
 		model.addAttribute(PRODUCT_ID, id);
@@ -107,24 +108,24 @@ public class ProductController {
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@GetMapping(value = "/products/product/delete/{id}")
-	public String deleteProduct(@PathVariable Long id) {
-		productService.deleteProductById(id);
+	@GetMapping(value = "/products/product/delete/{productId}")
+	public String deleteProduct(@PathVariable Long productId) {
+		productService.deleteProductById(productId);
 		return "redirect:/products";
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PostMapping("/products/product/edit/{id}")
-	public String confirmEditProduct(@PathVariable Long id, @Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model) {
+	@PostMapping("/products/product/edit/{productId}")
+	public String confirmEditProduct(@PathVariable Long productId, @Valid @ModelAttribute(PRODUCT_FORM) ProductDTO productDTO, BindingResult result, Model model) {
 		log.info("Proba edycji produktu {}", productDTO);
 		if (result.hasErrors()) {
 			log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
 			model.addAttribute(PRODUCT_FORM, productDTO);
 			model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
-			model.addAttribute(PRODUCT_ID, id);
+			model.addAttribute(PRODUCT_ID, productId);
 			return EDIT_PRODUCT;
 		}
-		productService.updateProduct(id, productDTO);
-		return "redirect:/products/product/" + id;
+		productService.updateProduct(productId, productDTO);
+		return "redirect:/products/product/" + productId;
 	}
 }

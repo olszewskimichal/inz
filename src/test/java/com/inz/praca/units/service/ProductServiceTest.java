@@ -124,7 +124,7 @@ public class ProductServiceTest {
 				argument.setId(1L);
 				return argument;
 			}).when(productRepository).save(any(Product.class));
-			productService.createProduct(productDTO);
+			productService.createProductFromDTO(productDTO);
 			Assert.fail();
 		}
 		catch (CategoryNotFoundException e) {
@@ -217,7 +217,7 @@ public class ProductServiceTest {
 
 		given(categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
 
-		Product product = productService.createProduct(productDTO);
+		Product product = productService.createProductFromDTO(productDTO);
 		assertThat(product.getId()).isEqualTo(1L);
 		assertThat(product.getName()).isEqualTo(productDTO.getName());
 		assertThat(product.getPrice()).isEqualTo(productDTO.getPrice());
@@ -232,7 +232,7 @@ public class ProductServiceTest {
 		productDTO.setImageUrl("url");
 		productDTO.setPrice(BigDecimal.TEN);
 		try {
-			productService.createProduct(productDTO);
+			productService.createProductFromDTO(productDTO);
 			Assert.fail();
 		}
 		catch (IllegalArgumentException e) {

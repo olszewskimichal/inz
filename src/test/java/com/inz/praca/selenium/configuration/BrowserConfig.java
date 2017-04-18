@@ -10,13 +10,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 @Slf4j
 public class BrowserConfig {
 
+	public WebDriver htmlUnitDriver() {
+		return new HtmlUnitDriver(true);
+	}
+
 	public WebDriver firefox() throws IOException {
 		System.setProperty("webdriver.gecko.driver", "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
 		String travisCiFlag = System.getenv().get("TRAVIS");
+		if (!"true".equals(travisCiFlag)) {
+			return htmlUnitDriver();
+		}
 		FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
 		return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
 	}

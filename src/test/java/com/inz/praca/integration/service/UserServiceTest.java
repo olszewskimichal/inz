@@ -60,7 +60,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		userDTO.setPassword("zaq1@WSX");
 
 		//when
-		User user = userService.create(userDTO);
+		User user = userService.createUserFromDTO(userDTO);
 
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
@@ -82,7 +82,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		userDTO.setPassword("zaq1@WSX");
 
 		//when
-		User user = userService.create(userDTO);
+		User user = userService.createUserFromDTO(userDTO);
 
 		//then
 		assertThat(repository.findAll().size()).isEqualTo(1);
@@ -90,7 +90,7 @@ public class UserServiceTest extends IntegrationTestBase {
 		assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
 
 		try {
-			userService.create(userDTO);
+			userService.createUserFromDTO(userDTO);
 			Assert.fail();
 		}
 		catch (DataIntegrityViolationException e) {

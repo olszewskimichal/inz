@@ -72,7 +72,7 @@ public class ProductControllerTest {
 	@Test
 	public void shouldFailedCreateProduct() {
 		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-		given(productService.createProduct(any(ProductDTO.class))).willThrow(new IllegalArgumentException());
+		given(productService.createProductFromDTO(any(ProductDTO.class))).willThrow(new IllegalArgumentException());
 
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName("name");

@@ -46,9 +46,9 @@ public class UserEntityTest extends JpaTestBase {
 		Set<CartItem> cartItems = new HashSet<>();
 		cartItems.add(new CartItem(product, 4L));
 		Cart cart = new Cart(cartItems);
-		user.getOrders().add(new Order(cart, shippingDetail));
+		user.addOrder(new Order(cart, shippingDetail));
 		ShippingDetail shippingDetail2 = new ShippingDetail("ulica2", "miasto2", "46", "code");
-		user.getOrders().add(new Order(cart, shippingDetail2));
+		user.addOrder(new Order(cart, shippingDetail2));
 		this.entityManager.persistAndFlush(user);
 		assertThat(user.getOrders().size()).isEqualTo(2);
 		for (Order order : user.getOrders()) {
@@ -60,11 +60,6 @@ public class UserEntityTest extends JpaTestBase {
 			assertThat(order.getCart().getId()).isNotNull();
 			assertThat(order.getCart().getDateTime()).isNotNull().isBeforeOrEqualTo(LocalDateTime.now());
 		}
-
-		user.getOrders().removeIf(v -> v.getShippingDetail().getStreet().equalsIgnoreCase("ulica2"));
-		this.entityManager.persist(user);
-		User user1 = this.entityManager.find(User.class, user.getId());
-		assertThat(user1.getOrders().size()).isEqualTo(1);
 	}
 
 	@Test
@@ -76,7 +71,7 @@ public class UserEntityTest extends JpaTestBase {
 	@Test
 	public void shouldCreateUserAsAdmin() {
 		User user = new UserBuilder().withEmail("prawidlowyEmail@o2.pl").withPasswordHash("zaq1@WSX").activate().build();
-		user.setRole(Role.ADMIN);
+		user.giveAdminAuthorization();
 		this.entityManager.persistFlushFind(user);
 		assertThat(user.getId()).isNotNull();
 		assertThat(user.getRole()).isEqualTo(Role.ADMIN);

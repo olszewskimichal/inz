@@ -46,7 +46,7 @@ public class CategoryControllerTest extends IntegrationTestBase {
 		CategoryDTO categoryDTO=new CategoryDTO();
 		categoryDTO.setName("nazwaaaa");
 		categoryDTO.setDescription("opisDlugi");
-		service.createCategory(categoryDTO);
+		service.createCategoryFromDTO(categoryDTO);
 		mvc.perform(post("/addCategory")
 				.param("name", "nazwaaaaa")
 				.param("description", "opisDlugi"))

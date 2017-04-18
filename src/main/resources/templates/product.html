@@ -26,7 +26,7 @@
                      </p> -->
                 <h4 id="price" th:text="${productDTO.price}+' PLN'"></h4>
                 <p>
-                    <a id="order" th:href="@{/cart/add/{id}(id=${id})}" class="btn btn-warning btn-large">
+                    <a id="order" th:href="@{/cart/add/{productId}(productId=${productId})}" class="btn btn-warning btn-large">
                         <span class="glyphicon-shopping-cart glyphicon"></span> Zamów teraz </a>
 
                     <a id="cart" th:href="@{/cart/}" class="btn btn-default">
@@ -36,7 +36,7 @@
                     <a id="products" th:href="@{/products}" class="btn btn-default">
                         <span class="glyphicon-hand-left glyphicon"></span> Wstecz
                     </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" id="editProduct" th:href="@{/products/product/edit/{id}(id=${id})}" class="btn btn-default">
+                    <a sec:authorize="hasAuthority('ADMIN')" id="editProduct" th:href="@{/products/product/edit/{productId}(productId=${productId})}" class="btn btn-default">
                         <span class="glyphicon glyphicon-remove"></span> Edytuj
                     </a>
                     <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-default"  data-toggle="modal" data-target="#myModal" th:onclick="'deleteProduct(' + ${id} + ')' ">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="modal-footer">
                     <form id="deleteform" action="" method="post">
-                        <a th:href="@{/products/product/delete/{id}(id=${id})}" name="submit1" id="submitdelete"
+                        <a th:href="@{/products/product/delete/{productId}(productId=${productId})}" name="submit1" id="submitdelete"
                                th:text="Tak"
                                class="btn btn-primary pull-right"></a>
                         <input type="button" class="btn btn-default" data-dismiss="modal"

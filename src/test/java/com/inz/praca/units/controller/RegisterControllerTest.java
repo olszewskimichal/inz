@@ -60,7 +60,7 @@ public class RegisterControllerTest {
 	@Test
 	public void shouldFailedRegisterWithNotCorrectUser() {
 		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-		given(userService.create(any(UserDTO.class))).willThrow(new IllegalArgumentException());
+		given(userService.createUserFromDTO(any(UserDTO.class))).willThrow(new IllegalArgumentException());
 
 		UserDTO userDTO = new UserDTO();
 		userDTO.setName("imie");
@@ -76,7 +76,7 @@ public class RegisterControllerTest {
 	@Test
 	public void shouldFailedRegisterWithExistingUser() {
 		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-		given(userService.create(any(UserDTO.class))).willThrow(new DataIntegrityViolationException("msg"));
+		given(userService.createUserFromDTO(any(UserDTO.class))).willThrow(new DataIntegrityViolationException("msg"));
 
 		UserDTO userDTO = new UserDTO();
 		userDTO.setName("imie");
