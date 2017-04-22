@@ -10,8 +10,8 @@ import static org.mockito.Mockito.doAnswer;
 import java.util.Arrays;
 import java.util.Optional;
 
-import com.inz.praca.registration.UserBuilder;
 import com.inz.praca.registration.User;
+import com.inz.praca.registration.UserBuilder;
 import com.inz.praca.registration.UserDTO;
 import com.inz.praca.registration.UserNotFoundException;
 import com.inz.praca.registration.UserRepository;
@@ -126,25 +126,16 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldCreateUserWhenFormIsCorrect() {
-		UserDTO userDTO = new UserDTO();
-		userDTO.setConfirmPassword("zaq1@WSX");
-		userDTO.setPassword("zaq1@WSX");
-		userDTO.setEmail("email@o2.pl");
-		userDTO.setName("name");
-		userDTO.setLastName("last");
-
-		doAnswer(invocation -> {
-			User argument = (User) invocation.getArguments()[0];
-			argument.setId(1L);
-			return argument;
-		}).when(userRepository).save(any(User.class));
+		UserDTO userDTO = new UserDTO(); userDTO.setConfirmPassword("zaq1@WSX");
+		userDTO.setPassword("zaq1@WSX"); userDTO.setEmail("email@o2.pl");
+		userDTO.setName("name"); userDTO.setLastName("last");
+		doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
 
 		User user = userService.createUserFromDTO(userDTO);
 		assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
 		assertThat(user.getName()).isEqualTo(userDTO.getName());
 		assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
 		assertThat(new BCryptPasswordEncoder().matches(userDTO.getPassword(), user.getPasswordHash())).isTrue();
-		assertThat(user.getId()).isEqualTo(1L);
 	}
 
 	@Test
@@ -158,15 +149,11 @@ public class UserServiceTest {
 
 	@Test
 	public void shouldActivateUser() {
-		doAnswer(invocation -> {
-			User argument = (User) invocation.getArguments()[0];
-			argument.setId(1L);
-			return argument;
-		}).when(userRepository).save(any(User.class));
+		doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
 		given(userRepository.findById(1L)).willReturn(Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build()));
-		String result = userService.changeUserActive(1L);
+		String result = userService.changeUserActive(1L, true);
 		assertThat(result).isEqualTo("Aktywowano uzytkownika name3@o2.pl");
-		result = userService.changeUserActive(1L);
+		result = userService.changeUserActive(1L, false);
 		assertThat(result).isEqualTo("Deaktywowano uzytkownika name3@o2.pl");
 	}
 }

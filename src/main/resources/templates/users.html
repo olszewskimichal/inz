@@ -29,10 +29,10 @@
                     <td th:text="${user.name + ' ' + user.lastName}"></td>
                     <td th:text="${user.role}"></td>
                     <td>
-                        <a th:id="'user'+${rowStat.index}" th:if="!${user.active}" th:href=" ${'/user/active/' + user.id}">Aktywacja
+                        <a th:id="'user'+${rowStat.index}" th:if="!${user.active}" th:href=" ${'/user/active/true/' + user.id}">Aktywacja
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
-                        <a th:id="'user'+${rowStat.index}" th:if="${user.active}" th:href=" ${'/user/active/' +user.id}">Dezaktywacja
+                        <a th:id="'user'+${rowStat.index}" th:if="${user.active}" th:href=" ${'/user/active/false/' +user.id}">Dezaktywacja
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
                     </td>

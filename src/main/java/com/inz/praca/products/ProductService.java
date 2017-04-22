@@ -29,7 +29,6 @@ public class ProductService {
 	private static final int FIRST_PAGE = 0;
 
 	private final ProductRepository productRepository;
-
 	private final CategoryRepository categoryRepository;
 
 	public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
@@ -69,7 +68,7 @@ public class ProductService {
 		Product product = new ProductBuilder().createProduct(productDTO);
 		productRepository.save(product);
 		Category category = categoryRepository.findByName(productDTO.getCategory()).orElseThrow(() -> new CategoryNotFoundException(productDTO.getCategory()));
-		product.setCategory(category);
+		product.changeCategory(category);
 		log.info("Stworzono nowy produkt {}", product);
 		return product;
 	}
@@ -112,7 +111,7 @@ public class ProductService {
 		catch (DataIntegrityViolationException e) {
 			log.error("Podany produkt zostal juz zamowiony wiec nie mozna go usunac ale mozna go zdeaktywowac");
 			Product productById = getProductById(id);
-			productById.setActive(false);
+			productById.deactivate();
 			productRepository.save(productById);
 		}
 	}

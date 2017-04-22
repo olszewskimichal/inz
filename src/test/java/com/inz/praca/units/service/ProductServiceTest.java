@@ -121,7 +121,6 @@ public class ProductServiceTest {
 
 			doAnswer(invocation -> {
 				Product argument = (Product) invocation.getArguments()[0];
-				argument.setId(1L);
 				return argument;
 			}).when(productRepository).save(any(Product.class));
 			productService.createProductFromDTO(productDTO);
@@ -211,14 +210,12 @@ public class ProductServiceTest {
 
 		doAnswer(invocation -> {
 			Product argument = (Product) invocation.getArguments()[0];
-			argument.setId(1L);
 			return argument;
 		}).when(productRepository).save(any(Product.class));
 
 		given(categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
 
 		Product product = productService.createProductFromDTO(productDTO);
-		assertThat(product.getId()).isEqualTo(1L);
 		assertThat(product.getName()).isEqualTo(productDTO.getName());
 		assertThat(product.getPrice()).isEqualTo(productDTO.getPrice());
 		assertThat(product.getImageUrl()).isEqualTo(productDTO.getImageUrl());

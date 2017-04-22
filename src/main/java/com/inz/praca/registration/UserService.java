@@ -41,9 +41,12 @@ public class UserService {
 		return user;
 	}
 
-	public String changeUserActive(Long id) {
+	public String changeUserActive(Long id, Boolean activity) {
 		User user = getUserById(id);
-		user.changeActivity();
+		if (activity)
+			user.active();
+		else
+			user.deactivate();
 		userRepository.save(user);
 		return String.format(user.isActivated() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s", user.getEmail());
 	}

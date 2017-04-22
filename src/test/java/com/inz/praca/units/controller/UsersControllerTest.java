@@ -9,9 +9,9 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.ArrayList;
 
-import com.inz.praca.registration.UsersController;
 import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserService;
+import com.inz.praca.registration.UsersController;
 import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,8 +35,7 @@ public class UsersControllerTest {
 
 	@Before
 	public void setUp() {
-		initMocks(this);
-		usersController = new UsersController(userService);
+		initMocks(this); usersController = new UsersController(userService);
 	}
 
 	@Test
@@ -64,8 +63,8 @@ public class UsersControllerTest {
 	@Test
 	public void shouldActivateUserAndRedirectToUsers() {
 		RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-		given(userService.changeUserActive(1L)).willReturn("msg");
-		assertThat(usersController.activateUser(1L, redirectAttributes)).isEqualTo("redirect:/users");
+		given(userService.changeUserActive(1L, true)).willReturn("msg");
+		assertThat(usersController.activateUser(1L, true, redirectAttributes)).isEqualTo("redirect:/users");
 		verify(redirectAttributes).addFlashAttribute("activate", true);
 		verify(redirectAttributes).addFlashAttribute("activateMessage", "msg");
 	}

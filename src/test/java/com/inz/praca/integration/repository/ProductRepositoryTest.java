@@ -67,11 +67,11 @@ public class ProductRepositoryTest extends JpaTestBase {
 		entityManager.persistAndFlush(category);
 		entityManager.persistAndFlush(category2);
 		Product product = new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).withCategory("nazwa1").createProduct();
-		product.setCategory(category);
+		product.changeCategory(category);
 		Product product1 = new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).withCategory("nazwa1").createProduct();
-		product1.setCategory(category);
+		product1.changeCategory(category);
 		Product product2 = new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).withCategory("nazwa2").createProduct();
-		product2.setCategory(category2);
+		product2.changeCategory(category2);
 		entityManager.persistAndFlush(product);
 		entityManager.persistAndFlush(product1);
 		entityManager.persistAndFlush(product2);

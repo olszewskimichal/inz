@@ -76,22 +76,18 @@ public class User {
 			orders = new HashSet<>();
 		return Collections.unmodifiableSet(orders);
 	}
-
-
-	public void changeActivity() {
-		active = !active;
+	public void deactivate() {
+		this.active = false;
 	}
-
-	public Boolean isActivated() {
+	public void active() {
+		this.active = true;
+	}
+	Boolean isActivated() {
 		return active;
 	}
 
 	public void giveAdminAuthorization() {
 		role = Role.ADMIN;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void addOrder(Order order) {

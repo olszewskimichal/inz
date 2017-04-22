@@ -20,7 +20,7 @@ public class NewProductPage {
 		webDriver.findElement(this.name).sendKeys(name);
 	}
 
-	public void typeDesctiption(String description) {
+	public void typeDescription(String description) {
 		webDriver.findElement(this.description).sendKeys(description);
 	}
 
@@ -38,7 +38,7 @@ public class NewProductPage {
 
 	public void fillCreateProductForm(String name, String description, String price, String url) {
 		typeName(name);
-		typeDesctiption(description);
+		typeDescription(description);
 		typePrice(price);
 		typeUrl(url);
 	}

@@ -29,7 +29,7 @@ public class ProductEntityTest extends JpaTestBase {
 	public void shouldPersistProductWithCategory() {
 		Category category = entityManager.persistFlushFind(new Category("aaa", "bbb"));
 		Product product = entityManager.persistFlushFind(new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-		product.setCategory(category);
+		product.changeCategory(category);
 		entityManager.persistAndFlush(product);
 		Product result = entityManager.find(Product.class, product.getId());
 		assertThat(result.getCategory()).isNotNull();

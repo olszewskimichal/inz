@@ -38,6 +38,7 @@ public class Product {
 	@GeneratedValue
 	private Long id;
 
+
 	public Product(String name, String description, String imageUrl, BigDecimal price) {
 		Assert.hasLength(name, "Nie moze być pusta nazwa produktu");
 		Assert.notNull(price, "Cena nie moze byc nullem");
@@ -49,15 +50,11 @@ public class Product {
 		this.active = true;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void deactivate() {
+		this.active = false;
 	}
 
-	public void setCategory(Category category) {
+	public void changeCategory(Category category) {
 		this.category = category;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
 	}
 }
