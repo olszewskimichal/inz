@@ -1,20 +1,19 @@
 package com.inz.praca.units.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.MockitoAnnotations.initMocks;
-
-import java.math.BigDecimal;
-
-import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.cart.CartController;
 import com.inz.praca.cart.CartSession;
+import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.products.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-
 import org.springframework.ui.Model;
+
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CartControllerTest {
 	private CartController controller;
@@ -60,7 +59,7 @@ public class CartControllerTest {
 
 		controller.clearCart(model);
 		assertThat(controller.getForm().getItems().size()).isEqualTo(0);
-		assertThat(controller.getForm().getTotalPrice()).isEqualTo(BigDecimal.ZERO);
+		assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.ZERO);
 	}
 
 }
