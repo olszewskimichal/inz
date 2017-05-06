@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -19,7 +18,6 @@ import java.util.Set;
 @Setter
 @Slf4j
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Cart {
     @Id
     @GeneratedValue
