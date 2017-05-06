@@ -42,4 +42,6 @@ public class DevDBConfig {
         userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
         productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN).withName("name").createProduct());
     }
+
+
 }

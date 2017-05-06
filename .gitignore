@@ -4,5 +4,7 @@ target/
 *.iml
 *.iws
 inzynierka.ipr
+inzynierka.iws
+inzynierka.iml
 
 *.class
