@@ -40,7 +40,10 @@ public class DevDBConfig {
         admin.giveAdminAuthorization();
         userRepository.save(admin);
         userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
-        productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN).withName("produkt").withUrl("http://www.best1buy.pl/allegro/bk617e/super_produkt.gif").createProduct());
+        productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN)
+                .withName("produkt")
+                .withUrl("http://www.best1buy.pl/allegro/bk617e/super_produkt.gif")
+                .createProduct());
     }
 
 

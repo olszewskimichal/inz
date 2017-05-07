@@ -4,7 +4,6 @@ import com.inz.praca.IntegrationTest;
 import org.junit.Before;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,17 +21,17 @@ import org.springframework.web.context.WebApplicationContext;
 @Category(IntegrationTest.class)
 public abstract class IntegrationTestBase {
 
-	@LocalServerPort
-	public int port;
+    @LocalServerPort
+    public int port;
 
-	@Autowired
-	protected WebApplicationContext wac;
+    @Autowired
+    protected WebApplicationContext wac;
 
-	protected MockMvc mvc;
+    protected MockMvc mvc;
 
-	@Before
-	public void setUp() throws Exception {
-		this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+    @Before
+    public void setUp() throws Exception {
+        this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+    }
 
 }

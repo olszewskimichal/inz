@@ -17,43 +17,41 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserServiceTest extends IntegrationTestBase {
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    protected UserRepository repository;
+    @Autowired
+    UserService userService;
 
-	@Autowired
-	protected UserRepository repository;
+    @Before
+    public void setUp() {
+        repository.deleteAll();
+    }
 
-	@Before
-	public void setUp() {
-		repository.deleteAll();
-	}
+    @Test
+    public void shouldCreateUserWhenDtoIsCorrectButWhenAgainThenFailed() {
+        assertThat(repository.findAll().size()).isEqualTo(0);
 
-	@Test
-	public void shouldCreateUserWhenDtoIsCorrectButWhenAgainThenFailed() {
-		assertThat(repository.findAll().size()).isEqualTo(0);
+        //given
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("name");   //UserDTO ->Builder
+        userDTO.setLastName("lastName");
+        userDTO.setEmail("email@o2.pl");
+        userDTO.setPassword("zaq1@WSX");
 
-		//given
-		UserDTO userDTO = new UserDTO();
-		userDTO.setName("name");   //UserDTO ->Builder
-		userDTO.setLastName("lastName");
-		userDTO.setEmail("email@o2.pl");
-		userDTO.setPassword("zaq1@WSX");
+        //when
+        User user = userService.createUserFromDTO(userDTO);
 
-		//when
-		User user = userService.createUserFromDTO(userDTO);
+        //then
+        assertThat(repository.findAll().size()).isEqualTo(1);
+        assertThat(user.getEmail()).isEqualTo("email@o2.pl");
+        assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
 
-		//then
-		assertThat(repository.findAll().size()).isEqualTo(1);
-		assertThat(user.getEmail()).isEqualTo("email@o2.pl");
-		assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
-
-		try {
-			userService.createUserFromDTO(userDTO);
-			Assert.fail();
-		}
-		catch (DataIntegrityViolationException e) {
-			assertThat(repository.findAll().size()).isEqualTo(1);
-		}
-	}
+        try {
+            userService.createUserFromDTO(userDTO);
+            Assert.fail();
+        } catch (DataIntegrityViolationException e) {
+            assertThat(repository.findAll().size()).isEqualTo(1);
+        }
+    }
 
 }

@@ -15,7 +15,8 @@
     </div>
     <div class="container">
         <div class="row">
-            <form th:action="@{/order/confirm}" th:object="${orderDTO}" method="post" class="form-horizontal" enctype="multipart/form-data">
+            <form th:action="@{/order/confirm}" th:object="${orderDTO}" method="post" class="form-horizontal"
+                  enctype="multipart/form-data">
                 <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
                     <div class="text-center">
                         <h1>Rachunek</h1>
@@ -27,10 +28,10 @@
                                 <strong>Adres do wysyłki</strong>
                                 <br/>
                                 <span id="street"
-                                          th:text="''+${orderDTO.shippingDetail.street}+' '+${orderDTO.shippingDetail.houseNum}"></span>
+                                      th:text="''+${orderDTO.shippingDetail.street}+' '+${orderDTO.shippingDetail.houseNum}"></span>
                                 <br/>
                                 <span th:id="city"
-                                          th:text="''+${orderDTO.shippingDetail.postCode}+' '+${orderDTO.shippingDetail.city}"></span>
+                                      th:text="''+${orderDTO.shippingDetail.postCode}+' '+${orderDTO.shippingDetail.city}"></span>
                                 <br/>
                                 <!--<th:block th:text="${orderDTO.shippingDetail.state}"/>-->
                                 <br/>
@@ -38,7 +39,8 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                             <p>
-                                <em th:id="date" th:text="'Data wysyłki: '+${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}"></em>
+                                <em th:id="date"
+                                    th:text="'Data wysyłki: '+${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}"></em>
                             </p>
                         </div>
                     </div>
@@ -71,7 +73,8 @@
                                     <strong>Razem: </strong>
                                 </h4></td>
                                 <td class="text-center text-danger"><h4>
-                                    <strong id="totalPrice" th:text="${orderDTO.cartSession.totalPrice}+' PLN'"></strong>
+                                    <strong id="totalPrice"
+                                            th:text="${orderDTO.cartSession.totalPrice}+' PLN'"></strong>
                                 </h4></td>
                             </tr>
                             </tbody>

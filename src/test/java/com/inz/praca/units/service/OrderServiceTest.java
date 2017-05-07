@@ -21,17 +21,13 @@ import static org.mockito.BDDMockito.given;
 
 public class OrderServiceTest {
 
-    private OrderService orderService;
-
     @Mock
     OrderRepository orderRepository;
-
     @Mock
     ProductRepository productRepository;
-
     @Mock
     WebApplicationContext applicationContext;
-
+    private OrderService orderService;
 
     @Before
     public void setUp() {
@@ -88,8 +84,8 @@ public class OrderServiceTest {
         cartSession = new CartSession();
         cartSession.addProduct(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.valueOf(49)).createProductDTO());
-         orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-         order = orderService.createOrder(
+        orderDTO = new OrderDTO(cartSession, new ShippingDetail());
+        order = orderService.createOrder(
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(49).stripTrailingZeros());

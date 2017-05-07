@@ -12,19 +12,19 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserRepositoryTest extends JpaTestBase {
-	private static final String EMAIL = "email_a@o2.pl";
+    private static final String EMAIL = "email_a@o2.pl";
 
-	@Autowired
-	private UserRepository repository;
+    @Autowired
+    private UserRepository repository;
 
-	@Test
-	public void shouldFindUserByEmail() {
-		repository.deleteAll();
-		this.entityManager.persistFlushFind(new UserBuilder().withEmail(EMAIL).withPasswordHash("zaq1@WSX").build());
-		Optional<User> byEmail = this.repository.findByEmail(EMAIL);
-		assertThat(byEmail).isNotNull();
-		assertThat(byEmail.isPresent()).isTrue();
-		assertThat(byEmail.get().getEmail()).isEqualTo(EMAIL);
-	}
+    @Test
+    public void shouldFindUserByEmail() {
+        repository.deleteAll();
+        this.entityManager.persistFlushFind(new UserBuilder().withEmail(EMAIL).withPasswordHash("zaq1@WSX").build());
+        Optional<User> byEmail = this.repository.findByEmail(EMAIL);
+        assertThat(byEmail).isNotNull();
+        assertThat(byEmail.isPresent()).isTrue();
+        assertThat(byEmail.get().getEmail()).isEqualTo(EMAIL);
+    }
 
 }

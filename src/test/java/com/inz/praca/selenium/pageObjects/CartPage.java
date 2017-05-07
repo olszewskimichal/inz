@@ -5,66 +5,62 @@ import org.openqa.selenium.WebDriver;
 
 public class CartPage {
 
-	private WebDriver webDriver;
+    By cartTable = By.xpath("//table[@id='cartTable']/tbody/tr");
+    By cartPrice = By.id("cartPrice");
+    By cartClearButton = By.id("cartClear");
+    By order = By.id("order");
+    private WebDriver webDriver;
 
-	public CartPage(WebDriver webDriver) {
-		this.webDriver = webDriver;
-	}
+    public CartPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
 
-	By cartTable = By.xpath("//table[@id='cartTable']/tbody/tr");
+    By cartItemName(Integer id) {
+        return By.id("cartItemName" + id);
+    }
 
-	By cartItemName(Integer id) {
-		return By.id("cartItemName" + id);
-	}
+    By cartItemPrice(Integer id) {
+        return By.id("cartItemPrice" + id);
+    }
 
-	By cartItemPrice(Integer id) {
-		return By.id("cartItemPrice" + id);
-	}
+    By cartItemProductPrice(Integer id) {
+        return By.id("cartItemProductPrice" + id);
+    }
 
-	By cartItemProductPrice(Integer id) {
-		return By.id("cartItemProductPrice" + id);
-	}
+    By cartItemRemove(Integer id) {
+        return By.id("cartItemRemove" + id);
+    }
 
-	By cartItemRemove(Integer id) {
-		return By.id("cartItemRemove" + id);
-	}
+    public String getCartItemPrice(Integer id) {
+        return webDriver.findElement(cartItemPrice(id)).getText();
+    }
 
-	By cartPrice = By.id("cartPrice");
+    public String getCartItemName(Integer id) {
+        return webDriver.findElement(cartItemName(id)).getText();
+    }
 
-	By cartClearButton = By.id("cartClear");
+    public String getCartPrice() {
+        return webDriver.findElement(cartPrice).getText();
+    }
 
-	By order = By.id("order");
+    public Integer getCartTableSize() {
+        return webDriver.findElements(cartTable).size();
+    }
 
-	public String getCartItemPrice(Integer id) {
-		return webDriver.findElement(cartItemPrice(id)).getText();
-	}
+    public String getCartItemProductPrice(Integer id) {
+        return webDriver.findElement(cartItemProductPrice(id)).getText();
+    }
 
-	public String getCartItemName(Integer id) {
-		return webDriver.findElement(cartItemName(id)).getText();
-	}
+    public void removeItem(Integer id) {
+        webDriver.findElement(cartItemRemove(id)).click();
+    }
 
-	public String getCartPrice() {
-		return webDriver.findElement(cartPrice).getText();
-	}
+    public void clearCart() {
+        webDriver.findElement(cartClearButton).click();
+    }
 
-	public Integer getCartTableSize() {
-		return webDriver.findElements(cartTable).size();
-	}
-
-	public String getCartItemProductPrice(Integer id) {
-		return webDriver.findElement(cartItemProductPrice(id)).getText();
-	}
-
-	public void removeItem(Integer id) {
-		webDriver.findElement(cartItemRemove(id)).click();
-	}
-
-	public void clearCart() {
-		webDriver.findElement(cartClearButton).click();
-	}
-
-	public void clickOrder() {
-		webDriver.findElement(order).click();
-	}
+    public void clickOrder() {
+        webDriver.findElement(order).click();
+    }
 
 }

@@ -5,23 +5,22 @@ import org.openqa.selenium.WebDriver;
 
 public class UsersPage {
 
-	By activationUserLink(Integer id) {
-		return By.id("user" + id);
-	}
+    By activationMsg = By.id("activationMsg");
+    private WebDriver webDriver;
 
-	By activationMsg = By.id("activationMsg");
+    public UsersPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
 
-	public void activateUser(Integer id) {
-		webDriver.findElement(activationUserLink(id)).click();
-	}
+    By activationUserLink(Integer id) {
+        return By.id("user" + id);
+    }
 
-	private WebDriver webDriver;
+    public void activateUser(Integer id) {
+        webDriver.findElement(activationUserLink(id)).click();
+    }
 
-	public String getActivationMsg() {
-		return webDriver.findElement(activationMsg).getText();
-	}
-
-	public UsersPage(WebDriver webDriver) {
-		this.webDriver = webDriver;
-	}
+    public String getActivationMsg() {
+        return webDriver.findElement(activationMsg).getText();
+    }
 }

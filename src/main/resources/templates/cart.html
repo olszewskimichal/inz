@@ -16,10 +16,12 @@
             </div>
             <div>
                 <div>
-                    <a id="cartClear" th:href="@{/cart/clear}" class="btn btn-danger pull-left"> <span class="glyphicon glyphicon-remove-sign"></span>
+                    <a id="cartClear" th:href="@{/cart/clear}" class="btn btn-danger pull-left"> <span
+                            class="glyphicon glyphicon-remove-sign"></span>
                         Wyczyść koszyk
                     </a>
-                    <a id="order" th:href="@{/order}" class="btn btn-success pull-right"> <span class="glyphicon-shopping-cart glyphicon"></span>
+                    <a id="order" th:href="@{/order}" class="btn btn-success pull-right"> <span
+                            class="glyphicon-shopping-cart glyphicon"></span>
                         Kupuję
                     </a>
                 </div>
@@ -32,12 +34,17 @@
                         <th>Akcja</th>
                     </tr>
                     <tr th:id="'cartItem'+${rowStat.index}" th:each="row,rowStat : *{items}">
-                        <td th:id="'cartItemName'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].item.name}"></td>
-                        <td th:id="'cartItemProductPrice'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].item.price}"></td>
-                        <td th:id="'cartItemQuantity'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].quantity}"></td>
-                        <td th:id="'cartItemPrice'+${rowStat.index}" th:text="*{items[__${rowStat.index}__].price}"></td>
+                        <td th:id="'cartItemName'+${rowStat.index}"
+                            th:text="*{items[__${rowStat.index}__].item.name}"></td>
+                        <td th:id="'cartItemProductPrice'+${rowStat.index}"
+                            th:text="*{items[__${rowStat.index}__].item.price}"></td>
+                        <td th:id="'cartItemQuantity'+${rowStat.index}"
+                            th:text="*{items[__${rowStat.index}__].quantity}"></td>
+                        <td th:id="'cartItemPrice'+${rowStat.index}"
+                            th:text="*{items[__${rowStat.index}__].price}"></td>
                         <td>
-                            <a th:id="'cartItemRemove'+${rowStat.index}" th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
+                            <a th:id="'cartItemRemove'+${rowStat.index}"
+                               th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
                             <span class="glyphicon glyphicon-remove">
                             </span> Usuń
                             </a>

@@ -15,33 +15,35 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 @Slf4j
 public class BrowserConfig {
 
-	public WebDriver htmlUnitDriver() {
-		return new HtmlUnitDriver(true);
-	}
+    private static FirefoxBinary getFirefoxBinaryForTravisCi() throws IOException {
+        String firefoxPath = getFirefoxPath();
+        log.info("Firefox path: " + firefoxPath);
 
-	public WebDriver firefox() throws IOException {
-		System.setProperty("webdriver.gecko.driver", "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
-		String travisCiFlag = System.getenv().get("TRAVIS");
-		if (!"true".equals(travisCiFlag)) {
-			return htmlUnitDriver();
-		}
-		FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
-		return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
-	}
+        return new FirefoxBinary(new File(firefoxPath));
+    }
 
-	private static FirefoxBinary getFirefoxBinaryForTravisCi() throws IOException {
-		String firefoxPath = getFirefoxPath();
-		log.info("Firefox path: " + firefoxPath);
+    private static String getFirefoxPath() throws IOException {
+        ProcessBuilder pb = new ProcessBuilder("which", "firefox");
+        pb.redirectErrorStream(true);
+        Process process = pb.start();
+        try (InputStreamReader isr = new InputStreamReader(process.getInputStream(),
+                "UTF-8"); BufferedReader br = new BufferedReader(isr)) {
+            return br.readLine();
+        }
+    }
 
-		return new FirefoxBinary(new File(firefoxPath));
-	}
+    public WebDriver htmlUnitDriver() {
+        return new HtmlUnitDriver(true);
+    }
 
-	private static String getFirefoxPath() throws IOException {
-		ProcessBuilder pb = new ProcessBuilder("which", "firefox");
-		pb.redirectErrorStream(true);
-		Process process = pb.start();
-		try (InputStreamReader isr = new InputStreamReader(process.getInputStream(), "UTF-8"); BufferedReader br = new BufferedReader(isr)) {
-			return br.readLine();
-		}
-	}
+    public WebDriver firefox() throws IOException {
+        System.setProperty("webdriver.gecko.driver",
+                "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
+        String travisCiFlag = System.getenv().get("TRAVIS");
+        if (!"true".equals(travisCiFlag)) {
+            return htmlUnitDriver();
+        }
+        FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
+        return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
+    }
 }

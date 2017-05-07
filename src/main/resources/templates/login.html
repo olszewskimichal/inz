@@ -23,15 +23,18 @@
                         <div th:if="${loginError}" class="alert alert-danger" role="alert">
                             <p id="errorMsg" th:text="${errorMessage}"></p>
                         </div>
-                        <div th:if="${registerDone}" class="alert alert-success" role="alert"> Pomyślnie zarejestrowano konto, skontaktuj się za administratorem by je aktywować
+                        <div th:if="${registerDone}" class="alert alert-success" role="alert"> Pomyślnie zarejestrowano
+                            konto, skontaktuj się za administratorem by je aktywować
                         </div>
                         <form th:action="@{/login}" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Adres email" id="username" name='username' type="text"/>
+                                    <input class="form-control" placeholder="Adres email" id="username" name='username'
+                                           type="text"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Hasło" id="password" name='password' type="password" value=""/>
+                                    <input class="form-control" placeholder="Hasło" id="password" name='password'
+                                           type="password" value=""/>
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -40,10 +43,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <input type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block" value="Zaloguj się"/>
+                                        <input type="submit" id="loginSubmit" class="btn btn-lg btn-success btn-block"
+                                               value="Zaloguj się"/>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <a id="register" th:href="@{/register}" class="btn btn-lg btn-primary btn-block">Zarejestruj się</a>
+                                        <a id="register" th:href="@{/register}"
+                                           class="btn btn-lg btn-primary btn-block">Zarejestruj się</a>
                                     </div>
                                 </div>
                             </fieldset>

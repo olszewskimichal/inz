@@ -10,17 +10,16 @@ import javax.persistence.PersistenceException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CategoryEntityTest extends JpaTestBase {
-	
-	@Test
-	public void shouldNotPersistWithNotUniqueName() {
-		try {
-			entityManager.persistFlushFind(new Category("nazwa", "opis"));
-			entityManager.persistFlushFind(new Category("nazwa", "opis"));
-			Assert.fail();
-		}
-		catch (PersistenceException e) {
-			assertThat(true).isEqualTo(true);
-		}
 
-	}
+    @Test
+    public void shouldNotPersistWithNotUniqueName() {
+        try {
+            entityManager.persistFlushFind(new Category("nazwa", "opis"));
+            entityManager.persistFlushFind(new Category("nazwa", "opis"));
+            Assert.fail();
+        } catch (PersistenceException e) {
+            assertThat(true).isEqualTo(true);
+        }
+
+    }
 }

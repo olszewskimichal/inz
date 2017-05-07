@@ -10,6 +10,11 @@ public class RegisterPage {
     private By password = By.id("password");
     private By confirmPassword = By.id("confirmPassword");
     private By registerButton = By.id("submit");
+    private WebDriver webDriver;
+
+    public RegisterPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
 
     public void typeEmail(String email) {
         webDriver.findElement(this.email).sendKeys(email);
@@ -33,12 +38,6 @@ public class RegisterPage {
 
     public void clickOnRegisterButton() {
         webDriver.findElement(registerButton).click();
-    }
-
-    private WebDriver webDriver;
-
-    public RegisterPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
     }
 
 

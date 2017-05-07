@@ -26,70 +26,71 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ActiveProfiles(value = "development")
 public class LoginControllerTest extends IntegrationTestBase {
-	@Autowired
-	private WebApplicationContext context;
+    @Autowired
+    private WebApplicationContext context;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	private MockMvc mvc;
+    private MockMvc mvc;
 
 
-	@Before
-	public void setUp() throws Exception {
-		mvc = MockMvcBuilders.webAppContextSetup(context)
-				.apply(springSecurity())
-				.build();
-	}
+    @Before
+    public void setUp() throws Exception {
+        mvc = MockMvcBuilders.webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
+    }
 
-	@Test
-	public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
-		//given
-		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build());
-		String userLogin = "emailTest@o2.pl";
-		String password = "zaq1@WSX";
-		//when
-		RequestBuilder requestBuilder = post("/login")
-				.param("username", userLogin)
-				.param("password", password);
-		//then
-		mvc.perform(requestBuilder)
-				.andDo(print())
-				.andExpect(redirectedUrl("/"))
-				.andExpect(authenticated().withUsername("emailTest@o2.pl"));
-	}
+    @Test
+    public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
+        //given
+        userRepository.save(
+                new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build());
+        String userLogin = "emailTest@o2.pl";
+        String password = "zaq1@WSX";
+        //when
+        RequestBuilder requestBuilder = post("/login")
+                .param("username", userLogin)
+                .param("password", password);
+        //then
+        mvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(redirectedUrl("/"))
+                .andExpect(authenticated().withUsername("emailTest@o2.pl"));
+    }
 
-	@Test
-	public void shouldFailLoginAndRedirect() throws Exception {
-		//given
-		String userLogin = "admin";
-		String password = "incorrectPassword";
-		//when
-		RequestBuilder requestBuilder = formLogin("/login")
-				.user("username", userLogin)
-				.password("password", password);
-		//then
-		mvc.perform(requestBuilder)
-				.andDo(print())
-				.andExpect(redirectedUrl("/login-error"))
-				.andExpect(unauthenticated());
-	}
+    @Test
+    public void shouldFailLoginAndRedirect() throws Exception {
+        //given
+        String userLogin = "admin";
+        String password = "incorrectPassword";
+        //when
+        RequestBuilder requestBuilder = formLogin("/login")
+                .user("username", userLogin)
+                .password("password", password);
+        //then
+        mvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(redirectedUrl("/login-error"))
+                .andExpect(unauthenticated());
+    }
 
-	@Test
-	public void shouldReturnErrorMessage() throws Exception {
-		//when
-		mvc.perform(get("/login-error"))
-				.andDo(print())
-				//then
-				.andExpect(model().attribute("loginError", true))
-				.andExpect(status().isOk())
-				.andExpect(content().string(
-						allOf(
-								containsString("<div class=\"alert alert-danger\" role=\"alert\">")
-						))
-				)
-				.andExpect(view().name("login"));
-	}
+    @Test
+    public void shouldReturnErrorMessage() throws Exception {
+        //when
+        mvc.perform(get("/login-error"))
+                .andDo(print())
+                //then
+                .andExpect(model().attribute("loginError", true))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        allOf(
+                                containsString("<div class=\"alert alert-danger\" role=\"alert\">")
+                        ))
+                )
+                .andExpect(view().name("login"));
+    }
 
 }
 

@@ -12,29 +12,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public abstract class SeleniumTestBase extends SeleniumProfileTestBase {
-	public static BrowserConfig browserConfiguration = new BrowserConfig();
+    public static BrowserConfig browserConfiguration = new BrowserConfig();
+    public static WebDriver driver;
+    @Autowired
+    public UserRepository userRepository;
+    @Autowired
+    public OrderRepository orderRepository;
+    protected LoginPage loginPage;
 
-	@Autowired
-	public UserRepository userRepository;
+    public void prepareBeforeTest() throws Exception {
+        if (driver == null)
+            driver = browserConfiguration.firefox();
+        else driver.manage().deleteAllCookies();
+        orderRepository.deleteAll();
+        userRepository.deleteAll();
+        userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
+        userRepository.save(
+                new UserBuilder().withEmail("aktywny@email.pl").withPasswordHash("zaq1@WSX").activate().build());
+        User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
+        admin.giveAdminAuthorization();
+        userRepository.save(admin);
 
-	@Autowired
-	public OrderRepository orderRepository;
-
-	protected LoginPage loginPage;
-
-	public void prepareBeforeTest() throws Exception {
-		if (driver == null)
-			driver = browserConfiguration.firefox();
-		else driver.manage().deleteAllCookies();
-		orderRepository.deleteAll();
-		userRepository.deleteAll();
-		userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
-		userRepository.save(new UserBuilder().withEmail("aktywny@email.pl").withPasswordHash("zaq1@WSX").activate().build());
-		User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
-		admin.giveAdminAuthorization();
-		userRepository.save(admin);
-
-	}
-	public static WebDriver driver;
+    }
 
 }

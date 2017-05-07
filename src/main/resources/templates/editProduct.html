@@ -9,7 +9,8 @@
         <h1>Dodaj nowy produkt</h1>
     </div>
     <section class="container">
-        <form action="#" th:action="@{/products/product/edit/{id}(id=${productId})}" th:object="${productCreateForm}" method="post"
+        <form action="#" th:action="@{/products/product/edit/{id}(id=${productId})}" th:object="${productCreateForm}"
+              method="post"
               class="form-horizontal" enctype="multipart/form-data" name="productForm">
             <fieldset>
                 <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
@@ -20,7 +21,8 @@
                     <div class="form-group col-md-10">
                         <label for="name">Podaj nazwe</label>
                         <div class="input">
-                            <input id="name" type="text" class="form-control" th:field="*{name}" required="required" placeholder="Podaj nazwe produktu"/>
+                            <input id="name" type="text" class="form-control" th:field="*{name}" required="required"
+                                   placeholder="Podaj nazwe produktu"/>
                         </div>
                     </div>
                 </div>
@@ -28,7 +30,8 @@
                     <div class="form-group col-md-10">
                         <label for="unitPrice">Podaj cene za sztuke</label>
                         <div class="input">
-                            <input id="unitPrice" type="text" class="form-control" th:field="*{price}" required="required" placeholder="Podaj cene produktu"/>
+                            <input id="unitPrice" type="text" class="form-control" th:field="*{price}"
+                                   required="required" placeholder="Podaj cene produktu"/>
                         </div>
                     </div>
                 </div>
@@ -37,7 +40,9 @@
                     <div class="form-group col-md-10">
                         <label for="description">Opis produktu</label>
                         <div class="input">
-                            <textarea id="description" path="description" rows="4" th:field="*{description}" class="form-control" required="required" placeholder="Podaj opis produktu"></textarea>
+                            <textarea id="description" path="description" rows="4" th:field="*{description}"
+                                      class="form-control" required="required"
+                                      placeholder="Podaj opis produktu"></textarea>
                         </div>
                     </div>
                 </div>
@@ -45,7 +50,8 @@
                     <div class="form-group col-md-10">
                         <label for="imageURL">Adres URL</label>
                         <div class="input">
-                            <input id="imageURL" type="text" class="form-control" th:field="*{imageUrl}" placeholder="Podaj adres URL do zdjęcia"/>
+                            <input id="imageURL" type="text" class="form-control" th:field="*{imageUrl}"
+                                   placeholder="Podaj adres URL do zdjęcia"/>
                         </div>
                     </div>
                 </div>
