@@ -1,21 +1,20 @@
 package com.inz.praca.integration.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.inz.praca.category.Category;
+import com.inz.praca.category.CategoryBuilder;
+import com.inz.praca.integration.JpaTestBase;
+import com.inz.praca.products.Product;
+import com.inz.praca.products.ProductBuilder;
+import com.inz.praca.products.ProductRepository;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import com.inz.praca.category.CategoryBuilder;
-import com.inz.praca.products.ProductBuilder;
-import com.inz.praca.category.Category;
-import com.inz.praca.products.Product;
-import com.inz.praca.integration.JpaTestBase;
-import com.inz.praca.products.ProductRepository;
-import org.junit.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductRepositoryTest extends JpaTestBase {
 
@@ -31,15 +30,6 @@ public class ProductRepositoryTest extends JpaTestBase {
 		assertThat(byName).isNotNull();
 		assertThat(byName.isPresent()).isTrue();
 		assertThat(byName.get().getName()).isEqualTo(NAME);
-	}
-
-	@Test
-	public void shouldNotFindProductByName() {
-		productRepository.deleteAll();
-		this.entityManager.persistAndFlush(new ProductBuilder().withName(NAME).withPrice(BigDecimal.TEN).createProduct());
-		Optional<Product> byName = this.productRepository.findByName("innaNazwa");
-		assertThat(byName).isNotNull();
-		assertThat(byName.isPresent()).isFalse();
 	}
 
 	@Test

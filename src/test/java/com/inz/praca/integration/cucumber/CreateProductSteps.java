@@ -1,7 +1,5 @@
 package com.inz.praca.integration.cucumber;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.LoginPage;
 import com.inz.praca.selenium.pageObjects.NewProductPage;
@@ -10,6 +8,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Test;
 import org.openqa.selenium.By;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class CreateProductSteps extends SeleniumTestBase {
 	private String name;
@@ -23,7 +23,6 @@ public class CreateProductSteps extends SeleniumTestBase {
 		driver.get("http://localhost:" + port + "/login");
 		loginPage = new LoginPage(driver);
 		loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
-
 
 		this.name = name;
 		this.description = description;

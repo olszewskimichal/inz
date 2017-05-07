@@ -31,3 +31,4 @@ public class SklepApplication {
         return new NoDiscountService();
     }
 }
+

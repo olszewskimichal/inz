@@ -1,7 +1,5 @@
 package com.inz.praca.integration.cucumber;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.AuthenticatedNavigation;
 import com.inz.praca.selenium.pageObjects.LoginPage;
@@ -10,6 +8,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Test;
+
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 
 public class ActivationUserSteps extends SeleniumTestBase {
@@ -64,8 +64,6 @@ public class ActivationUserSteps extends SeleniumTestBase {
 
 	@Then("Zostanie zwrocony komunikat (.*)")
 	public void shouldGetErrorMsg(String msg) throws Exception {
-		System.out.println(driver.getPageSource());
-		System.out.println(loginPage.getErrorMsg());
 		assertThat(loginPage.getErrorMsg()).isEqualTo(msg);
 	}
 

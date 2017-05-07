@@ -1,30 +1,24 @@
 package com.inz.praca.integration.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.inz.praca.cart.Cart;
+import com.inz.praca.cart.CartItem;
+import com.inz.praca.category.CategoryRepository;
+import com.inz.praca.integration.IntegrationTestBase;
+import com.inz.praca.orders.Order;
+import com.inz.praca.orders.OrderRepository;
+import com.inz.praca.orders.ShippingDetail;
+import com.inz.praca.products.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.inz.praca.products.ProductBuilder;
-import com.inz.praca.cart.Cart;
-import com.inz.praca.cart.CartItem;
-import com.inz.praca.category.Category;
-import com.inz.praca.orders.Order;
-import com.inz.praca.products.Product;
-import com.inz.praca.orders.ShippingDetail;
-import com.inz.praca.products.ProductDTO;
-import com.inz.praca.integration.IntegrationTestBase;
-import com.inz.praca.category.CategoryRepository;
-import com.inz.praca.orders.OrderRepository;
-import com.inz.praca.products.ProductRepository;
-import com.inz.praca.products.ProductService;
-import org.junit.Before;
-import org.junit.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductServiceTest extends IntegrationTestBase {
 
@@ -48,37 +42,14 @@ public class ProductServiceTest extends IntegrationTestBase {
 
 
 	@Test
-	public void shouldReturn20ProductAscSortByIdWhenSizeArgumentIsEqualTo30() {
+	public void shouldReturnMax20ProductAscSortByIdWhenSizeArgumentIsEqualTo30() {
 		for (int i = 0; i < 30; i++) {
 			repository.save(new ProductBuilder().withName("nazwa" + i).withPrice(BigDecimal.ZERO).createProduct());
 		}
+
 		List<Product> products = this.productService.getProducts(1, 30, "desc", null).getContent();
+
 		assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService
-		Long firstId = products.get(0).getId();
-		Long lastId = products.get(products.size() - 1).getId();
-		assertThat(firstId > lastId).isTrue();
-		assertThat(firstId - lastId).isEqualTo(19L);
-	}
-
-	@Test
-	public void shouldCreateProductWhenDtoIsCorrect() {
-		categoryRepository.save(new Category("nowa", "testowa"));
-		assertThat(repository.findAll().size()).isEqualTo(0);
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setName("nazwa");
-		productDTO.setDescription("desc");
-		productDTO.setPrice(BigDecimal.TEN);
-		productDTO.setImageUrl("url");
-		productDTO.setCategory("nowa");
-
-		Product product = productService.createProductFromDTO(productDTO);
-
-		assertThat(product.getName()).isEqualTo("nazwa");
-		assertThat(product.getPrice()).isEqualTo(BigDecimal.TEN);
-		assertThat(product.getDescription()).isEqualTo("desc");
-		assertThat(product.getImageUrl()).isEqualTo("url");
-		assertThat(product.getCategory()).isNotNull();
-		assertThat(repository.findAll().size()).isEqualTo(1);
 	}
 
 	@Test
@@ -86,7 +57,6 @@ public class ProductServiceTest extends IntegrationTestBase {
 		Product product = repository.save(new ProductBuilder().withName("nazwaUpdate").withPrice(BigDecimal.ZERO).createProduct());
 		ProductDTO productDTO = new ProductDTO(product);
 		productDTO.setPrice(BigDecimal.TEN);
-
 		productService.updateProduct(product.getId(), productDTO);
 		Product updateProduct = productService.getProductById(product.getId());
 		assertThat(updateProduct.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.TEN.stripTrailingZeros());

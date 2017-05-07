@@ -1,5 +1,17 @@
 package com.inz.praca.integration.controller;
 
+import com.inz.praca.integration.IntegrationTestBase;
+import com.inz.praca.registration.UserBuilder;
+import com.inz.praca.registration.UserRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
@@ -9,24 +21,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
-import com.inz.praca.registration.UserBuilder;
-import com.inz.praca.integration.IntegrationTestBase;
-import com.inz.praca.registration.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @ActiveProfiles(value = "development")
@@ -50,7 +45,7 @@ public class LoginControllerTest extends IntegrationTestBase {
 	@Test
 	public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
 		//given
-		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build()).getId();
+		userRepository.save(new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build());
 		String userLogin = "emailTest@o2.pl";
 		String password = "zaq1@WSX";
 		//when

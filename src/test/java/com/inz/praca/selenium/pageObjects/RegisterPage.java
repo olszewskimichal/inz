@@ -4,41 +4,42 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class RegisterPage {
-	By email = By.id("email");
-	By name = By.id("name");
-	By lastName = By.id("lastName");
-	By password = By.id("password");
-	By confirmPassword = By.id("confirmPassword");
-	By registerButton = By.id("submit");
+    private By email = By.id("email");
+    private By name = By.id("name");
+    private By lastName = By.id("lastName");
+    private By password = By.id("password");
+    private By confirmPassword = By.id("confirmPassword");
+    private By registerButton = By.id("submit");
 
-	private WebDriver webDriver;
+    public void typeEmail(String email) {
+        webDriver.findElement(this.email).sendKeys(email);
+    }
 
-	public RegisterPage(WebDriver webDriver) {
-		this.webDriver = webDriver;
-	}
+    public void typeName(String name) {
+        webDriver.findElement(this.name).sendKeys(name);
+    }
 
-	public void typeEmail(String email) {
-		webDriver.findElement(this.email).sendKeys(email);
-	}
+    public void typeLastName(String lastName) {
+        webDriver.findElement(this.lastName).sendKeys(lastName);
+    }
 
-	public void typeName(String name) {
-		webDriver.findElement(this.name).sendKeys(name);
-	}
+    public void typePassword(String pass) {
+        webDriver.findElement(password).sendKeys(pass);
+    }
 
-	public void typeLastName(String lastName) {
-		webDriver.findElement(this.lastName).sendKeys(lastName);
-	}
+    public void typeConfirmPassword(String confirmPassword) {
+        webDriver.findElement(this.confirmPassword).sendKeys(confirmPassword);
+    }
 
-	public void typePassword(String pass) {
-		webDriver.findElement(password).sendKeys(pass);
-	}
+    public void clickOnRegisterButton() {
+        webDriver.findElement(registerButton).click();
+    }
 
-	public void typeConfirmPassword(String confirmPassword) {
-		webDriver.findElement(this.confirmPassword).sendKeys(confirmPassword);
-	}
+    private WebDriver webDriver;
 
-	public void clickOnRegisterButton() {
-		webDriver.findElement(registerButton).click();
-	}
+    public RegisterPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
 
 }
