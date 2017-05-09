@@ -30,7 +30,6 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-
     public Product(String name, String description, String imageUrl, BigDecimal price) {
         Assert.hasLength(name, "Nie moze być pusta nazwa produktu");
         Assert.notNull(price, "Cena nie moze byc nullem");
