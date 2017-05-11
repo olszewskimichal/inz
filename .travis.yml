@@ -14,10 +14,6 @@ before_script:
  - "sh -e /etc/init.d/xvfb start"
  - sleep 4 # give xvfb some time to start
 
-script:
- - sudo apt-get update && sudo apt-get install oracle-java8-installer
- - java -version
-
 addons:
   firefox: "46.0"
 cache:
@@ -28,9 +24,9 @@ cache:
 jobs:
   include:
     - stage: deploy
-      jdk:
-        - oraclejdk8
-      script: ./mvnw package -Dmaven.test.skip=true
+      script:
+        - sudo apt-get update && sudo apt-get install oracle-java8-installer
+        - ./mvnw package -Dmaven.test.skip=true
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
