@@ -2,7 +2,6 @@ language: java
 sudo: false
 jdk:
   -oraclejdk8
-  -oraclejdk8
 
 before_install:
   - chmod ugo+x mvnw
@@ -22,12 +21,13 @@ cache:
   - .autoconf
   - $HOME/.m2
 
-jobs:
+"jobs:
   include:
     - stage: deploy
       script:
-        - sudo apt-get update && sudo apt-get install oracle-java8-installer
-        - ./mvnw package -Dmaven.test.skip=true
+        - ./mvnw package -Dmaven.test.skip=true"
+script:
+  - mvn clean verify
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
