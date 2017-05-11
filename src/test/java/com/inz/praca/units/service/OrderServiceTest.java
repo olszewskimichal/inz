@@ -1,5 +1,6 @@
 package com.inz.praca.units.service;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.cart.CartSession;
 import com.inz.praca.discount.NewCustomerDiscountService;
 import com.inz.praca.discount.NoDiscountService;
@@ -10,6 +11,7 @@ import com.inz.praca.products.ProductRepository;
 import com.inz.praca.registration.UserBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.context.WebApplicationContext;
@@ -19,6 +21,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
+@Category(UnitTest.class)
 public class OrderServiceTest {
 
     @Mock

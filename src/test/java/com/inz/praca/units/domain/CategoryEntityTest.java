@@ -1,11 +1,13 @@
 package com.inz.praca.units.domain;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.category.Category;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@org.junit.experimental.categories.Category(UnitTest.class)
 public class CategoryEntityTest {
 
     @Test

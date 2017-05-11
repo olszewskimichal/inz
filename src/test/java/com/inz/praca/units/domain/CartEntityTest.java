@@ -1,11 +1,13 @@
 package com.inz.praca.units.domain;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.cart.Cart;
 import com.inz.praca.cart.CartItem;
 import com.inz.praca.products.Product;
 import com.inz.praca.products.ProductBuilder;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Category(UnitTest.class)
 public class CartEntityTest {
 
     @Test

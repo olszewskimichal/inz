@@ -1,12 +1,15 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.login.HomeController;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@Category(UnitTest.class)
 public class HomeControllerTest {
 
     private HomeController controller;

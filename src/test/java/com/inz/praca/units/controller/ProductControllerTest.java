@@ -1,5 +1,6 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.category.Category;
 import com.inz.praca.category.CategoryRepository;
 import com.inz.praca.products.ProductBuilder;
@@ -26,6 +27,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@org.junit.experimental.categories.Category(UnitTest.class)
 public class ProductControllerTest {
 
     @Mock

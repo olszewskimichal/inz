@@ -1,10 +1,12 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.category.CategoryController;
 import com.inz.praca.category.CategoryDTO;
 import com.inz.praca.products.ProductService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@Category(UnitTest.class)
 public class CategoryControllerTest {
 
     private CategoryController controller;

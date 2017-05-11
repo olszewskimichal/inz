@@ -1,7 +1,9 @@
 package com.inz.praca.units.utils;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.utils.Pager;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
+@Category(UnitTest.class)
 public class PagerTest {
 
     @Test

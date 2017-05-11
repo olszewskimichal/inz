@@ -1,11 +1,13 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.cart.CartController;
 import com.inz.praca.cart.CartSession;
 import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.products.ProductService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.springframework.ui.Model;
 
@@ -15,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@Category(UnitTest.class)
 public class CartControllerTest {
     @Mock
     Model model;

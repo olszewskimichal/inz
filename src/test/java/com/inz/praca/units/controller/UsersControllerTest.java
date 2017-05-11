@@ -1,11 +1,13 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserService;
 import com.inz.praca.registration.UsersController;
 import com.inz.praca.utils.Pager;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@Category(UnitTest.class)
 public class UsersControllerTest {
 
     @Mock

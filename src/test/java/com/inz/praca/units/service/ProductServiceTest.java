@@ -1,5 +1,6 @@
 package com.inz.praca.units.service;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.category.Category;
 import com.inz.praca.category.CategoryNotFoundException;
 import com.inz.praca.category.CategoryRepository;
@@ -25,6 +26,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doAnswer;
 
+@org.junit.experimental.categories.Category(UnitTest.class)
 public class ProductServiceTest {
 
     private static final String NAME = "name";

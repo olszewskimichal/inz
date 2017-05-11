@@ -1,10 +1,13 @@
 package com.inz.praca.units.dto;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.products.ProductDTO;
+import org.junit.experimental.categories.Category;
 
 import java.math.BigDecimal;
 
+@Category(UnitTest.class)
 public class ProductDTOTest extends LocalEqualsHashCodeTest {
 
 

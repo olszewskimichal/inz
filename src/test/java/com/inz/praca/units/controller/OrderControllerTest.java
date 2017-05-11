@@ -1,5 +1,6 @@
 package com.inz.praca.units.controller;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.cart.Cart;
 import com.inz.praca.cart.CartItem;
 import com.inz.praca.cart.CartSession;
@@ -11,6 +12,7 @@ import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +30,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@Category(UnitTest.class)
 public class OrderControllerTest {
 
     @Mock

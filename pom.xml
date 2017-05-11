@@ -213,23 +213,22 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <skipTests>false</skipTests>
+                    <forkMode>once</forkMode>
+                    <parallel>class</parallel>
+                    <threadCount>10</threadCount>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
                     <groups>com.inz.praca.IntegrationTest</groups>
+                    <excludedGroups>com.inz.praca.UnitTest</excludedGroups>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>verify</goal>
+                            <goal>integration-test</goal>
                         </goals>
-                        <configuration>
-                            <useSystemClassLoader>false</useSystemClassLoader>
-                            <skipTests>false</skipTests>
-                            <forkMode>once</forkMode>
-                            <parallel>class</parallel>
-                            <threadCount>10</threadCount>
-                            <includes>
-                                <include>**/*.class</include>
-                            </includes>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

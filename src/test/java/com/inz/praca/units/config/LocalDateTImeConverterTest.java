@@ -1,7 +1,9 @@
 package com.inz.praca.units.config;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.config.LocalDateTimeConverter;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -9,6 +11,7 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Category(UnitTest.class)
 public class LocalDateTImeConverterTest {
 
     LocalDateTimeConverter converter = new LocalDateTimeConverter();

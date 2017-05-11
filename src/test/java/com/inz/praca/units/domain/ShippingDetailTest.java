@@ -1,11 +1,14 @@
 package com.inz.praca.units.domain;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.orders.ShippingDetail;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Category(UnitTest.class)
 public class ShippingDetailTest {
 
     @Test

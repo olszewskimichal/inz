@@ -1,9 +1,11 @@
 package com.inz.praca.units.service;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.registration.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doAnswer;
 
+@Category(UnitTest.class)
 public class UserServiceTest {
 
     @Mock

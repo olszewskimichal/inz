@@ -1,11 +1,14 @@
 package com.inz.praca.units.utils;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.validators.EmailValidator;
 import com.inz.praca.validators.PasswordValidator;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Category(UnitTest.class)
 public class RegexText {
 
     @Test

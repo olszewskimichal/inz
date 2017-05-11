@@ -1,13 +1,16 @@
 package com.inz.praca.units.dto;
 
+import com.inz.praca.UnitTest;
 import com.inz.praca.cart.CartSession;
 import com.inz.praca.products.ProductBuilder;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Category(UnitTest.class)
 public class CartSessionTest {
 
     @Test

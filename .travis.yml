@@ -21,8 +21,14 @@ cache:
   - .autoconf
   - $HOME/.m2
 
-script:
-  - mvn clean verify
+jobs:
+  include:
+    - stage: unitTest
+      script: mvn test
+    - stage: integrationTest
+      script: mvn failsafe:integration-test
+    - stage: deploy
+      script: mvn package -Dmaven.test.skip=true
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
