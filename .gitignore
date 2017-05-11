@@ -1,6 +1,5 @@
 target/
 .idea/
-.mvn/
 *.iml
 *.iws
 inzynierka.ipr
