@@ -35,8 +35,8 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="159">
+              <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="80" selection-end-line="15" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -199,10 +199,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1448" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
-    <option name="height" value="876" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -239,7 +239,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -364,6 +365,56 @@
               <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inzynierka" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="inz" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inzynierka" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="inz" type="462c0819:PsiDirectoryNode" />
+              <item name="praca" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inzynierka" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="inz" type="462c0819:PsiDirectoryNode" />
+              <item name="praca" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inzynierka" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="inz" type="462c0819:PsiDirectoryNode" />
+              <item name="praca" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="inzynierka" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inzynierka" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -385,8 +436,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,7 +451,7 @@
     <property name="node.js.selected.package.jscs" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="" />
-    <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/application.properties&#10;index.html&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;index&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;index.h&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;html&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/target/pit-reports/index.html&#10;Mock&#9;PSI&#9;JAVA://org.springframework.test.context.web.socket.MockServerContainerContextCustomizerFactory#MOCK_SERVER_CONTAINER_CONTEXT_CUSTOMIZER_CLASS_NAME&#10;OrderS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/OrderServiceTest.java&#10;ProductSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/products/ProductService.java&#10;pom&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;UsersCo&#9;PSI&#9;JAVA://com.inz.praca.units.controller.UsersControllerTest&#10;Users&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/UsersController.java&#10;populateD&#9;PSI&#9;JAVA://com.inz.praca.config.DevDBConfig#populateDatabase&#10;NewP&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/newProduct.html&#10;HomeCont&#9;null&#9;null&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Regi&#9;PSI&#9;JAVA://com.inz.praca.controller.RegisterController&#10;OrderCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/OrderControllerTest.java&#10;Cus&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/CustomAuthenticationFailureHandler.java&#10;Logi&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/LoginSeleniumTest.java&#10;shouldLoginWithCo&#9;PSI&#9;JAVA://com.inz.praca.selenium.LoginSeleniumTest#shouldLoginWithCorrectAuthenticationAndLogoutAfterThat&#10;shouldGetErro&#9;PSI&#9;JAVA://com.inz.praca.selenium.EditProductSeleniumTest#shouldGetErrorWhenTryEditProductAsUser&#10;shouldLoginWith&#9;PSI&#9;JAVA://com.inz.praca.integration.controller.LoginControllerTest#shouldLoginWithCorrectLoginAndPassword&#10;OrderSele&#9;PSI&#9;JAVA://com.inz.praca.selenium.OrderSeleniumTest&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/service/OrderServiceTest.java&#10;Ed&#9;PSI&#9;JAVA://com.inz.praca.selenium.EditProductSeleniumTest&#10;Del&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/DeleteProductSeleniumTest.java&#10;OrderSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/service/OrderServiceTest.java&#10;shouldDeleteP&#9;PSI&#9;JAVA://com.inz.praca.selenium.DeleteProductSeleniumTest#shouldDeleteProduct&#10;CartSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;Cart&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;Car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;CartSele&#9;PSI&#9;JAVA://com.inz.praca.selenium.CartSeleniumTest&#10;Product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;User&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/domain/User.java&#10;prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;product.htm&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;edit&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/editProduct.html&#10;pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;ProductCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;Pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/repository/ProductRepository.java&#10;hea&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/fragments/header.html&#10;login&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/login.html&#10;Curr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/service/CurrentUserDetailsService.java&#10;pom.&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;Produ&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java&#10;conf&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/orderConfirmation.html" />
+    <property name="SearchEverywhereHistoryKey" value="User&#9;PSI&#9;JAVA://com.inz.praca.registration.User&#10;Login&#9;PSI&#9;JAVA://com.inz.praca.integration.controller.LoginControllerTest&#10;app&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/application.properties&#10;index.html&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;index&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;index.h&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/index.html&#10;html&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/target/pit-reports/index.html&#10;Mock&#9;PSI&#9;JAVA://org.springframework.test.context.web.socket.MockServerContainerContextCustomizerFactory#MOCK_SERVER_CONTAINER_CONTEXT_CUSTOMIZER_CLASS_NAME&#10;OrderS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/service/OrderServiceTest.java&#10;ProductSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/products/ProductService.java&#10;pom&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;UsersCo&#9;PSI&#9;JAVA://com.inz.praca.units.controller.UsersControllerTest&#10;Users&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/UsersController.java&#10;populateD&#9;PSI&#9;JAVA://com.inz.praca.config.DevDBConfig#populateDatabase&#10;NewP&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/newProduct.html&#10;HomeCont&#9;null&#9;null&#10;Pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Regi&#9;PSI&#9;JAVA://com.inz.praca.controller.RegisterController&#10;OrderCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/OrderController.java&#10;Order&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/units/controller/OrderControllerTest.java&#10;Cus&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/config/CustomAuthenticationFailureHandler.java&#10;Logi&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/LoginSeleniumTest.java&#10;shouldLoginWithCo&#9;PSI&#9;JAVA://com.inz.praca.selenium.LoginSeleniumTest#shouldLoginWithCorrectAuthenticationAndLogoutAfterThat&#10;shouldGetErro&#9;PSI&#9;JAVA://com.inz.praca.selenium.EditProductSeleniumTest#shouldGetErrorWhenTryEditProductAsUser&#10;shouldLoginWith&#9;PSI&#9;JAVA://com.inz.praca.integration.controller.LoginControllerTest#shouldLoginWithCorrectLoginAndPassword&#10;OrderSele&#9;PSI&#9;JAVA://com.inz.praca.selenium.OrderSeleniumTest&#10;Orde&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/service/OrderServiceTest.java&#10;Ed&#9;PSI&#9;JAVA://com.inz.praca.selenium.EditProductSeleniumTest&#10;Del&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/DeleteProductSeleniumTest.java&#10;OrderSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/integration/service/OrderServiceTest.java&#10;shouldDeleteP&#9;PSI&#9;JAVA://com.inz.praca.selenium.DeleteProductSeleniumTest#shouldDeleteProduct&#10;CartSe&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;Cart&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;Car&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/dto/CartSession.java&#10;CartSele&#9;PSI&#9;JAVA://com.inz.praca.selenium.CartSeleniumTest&#10;Product&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;product.htm&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;edit&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/editProduct.html&#10;pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;ProductCon&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;pro&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/product.html&#10;Pr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/controller/ProductController.java&#10;Prod&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/repository/ProductRepository.java&#10;hea&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/fragments/header.html&#10;login&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/resources/templates/login.html&#10;Curr&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/main/java/com/inz/praca/service/CurrentUserDetailsService.java&#10;pom.&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/pom.xml&#10;Produ&#9;PSI&#9;JAVA://com.inz.praca.controller.ProductController&#10;CartS&#9;FILE&#9;file://C:/Users/Admin/ProgramowanieJEE/inzynierka/src/test/java/com/inz/praca/selenium/CartSeleniumTest.java" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -946,10 +996,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.com.inz.praca.integration in inzynierka" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.com.inz.praca.integration.cucumber in inzynierka" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.com.inz.praca.units in inzynierka" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.com in inzynierka" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.com.inz.praca.integration in inzynierka" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.com.inz.praca.integration.cucumber in inzynierka" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.com.inz.praca.units in inzynierka" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.CategoryControllerTest.shouldFailedCreateCategory" />
       </list>
     </recent_temporary>
@@ -970,9 +1020,6 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TestHistory">
-    <history-entry file="CategoryControllerTest_shouldFailedCreateCategory - 2017.05.07 at 19h 14m 42s.xml">
-      <configuration name="CategoryControllerTest.shouldFailedCreateCategory" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PagerTest_listGroup - 2017.05.07 at 13h 25m 33s.xml">
       <configuration name="PagerTest.listGroup" configurationId="JUnit" />
     </history-entry>
@@ -989,6 +1036,9 @@
       <configuration name="com in inzynierka" configurationId="JUnit" />
     </history-entry>
     <history-entry file="com_in_inzynierka - 2017.05.07 at 22h 14m 01s.xml">
+      <configuration name="com in inzynierka" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_in_inzynierka - 2017.05.11 at 17h 31m 40s.xml">
       <configuration name="com in inzynierka" configurationId="JUnit" />
     </history-entry>
     <history-entry file="com_inz_praca_integration_cucumber_in_inzynierka - 2017.05.07 at 22h 28m 58s.xml">
@@ -1011,7 +1061,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-1448" y="-8" width="1456" height="916" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1021,10 +1071,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17729592" sideWeight="0.508596" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22941971" sideWeight="0.491404" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.56850195" sideWeight="0.491404" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18051577" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2743553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1104,41 +1154,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/products/ProductService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="105" column="16" lean-forward="false" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/service/ProductServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="60" column="79" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/service/UserServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/IntegrationTestBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/JpaTestBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/SeleniumProfileTestBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1242,7 +1257,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,75 +1272,18 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091715.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091714.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091722.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091726.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091730.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091733.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091736.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091742.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091738.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091744.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091746.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091726.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091730.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091733.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091736.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091742.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091738.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091744.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091746.xml" />
     <entry file="file://$PROJECT_DIR$/target/liquibase/migrate.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1338,14 +1295,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/liquibase-outputChangeLog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/liquibase-outputChangeLog.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1354,43 +1304,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091826.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-831">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091826.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/config/DevDBConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091829.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/messages.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091829.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/liquibase.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1402,30 +1328,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/products/Testowa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091854.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="11" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091859.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/products/Testowa.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091854.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog_diff_201705091859.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -1438,14 +1343,59 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/controller/LoginControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/integration/IntegrationTestBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/registration/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="57" column="77" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inz/praca/config/CustomAuthenticationFailureHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/inz/praca/units/controller/RegisterControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="52" column="58" lean-forward="false" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/messages.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="159">
+          <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="80" selection-end-line="15" selection-end-column="80" />
           <folding />
         </state>
       </provider>
