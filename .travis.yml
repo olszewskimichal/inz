@@ -13,8 +13,6 @@ before_script:
  - "sh -e /etc/init.d/xvfb start"
  - sleep 4 # give xvfb some time to start
 
-addons:
-  firefox: "46.0"
 cache:
   directories:
   - .autoconf
@@ -23,6 +21,8 @@ cache:
 jobs:
   include:
     - stage: integrationTest
+      addons:
+        firefox: "46.0"
       script:
         - ./mvnw failsafe:integration-test
     - stage: deploy
