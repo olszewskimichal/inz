@@ -3,11 +3,13 @@ sudo: false # faster builds
 jdk:
   - oraclejdk8
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
 before_install:
   - chmod ugo+x mvnw
-
-install:
-  - ./mvnw compile
 
 before_script:
  - "export DISPLAY=:99.0"
