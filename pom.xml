@@ -221,7 +221,6 @@
                     <includes>
                         <include>**/*.class</include>
                     </includes>
-                    <groups>com.inz.praca.IntegrationTest</groups>
                     <excludedGroups>com.inz.praca.UnitTest</excludedGroups>
                 </configuration>
                 <executions>
