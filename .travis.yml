@@ -23,7 +23,7 @@ cache:
 
 jobs:
   include:
-    - stage: unitTest
+    - stage: Test
       script: mvn test
     - stage: integrationTest
       script: mvn failsafe:integration-test
