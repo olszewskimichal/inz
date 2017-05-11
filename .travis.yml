@@ -1,6 +1,7 @@
 language: java
 sudo: false
 jdk: oraclejdk8
+install: true
 
 before_install:
   - chmod ugo+x mvnw
@@ -14,7 +15,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
-
+  
 jobs:
   include:
     - stage: unitTest
