@@ -7,7 +7,7 @@ before_install:
   - chmod ugo+x mvnw
 
 install:
-  - mvn compile
+  - ./mvnw compile
 
 before_script:
  - "export DISPLAY=:99.0"
@@ -24,7 +24,7 @@ cache:
 jobs:
   include:
     - stage: deploy
-      script: mvn package -Dmaven.test.skip=true
+      script: ./mvnw package -Dmaven.test.skip=true
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
