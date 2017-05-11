@@ -5,6 +5,9 @@ jdk: oraclejdk8
 before_install:
   - chmod ugo+x mvnw
 
+install:
+  - ./mvnw compile
+
 cache:
   directories:
   - .autoconf
