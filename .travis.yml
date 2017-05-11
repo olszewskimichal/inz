@@ -21,11 +21,6 @@ cache:
   - .autoconf
   - $HOME/.m2
 
-"jobs:
-  include:
-    - stage: deploy
-      script:
-        - ./mvnw package -Dmaven.test.skip=true"
 script:
   - mvn clean verify
 
