@@ -2,7 +2,6 @@ language: java
 sudo: false # faster builds
 jdk:
   - oraclejdk8
-  - openjdk7
 
 before_install:
   - chmod ugo+x mvnw
@@ -24,10 +23,6 @@ cache:
 
 jobs:
   include:
-    - stage: Test
-      script: mvn test
-    - stage: integrationTest
-      script: mvn failsafe:integration-test
     - stage: deploy
       script: mvn package -Dmaven.test.skip=true
 
