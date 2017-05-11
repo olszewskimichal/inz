@@ -22,9 +22,11 @@ cache:
 
 jobs:
   include:
+    - stage: integrationTest
+      script:
+        - ./mvnw failsafe:integration-test
     - stage: deploy
       script:
-        - sudo apt-get update && sudo apt-get install oracle-java8-installer
         - ./mvnw package -Dmaven.test.skip=true
 
 after_success:
