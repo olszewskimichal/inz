@@ -24,10 +24,9 @@ jobs:
       addons:
         firefox: "46.0"
       script:
-        - ./mvnw failsafe:integration-test
+        - ./mvnw verify
     - stage: deploy
       script:
         - ./mvnw package -Dmaven.test.skip=true
-
-after_success:
- - bash <(curl -s https://codecov.io/bash)
+      after_success:
+       - bash <(curl -s https://codecov.io/bash)
