@@ -7,3 +7,6 @@ inzynierka.iws
 inzynierka.iml
 
 *.class
+/LOG_PATH_IS_UNDEFINEDcontrol.log
+/LOG_FILE_IS_UNDEFINED
+/LOG_PATH_IS_UNDEFINEDsql.log
