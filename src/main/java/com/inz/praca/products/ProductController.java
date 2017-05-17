@@ -74,7 +74,6 @@ public class ProductController {
 
     @GetMapping(value = "/products")
     public String showProducts(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "pageSize", required = false) Integer pageSize, @RequestParam(value = "category", required = false) String category) {
-        log.info("{} {}", page, pageSize);
         int evalPageSize = pageSize == null ? INITIAL_PAGE_SIZE : pageSize;
         int evalPage = page == null ? INITIAL_PAGE : page;
         String evalCategory = category != null && category.trim().length() < 1 ? null : category;
