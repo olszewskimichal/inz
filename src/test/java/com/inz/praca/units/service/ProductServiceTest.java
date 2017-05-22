@@ -161,7 +161,7 @@ public class ProductServiceTest {
                         new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
         given(this.productRepository.findAllByActive(new PageRequest(0, 1, Sort.Direction.ASC, "id"), true)).willReturn(
                 products);
-        List<Product> asc = this.productService.getProducts(1, 1, "asc", null).getContent();
+        List<Product> asc = this.productService.getProducts(1, 1, "asc", Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(1);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -180,7 +180,7 @@ public class ProductServiceTest {
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
         given(this.productRepository.findAllByActive(new PageRequest(0, 5, null, "id"), true)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(null, null, null, null).getContent();
+        List<Product> asc = this.productService.getProducts(null, null, null, Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -197,7 +197,7 @@ public class ProductServiceTest {
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
         given(this.productRepository.findAllByActive(new PageRequest(0, 19, null, "id"), true)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(1, 19, null, null).getContent();
+        List<Product> asc = this.productService.getProducts(1, 19, null, Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -253,7 +253,7 @@ public class ProductServiceTest {
         Category category = new Category("category", "aaa");
         given(categoryRepository.findByName("category")).willReturn(Optional.of(category));
         given(this.productRepository.findByCategory(new PageRequest(0, 5, null, "id"), category)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(null, null, null, "category").getContent();
+        List<Product> asc = this.productService.getProducts(null, null, null, Optional.ofNullable("category")).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");

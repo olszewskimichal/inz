@@ -110,33 +110,33 @@ public class ProductControllerTest {
 
     @Test
     public void shouldShowAllProducts() {
-        given(productService.getProducts(1, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
         assertThat(controller.showProducts(model, null, null, null)).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProducts2() {
-        given(productService.getProducts(2, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(productService.getProducts(2, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
         assertThat(controller.showProducts(model, 2, 6, null)).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProductsByCategory() {
         given(categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a", "a")));
-        given(productService.getProducts(2, 6, null, "a")).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(productService.getProducts(2, 6, null, Optional.ofNullable("a"))).willReturn(new PageImpl<>(new ArrayList<>()));
         assertThat(controller.showProducts(model, 2, 6, "a")).isEqualTo("products");
         verify(model).addAttribute("pager", new Pager(1, 1, 5));
     }
 
     @Test
     public void shouldShowAllProductsWithEmptyCategory() {
-        given(productService.getProducts(1, 6, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
         assertThat(controller.showProducts(model, null, null, "")).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProducts3() {
-        given(productService.getProducts(2, 2, null, null)).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(productService.getProducts(2, 2, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
         assertThat(controller.showProducts(model, 2, 2, null)).isEqualTo("products");
     }
 

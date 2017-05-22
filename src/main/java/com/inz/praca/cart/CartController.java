@@ -52,7 +52,6 @@ public class CartController {
 
     @GetMapping(value = "/cart/clear")
     public String clearCart(Model model) {
-        log.info(cartSession.toString());
         log.info("Czyszczenie koszyka");
         cartSession.clearCart();
         model.addAttribute(getForm());

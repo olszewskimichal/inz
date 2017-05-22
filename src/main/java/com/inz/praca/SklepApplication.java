@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class SklepApplication {
 
@@ -21,14 +23,14 @@ public class SklepApplication {
     @Bean
     @Scope(value = "prototype")
     DiscountService discountService() {
-        if (SecurityContextHolder.getContext().getAuthentication() != null) {
-            CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).flatMap(v -> {
+            CurrentUser user = (CurrentUser) v.getPrincipal();
             if (user.getUser().getOrders().isEmpty())
-                return new NewCustomerDiscountService();
+                return Optional.of(new NewCustomerDiscountService());
             if (user.getUser().getOrders().size() >= 3)
-                return new RegularCustomerDiscountService();
-        }
-        return new NoDiscountService();
+                return Optional.of(new RegularCustomerDiscountService());
+            return Optional.of(new NoDiscountService());
+        }).orElseGet(NoDiscountService::new);
     }
 }
 

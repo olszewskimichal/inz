@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,7 +48,7 @@ public class ProductServiceTest extends IntegrationTestBase {
             repository.save(new ProductBuilder().withName("nazwa" + i).withPrice(BigDecimal.ZERO).createProduct());
         }
 
-        List<Product> products = this.productService.getProducts(1, 30, "desc", null).getContent();
+        List<Product> products = this.productService.getProducts(1, 30, "desc", Optional.empty()).getContent();
 
         assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService
     }
@@ -81,7 +82,7 @@ public class ProductServiceTest extends IntegrationTestBase {
         cartItems.add(new CartItem(product, 1L));
         orderRepository.save(new Order(new Cart(cartItems), new ShippingDetail("a", "b", "c", "d")));
         productService.deleteProductById(product.getId());
-        Page<Product> products = productService.getProducts(1, null, null, null);
+        Page<Product> products = productService.getProducts(1, null, null, Optional.empty());
         assertThat(products.getTotalElements()).isEqualTo(1L);
     }
 }

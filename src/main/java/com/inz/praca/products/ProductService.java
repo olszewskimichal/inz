@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.isNull;
 import static org.springframework.data.domain.Sort.Direction.fromString;
@@ -50,19 +51,22 @@ public class ProductService {
         return productRepository.findByName(name).orElseThrow(() -> new ProductNotFoundException(name));
     }
 
-    public Page<Product> getProducts(final Integer page, final Integer size, final String sort, final String name) {
+    public Page<Product> getProducts(final Integer page, final Integer size, final String sort, final Optional<String> name) {
         Assert.isTrue(setReturnSize(size) >= 1, "Podano rozmiar mniejszy od 1");
         Assert.isTrue(setReturnPage(page) >= 0, "Podano nieprawidlowy numer strony");
         PageRequest pageRequest = new PageRequest(setReturnPage(page), setProductOnPageLimit(setReturnSize(size)),
                 setSortDirection(sort), DEFAULT_SORT_BY_ID);
-        if (name != null) {
-            Category category = categoryRepository.findByName(name)
-                    .orElseThrow(() -> new CategoryNotFoundException(name));
-            return productRepository.findByCategory(pageRequest, category);
-        }
-        log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}", setReturnPage(page),
-                setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
-        return productRepository.findAllByActive(pageRequest, true);
+        return name.flatMap(v -> {
+            Category category = categoryRepository.findByName(v)
+                    .orElseThrow(() -> new CategoryNotFoundException(v));
+            return Optional.of(productRepository.findByCategory(pageRequest, category));
+        }).orElseGet(() -> {
+            log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}",
+                    setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
+            return productRepository.findAllByActive(pageRequest, true);
+        });
+
+
     }
 
     @Transactional

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -78,7 +79,8 @@ public class ProductController {
         int evalPage = page == null ? INITIAL_PAGE : page;
         String evalCategory = category != null && category.trim().length() < 1 ? null : category;
         log.info("Strona {} elementow na stronie {}", evalPage, evalPageSize);
-        Page<Product> products = productService.getProducts(evalPage, evalPageSize, null, evalCategory);
+        Page<Product> products = productService.getProducts(evalPage, evalPageSize, null,
+                Optional.ofNullable(evalCategory));
         model.addAttribute("products", products);
         model.addAttribute("categoryList", productService.findAllCategory());
         model.addAttribute("selectedPageSize", evalPageSize);
