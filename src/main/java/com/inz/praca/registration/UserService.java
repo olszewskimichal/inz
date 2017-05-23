@@ -1,5 +1,6 @@
 package com.inz.praca.registration;
 
+import com.inz.praca.aspect.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,18 +17,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Timed
     public User getUserById(Long id) {
         Assert.notNull(id, "Podano puste id uzytkownika");
         Assert.isTrue(id > 0L, "Nie ma uzytkownikow o id mniejszym niz 1");
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    @Timed
     public User getUserByEmail(String email) {
         Assert.notNull(email, "Nie podano adresu email");
         Assert.hasLength(email, "Podano pusty email");
         return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
     }
 
+    @Timed
     public Page<User> getAllUsers(Integer page) {
         PageRequest pageRequest = new PageRequest(page, MAX_USERS_ON_PAGE);
         return userRepository.findAll(pageRequest);
