@@ -44,7 +44,7 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
         productPage.clickOnRemoveProductButton();
         if (driver instanceof HtmlUnitDriver) {
         } else {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             productPage.clickOnConfirmRemoveProduct();
             assertThat(repository.findAll().size()).isEqualTo(size - 1);
         }
