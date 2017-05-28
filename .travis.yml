@@ -23,7 +23,7 @@ jobs:
       addons:
         firefox: "46.0"
       script:
-        - mvnw verify
+        - ./mvnw verify
     - stage: deploy
       script:
         - ./mvnw package -Dmaven.test.skip=true
