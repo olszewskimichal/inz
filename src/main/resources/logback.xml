@@ -2,7 +2,9 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-    <property name="LOG_FILE" value="${LOG_FILE}"/>
+    <property resource="application.properties"/>
+    <property name="LOG_PATH" value="F:/kibana/logi/"/>
+    <property name="LOG_FILE" value="${LOG_PATH}application.log"/>
     <property name="CONTROL_FILE" value="${LOG_PATH}control.log"/>
     <property name="SQL_FILE" value="${LOG_PATH}sql.log"/>
     <appender name="ROLLIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
