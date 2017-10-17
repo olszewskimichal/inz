@@ -138,4 +138,12 @@
                                  constraintName="FKwenfoxyuwmd5fjqohmustlpq" deferrable="false"
                                  initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
     </changeSet>
+    <changeSet author="Admin (generated)" id="1508260419192-1">
+        <addColumn tableName="Cart">
+            <column name="test" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1508260513065-1">
+        <dropColumn columnName="TEST" tableName="CART"/>
+    </changeSet>
 </databaseChangeLog>

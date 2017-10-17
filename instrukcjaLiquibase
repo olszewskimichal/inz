@@ -1,0 +1,6 @@
+liquibase:status - by sprawdzić status
+liquibase:diff - by wygenerowac roznicowke
+Dołączyc wygenerowanyt plik do changeloga
+liquibase:updateSQL - by wygenerowac plik sql z roznicami
+liquibase:update - by przeprowadzic zmiany na bazie
+liquibase:status - by sprawdzić status
