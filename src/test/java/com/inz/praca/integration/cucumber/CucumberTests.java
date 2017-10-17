@@ -7,7 +7,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", plugin = {"pretty", "html:target/cucumber"})
+@CucumberOptions(features = "src/test/resources")
 @Category(IntegrationTest.class)
 public class CucumberTests {
 
