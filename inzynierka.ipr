@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="inzynierka" />
+        <module name="sklep" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="inzynierka" target="1.8" />
+      <module name="sklep" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager">
@@ -478,7 +480,7 @@
   <component name="GradleLocalSettings">
     <option name="modificationStamps">
       <map>
-        <entry key="$USER_HOME$/Documents/GitHub/wildsnake-api" value="1463671591025" />
+        <entry key="$PROJECT_DIR$/../GitHub/wildsnake-api" value="1463671591025" />
         <entry key="$USER_HOME$/Downloads/gs-consuming-web-service-master/gs-consuming-web-service-master/complete" value="1472462266000" />
         <entry key="$USER_HOME$/Downloads/gs-messaging-jms-master/gs-messaging-jms-master/complete" value="1462861594000" />
         <entry key="$USER_HOME$/Downloads/smallexamples-master/smallexamples-master/hello-springboot-cucumber" value="1477196296000" />
@@ -516,9 +518,6 @@
     </profile>
     <version value="1.0" />
   </component>
-  <component name="KotlinCommonCompilerArguments">
-    <option name="coroutinesWarn" value="false" />
-  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -526,40 +525,44 @@
       </list>
     </option>
   </component>
+  <component name="ProjectCodeStyleConfiguration">
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+    <code_scheme name="Project" version="173">
+      <DBN-PSQL>
+        <case-options enabled="false">
+          <option name="KEYWORD_CASE" value="lower" />
+          <option name="FUNCTION_CASE" value="lower" />
+          <option name="PARAMETER_CASE" value="lower" />
+          <option name="DATATYPE_CASE" value="lower" />
+          <option name="OBJECT_CASE" value="preserve" />
+        </case-options>
+        <formatting-settings enabled="false" />
+      </DBN-PSQL>
+      <DBN-SQL>
+        <case-options enabled="false">
+          <option name="KEYWORD_CASE" value="lower" />
+          <option name="FUNCTION_CASE" value="lower" />
+          <option name="PARAMETER_CASE" value="lower" />
+          <option name="DATATYPE_CASE" value="lower" />
+          <option name="OBJECT_CASE" value="preserve" />
+        </case-options>
+        <formatting-settings enabled="false">
+          <option name="STATEMENT_SPACING" value="one_line" />
+          <option name="CLAUSE_CHOP_DOWN" value="chop_down_if_statement_long" />
+          <option name="ITERATION_ELEMENTS_WRAPPING" value="chop_down_if_not_single" />
+        </formatting-settings>
+      </DBN-SQL>
+    </code_scheme>
+  </component>
   <component name="ProjectCodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
-      <value>
-        <DBN-PSQL>
-          <case-options enabled="false">
-            <option name="KEYWORD_CASE" value="lower" />
-            <option name="FUNCTION_CASE" value="lower" />
-            <option name="PARAMETER_CASE" value="lower" />
-            <option name="DATATYPE_CASE" value="lower" />
-            <option name="OBJECT_CASE" value="preserve" />
-          </case-options>
-          <formatting-settings enabled="false" />
-        </DBN-PSQL>
-        <DBN-SQL>
-          <case-options enabled="false">
-            <option name="KEYWORD_CASE" value="lower" />
-            <option name="FUNCTION_CASE" value="lower" />
-            <option name="PARAMETER_CASE" value="lower" />
-            <option name="DATATYPE_CASE" value="lower" />
-            <option name="OBJECT_CASE" value="preserve" />
-          </case-options>
-          <formatting-settings enabled="false">
-            <option name="STATEMENT_SPACING" value="one_line" />
-            <option name="CLAUSE_CHOP_DOWN" value="chop_down_if_statement_long" />
-            <option name="ITERATION_ELEMENTS_WRAPPING" value="chop_down_if_not_single" />
-          </formatting-settings>
-        </DBN-SQL>
-      </value>
+      <value />
     </option>
     <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/inzynierka.iml" filepath="$PROJECT_DIR$/inzynierka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sklep.iml" filepath="$PROJECT_DIR$/sklep.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
