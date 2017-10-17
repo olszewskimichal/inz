@@ -138,7 +138,4 @@
                                  constraintName="FKwenfoxyuwmd5fjqohmustlpq" deferrable="false"
                                  initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
     </changeSet>
-    <changeSet author="Admin (generated)" id="1494601261315-2">
-        <dropTable tableName="TESTOWA"/>
-    </changeSet>
 </databaseChangeLog>
