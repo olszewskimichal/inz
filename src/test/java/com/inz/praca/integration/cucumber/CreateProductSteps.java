@@ -17,7 +17,7 @@ public class CreateProductSteps extends SeleniumTestBase {
     private String price;
 
 
-    @Given("Podajac  nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
+    @Given("Podajac nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
     public void useNewProductData(String name, String description, String price, String category) throws Exception {
         prepareBeforeTest();
         driver.get("http://localhost:" + port + "/login");
@@ -29,7 +29,7 @@ public class CreateProductSteps extends SeleniumTestBase {
         this.price = price;
     }
 
-    @When("Przy kliknieciu dodaj")
+    @When("Przy kliknieciu dodaj produkt")
     public void shouldPerformNewProduct() throws Exception {
         driver.get("http://localhost:" + port + "/addProduct");
         NewProductPage productPage = new NewProductPage(driver);

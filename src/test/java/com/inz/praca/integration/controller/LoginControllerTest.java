@@ -36,7 +36,7 @@ public class LoginControllerTest extends IntegrationTestBase {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mvc = MockMvcBuilders.webAppContextSetup(context)
                 .apply(springSecurity())
                 .build();

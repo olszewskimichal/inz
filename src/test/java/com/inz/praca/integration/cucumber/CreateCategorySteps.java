@@ -15,7 +15,7 @@ public class CreateCategorySteps extends SeleniumTestBase {
     private String name;
     private String description;
 
-    @Given("Mając  nazwe kategori  (.*) z opisem  (.*)")
+    @Given("Mając nazwe kategorii (.*) z opisem (.*)")
     public void useNewProductData(String name, String description) throws Exception {
         prepareBeforeTest();
         driver.get("http://localhost:" + port + "/login");

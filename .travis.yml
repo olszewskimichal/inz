@@ -2,11 +2,8 @@ language: java
 sudo: false
 jdk: oraclejdk8
 
-before_install:
-  - chmod ugo+x mvnw
-
 install:
-  - ./mvnw compile
+  - mvn compile
 
 cache:
   directories:
@@ -23,9 +20,9 @@ jobs:
       addons:
         firefox: "46.0"
       script:
-        - ./mvnw verify
+        - mvn verify
     - stage: deploy
       script:
-        - ./mvnw package -Dmaven.test.skip=true
+        - mvn package -Dmaven.test.skip=true
       after_success:
        - bash <(curl -s https://codecov.io/bash)
