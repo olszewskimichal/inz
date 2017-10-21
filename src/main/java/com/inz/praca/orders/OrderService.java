@@ -5,6 +5,7 @@ import com.inz.praca.cart.CartItem;
 import com.inz.praca.cart.CartItemDTO;
 import com.inz.praca.cart.CartSession;
 import com.inz.praca.discount.DiscountService;
+import com.inz.praca.products.ProductNotFoundException;
 import com.inz.praca.products.ProductRepository;
 import com.inz.praca.registration.CurrentUser;
 import com.inz.praca.registration.User;
@@ -50,8 +51,7 @@ public class OrderService {
         Assert.notEmpty(cartSession.getItems(), "Koszyk musi zawierac jakies produkty");
         Set<CartItem> cartItems = new HashSet<>();
         for (CartItemDTO cartItemDTO : cartSession.getItems()) {
-            CartItem cartItem = new CartItem(productRepository.findByName(cartItemDTO.getItem().getName()).get(),
-                    cartItemDTO.getQuantity().longValue());
+            CartItem cartItem = new CartItem(productRepository.findByName(cartItemDTO.getItem().getName()).orElseThrow(()->new ProductNotFoundException(cartItemDTO.getItem().getName())), cartItemDTO.getQuantity().longValue());
             cartItems.add(cartItem);
         }
         return new Cart(cartItems);

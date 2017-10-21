@@ -7,7 +7,6 @@ import com.inz.praca.registration.UserBuilder;
 import com.inz.praca.registration.UserRepository;
 import com.inz.praca.selenium.pageObjects.LoginPage;
 import org.openqa.selenium.WebDriver;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 

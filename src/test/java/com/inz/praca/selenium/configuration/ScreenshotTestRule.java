@@ -1,9 +1,5 @@
 package com.inz.praca.selenium.configuration;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.UUID;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
@@ -11,6 +7,10 @@ import org.junit.runners.model.Statement;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 public class ScreenshotTestRule implements MethodRule {
     private WebDriver driver;
