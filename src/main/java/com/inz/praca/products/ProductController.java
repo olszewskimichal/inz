@@ -3,6 +3,7 @@ package com.inz.praca.products;
 import com.inz.praca.utils.Pager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -24,7 +26,7 @@ public class ProductController {
     private static final String CATEGORY_LIST = "categoryList";
     private static final String PRODUCT_ID = "productId";
     private static final int BUTTONS_TO_SHOW = 5;
-    private static final int INITIAL_PAGE = 1;
+    private static final int INITIAL_PAGE = 0;
     private static final int INITIAL_PAGE_SIZE = 6;
     private static final int[] PAGE_SIZES = {6, 12, 18};
     private final ProductService productService;
@@ -53,16 +55,9 @@ public class ProductController {
             model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
             return NEW_PRODUCT;
         }
-        try {
-            productService.createProductFromDTO(productDTO);
-            redirectAttributes.addFlashAttribute("createProductDone", true);
-            return "redirect:/products";
-        } catch (IllegalArgumentException e) {
-            log.debug(e.getMessage());
-            model.addAttribute(PRODUCT_FORM, productDTO);
-            model.addAttribute(CATEGORY_LIST, productService.findAllCategory());
-        }
-        return NEW_PRODUCT;
+        productService.createProductFromDTO(productDTO);
+        redirectAttributes.addFlashAttribute("createProductDone", true);
+        return "redirect:/products";
     }
 
     @GetMapping(value = "/products/product/{productId}")
@@ -76,12 +71,16 @@ public class ProductController {
     @GetMapping(value = "/products")
     public String showProducts(Model model, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "pageSize", required = false) Integer pageSize, @RequestParam(value = "category", required = false) String category) {
         int evalPageSize = pageSize == null ? INITIAL_PAGE_SIZE : pageSize;
-        int evalPage = page == null ? INITIAL_PAGE : page;
+        int evalPage = page == null ? INITIAL_PAGE : page - 1;
         String evalCategory = category != null && category.trim().length() < 1 ? null : category;
         log.info("Strona {} elementow na stronie {}", evalPage, evalPageSize);
-        Page<Product> products = productService.getProducts(evalPage, evalPageSize, null,
-                Optional.ofNullable(evalCategory));
-        model.addAttribute("products", products);
+        Page<Product> products = productService.getProducts(evalPage, evalPageSize, null, Optional.ofNullable(evalCategory));
+        if (products == null) {
+            products = new PageImpl<>(new ArrayList<>());
+        }
+        model.addAttribute("products", products.getContent());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("page", products.getNumber());
         model.addAttribute("categoryList", productService.findAllCategory());
         model.addAttribute("selectedPageSize", evalPageSize);
         model.addAttribute("pager", new Pager(products.getTotalPages(), products.getNumber(), BUTTONS_TO_SHOW));
@@ -104,7 +103,7 @@ public class ProductController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/products/product/delete/{productId}")
     public String deleteProduct(@PathVariable Long productId) {
-        productService.deleteProductById(productId);
+        productService.deleteProductById(productId);   //TODO dodać feedback message
         return "redirect:/products";
     }
 
@@ -119,7 +118,7 @@ public class ProductController {
             model.addAttribute(PRODUCT_ID, productId);
             return EDIT_PRODUCT;
         }
-        productService.updateProduct(productId, productDTO);
+        productService.updateProduct(productId, productDTO);   //TODO dodać feedback message
         return "redirect:/products/product/" + productId;
     }
 }

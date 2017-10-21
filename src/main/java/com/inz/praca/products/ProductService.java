@@ -92,7 +92,7 @@ public class ProductService {
     }
 
     private int setReturnPage(final Integer pageNumber) {
-        return isNull(pageNumber) ? FIRST_PAGE : pageNumber - 1;
+        return isNull(pageNumber) ? FIRST_PAGE : pageNumber;
     }
 
     private int setReturnSize(final Integer size) {
@@ -114,6 +114,8 @@ public class ProductService {
 
     public void deleteProductById(Long id) {
         try {
+            log.info("Usuwanie produktu o id {}", id);
+            Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
             productRepository.deleteProductById(id);
         } catch (DataIntegrityViolationException e) {
             log.error("Podany produkt zostal juz zamowiony wiec nie mozna go usunac ale mozna go zdeaktywowac");

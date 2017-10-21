@@ -70,24 +70,6 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void shouldFailedCreateProduct() {
-        RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        given(productService.createProductFromDTO(any(ProductDTO.class))).willThrow(new IllegalArgumentException());
-
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setName("name");
-        productDTO.setDescription("desc");
-        productDTO.setPrice(BigDecimal.TEN);
-        productDTO.setImageUrl("url");
-        assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo(
-                "newProduct");
-
-        verify(model).addAttribute("productCreateForm", productDTO);
-        verify(model).addAttribute("categoryList", productService.findAllCategory());
-        verifyNoMoreInteractions(model);
-    }
-
-    @Test
     public void shouldShowAgainFormWhenErrorOnCreate() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
         given(bindingResult.hasErrors()).willReturn(true);

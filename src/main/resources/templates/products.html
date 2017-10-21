@@ -54,26 +54,26 @@
                             th:selected="${pageSize} == ${selectedPageSize}"></option>
                 </select>
             </div>
-            <div th:if="${products.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+            <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
                 <ul class="pagination">
-                    <li th:class="${products.getNumber() == 0} ? disabled"><a class="pageLink"
+                    <li th:class="${page == 0} ? disabled"><a class="pageLink"
                                                                               th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a>
                     </li>
-                    <li th:class="${products.getNumber() == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${products.getNumber()},category=${category})}">&larr;</a>
+                    <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}">&larr;</a>
                     </li>
-                    <li th:class="${products.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+                    <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
                         th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
                             class="pageLink"
                             th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}"
                             th:text="${page}"></a></li>
-                    <li th:class="${products.getNumber() + 1 == products.getTotalPages()} ? disabled"><a
+                    <li th:class="${page + 1 == totalPages} ? disabled"><a
                             class="pageLink"
-                            th:href="@{/products(pageSize=${selectedPageSize}, page=${products.getNumber() + 2},category=${category})}">&rarr;</a>
+                            th:href="@{/products(pageSize=${selectedPageSize}, page=${page + 2},category=${category})}">&rarr;</a>
                     </li>
-                    <li th:class="${products.getNumber() + 1 == products.getTotalPages()} ? disabled"><a
+                    <li th:class="${page + 1 == totalPages} ? disabled"><a
                             class="pageLink"
-                            th:href="@{/products(pageSize=${selectedPageSize},page=${products.getTotalPages()},category=${category})}">&raquo;</a>
+                            th:href="@{/products(pageSize=${selectedPageSize},page=${totalPages},category=${category})}">&raquo;</a>
                     </li>
                 </ul>
             </div>

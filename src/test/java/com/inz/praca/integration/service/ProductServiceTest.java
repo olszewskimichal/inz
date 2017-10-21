@@ -48,7 +48,7 @@ public class ProductServiceTest extends IntegrationTestBase {
             repository.save(new ProductBuilder().withName("nazwa" + i).withPrice(BigDecimal.ZERO).createProduct());
         }
 
-        List<Product> products = this.productService.getProducts(1, 30, "desc", Optional.empty()).getContent();
+        List<Product> products = this.productService.getProducts(0, 30, "desc", Optional.empty()).getContent();
 
         assertThat(products.size()).isEqualTo(20); //taki limit ustalony w ProductService
     }

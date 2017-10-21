@@ -2,6 +2,7 @@ package com.inz.praca.registration;
 
 import com.inz.praca.login.Role;
 import com.inz.praca.orders.Order;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ProductDTO implements Serializable {
 
-    @NotBlank
     @Size(min = 4, max = 15)
     private String name;
 

@@ -43,7 +43,7 @@ public class ProductControllerTest extends IntegrationTestBase {
         mvc.perform(post("/addProduct"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newProduct"))
-                .andExpect(model().errorCount(3));
+                .andExpect(model().errorCount(2));
     }
 
     @Test
