@@ -22,8 +22,8 @@ public class CartItemDTO implements Serializable {
     public CartItemDTO(ProductDTO item) {
         Assert.notNull(item, "Produkt nie moze być nullem");
         this.item = item;
-        this.quantity = 1;
-        this.price = item.getPrice();
+        quantity = 1;
+        price = item.getPrice();
     }
 
 }

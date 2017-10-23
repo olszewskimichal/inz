@@ -19,7 +19,7 @@ public class RegisterSteps extends SeleniumTestBase {
 
     @Given("Podajac imie= (.*) nazwisko = (.*) email = (.*) oraz hasło (.*) i potwierdzeniu (.*)")
     public void useRegisterData(String name, String lastName, String email, String password, String confirmPassword) throws Exception {
-        prepareBeforeTest();
+        this.prepareBeforeTest();
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -28,25 +28,25 @@ public class RegisterSteps extends SeleniumTestBase {
     }
 
     @When("Przy kliknieciu zarejestruj")
-    public void shouldPerformRegister() throws Exception {
-        driver.get("http://localhost:" + port + "/register");
-        RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.typeName(name);
-        registerPage.typeLastName(lastName);
-        registerPage.typeEmail(email);
-        registerPage.typePassword(password);
-        registerPage.typeConfirmPassword(confirmPassword);
+    public void shouldPerformRegister() {
+        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/register");
+        RegisterPage registerPage = new RegisterPage(SeleniumTestBase.driver);
+        registerPage.typeName(this.name);
+        registerPage.typeLastName(this.lastName);
+        registerPage.typeEmail(this.email);
+        registerPage.typePassword(this.password);
+        registerPage.typeConfirmPassword(this.confirmPassword);
         registerPage.clickOnRegisterButton();
     }
 
     @Then("Dostane (.*) komunikatów błedu")
-    public void shouldGetResponseWithHttpStatusCode(int errorCount) throws Exception {
-        assertThat(driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
+    public void shouldGetResponseWithHttpStatusCode(int errorCount) {
+        assertThat(SeleniumTestBase.driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
     }
 
     @Then("Otrzymamy bład że (.*)")
-    public void shouldGetErrorWithExistingEmail(String error) throws Exception {
-        driver.getPageSource().contains(error);
+    public void shouldGetErrorWithExistingEmail(String error) {
+        SeleniumTestBase.driver.getPageSource().contains(error);
     }
 
     @Test

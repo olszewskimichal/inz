@@ -6,33 +6,33 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage {
-    public By submitDelete = By.id("submitdelete");
-    By name = By.id("name");
-    By description = By.id("description");
-    By price = By.id("price");
-    By orderButton = By.id("order");
-    By cartButton = By.id("cart");
-    By productsButton = By.id("products");
-    By category = By.id("category");
-    By editButton = By.id("editProduct");
-    By removeButton = By.id("removeProduct");
-    private WebDriver webDriver;
+    private final By submitDelete = By.id("submitdelete");
+    private final By name = By.id("name");
+    private final By description = By.id("description");
+    private final By price = By.id("price");
+    private final By orderButton = By.id("order");
+    private final By cartButton = By.id("cart");
+    private final By productsButton = By.id("products");
+    private final By category = By.id("category");
+    private final By editButton = By.id("editProduct");
+    private final By removeButton = By.id("removeProduct");
+    private final WebDriver webDriver;
 
     public ProductPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public void clickOrderButton() {
-        webDriver.findElement(this.orderButton).click();
+        this.webDriver.findElement(orderButton).click();
     }
 
     public String getSelectedCategory() {
-        Select categorySelect = new Select(webDriver.findElement(category));
+        Select categorySelect = new Select(this.webDriver.findElement(this.category));
         return categorySelect.getFirstSelectedOption().getText();
     }
 
     public void chooseCategoryByText(String name) {
-        Select categorySelect = new Select(webDriver.findElement(category));
+        Select categorySelect = new Select(this.webDriver.findElement(this.category));
         for (WebElement option : categorySelect.getOptions()) {
             if (option.getText().equals(name)) {
                 option.click();
@@ -41,35 +41,35 @@ public class ProductPage {
     }
 
     public void clickCartButton() {
-        webDriver.findElement(this.cartButton).click();
+        this.webDriver.findElement(cartButton).click();
     }
 
     public void clickOnEditProductButton() {
-        webDriver.findElement(this.editButton).click();
+        this.webDriver.findElement(editButton).click();
     }
 
     public void clickOnRemoveProductButton() {
-        webDriver.findElement(this.removeButton).click();
+        this.webDriver.findElement(removeButton).click();
     }
 
     public void clickOnConfirmRemoveProduct() {
-        webDriver.findElement(this.submitDelete).click();
+        this.webDriver.findElement(submitDelete).click();
     }
 
 
     public void clickProductsButton() {
-        webDriver.findElement(this.productsButton).click();
+        this.webDriver.findElement(productsButton).click();
     }
 
     public String getName() {
-        return webDriver.findElement(name).getText();
+        return this.webDriver.findElement(this.name).getText();
     }
 
     public String getDescription() {
-        return webDriver.findElement(description).getText();
+        return this.webDriver.findElement(this.description).getText();
     }
 
     public String getPrice() {
-        return webDriver.findElement(price).getText();
+        return this.webDriver.findElement(this.price).getText();
     }
 }

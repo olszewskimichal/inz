@@ -2,6 +2,7 @@ package com.inz.praca.units.controller;
 
 import com.inz.praca.UnitTest;
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.View;
 import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.login.HomeController;
 import org.junit.Before;
@@ -18,11 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Category(UnitTest.class)
 public class HomeControllerTest {
 
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Before
     public void configureSystemUnderTest() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new HomeController())
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new HomeController())
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();
@@ -30,13 +31,13 @@ public class HomeControllerTest {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        mockMvc.perform(get("/"))
+        this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderHomePageView() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(view().name(WebTestConstants.View.HOME));
+        this.mockMvc.perform(get("/"))
+                .andExpect(view().name(View.HOME));
     }
 }

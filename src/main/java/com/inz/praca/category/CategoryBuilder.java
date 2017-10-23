@@ -15,7 +15,7 @@ public class CategoryBuilder {
     }
 
     public Category createCategory() {
-        return new Category(name, description);
+        return new Category(this.name, this.description);
     }
 
 }

@@ -2,6 +2,7 @@ package com.inz.praca.units.controller;
 
 import com.inz.praca.UnitTest;
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.View;
 import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.login.LoginController;
 import org.junit.Before;
@@ -18,11 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Category(UnitTest.class)
 public class LoginControllerTest {
 
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Before
     public void configureSystemUnderTest() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new LoginController())
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new LoginController())
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();
@@ -30,31 +31,31 @@ public class LoginControllerTest {
 
     @Test
     public void shouldReturnHttpStatusCodeOkOnLoginPage() throws Exception {
-        mockMvc.perform(get("/login"))
+        this.mockMvc.perform(get("/login"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderLoginPageView() throws Exception {
-        mockMvc.perform(get("/login"))
-                .andExpect(view().name(WebTestConstants.View.LOGIN));
+        this.mockMvc.perform(get("/login"))
+                .andExpect(view().name(View.LOGIN));
     }
 
     @Test
     public void shouldReturnHttpStatusCodeOkOnLoginErrorPage() throws Exception {
-        mockMvc.perform(get("/login-error"))
+        this.mockMvc.perform(get("/login-error"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderLoginErrorPageView() throws Exception {
-        mockMvc.perform(get("/login-error"))
-                .andExpect(view().name(WebTestConstants.View.LOGIN));
+        this.mockMvc.perform(get("/login-error"))
+                .andExpect(view().name(View.LOGIN));
     }
 
     @Test
     public void shouldFillModelPropertiesOnLoginError() throws Exception {
-        mockMvc.perform(get("/login-error"))
+        this.mockMvc.perform(get("/login-error"))
                 .andExpect(model().attribute("loginError", true))
                 .andExpect(model().attribute("errorMessage", nullValue()));
     }

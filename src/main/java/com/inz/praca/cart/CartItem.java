@@ -30,7 +30,7 @@ public class CartItem {
     }
 
     private CartItem() {
-        this.quantity = null;
-        product = null;
+        quantity = null;
+        this.product = null;
     }
 }

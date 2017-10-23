@@ -24,12 +24,12 @@ public class UserServiceTest extends IntegrationTestBase {
 
     @Before
     public void setUp() {
-        repository.deleteAll();
+        this.repository.deleteAll();
     }
 
     @Test
     public void shouldCreateUserWhenDtoIsCorrectButWhenAgainThenFailed() {
-        assertThat(repository.findAll().size()).isEqualTo(0);
+        assertThat(this.repository.findAll().size()).isEqualTo(0);
 
         //given
         UserDTO userDTO = new UserDTO();
@@ -39,18 +39,18 @@ public class UserServiceTest extends IntegrationTestBase {
         userDTO.setPassword("zaq1@WSX");
 
         //when
-        User user = userService.createUserFromDTO(userDTO);
+        User user = this.userService.createUserFromDTO(userDTO);
 
         //then
-        assertThat(repository.findAll().size()).isEqualTo(1);
+        assertThat(this.repository.findAll().size()).isEqualTo(1);
         assertThat(user.getEmail()).isEqualTo("email@o2.pl");
         assertThat(new BCryptPasswordEncoder().matches("zaq1@WSX", user.getPasswordHash())).isTrue();
 
         try {
-            userService.createUserFromDTO(userDTO);
+            this.userService.createUserFromDTO(userDTO);
             Assert.fail();
         } catch (DataIntegrityViolationException e) {
-            assertThat(repository.findAll().size()).isEqualTo(1);
+            assertThat(this.repository.findAll().size()).isEqualTo(1);
         }
     }
 

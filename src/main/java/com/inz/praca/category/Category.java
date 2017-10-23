@@ -32,7 +32,7 @@ public class Category {
     }
 
     private Category() {
-        this.name = null;
-        this.description = null;
+        name = null;
+        description = null;
     }
 }

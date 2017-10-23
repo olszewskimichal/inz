@@ -11,12 +11,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ChangeUserActivityWhenUserNotFoundTest extends UsersControllerTestBase {
     @Before
     public void returnEmptyUsersList() {
-        given(userService.changeUserActive(USER_ID, USER_ACTIVITY_TRUE)).willThrow(new UserNotFoundException(1L));
+        given(this.userService.changeUserActive(UsersControllerTestBase.USER_ID, UsersControllerTestBase.USER_ACTIVITY_TRUE)).willThrow(new UserNotFoundException(1L));
     }
 
     @Test
     public void shouldThrowException() throws Exception {
-        mockMvc.perform(get("/user/active/{activity}/{userId}", USER_ACTIVITY_TRUE, USER_ID))
+        this.mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
                 .andExpect(status().isNotFound());
     }
 }

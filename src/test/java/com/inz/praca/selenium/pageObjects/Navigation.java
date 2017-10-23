@@ -3,21 +3,21 @@ package com.inz.praca.selenium.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Navigation {
-    public WebDriver webDriver;
-    By home = By.id("home");
-    By pl = By.id("pl");
+class Navigation {
+    final WebDriver webDriver;
+    private final By home = By.id("home");
+    private final By pl = By.id("pl");
 
-    public Navigation(WebDriver webDriver) {
+    Navigation(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public void clickHome() {
-        webDriver.findElement(home).click();
+        this.webDriver.findElement(this.home).click();
     }
 
     public void clickToPolishLang() {
-        webDriver.findElement(pl).click();
+        this.webDriver.findElement(this.pl).click();
     }
 
 }

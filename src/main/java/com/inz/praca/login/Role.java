@@ -15,11 +15,11 @@ public enum Role implements GrantedAuthority {
     }
 
     public String getDisplayName() {
-        return displayName;
+        return this.displayName;
     }
 
     @Override
     public String getAuthority() {
-        return name();
+        return this.name();
     }
 }

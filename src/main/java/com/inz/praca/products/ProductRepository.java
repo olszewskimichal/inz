@@ -24,7 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findById(Long id);
 
-    @Query(value = "select c.name,count (p.name) from Category c,Product p where p.category.id=c.id group by c.id")
+    @Query("select c.name,count (p.name) from Category c,Product p where p.category.id=c.id group by c.id")
     List<Object[]> findCategoryNameAndCountProducts();
 
     @Transactional

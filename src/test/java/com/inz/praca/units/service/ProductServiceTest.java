@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -44,13 +45,13 @@ public class ProductServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.productService = new ProductService(productRepository, categoryRepository);
+        productService = new ProductService(this.productRepository, this.categoryRepository);
     }
 
     @Test
     public void shouldThrownIllegalArgumentExceptionWhenNameIsNull() {
         try {
-            this.productService.getProductByName(null);
+            productService.getProductByName(null);
             Assert.fail("Nie mozna podac nullowego argumentu");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano pusta nazwe produktu");
@@ -60,8 +61,8 @@ public class ProductServiceTest {
     @Test
     public void shouldThrownProductNotFoundExceptionWhenProductByNameNotExist() {
         try {
-            given(this.productRepository.findByName(anyString())).willReturn(Optional.empty());
-            this.productService.getProductByName(NAME);
+            given(productRepository.findByName(anyString())).willReturn(Optional.empty());
+            productService.getProductByName(ProductServiceTest.NAME);
             Assert.fail("Nie powinno znalezc produktu o podanej nazwie");
         } catch (ProductNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono produktu o nazwie name");
@@ -70,21 +71,21 @@ public class ProductServiceTest {
 
     @Test
     public void shouldReturnProductWhenProductByNameExists() {
-        given(this.productRepository.findByName(NAME)).willReturn(
-                Optional.of(new ProductBuilder().withName(NAME)
+        given(productRepository.findByName(ProductServiceTest.NAME)).willReturn(
+                Optional.of(new ProductBuilder().withName(ProductServiceTest.NAME)
                         .withDescription("desc")
                         .withUrl("url")
                         .withPrice(BigDecimal.TEN)
                         .createProduct()));
-        Product productByName = this.productService.getProductByName(NAME);
+        Product productByName = productService.getProductByName(ProductServiceTest.NAME);
         assertThat(productByName).isNotNull();
-        assertThat(productByName.getName()).isEqualTo(NAME);
+        assertThat(productByName.getName()).isEqualTo(ProductServiceTest.NAME);
     }
 
     @Test
     public void shouldThrownIllegalArgumentExceptionWhenIdIsNull() {
         try {
-            this.productService.getProductById(null);
+            productService.getProductById(null);
             Assert.fail("Nie mozna podac nullowego argumentu");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano pusty id produktu");
@@ -94,8 +95,8 @@ public class ProductServiceTest {
     @Test
     public void shouldThrownProductNotFoundExceptionWhenProductByIdNotExist() {
         try {
-            given(this.productRepository.findById(anyLong())).willReturn(Optional.empty());
-            this.productService.getProductById(ID);
+            given(productRepository.findById(anyLong())).willReturn(Optional.empty());
+            productService.getProductById(ProductServiceTest.ID);
             Assert.fail("Nie powinno znalezc produktu o podanej nazwie");
         } catch (ProductNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono produktu o id 1");
@@ -105,7 +106,7 @@ public class ProductServiceTest {
     @Test
     public void shouldThrownCategoryNotFoundExceptionWhenCategoryByNameNotExists() {
         try {
-            given(categoryRepository.findByName(anyString())).willReturn(Optional.empty());
+            given(this.categoryRepository.findByName(anyString())).willReturn(Optional.empty());
             ProductDTO productDTO = new ProductDTO();
             productDTO.setName("nazwa");
             productDTO.setDescription("opis");
@@ -113,11 +114,8 @@ public class ProductServiceTest {
             productDTO.setPrice(BigDecimal.TEN);
             productDTO.setCategory("inne");
 
-            doAnswer(invocation -> {
-                Product argument = (Product) invocation.getArguments()[0];
-                return argument;
-            }).when(productRepository).save(any(Product.class));
-            productService.createProductFromDTO(productDTO);
+            doAnswer(invocation -> invocation.getArguments()[0]).when(this.productRepository).save(any(Product.class));
+            this.productService.createProductFromDTO(productDTO);
             Assert.fail();
         } catch (CategoryNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono kategorii o nazwie inne");
@@ -126,28 +124,28 @@ public class ProductServiceTest {
 
     @Test
     public void shouldReturnProductWhenProductByIdExists() {
-        given(this.productRepository.findById(ID)).willReturn(
-                Optional.of(new ProductBuilder().withName(NAME)
+        given(productRepository.findById(ProductServiceTest.ID)).willReturn(
+                Optional.of(new ProductBuilder().withName(ProductServiceTest.NAME)
                         .withDescription("desc")
                         .withUrl("url")
                         .withPrice(BigDecimal.TEN)
                         .createProduct()));
-        Product productById = this.productService.getProductById(ID);
+        Product productById = productService.getProductById(ProductServiceTest.ID);
         assertThat(productById).isNotNull();
-        assertThat(productById.getName()).isEqualTo(NAME);
+        assertThat(productById.getName()).isEqualTo(ProductServiceTest.NAME);
     }
 
     @Test
     public void shouldThrownIllegalArgumentExceptionWhenSizeOrPageNumberIsIncorrect() {
         try {
-            this.productService.getProducts(-1, 2, null, null);
+            productService.getProducts(-1, 2, null, Optional.empty());
             Assert.fail("Nie mozna podac minusowej strony");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano nieprawidlowy numer strony");
         }
 
         try {
-            this.productService.getProducts(0, 0, null, null);
+            productService.getProducts(0, 0, null, Optional.empty());
             Assert.fail("Nie mozna podac rozmiaru mniejszego od 1");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano rozmiar mniejszy od 1");
@@ -159,9 +157,9 @@ public class ProductServiceTest {
         Page<Product> products = new PageImpl<>(
                 Collections.singletonList(
                         new ProductBuilder().withName("name3").withPrice(BigDecimal.TEN).createProduct()));
-        given(this.productRepository.findAllByActive(new PageRequest(0, 1, Sort.Direction.ASC, "id"), true)).willReturn(
+        given(productRepository.findAllByActive(new PageRequest(0, 1, Direction.ASC, "id"), true)).willReturn(
                 products);
-        List<Product> asc = this.productService.getProducts(0, 1, "asc", Optional.empty()).getContent();
+        List<Product> asc = productService.getProducts(0, 1, "asc", Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(1);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -179,8 +177,8 @@ public class ProductServiceTest {
                                 .withUrl("url")
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
-        given(this.productRepository.findAllByActive(new PageRequest(0, 5, null, "id"), true)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(null, null, null, Optional.empty()).getContent();
+        given(productRepository.findAllByActive(new PageRequest(0, 5, null, "id"), true)).willReturn(products);
+        List<Product> asc = productService.getProducts(null, null, null, Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -196,8 +194,8 @@ public class ProductServiceTest {
                                 .withUrl("url")
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
-        given(this.productRepository.findAllByActive(new PageRequest(0, 19, null, "id"), true)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(0, 19, null, Optional.empty()).getContent();
+        given(productRepository.findAllByActive(new PageRequest(0, 19, null, "id"), true)).willReturn(products);
+        List<Product> asc = productService.getProducts(0, 19, null, Optional.empty()).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");
@@ -213,14 +211,11 @@ public class ProductServiceTest {
         productDTO.setPrice(BigDecimal.TEN);
         productDTO.setCategory("inne");
 
-        doAnswer(invocation -> {
-            Product argument = (Product) invocation.getArguments()[0];
-            return argument;
-        }).when(productRepository).save(any(Product.class));
+        doAnswer(invocation -> invocation.getArguments()[0]).when(this.productRepository).save(any(Product.class));
 
-        given(categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
+        given(this.categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
 
-        Product product = productService.createProductFromDTO(productDTO);
+        Product product = this.productService.createProductFromDTO(productDTO);
         assertThat(product.getName()).isEqualTo(productDTO.getName());
         assertThat(product.getPrice()).isEqualTo(productDTO.getPrice());
         assertThat(product.getImageUrl()).isEqualTo(productDTO.getImageUrl());
@@ -251,9 +246,9 @@ public class ProductServiceTest {
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
         Category category = new Category("category", "aaa");
-        given(categoryRepository.findByName("category")).willReturn(Optional.of(category));
-        given(this.productRepository.findByCategory(new PageRequest(0, 5, null, "id"), category)).willReturn(products);
-        List<Product> asc = this.productService.getProducts(null, null, null, Optional.ofNullable("category")).getContent();
+        given(this.categoryRepository.findByName("category")).willReturn(Optional.of(category));
+        given(productRepository.findByCategory(new PageRequest(0, 5, null, "id"), category)).willReturn(products);
+        List<Product> asc = productService.getProducts(null, null, null, Optional.ofNullable("category")).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");

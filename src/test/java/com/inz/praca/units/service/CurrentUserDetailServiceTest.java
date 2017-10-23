@@ -25,15 +25,15 @@ public class CurrentUserDetailServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.currentUserDetailsService = new CurrentUserDetailsService(userService);
+        currentUserDetailsService = new CurrentUserDetailsService(this.userService);
     }
 
     @Test
     public void shouldGetCurrentUser() {
-        given(userService.getUserByEmail("admin@email.pl")).willReturn(
+        given(this.userService.getUserByEmail("admin@email.pl")).willReturn(
                 new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").build());
 
-        CurrentUser admin = currentUserDetailsService.loadUserByUsername("admin@email.pl");
+        CurrentUser admin = this.currentUserDetailsService.loadUserByUsername("admin@email.pl");
         assertThat(admin).isNotNull();
         assertThat(admin.getUser().getEmail()).isEqualTo("admin@email.pl");
         assertThat(admin.getUsername()).isEqualTo("admin@email.pl");

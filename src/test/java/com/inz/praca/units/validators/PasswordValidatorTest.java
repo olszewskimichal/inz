@@ -13,22 +13,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Category(UnitTest.class)
 public class PasswordValidatorTest {
 
-    PasswordValidator validator = new PasswordValidator();
+    private final PasswordValidator validator = new PasswordValidator();
 
     @MockBean
     ConstraintValidatorContext constraintValidatorContext;
 
     @Test
-    public void shouldReturnFalseWhenPasswordIsIncorrect() throws Exception {
-        assertThat(validator.isValid("aaaa", constraintValidatorContext)).isFalse();
-        assertThat(validator.isValid("zaq12wsx", constraintValidatorContext)).isFalse();
-        assertThat(validator.isValid("     zaq1@", constraintValidatorContext)).isFalse();
-        assertThat(validator.isValid(null, constraintValidatorContext)).isFalse();
+    public void shouldReturnFalseWhenPasswordIsIncorrect() {
+        assertThat(this.validator.isValid("aaaa", this.constraintValidatorContext)).isFalse();
+        assertThat(this.validator.isValid("zaq12wsx", this.constraintValidatorContext)).isFalse();
+        assertThat(this.validator.isValid("     zaq1@", this.constraintValidatorContext)).isFalse();
+        assertThat(this.validator.isValid(null, this.constraintValidatorContext)).isFalse();
     }
 
     @Test
     public void shouldReturnTrueWhenPasswordIsCorrect() {
-        assertThat(validator.isValid("zaq1@WSX", constraintValidatorContext)).isTrue();
-        validator.initialize(null);
+        assertThat(this.validator.isValid("zaq1@WSX", this.constraintValidatorContext)).isTrue();
+        this.validator.initialize(null);
     }
 }

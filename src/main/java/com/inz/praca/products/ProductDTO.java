@@ -29,19 +29,19 @@ public class ProductDTO implements Serializable {
     private Long id;
 
     public ProductDTO(Product product, String category) {
-        this.name = product.getName();
-        this.imageUrl = product.getImageUrl();
-        this.description = product.getDescription();
-        this.price = product.getPrice();
+        name = product.getName();
+        imageUrl = product.getImageUrl();
+        description = product.getDescription();
+        price = product.getPrice();
         this.category = category;
-        this.id = product.getId();
+        id = product.getId();
     }
 
     public ProductDTO(Product product) {
-        this.name = product.getName();
-        this.imageUrl = product.getImageUrl();
-        this.description = product.getDescription();
-        this.price = product.getPrice();
-        this.id = product.getId();
+        name = product.getName();
+        imageUrl = product.getImageUrl();
+        description = product.getDescription();
+        price = product.getPrice();
+        id = product.getId();
     }
 }

@@ -15,7 +15,7 @@ import static com.inz.praca.integration.WebTestConfig.exceptionResolver;
 import static org.mockito.Mockito.mock;
 
 @Category(UnitTest.class)
-public abstract class ProductControllerTestBase {
+abstract class ProductControllerTestBase {
 
     static final int MAX_LENGTH_NAME = 15;
     static final int MIN_LENGTH_NAME = 4;
@@ -34,8 +34,8 @@ public abstract class ProductControllerTestBase {
 
     @Before
     public void configureSystemUnderTest() {
-        productService = mock(ProductService.class);
-        mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(productService))
+        this.productService = mock(ProductService.class);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(this.productService))
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();

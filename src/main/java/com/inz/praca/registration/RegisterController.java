@@ -27,31 +27,31 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("userCreateForm", new UserDTO());
-        return REGISTER;
+        return RegisterController.REGISTER;
     }
 
-    @PostMapping(value = "/register")
-    public String confirmRegistration(@Valid @ModelAttribute(FORM) UserDTO userCreateForm, BindingResult errors, Model model, RedirectAttributes redirectAttributes) {
-        log.info("próba rejestracji {}", userCreateForm);
+    @PostMapping("/register")
+    public String confirmRegistration(@Valid @ModelAttribute(RegisterController.FORM) UserDTO userCreateForm, BindingResult errors, Model model, RedirectAttributes redirectAttributes) {
+        RegisterController.log.info("próba rejestracji {}", userCreateForm);
         if (errors.hasErrors()) {
-            log.info("wystapil blad {} podczas validacji uzytkownika {}", errors.getAllErrors().toString(),
+            RegisterController.log.info("wystapil blad {} podczas validacji uzytkownika {}", errors.getAllErrors(),
                     userCreateForm);
-            model.addAttribute(FORM, userCreateForm);
-            return REGISTER;
+            model.addAttribute(RegisterController.FORM, userCreateForm);
+            return RegisterController.REGISTER;
         }
         try {
-            userService.createUserFromDTO(userCreateForm);
+            this.userService.createUserFromDTO(userCreateForm);
             redirectAttributes.addFlashAttribute("registerDone", true);
             return "redirect:/login";
         } catch (IllegalArgumentException e) {
-            log.debug(e.getMessage());
-            model.addAttribute(FORM, userCreateForm);
+            RegisterController.log.debug(e.getMessage());
+            model.addAttribute(RegisterController.FORM, userCreateForm);
         } catch (DataIntegrityViolationException ex) {
-            log.debug(ex.getMessage());
-            model.addAttribute(FORM, userCreateForm);
+            RegisterController.log.debug(ex.getMessage());
+            model.addAttribute(RegisterController.FORM, userCreateForm);
             model.addAttribute("uzytkownikIstnieje", true);
         }
-        return REGISTER;
+        return RegisterController.REGISTER;
     }
 
 }

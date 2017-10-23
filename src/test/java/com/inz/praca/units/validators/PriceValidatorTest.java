@@ -13,26 +13,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Category(UnitTest.class)
 public class PriceValidatorTest {
-    PriceValidator validator = new PriceValidator();
+    private final PriceValidator validator = new PriceValidator();
 
     @MockBean
     ConstraintValidatorContext constraintValidatorContext;
 
     @Test
-    public void shouldReturnTrue() throws Exception {
-        assertThat(validator.isValid(BigDecimal.ZERO, constraintValidatorContext)).isTrue();
-        assertThat(validator.isValid(BigDecimal.ONE, constraintValidatorContext)).isTrue();
-        assertThat(validator.isValid(BigDecimal.valueOf(1.3), constraintValidatorContext)).isTrue();
-        assertThat(validator.isValid(BigDecimal.valueOf(1, 3), constraintValidatorContext)).isTrue();
+    public void shouldReturnTrue() {
+        assertThat(this.validator.isValid(BigDecimal.ZERO, this.constraintValidatorContext)).isTrue();
+        assertThat(this.validator.isValid(BigDecimal.ONE, this.constraintValidatorContext)).isTrue();
+        assertThat(this.validator.isValid(BigDecimal.valueOf(1.3), this.constraintValidatorContext)).isTrue();
+        assertThat(this.validator.isValid(BigDecimal.valueOf(1, 3), this.constraintValidatorContext)).isTrue();
     }
 
     @Test
     public void shouldReturnFalseWhenArgumentIsNull() {
-        assertThat(validator.isValid(null, constraintValidatorContext)).isFalse();
+        assertThat(this.validator.isValid(null, this.constraintValidatorContext)).isFalse();
     }
 
     @Test
     public void shouldReturnFalseWhenValueIsNegative() {
-        assertThat(validator.isValid(BigDecimal.valueOf(-1L), constraintValidatorContext)).isFalse();
+        assertThat(this.validator.isValid(BigDecimal.valueOf(-1L), this.constraintValidatorContext)).isFalse();
     }
 }

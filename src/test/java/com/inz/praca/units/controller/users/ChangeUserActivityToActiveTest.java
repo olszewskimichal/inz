@@ -10,13 +10,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ChangeUserActivityToActiveTest extends UsersControllerTestBase {
     @Before
     public void returnUsersList() {
-        given(userService.changeUserActive(USER_ID, USER_ACTIVITY_TRUE)).willReturn(USER_POSITIVE_ACTIVATION);
+        given(this.userService.changeUserActive(UsersControllerTestBase.USER_ID, UsersControllerTestBase.USER_ACTIVITY_TRUE)).willReturn(UsersControllerTestBase.USER_POSITIVE_ACTIVATION);
     }
 
     @Test
     public void shouldActivateUser() throws Exception {
-        mockMvc.perform(get("/user/active/{activity}/{userId}", USER_ACTIVITY_TRUE, USER_ID))
+        this.mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
                 .andExpect(flash().attribute("activate", true))
-                .andExpect(flash().attribute("activateMessage", USER_POSITIVE_ACTIVATION));
+                .andExpect(flash().attribute("activateMessage", UsersControllerTestBase.USER_POSITIVE_ACTIVATION));
     }
 }

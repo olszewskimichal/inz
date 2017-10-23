@@ -19,10 +19,10 @@ public class CreateProductSteps extends SeleniumTestBase {
 
     @Given("Podajac nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
     public void useNewProductData(String name, String description, String price, String category) throws Exception {
-        prepareBeforeTest();
-        driver.get("http://localhost:" + port + "/login");
-        loginPage = new LoginPage(driver);
-        loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
+        this.prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
+        this.loginPage = new LoginPage(SeleniumTestBase.driver);
+        this.loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
         this.name = name;
         this.description = description;
@@ -30,21 +30,21 @@ public class CreateProductSteps extends SeleniumTestBase {
     }
 
     @When("Przy kliknieciu dodaj produkt")
-    public void shouldPerformNewProduct() throws Exception {
-        driver.get("http://localhost:" + port + "/addProduct");
-        NewProductPage productPage = new NewProductPage(driver);
-        productPage.fillCreateProductForm(name, description, price, "");
+    public void shouldPerformNewProduct() {
+        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/addProduct");
+        NewProductPage productPage = new NewProductPage(SeleniumTestBase.driver);
+        productPage.fillCreateProductForm(this.name, this.description, this.price, "");
         productPage.clickOnCreateProductButton();
     }
 
     @Then("Otrzymamy (.*) komunikatów błedu, w przypadku 0 błedów - zostanie stworzony nowy produkt")
-    public void shouldGetResponseWithErrorCount(int errorCount) throws Exception {
-        assertThat(driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
+    public void shouldGetResponseWithErrorCount(int errorCount) {
+        assertThat(SeleniumTestBase.driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
     }
 
     @Then("Otrzymamy komunikat (.*)")
-    public void shouldContainsErrorMessage(String error) throws Exception {
-        driver.getPageSource().contains(error);
+    public void shouldContainsErrorMessage(String error) {
+        SeleniumTestBase.driver.getPageSource().contains(error);
     }
 
     @Test

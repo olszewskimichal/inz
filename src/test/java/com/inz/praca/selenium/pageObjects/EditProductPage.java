@@ -4,37 +4,37 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class EditProductPage {
-    By name = By.id("name");
-    By description = By.id("description");
-    By price = By.id("unitPrice");
-    By imageURL = By.id("imageURL");
-    By submitButton = By.id("btnAdd");
+    private final By name = By.id("name");
+    private final By description = By.id("description");
+    private final By price = By.id("unitPrice");
+    private final By imageURL = By.id("imageURL");
+    private final By submitButton = By.id("btnAdd");
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     public EditProductPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
     public void typeName(String name) {
-        webDriver.findElement(this.name).sendKeys(name);
+        this.webDriver.findElement(this.name).sendKeys(name);
     }
 
     public void typeDesctiption(String description) {
-        webDriver.findElement(this.description).sendKeys(description);
+        this.webDriver.findElement(this.description).sendKeys(description);
     }
 
     public void typePrice(String price) {
-        webDriver.findElement(this.price).clear();
-        webDriver.findElement(this.price).sendKeys(price);
+        this.webDriver.findElement(this.price).clear();
+        this.webDriver.findElement(this.price).sendKeys(price);
     }
 
     public void typeUrl(String url) {
-        webDriver.findElement(this.imageURL).sendKeys(url);
+        this.webDriver.findElement(imageURL).sendKeys(url);
     }
 
     public void clickOnEditProductButton() {
-        webDriver.findElement(submitButton).click();
+        this.webDriver.findElement(this.submitButton).click();
     }
 
 }

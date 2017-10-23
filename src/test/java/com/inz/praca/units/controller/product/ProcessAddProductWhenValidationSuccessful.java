@@ -1,6 +1,10 @@
 package com.inz.praca.units.controller.product;
 
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.FlashMessageKey;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCT;
+import com.inz.praca.WebTestConstants.RedirectView;
 import com.inz.praca.products.ProductDTO;
 import com.inz.praca.units.TestStringUtil;
 import org.junit.Before;
@@ -17,46 +21,46 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProcessAddProductWhenValidationSuccessful extends ProductControllerTestBase {
     @Before
     public void configureTestCases() {
-        name = TestStringUtil.createStringWithLength(MAX_LENGTH_NAME);
-        price = BigDecimal.TEN;
-        category = "others";
+        this.name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MAX_LENGTH_NAME);
+        this.price = BigDecimal.TEN;
+        this.category = "others";
     }
 
     @Test
     public void shouldReturnHttpStatusCodeIsFound() throws Exception {
-        mockMvc.perform(post("/addProduct")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, name)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, price.toString())
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, category))
+        this.mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, this.name)
+                .param(PRODUCT.PRICE, this.price.toString())
+                .param(PRODUCT.CATEGORY, this.category))
                 .andExpect(status().isFound());
     }
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        mockMvc.perform(post("/addProduct")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, name)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, price.toString())
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, category))
-                .andExpect(view().name(WebTestConstants.RedirectView.PRODUCTS));
+        this.mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, this.name)
+                .param(PRODUCT.PRICE, this.price.toString())
+                .param(PRODUCT.CATEGORY, this.category))
+                .andExpect(view().name(RedirectView.PRODUCTS));
     }
 
     @Test
     public void shouldAddFeedbackMessageAsAFlashAttribute() throws Exception {
-        mockMvc.perform(post("/addProduct")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, name)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, price.toString())
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, category))
-                .andExpect(flash().attribute(WebTestConstants.FlashMessageKey.CREATE_PRODUCT_CONFIRM, FEEDBACK_MESSAGE_PRODUCT_CREATED
+        this.mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, this.name)
+                .param(PRODUCT.PRICE, this.price.toString())
+                .param(PRODUCT.CATEGORY, this.category))
+                .andExpect(flash().attribute(FlashMessageKey.CREATE_PRODUCT_CONFIRM, ProductControllerTestBase.FEEDBACK_MESSAGE_PRODUCT_CREATED
                 ));
     }
 
     @Test
     public void shouldCreateProduct() throws Exception {
-        mockMvc.perform(post("/addProduct")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, name)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, price.toString())
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, category));
+        this.mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, this.name)
+                .param(PRODUCT.PRICE, this.price.toString())
+                .param(PRODUCT.CATEGORY, this.category));
 
-        verify(productService, times(1)).createProductFromDTO(isA(ProductDTO.class));
+        verify(this.productService, times(1)).createProductFromDTO(isA(ProductDTO.class));
     }
 }

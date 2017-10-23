@@ -1,6 +1,7 @@
 package com.inz.praca.units.controller.product;
 
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.ErrorView;
 import com.inz.praca.products.ProductNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,20 +15,20 @@ public class ShowUpdateProductFormWhenProductIsNotFound extends ProductControlle
 
     @Before
     public void throwProductNotFoundException() {
-        given(productService.getProductDTOById(PRODUCT_ID)).willThrow(new ProductNotFoundException(PRODUCT_ID));
+        given(this.productService.getProductDTOById(ProductControllerTestBase.PRODUCT_ID)).willThrow(new ProductNotFoundException(ProductControllerTestBase.PRODUCT_ID));
     }
 
 
     @Test
     public void shouldReturnHttpStatusCodeNotFound() throws Exception {
-        mockMvc.perform(get("/products/product/edit/{id}", PRODUCT_ID))
+        this.mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void shouldRenderNotFoundView() throws Exception {
-        mockMvc.perform(get("/products/product/edit/{id}", PRODUCT_ID))
-                .andExpect(view().name(WebTestConstants.ErrorView.NOT_FOUND));
+        this.mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
+                .andExpect(view().name(ErrorView.NOT_FOUND));
     }
 
 }

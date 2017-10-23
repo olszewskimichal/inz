@@ -25,37 +25,37 @@ public class CartController {
     }
 
     public CartSession getForm() {
-        return cartSession;
+        return this.cartSession;
     }
 
     @GetMapping("/cart")
     public String getSessionCart(Model model) {
-        model.addAttribute(cartSession);
-        log.info(cartSession.toString());
-        return CART;
+        model.addAttribute(this.cartSession);
+        CartController.log.info(this.cartSession.toString());
+        return CartController.CART;
     }
 
-    @GetMapping(value = "/cart/add/{productId}")
+    @GetMapping("/cart/add/{productId}")
     public String addProductToCart(Model model, @PathVariable Long productId) {
-        log.info("addProduct id {} cart {}", productId, cartSession);
-        cartSession.addProduct(new ProductDTO(productService.getProductById(productId)));
-        model.addAttribute(getForm());
-        return REDIRECT_CART;
+        CartController.log.info("addProduct id {} cart {}", productId, this.cartSession);
+        this.cartSession.addProduct(new ProductDTO(this.productService.getProductById(productId)));
+        model.addAttribute(this.getForm());
+        return CartController.REDIRECT_CART;
     }
 
-    @GetMapping(value = "/cart/remove/{rowId}")
+    @GetMapping("/cart/remove/{rowId}")
     public String removeProductFromCart(@PathVariable Integer rowId) {
-        log.info("removeProduct rowId {} z {} ", rowId, cartSession);
-        cartSession.removeProductById(rowId);
-        return REDIRECT_CART;
+        CartController.log.info("removeProduct rowId {} z {} ", rowId, this.cartSession);
+        this.cartSession.removeProductById(rowId);
+        return CartController.REDIRECT_CART;
     }
 
-    @GetMapping(value = "/cart/clear")
+    @GetMapping("/cart/clear")
     public String clearCart(Model model) {
-        log.info("Czyszczenie koszyka");
-        cartSession.clearCart();
-        model.addAttribute(getForm());
-        return REDIRECT_CART;
+        CartController.log.info("Czyszczenie koszyka");
+        this.cartSession.clearCart();
+        model.addAttribute(this.getForm());
+        return CartController.REDIRECT_CART;
     }
 
 }

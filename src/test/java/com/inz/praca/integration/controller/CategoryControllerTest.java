@@ -17,14 +17,14 @@ public class CategoryControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_show_newCategory_page() throws Exception {
-        mvc.perform(get("/addCategory"))
+        this.mvc.perform(get("/addCategory"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newCategory"));
     }
 
     @Test
     public void should_process_new_category_create() throws Exception {
-        mvc.perform(post("/addCategory")
+        this.mvc.perform(post("/addCategory")
                 .param("name", "nazwa")
                 .param("description", "opisDlugi"))
                 .andExpect(model().errorCount(0));
@@ -32,7 +32,7 @@ public class CategoryControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_addCategory() throws Exception {
-        mvc.perform(post("/addCategory"))
+        this.mvc.perform(post("/addCategory"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newCategory"))
                 .andExpect(model().errorCount(2));
@@ -44,8 +44,8 @@ public class CategoryControllerTest extends IntegrationTestBase {
         categoryDTO.setName("nazwaaaa");
         categoryDTO.setDescription("opisDlugi");        //TODO builder
 
-        service.createCategoryFromDTO(categoryDTO);
-        mvc.perform(post("/addCategory")
+        this.service.createCategoryFromDTO(categoryDTO);
+        this.mvc.perform(post("/addCategory")
                 .param("name", "nazwaaaaa")
                 .param("description", "opisDlugi"))
                 .andExpect(model().errorCount(0)); //TODO dodac validacje

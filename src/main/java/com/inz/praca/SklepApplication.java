@@ -21,7 +21,7 @@ public class SklepApplication {
     }
 
     @Bean
-    @Scope(value = "prototype")
+    @Scope("prototype")
     DiscountService discountService() {
         return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).flatMap(v -> {
             CurrentUser user = (CurrentUser) v.getPrincipal();

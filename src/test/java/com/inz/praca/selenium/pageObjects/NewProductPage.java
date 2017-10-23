@@ -4,42 +4,42 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NewProductPage {
-    By name = By.id("name");
-    By description = By.id("description");
-    By price = By.id("unitPrice");
-    By imageURL = By.id("imageURL");
-    By submitButton = By.id("btnAdd");
+    private final By name = By.id("name");
+    private final By description = By.id("description");
+    private final By price = By.id("unitPrice");
+    private final By imageURL = By.id("imageURL");
+    private final By submitButton = By.id("btnAdd");
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     public NewProductPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public void typeName(String name) {
-        webDriver.findElement(this.name).sendKeys(name);
+    private void typeName(String name) {
+        this.webDriver.findElement(this.name).sendKeys(name);
     }
 
-    public void typeDescription(String description) {
-        webDriver.findElement(this.description).sendKeys(description);
+    private void typeDescription(String description) {
+        this.webDriver.findElement(this.description).sendKeys(description);
     }
 
-    public void typePrice(String price) {
-        webDriver.findElement(this.price).sendKeys(price);
+    private void typePrice(String price) {
+        this.webDriver.findElement(this.price).sendKeys(price);
     }
 
-    public void typeUrl(String url) {
-        webDriver.findElement(this.imageURL).sendKeys(url);
+    private void typeUrl(String url) {
+        this.webDriver.findElement(imageURL).sendKeys(url);
     }
 
     public void clickOnCreateProductButton() {
-        webDriver.findElement(submitButton).click();
+        this.webDriver.findElement(this.submitButton).click();
     }
 
     public void fillCreateProductForm(String name, String description, String price, String url) {
-        typeName(name);
-        typeDescription(description);
-        typePrice(price);
-        typeUrl(url);
+        this.typeName(name);
+        this.typeDescription(description);
+        this.typePrice(price);
+        this.typeUrl(url);
     }
 }

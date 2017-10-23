@@ -14,23 +14,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Category(UnitTest.class)
 public class LocalDateTImeConverterTest {
 
-    LocalDateTimeConverter converter = new LocalDateTimeConverter();
+    private final LocalDateTimeConverter converter = new LocalDateTimeConverter();
 
     @Test
     public void shouldConvertLocalDateTimeToTimestamp() {
-        Timestamp timestamp = converter.convertToDatabaseColumn(LocalDateTime.now());
+        Timestamp timestamp = this.converter.convertToDatabaseColumn(LocalDateTime.now());
         assertThat(timestamp).isNotNull().isBeforeOrEqualsTo(new Date());
 
-        timestamp = converter.convertToDatabaseColumn(null);
+        timestamp = this.converter.convertToDatabaseColumn(null);
         assertThat(timestamp).isNull();
     }
 
     @Test
     public void shouldConvertTimestampToLocalDateTime() {
-        LocalDateTime dateTime = converter.convertToEntityAttribute(Timestamp.valueOf(LocalDateTime.now()));
+        LocalDateTime dateTime = this.converter.convertToEntityAttribute(Timestamp.valueOf(LocalDateTime.now()));
         assertThat(dateTime).isNotNull().isBeforeOrEqualTo(LocalDateTime.now());
 
-        dateTime = converter.convertToEntityAttribute(null);
+        dateTime = this.converter.convertToEntityAttribute(null);
         assertThat(dateTime).isNull();
     }
 }

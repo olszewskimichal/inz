@@ -27,26 +27,26 @@ public class CategoryController {
 
     @GetMapping("/addCategory")
     public String addNewCategoryPage(Model model) {
-        model.addAttribute(CATEGORY_CREATE_FORM, new CategoryDTO());
-        return NEW_CATEGORY;
+        model.addAttribute(CategoryController.CATEGORY_CREATE_FORM, new CategoryDTO());
+        return CategoryController.NEW_CATEGORY;
     }
 
     @PostMapping("/addCategory")
-    public String confirmNewCategory(@Valid @ModelAttribute(value = CATEGORY_CREATE_FORM) CategoryDTO categoryDTO, BindingResult result, Model model) {
-        log.info("Proba dodania nowej kategorii {}", categoryDTO);
+    public String confirmNewCategory(@Valid @ModelAttribute(CategoryController.CATEGORY_CREATE_FORM) CategoryDTO categoryDTO, BindingResult result, Model model) {
+        CategoryController.log.info("Proba dodania nowej kategorii {}", categoryDTO);
         if (result.hasErrors()) {
-            log.debug("wystapil blad {} podczas walidacji kategorii {}", result.getAllErrors(), categoryDTO);
-            model.addAttribute(CATEGORY_CREATE_FORM, categoryDTO);
-            return NEW_CATEGORY;
+            CategoryController.log.debug("wystapil blad {} podczas walidacji kategorii {}", result.getAllErrors(), categoryDTO);
+            model.addAttribute(CategoryController.CATEGORY_CREATE_FORM, categoryDTO);
+            return CategoryController.NEW_CATEGORY;
         }
         try {
-            log.debug("tworzy kategorie");
-            productService.createCategoryFromDTO(categoryDTO);
+            CategoryController.log.debug("tworzy kategorie");
+            this.productService.createCategoryFromDTO(categoryDTO);
             return "redirect:/";
         } catch (IllegalArgumentException | PersistenceException | DataIntegrityViolationException e) {
-            log.debug(e.getMessage());
-            model.addAttribute(CATEGORY_CREATE_FORM, categoryDTO);
+            CategoryController.log.debug(e.getMessage());
+            model.addAttribute(CategoryController.CATEGORY_CREATE_FORM, categoryDTO);
         }
-        return NEW_CATEGORY;
+        return CategoryController.NEW_CATEGORY;
     }
 }

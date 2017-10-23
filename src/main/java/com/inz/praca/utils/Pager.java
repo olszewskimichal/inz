@@ -14,32 +14,32 @@ public class Pager {
 
     public Pager(int totalPages, int currentPage, int buttonsToShow) {
 
-        this.setButtonsToShow(buttonsToShow);
+        setButtonsToShow(buttonsToShow);
 
         int halfPagesToShow = this.buttonsToShow / 2;
 
         if (totalPages == 0) {
-            this.startPage = 1;
-            this.endPage = 1;
+            startPage = 1;
+            endPage = 1;
         } else if (totalPages <= this.buttonsToShow) {
-            this.startPage = 1;
-            this.endPage = totalPages;
+            startPage = 1;
+            endPage = totalPages;
 
         } else if ((currentPage - halfPagesToShow) <= 0) {
-            this.startPage = 1;
-            this.endPage = this.getButtonsToShow();
+            startPage = 1;
+            endPage = getButtonsToShow();
 
         } else if ((currentPage + halfPagesToShow) == totalPages) {
-            this.startPage = currentPage - halfPagesToShow;
-            this.endPage = totalPages;
+            startPage = currentPage - halfPagesToShow;
+            endPage = totalPages;
 
         } else if (currentPage + halfPagesToShow > totalPages) {
-            this.setStartPage(totalPages - this.getButtonsToShow() + 1);
-            this.setEndPage(totalPages);
+            setStartPage(totalPages - getButtonsToShow() + 1);
+            setEndPage(totalPages);
 
         } else {
-            this.setStartPage(currentPage - halfPagesToShow);
-            this.setEndPage(currentPage + halfPagesToShow);
+            setStartPage(currentPage - halfPagesToShow);
+            setEndPage(currentPage + halfPagesToShow);
         }
 
     }

@@ -13,11 +13,11 @@ import static java.util.regex.Pattern.compile;
 public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 
     public static final String PASS_REGEX_PATTERN = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$";
-    private Pattern pattern = compile(PASS_REGEX_PATTERN);
+    private final Pattern pattern = compile(PasswordValidator.PASS_REGEX_PATTERN);
 
     @Override
     public void initialize(ValidPassword value) {
-        log.debug("Poprawnie zainicjalizowano Validator");
+        PasswordValidator.log.debug("Poprawnie zainicjalizowano Validator");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
         if (value == null) {
             return false;
         }
-        Matcher matcher = pattern.matcher(value);
+        Matcher matcher = this.pattern.matcher(value);
         return matcher.matches();
     }
 }

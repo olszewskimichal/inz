@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -36,12 +35,12 @@ public class RegisterControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        registerController = new RegisterController(userService);
+        this.registerController = new RegisterController(this.userService);
     }
 
     @Test
     public void shouldReturnRegisterPage() {
-        assertThat(registerController.registerPage(model)).isEqualTo("register");
+        assertThat(this.registerController.registerPage(this.model)).isEqualTo("register");
     }
 
     @Test
@@ -53,7 +52,7 @@ public class RegisterControllerTest {
         userDTO.setEmail("email");
         userDTO.setName("name");
         userDTO.setLastName("last");
-        assertThat(registerController.confirmRegistration(userDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.registerController.confirmRegistration(userDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "redirect:/login");
         verify(redirectAttributes).addFlashAttribute("registerDone", true);
     }
@@ -61,49 +60,49 @@ public class RegisterControllerTest {
     @Test
     public void shouldFailedRegisterWithNotCorrectUser() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        given(userService.createUserFromDTO(any(UserDTO.class))).willThrow(new IllegalArgumentException());
+        given(this.userService.createUserFromDTO(any(UserDTO.class))).willThrow(new IllegalArgumentException());
 
         UserDTO userDTO = new UserDTO();
         userDTO.setName("imie");
         userDTO.setLastName("nazw");
         userDTO.setEmail("email");
         userDTO.setPassword("pass");
-        assertThat(registerController.confirmRegistration(userDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.registerController.confirmRegistration(userDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "register");
 
-        verify(model).addAttribute("userCreateForm", userDTO);
-        verifyNoMoreInteractions(model);
+        verify(this.model).addAttribute("userCreateForm", userDTO);
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
     public void shouldFailedRegisterWithExistingUser() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        given(userService.createUserFromDTO(any(UserDTO.class))).willThrow(new DataIntegrityViolationException("msg"));
+        given(this.userService.createUserFromDTO(any(UserDTO.class))).willThrow(new DataIntegrityViolationException("msg"));
 
         UserDTO userDTO = new UserDTO();
         userDTO.setName("imie");
         userDTO.setLastName("nazw");
         userDTO.setEmail("email");
         userDTO.setPassword("pass");
-        assertThat(registerController.confirmRegistration(userDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.registerController.confirmRegistration(userDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "register");
 
-        verify(model).addAttribute("userCreateForm", userDTO);
-        verify(model).addAttribute("uzytkownikIstnieje", true);
-        verifyNoMoreInteractions(model);
+        verify(this.model).addAttribute("userCreateForm", userDTO);
+        verify(this.model).addAttribute("uzytkownikIstnieje", true);
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
     public void shouldShowAgainFormWhenErrorOnCreate() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        given(bindingResult.hasErrors()).willReturn(true);
+        given(this.bindingResult.hasErrors()).willReturn(true);
 
         UserDTO userDTO = new UserDTO();
-        assertThat(registerController.confirmRegistration(userDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.registerController.confirmRegistration(userDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "register");
 
-        verify(model).addAttribute("userCreateForm", userDTO);
-        verifyNoMoreInteractions(model);
+        verify(this.model).addAttribute("userCreateForm", userDTO);
+        verifyNoMoreInteractions(this.model);
     }
 
 }

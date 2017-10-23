@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public abstract class SeleniumTestBase extends SeleniumProfileTestBase {
-    public static BrowserConfig browserConfiguration = new BrowserConfig();
-    public static WebDriver driver;
+    private static final BrowserConfig browserConfiguration = new BrowserConfig();
+    protected static WebDriver driver;
     @Autowired
     public UserRepository userRepository;
     @Autowired
@@ -20,17 +20,17 @@ public abstract class SeleniumTestBase extends SeleniumProfileTestBase {
     protected LoginPage loginPage;
 
     public void prepareBeforeTest() throws Exception {
-        if (driver == null)
-            driver = browserConfiguration.firefox();
-        else driver.manage().deleteAllCookies();
-        orderRepository.deleteAll();
-        userRepository.deleteAll();
-        userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
-        userRepository.save(
+        if (SeleniumTestBase.driver == null)
+            SeleniumTestBase.driver = SeleniumTestBase.browserConfiguration.firefox();
+        else SeleniumTestBase.driver.manage().deleteAllCookies();
+        this.orderRepository.deleteAll();
+        this.userRepository.deleteAll();
+        this.userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
+        this.userRepository.save(
                 new UserBuilder().withEmail("aktywny@email.pl").withPasswordHash("zaq1@WSX").activate().build());
         User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
         admin.giveAdminAuthorization();
-        userRepository.save(admin);
+        this.userRepository.save(admin);
 
     }
 

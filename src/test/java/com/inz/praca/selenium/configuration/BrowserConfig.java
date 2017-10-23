@@ -16,8 +16,8 @@ import java.io.InputStreamReader;
 public class BrowserConfig {
 
     private static FirefoxBinary getFirefoxBinaryForTravisCi() throws IOException {
-        String firefoxPath = getFirefoxPath();
-        log.info("Firefox path: " + firefoxPath);
+        String firefoxPath = BrowserConfig.getFirefoxPath();
+        BrowserConfig.log.info("Firefox path: " + firefoxPath);
 
         return new FirefoxBinary(new File(firefoxPath));
     }
@@ -32,7 +32,7 @@ public class BrowserConfig {
         }
     }
 
-    public WebDriver htmlUnitDriver() {
+    private WebDriver htmlUnitDriver() {
         return new HtmlUnitDriver(true);
     }
 
@@ -41,9 +41,9 @@ public class BrowserConfig {
                 "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
         String travisCiFlag = System.getenv().get("TRAVIS");
         if (!"true".equals(travisCiFlag)) {
-            return htmlUnitDriver();
+            return this.htmlUnitDriver();
         }
-        FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
+        FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? BrowserConfig.getFirefoxBinaryForTravisCi() : new FirefoxBinary();
         return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
     }
 }

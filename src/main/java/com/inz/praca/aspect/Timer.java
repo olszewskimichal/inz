@@ -22,7 +22,7 @@ public class Timer {
         stopWatch.start();
         Object retVal = joinPoint.proceed();
         stopWatch.stop();
-        logger.info("Completed {} within {} ms", joinPoint.getSignature().toShortString(), stopWatch.getTotalTimeMillis());
+        Timer.logger.info("Completed {} within {} ms", joinPoint.getSignature().toShortString(), stopWatch.getTotalTimeMillis());
         return retVal;
     }
 }

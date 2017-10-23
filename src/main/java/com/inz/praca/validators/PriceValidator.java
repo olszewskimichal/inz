@@ -11,7 +11,7 @@ public class PriceValidator implements ConstraintValidator<ValidPrice, BigDecima
 
     @Override
     public void initialize(ValidPrice value) {
-        log.debug("Poprawnie zainicjalizowano Validator ceny");
+        PriceValidator.log.debug("Poprawnie zainicjalizowano Validator ceny");
     }
 
     @Override

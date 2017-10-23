@@ -1,6 +1,8 @@
 package com.inz.praca.units.controller.product;
 
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCTS;
 import com.inz.praca.products.Product;
 import com.inz.praca.products.ProductBuilder;
 import org.junit.Before;
@@ -19,38 +21,34 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 public class ShowProductListWhenMoreThenSixProductsFound extends ProductControllerTestBase {
-    List<Product> firstPageList = new ArrayList<>();
-    List<Product> secondPageList = new ArrayList<>();
+    private final List<Product> firstPageList = new ArrayList<>();
+    private final List<Product> secondPageList = new ArrayList<>();
 
     @Before
     public void returnMoreThen6Products() {
-        IntStream.range(0, 6).forEachOrdered(v -> {
-            firstPageList.add(new ProductBuilder().withName(PRODUCT_NAME + v).withPrice(PRICE).withCategory(CATEGORY).withDescription(PRODUCT_DESC).withUrl(IMAGE_URL).createProduct());
-        });
-        IntStream.range(0, 3).forEachOrdered(v -> {
-            secondPageList.add(new ProductBuilder().withName(PRODUCT_NAME + v).withPrice(PRICE).withCategory(CATEGORY).withDescription(PRODUCT_DESC).withUrl(IMAGE_URL).createProduct());
-        });
-        given(productService.getProducts(0, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(firstPageList));
-        given(productService.getProducts(1, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(secondPageList));
+        IntStream.range(0, 6).forEachOrdered(v -> this.firstPageList.add(new ProductBuilder().withName(this.PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
+        IntStream.range(0, 3).forEachOrdered(v -> this.secondPageList.add(new ProductBuilder().withName(this.PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
+        given(this.productService.getProducts(0, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(this.firstPageList));
+        given(this.productService.getProducts(1, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(this.secondPageList));
     }
 
     @Test
     public void shouldShowProductsListFromFirstPageWhenPageParamIsNotSet() throws Exception {
-        mockMvc.perform(get("/products"))
+        this.mockMvc.perform(get("/products"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(6)));
     }
 
     @Test
     public void shouldShowProductsListFromFirstPageWhenPageParamIsSet() throws Exception {
-        mockMvc.perform(get("/products").
-                param(WebTestConstants.ModelAttributeProperty.PRODUCTS.PAGE, "1"))
+        this.mockMvc.perform(get("/products").
+                param(PRODUCTS.PAGE, "1"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(6)));
     }
 
     @Test
     public void shouldShowProductsListFromSecondPageWhenPageParamIsSet() throws Exception {
-        mockMvc.perform(get("/products").
-                param(WebTestConstants.ModelAttributeProperty.PRODUCTS.PAGE, "2"))
+        this.mockMvc.perform(get("/products").
+                param(PRODUCTS.PAGE, "2"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(3)));
     }
 }

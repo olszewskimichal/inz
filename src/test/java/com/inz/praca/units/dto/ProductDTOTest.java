@@ -12,12 +12,12 @@ public class ProductDTOTest extends LocalEqualsHashCodeTest {
 
 
     @Override
-    protected Object createInstance() throws Exception {
+    protected Object createInstance() {
         return new ProductDTO(new ProductBuilder().withName("name").withPrice(BigDecimal.TEN).createProduct());
     }
 
     @Override
-    protected Object createNotEqualInstance() throws Exception {
+    protected Object createNotEqualInstance() {
         return new ProductDTO(new ProductBuilder().withName("name2").withPrice(BigDecimal.TEN).createProduct());
     }
 

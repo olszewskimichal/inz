@@ -20,6 +20,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @Category(UnitTest.class)
 public class CartControllerTest {
     @Mock
+    private
     Model model;
     private CartController controller;
     @Mock
@@ -28,45 +29,45 @@ public class CartControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        controller = new CartController(productService, new CartSession());
+        this.controller = new CartController(this.productService, new CartSession());
     }
 
 
     @Test
     public void shouldReturnCartPage() {
-        assertThat(controller.getSessionCart(model)).isEqualTo("cart");
+        assertThat(this.controller.getSessionCart(this.model)).isEqualTo("cart");
     }
 
     @Test
     public void shouldAddProductToCart() {
-        given(productService.getProductById(1L)).willReturn(
+        given(this.productService.getProductById(1L)).willReturn(
                 new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-        controller.addProductToCart(model, 1L);
-        assertThat(controller.getForm().getItems().size()).isEqualTo(1);
-        assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
+        this.controller.addProductToCart(this.model, 1L);
+        assertThat(this.controller.getForm().getItems().size()).isEqualTo(1);
+        assertThat(this.controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
                 BigDecimal.TEN.stripTrailingZeros());
     }
 
     @Test
     public void shouldAdd2ProductAndRemove1ProductFromCartAndClearCart() {
-        given(productService.getProductById(1L)).willReturn(
+        given(this.productService.getProductById(1L)).willReturn(
                 new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-        given(productService.getProductById(2L)).willReturn(
+        given(this.productService.getProductById(2L)).willReturn(
                 new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.ONE).createProduct());
-        controller.addProductToCart(model, 1L);
-        controller.addProductToCart(model, 2L);
-        assertThat(controller.getForm().getItems().size()).isEqualTo(2);
-        assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
+        this.controller.addProductToCart(this.model, 1L);
+        this.controller.addProductToCart(this.model, 2L);
+        assertThat(this.controller.getForm().getItems().size()).isEqualTo(2);
+        assertThat(this.controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
                 BigDecimal.valueOf(11).stripTrailingZeros());
 
-        controller.removeProductFromCart(1);
-        assertThat(controller.getForm().getItems().size()).isEqualTo(1);
-        assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
+        this.controller.removeProductFromCart(1);
+        assertThat(this.controller.getForm().getItems().size()).isEqualTo(1);
+        assertThat(this.controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(
                 BigDecimal.valueOf(10).stripTrailingZeros());
 
-        controller.clearCart(model);
-        assertThat(controller.getForm().getItems().size()).isEqualTo(0);
-        assertThat(controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.ZERO);
+        this.controller.clearCart(this.model);
+        assertThat(this.controller.getForm().getItems().size()).isEqualTo(0);
+        assertThat(this.controller.getForm().getTotalPrice().stripTrailingZeros()).isEqualTo(BigDecimal.ZERO);
     }
 
 }

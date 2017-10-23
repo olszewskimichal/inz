@@ -25,28 +25,31 @@ import static org.mockito.BDDMockito.given;
 public class OrderServiceTest {
 
     @Mock
+    private
     OrderRepository orderRepository;
     @Mock
+    private
     ProductRepository productRepository;
     @Mock
+    private
     WebApplicationContext applicationContext;
     private OrderService orderService;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.orderService = new OrderService(orderRepository, productRepository, null, applicationContext);
+        orderService = new OrderService(this.orderRepository, this.productRepository, null, this.applicationContext);
     }
 
     @Test
     public void shouldCreateOrderWithoutDiscount() {
-        given(applicationContext.getBean("discountService")).willReturn(new NoDiscountService());
-        given(productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
+        given(this.applicationContext.getBean("discountService")).willReturn(new NoDiscountService());
+        given(this.productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProduct()));
         CartSession cartSession = new CartSession();
         cartSession.addProduct(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
         OrderDTO orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-        Order order = orderService.createOrder(
+        Order order = this.orderService.createOrder(
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(10).stripTrailingZeros());
@@ -54,13 +57,13 @@ public class OrderServiceTest {
 
     @Test
     public void shouldCreateOrderWithRegularCustomerDiscount() {
-        given(applicationContext.getBean("discountService")).willReturn(new RegularCustomerDiscountService());
-        given(productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
+        given(this.applicationContext.getBean("discountService")).willReturn(new RegularCustomerDiscountService());
+        given(this.productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProduct()));
         CartSession cartSession = new CartSession();
         cartSession.addProduct(new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).createProductDTO());
         OrderDTO orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-        Order order = orderService.createOrder(
+        Order order = this.orderService.createOrder(
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(9).stripTrailingZeros());
@@ -69,26 +72,26 @@ public class OrderServiceTest {
     @Test
     public void shouldCreateOrderWithNewCustomerDiscount() {
         //price bigger then 50
-        given(applicationContext.getBean("discountService")).willReturn(new NewCustomerDiscountService());
-        given(productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
+        given(this.applicationContext.getBean("discountService")).willReturn(new NewCustomerDiscountService());
+        given(this.productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.valueOf(60)).createProduct()));
         CartSession cartSession = new CartSession();
         cartSession.addProduct(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.valueOf(60)).createProductDTO());
         OrderDTO orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-        Order order = orderService.createOrder(
+        Order order = this.orderService.createOrder(
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(50).stripTrailingZeros());
 
         //price smaller then 50
-        given(productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
+        given(this.productRepository.findByName("aaa")).willReturn(java.util.Optional.ofNullable(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.valueOf(49)).createProduct()));
         cartSession = new CartSession();
         cartSession.addProduct(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.valueOf(49)).createProductDTO());
         orderDTO = new OrderDTO(cartSession, new ShippingDetail());
-        order = orderService.createOrder(
+        order = this.orderService.createOrder(
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(49).stripTrailingZeros());

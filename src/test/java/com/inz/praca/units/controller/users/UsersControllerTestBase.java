@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.mock;
 
-public abstract class UsersControllerTestBase {
+abstract class UsersControllerTestBase {
 
     static final Long USER_ID = 1L;
     static final Boolean USER_ACTIVITY_TRUE = Boolean.TRUE;
@@ -21,8 +21,8 @@ public abstract class UsersControllerTestBase {
 
     @Before
     public void configureSystemUnderTest() {
-        userService = mock(UserService.class);
-        mockMvc = MockMvcBuilders.standaloneSetup(new UsersController(userService))
+        this.userService = mock(UserService.class);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new UsersController(this.userService))
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .build();
     }

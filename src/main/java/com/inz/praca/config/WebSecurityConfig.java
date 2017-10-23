@@ -19,14 +19,16 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableWebSecurity
 @Profile("development")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String REMEMBER_ME = "remember-me";
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+    private final AuthenticationFailureHandler authenticationFailureHandler;
 
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
+    public WebSecurityConfig(UserDetailsService userDetailsService, AuthenticationFailureHandler authenticationFailureHandler) {
+        this.userDetailsService = userDetailsService;
+        this.authenticationFailureHandler = authenticationFailureHandler;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,14 +58,14 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .failureUrl("/login-error")
-                .failureHandler(authenticationFailureHandler)
+                .failureHandler(this.authenticationFailureHandler)
                 .permitAll()
                 .and()
                 .rememberMe()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .deleteCookies(REMEMBER_ME)
+                .deleteCookies(WebSecurityConfig.REMEMBER_ME)
                 .logoutSuccessUrl("/login")
                 .permitAll()
                 .and()
@@ -72,7 +74,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers("/resources/**");
@@ -81,7 +83,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService)
+                .userDetailsService(this.userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
 }

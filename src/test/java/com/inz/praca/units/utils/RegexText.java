@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RegexText {
 
     @Test
-    public void checkPasswordRegex() throws Exception {
+    public void checkPasswordRegex() {
         String regex = PasswordValidator.PASS_REGEX_PATTERN;
         assertThat("zaq1@WSX".matches(regex)).isTrue();
         assertThat("zaqWS".matches(regex)).isFalse();

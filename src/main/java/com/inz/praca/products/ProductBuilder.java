@@ -35,11 +35,11 @@ public class ProductBuilder {
     }
 
     public Product createProduct() {
-        return new Product(name, description, imageUrl, price);
+        return new Product(this.name, this.description, this.imageUrl, this.price);
     }
 
     public ProductDTO createProductDTO() {
-        return new ProductDTO(new Product(name, description, imageUrl, price), category);
+        return new ProductDTO(new Product(this.name, this.description, this.imageUrl, this.price), this.category);
     }
 
     public Product createProduct(ProductDTO productDTO) {

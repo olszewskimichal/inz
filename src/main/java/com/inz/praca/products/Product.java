@@ -38,11 +38,11 @@ public class Product {
         this.description = description;
         this.imageUrl = imageUrl;
         this.price = price;
-        this.active = true;
+        active = true;
     }
 
     public void deactivate() {
-        this.active = false;
+        active = false;
     }
 
     public void changeCategory(Category category) {

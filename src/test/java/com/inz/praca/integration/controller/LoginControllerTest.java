@@ -3,6 +3,7 @@ package com.inz.praca.integration.controller;
 import com.inz.praca.integration.IntegrationTestBase;
 import com.inz.praca.registration.UserBuilder;
 import com.inz.praca.registration.UserRepository;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
@@ -24,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@ActiveProfiles(value = "development")
+@ActiveProfiles("development")
 public class LoginControllerTest extends IntegrationTestBase {
     @Autowired
     private WebApplicationContext context;
@@ -37,7 +39,7 @@ public class LoginControllerTest extends IntegrationTestBase {
 
     @Before
     public void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(context)
+        this.mvc = MockMvcBuilders.webAppContextSetup(this.context)
                 .apply(springSecurity())
                 .build();
     }
@@ -45,7 +47,7 @@ public class LoginControllerTest extends IntegrationTestBase {
     @Test
     public void shouldLoginWithCorrectLoginAndPasswordAndActiveUser() throws Exception {
         //given
-        userRepository.save(
+        this.userRepository.save(
                 new UserBuilder().withEmail("emailTest@o2.pl").withPasswordHash("zaq1@WSX").activate().build());
         String userLogin = "emailTest@o2.pl";
         String password = "zaq1@WSX";
@@ -54,7 +56,7 @@ public class LoginControllerTest extends IntegrationTestBase {
                 .param("username", userLogin)
                 .param("password", password);
         //then
-        mvc.perform(requestBuilder)
+        this.mvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(redirectedUrl("/"))
                 .andExpect(authenticated().withUsername("emailTest@o2.pl"));
@@ -70,7 +72,7 @@ public class LoginControllerTest extends IntegrationTestBase {
                 .user("username", userLogin)
                 .password("password", password);
         //then
-        mvc.perform(requestBuilder)
+        this.mvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(redirectedUrl("/login-error"))
                 .andExpect(unauthenticated());
@@ -79,7 +81,7 @@ public class LoginControllerTest extends IntegrationTestBase {
     @Test
     public void shouldReturnErrorMessage() throws Exception {
         //when
-        mvc.perform(get("/login-error"))
+        this.mvc.perform(get("/login-error"))
                 .andDo(print())
                 //then
                 .andExpect(model().attribute("loginError", true))

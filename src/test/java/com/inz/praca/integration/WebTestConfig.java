@@ -15,16 +15,11 @@ public final class WebTestConfig {
     private static final String HTTP_STATUS_CODE_INTERNAL_SERVER_ERROR = "500";
     private static final String HTTP_STATUS_CODE_NOT_FOUND = "404";
 
-    /**
-     * This method creates a view resolver that simply returns the name of the view.
-     *
-     * @return
-     */
     public static ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 
-        viewResolver.setPrefix(VIEW_BASE_PATH);
-        viewResolver.setSuffix(VIEW_FILENAME_SUFFIX);
+        viewResolver.setPrefix(WebTestConfig.VIEW_BASE_PATH);
+        viewResolver.setSuffix(WebTestConfig.VIEW_FILENAME_SUFFIX);
 
         return viewResolver;
     }
@@ -34,16 +29,16 @@ public final class WebTestConfig {
 
         Properties exceptionMappings = new Properties();
 
-        exceptionMappings.put("com.inz.praca.products.ProductNotFoundException", VIEW_NAME_NOT_FOUND_VIEW);
-        exceptionMappings.put("java.lang.Exception", VIEW_NAME_ERROR_VIEW);
-        exceptionMappings.put("java.lang.RuntimeException", VIEW_NAME_ERROR_VIEW);
+        exceptionMappings.put("com.inz.praca.products.ProductNotFoundException", WebTestConfig.VIEW_NAME_NOT_FOUND_VIEW);
+        exceptionMappings.put("java.lang.Exception", WebTestConfig.VIEW_NAME_ERROR_VIEW);
+        exceptionMappings.put("java.lang.RuntimeException", WebTestConfig.VIEW_NAME_ERROR_VIEW);
 
         exceptionResolver.setExceptionMappings(exceptionMappings);
 
         Properties statusCodes = new Properties();
 
-        statusCodes.put(VIEW_NAME_NOT_FOUND_VIEW, HTTP_STATUS_CODE_NOT_FOUND);
-        statusCodes.put(VIEW_NAME_ERROR_VIEW, HTTP_STATUS_CODE_INTERNAL_SERVER_ERROR);
+        statusCodes.put(WebTestConfig.VIEW_NAME_NOT_FOUND_VIEW, WebTestConfig.HTTP_STATUS_CODE_NOT_FOUND);
+        statusCodes.put(WebTestConfig.VIEW_NAME_ERROR_VIEW, WebTestConfig.HTTP_STATUS_CODE_INTERNAL_SERVER_ERROR);
 
         exceptionResolver.setStatusCodes(statusCodes);
 

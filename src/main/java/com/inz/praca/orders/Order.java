@@ -27,7 +27,7 @@ public class Order {
     public Order(Cart cart, ShippingDetail shippingDetail) {
         Assert.notNull(cart, "Zamowienie musi zawierac jakis koszyk");
         Assert.notNull(shippingDetail, "Zamowienie musi zawierac dane dostawy");
-        this.price = cart.getCartItems()
+        price = cart.getCartItems()
                 .stream()
                 .map(v -> v.getProduct().getPrice().multiply(BigDecimal.valueOf(v.getQuantity())))
                 .reduce(BigDecimal::add)
@@ -37,12 +37,12 @@ public class Order {
     }
 
     public Order() {
-        this.cart = null;
-        this.price = BigDecimal.ZERO;
-        this.shippingDetail = null;
+        cart = null;
+        price = BigDecimal.ZERO;
+        shippingDetail = null;
     }
 
     public void applyDiscountPrice(BigDecimal discountPrice) {
-        this.price = discountPrice;
+        price = discountPrice;
     }
 }

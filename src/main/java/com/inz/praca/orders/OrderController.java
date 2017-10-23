@@ -26,27 +26,27 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping(value = "/order")
+    @GetMapping("/order")
     public String getShippingDetail(Model model, RedirectAttributes redirectAttributes) {
-        if (cartSession.getItems().isEmpty()) {
+        if (this.cartSession.getItems().isEmpty()) {
             redirectAttributes.addFlashAttribute("emptyCart", true);
             return "redirect:/cart";
         }
         model.addAttribute(new ShippingDetail());
-        log.info("getShippingDetail");
+        OrderController.log.info("getShippingDetail");
         return "collectCustomerInfo";
     }
 
-    @PostMapping(value = "/order")
+    @PostMapping("/order")
     public String postShippingDetail(@Valid @ModelAttribute ShippingDetail detail, Model model) {
-        log.info("postShipping" + detail.toString());
-        OrderDTO orderDTO = orderService.confirmShippingDetail(detail);
+        OrderController.log.info("postShipping" + detail);
+        OrderDTO orderDTO = this.orderService.confirmShippingDetail(detail);
         model.addAttribute(orderDTO);
         return "orderConfirmation";
     }
 
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    @GetMapping(value = "/orderList")
+    @GetMapping("/orderList")
     public String getOrderList(Model model) {
         CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("orders", user.getUser().getOrders());

@@ -28,25 +28,25 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
 
     @Test
     public void shouldDeleteProduct() throws Exception {
-        orderRepository.deleteAll();
-        repository.deleteAll();
-        prepareBeforeTest();
+        this.orderRepository.deleteAll();
+        this.repository.deleteAll();
+        this.prepareBeforeTest();
 
-        Product product = repository.save(new ProductBuilder().withName("nameTest1234567")
+        Product product = this.repository.save(new ProductBuilder().withName("nameTest1234567")
                 .withDescription("test2")
                 .withPrice(BigDecimal.valueOf(3))
                 .createProduct());
-        int size = repository.findAll().size();
-        driver.get("http://localhost:" + port + "/products/product/" + product.getId());
-        LoginPage loginPage = new LoginPage(driver);
+        int size = this.repository.findAll().size();
+        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/" + product.getId());
+        LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(SeleniumTestBase.driver);
         productPage.clickOnRemoveProductButton();
-        if (driver instanceof HtmlUnitDriver) {
+        if (SeleniumTestBase.driver instanceof HtmlUnitDriver) {
         } else {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            SeleniumTestBase.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             productPage.clickOnConfirmRemoveProduct();
-            assertThat(repository.findAll().size()).isEqualTo(size - 1);
+            assertThat(this.repository.findAll().size()).isEqualTo(size - 1);
         }
     }
 }

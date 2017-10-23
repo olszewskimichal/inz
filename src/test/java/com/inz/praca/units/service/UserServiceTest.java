@@ -32,13 +32,13 @@ public class UserServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        this.userService = new UserService(userRepository);
+        userService = new UserService(this.userRepository);
     }
 
     @Test
     public void shouldThrownIlleagalArgumentExceptionWhenEmailIsNull() {
         try {
-            this.userService.getUserByEmail(null);
+            userService.getUserByEmail(null);
             Assert.fail("Nie mozna podawac nullowego argumentu przy szukaniu uzytkownika");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Nie podano adresu email");
@@ -48,7 +48,7 @@ public class UserServiceTest {
     @Test
     public void shouldThrownIlleagalArgumentExceptionWhenEmailIsEmpty() {
         try {
-            this.userService.getUserByEmail("");
+            userService.getUserByEmail("");
             Assert.fail("Nie mozna podawac pustego argumentu przy szukaniu uzytkownika");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano pusty email");
@@ -58,7 +58,7 @@ public class UserServiceTest {
     @Test
     public void shouldThrownIlleagalArgumentExceptionWhenIdIsNull() {
         try {
-            this.userService.getUserById(null);
+            userService.getUserById(null);
             Assert.fail("Nie mozna podawac nullowego argumentu przy szukaniu uzytkownika");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Podano puste id uzytkownika");
@@ -68,7 +68,7 @@ public class UserServiceTest {
     @Test
     public void shouldThrownIlleagalArgumentExceptionWhenIdIsNotPositive() {
         try {
-            this.userService.getUserById(0L);
+            userService.getUserById(0L);
             Assert.fail("Nie mozna podawac mniejszego od 1 argumentu id przy szukaniu uzytkownika");
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage()).isEqualTo("Nie ma uzytkownikow o id mniejszym niz 1");
@@ -78,8 +78,8 @@ public class UserServiceTest {
     @Test
     public void shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists() {
         try {
-            given(userRepository.findByEmail(anyString())).willReturn(Optional.empty());
-            this.userService.getUserByEmail("email");
+            given(this.userRepository.findByEmail(anyString())).willReturn(Optional.empty());
+            userService.getUserByEmail("email");
             Assert.fail("Nie istnieje uzytkownik o podanym mailu");
         } catch (UserNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono uzytkownika o emailu = email");
@@ -89,8 +89,8 @@ public class UserServiceTest {
     @Test
     public void shouldThrownUserNotFoundExceptionWhenUserByIdNotExists() {
         try {
-            given(userRepository.findById(anyLong())).willReturn(Optional.empty());
-            this.userService.getUserById(1L);
+            given(this.userRepository.findById(anyLong())).willReturn(Optional.empty());
+            userService.getUserById(1L);
             Assert.fail("Nie istnieje uzytkownik o podanym mailu");
         } catch (UserNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono uzytkownika o id = 1");
@@ -99,18 +99,18 @@ public class UserServiceTest {
 
     @Test
     public void shouldFoundUserById() {
-        given(userRepository.findById(1L)).willReturn(
+        given(this.userRepository.findById(1L)).willReturn(
                 Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
-        User userById = this.userService.getUserById(1L);
+        User userById = userService.getUserById(1L);
         assertThat(userById.getEmail()).isEqualTo("email@o2.pl");
 
     }
 
     @Test
     public void shouldFoundUserByEmail() {
-        given(userRepository.findByEmail("email@o2.pl")).willReturn(
+        given(this.userRepository.findByEmail("email@o2.pl")).willReturn(
                 Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
-        User userByEmail = this.userService.getUserByEmail("email@o2.pl");
+        User userByEmail = userService.getUserByEmail("email@o2.pl");
         assertThat(userByEmail.getEmail()).isEqualTo("email@o2.pl");
     }
 
@@ -123,9 +123,9 @@ public class UserServiceTest {
         userDTO.setEmail("email@o2.pl");
         userDTO.setName("name");
         userDTO.setLastName("last");
-        doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
+        doAnswer(invocation -> invocation.getArguments()[0]).when(this.userRepository).save(any(User.class));
 
-        User user = userService.createUserFromDTO(userDTO);
+        User user = this.userService.createUserFromDTO(userDTO);
         assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
         assertThat(user.getName()).isEqualTo(userDTO.getName());
         assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
@@ -137,20 +137,20 @@ public class UserServiceTest {
         Page<User> users = new PageImpl<>(
                 Arrays.asList(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build(),
                         new UserBuilder().withEmail("name4@o2.pl").withPasswordHash("zaq1@WSX").build()));
-        given(this.userRepository.findAll(new PageRequest(0, 20))).willReturn(users);
-        Page<User> allUsers = userService.getAllUsers(0);
+        given(userRepository.findAll(new PageRequest(0, 20))).willReturn(users);
+        Page<User> allUsers = this.userService.getAllUsers(0);
         assertThat(allUsers).isNotEmpty();
         assertThat(allUsers.getTotalElements()).isEqualTo(2);
     }
 
     @Test
     public void shouldActivateUser() {
-        doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
-        given(userRepository.findById(1L)).willReturn(
+        doAnswer(invocation -> invocation.getArguments()[0]).when(this.userRepository).save(any(User.class));
+        given(this.userRepository.findById(1L)).willReturn(
                 Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build()));
-        String result = userService.changeUserActive(1L, true);
+        String result = this.userService.changeUserActive(1L, true);
         assertThat(result).isEqualTo("Aktywowano uzytkownika name3@o2.pl");
-        result = userService.changeUserActive(1L, false);
+        result = this.userService.changeUserActive(1L, false);
         assertThat(result).isEqualTo("Deaktywowano uzytkownika name3@o2.pl");
     }
 }

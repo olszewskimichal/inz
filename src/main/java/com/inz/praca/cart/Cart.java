@@ -38,6 +38,6 @@ public class Cart {
 
     @PrePersist
     public void initialize() {
-        this.dateTime = LocalDateTime.now();
+        dateTime = LocalDateTime.now();
     }
 }

@@ -17,7 +17,7 @@ public class LoginController {
 
     @RequestMapping("/login-error")
     public String loginError(Model model, HttpServletRequest request) {
-        logger.info("Błedne logowanie");
+        LoginController.logger.info("Błedne logowanie");
         model.addAttribute("loginError", true);
         model.addAttribute("errorMessage", request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION));
         return "login";
@@ -26,7 +26,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String loginPage(Model model, @RequestParam Optional<String> error) {
         model.addAttribute("error", error);
-        logger.info("Logowanie");
+        LoginController.logger.info("Logowanie");
         return "login";
     }
 }

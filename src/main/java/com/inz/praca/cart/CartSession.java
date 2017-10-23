@@ -27,48 +27,48 @@ public class CartSession implements Serializable {
     private BigDecimal totalPrice = BigDecimal.ZERO;
 
     public CartSession(CartSession cartSession) {
-        this.items = cartSession.getItems();
-        this.totalPrice = cartSession.getTotalPrice();
+        items = cartSession.getItems();
+        totalPrice = cartSession.getTotalPrice();
     }
 
     public void addProduct(ProductDTO productDTO) {
-        for (CartItemDTO cartItemDTO : items) {
+        for (CartItemDTO cartItemDTO : this.items) {
             if (cartItemDTO.getItem().equals(productDTO)) {
                 cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
                 cartItemDTO.setPrice(
                         cartItemDTO.getItem().getPrice().multiply(BigDecimal.valueOf(cartItemDTO.getQuantity())));
-                updatePrice();
+                this.updatePrice();
                 return;
             }
         }
-        items.add(new CartItemDTO(productDTO));
-        updatePrice();
+        this.items.add(new CartItemDTO(productDTO));
+        this.updatePrice();
     }
 
     public void removeProductById(int rowId) {
-        if (!items.isEmpty()) {
-            items.remove(rowId);
-            updatePrice();
+        if (!this.items.isEmpty()) {
+            this.items.remove(rowId);
+            this.updatePrice();
         }
     }
 
     public void clearCart() {
-        items = new ArrayList<>();
-        updatePrice();
+        this.items = new ArrayList<>();
+        this.updatePrice();
     }
 
     private void updatePrice() {
-        totalPrice = items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+        this.totalPrice = this.items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }
 
     public List<CartItemDTO> getItems() {
-        if (items == null)
-            items = new ArrayList<>();
-        return Collections.unmodifiableList(items);
+        if (this.items == null)
+            this.items = new ArrayList<>();
+        return Collections.unmodifiableList(this.items);
     }
 
     public BigDecimal getTotalPrice() {
-        return totalPrice.setScale(2, BigDecimal.ROUND_HALF_DOWN);
+        return this.totalPrice.setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {

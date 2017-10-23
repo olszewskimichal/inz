@@ -28,12 +28,12 @@ public class UserBuilder {
     }
 
     public UserBuilder activate() {
-        this.active = true;
+        active = true;
         return this;
     }
 
     public User build() {
-        return new User(email, name, lastName, passwordHash, active);
+        return new User(this.email, this.name, this.lastName, this.passwordHash, this.active);
     }
 
     public User build(UserDTO userDTO) {

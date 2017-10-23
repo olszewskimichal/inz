@@ -34,8 +34,10 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class OrderControllerTest {
 
     @Mock
+    private
     OrderService orderService;
     @Mock
+    private
     Model model;
     private OrderController orderController;
 
@@ -44,26 +46,26 @@ public class OrderControllerTest {
         initMocks(this);
         CartSession cartSession = new CartSession();
         cartSession.addProduct(new ProductBuilder().withName("aaaa").withPrice(BigDecimal.TEN).createProductDTO());
-        orderController = new OrderController(cartSession, orderService);
+        this.orderController = new OrderController(cartSession, this.orderService);
     }
 
     @Test
     public void shouldShowShippingDetailForm() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        assertThat(orderController.getShippingDetail(model, redirectAttributes)).isEqualTo("collectCustomerInfo");
-        verify(model).addAttribute(new ShippingDetail());
-        verifyNoMoreInteractions(model);
+        assertThat(this.orderController.getShippingDetail(this.model, redirectAttributes)).isEqualTo("collectCustomerInfo");
+        verify(this.model).addAttribute(new ShippingDetail());
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
     public void shouldRedirectToCartWhenCartIsEmpty() {
         CartSession cartSession = new CartSession();
-        orderController = new OrderController(cartSession, orderService);
+        this.orderController = new OrderController(cartSession, this.orderService);
 
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        assertThat(orderController.getShippingDetail(model, redirectAttributes)).isEqualTo("redirect:/cart");
+        assertThat(this.orderController.getShippingDetail(this.model, redirectAttributes)).isEqualTo("redirect:/cart");
         verify(redirectAttributes).addFlashAttribute("emptyCart", true);
-        verifyNoMoreInteractions(model);
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
@@ -74,9 +76,9 @@ public class OrderControllerTest {
         Set<CartItem> cartItems = new HashSet<>();
         Product product = new ProductBuilder().withName("nameTest222").withPrice(BigDecimal.TEN).createProduct();
         cartItems.add(new CartItem(product, 1L));
-        given(orderService.createOrder(Matchers.any(User.class), Matchers.any(OrderDTO.class))).willReturn(
+        given(this.orderService.createOrder(Matchers.any(User.class), Matchers.any(OrderDTO.class))).willReturn(
                 new Order(new Cart(cartItems), new ShippingDetail("a", "b", "c", "d")));
-        assertThat(orderController.postShippingDetail(new ShippingDetail(), model)).isEqualTo("orderConfirmation");
+        assertThat(this.orderController.postShippingDetail(new ShippingDetail(), this.model)).isEqualTo("orderConfirmation");
     }
 
     @Test
@@ -85,9 +87,9 @@ public class OrderControllerTest {
                 new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("zaq1@WSX").build()), null);
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        assertThat(orderController.getOrderList(model)).isEqualTo("orderList");
-        verify(model).addAttribute("orders", new HashSet<>());
-        verifyNoMoreInteractions(model);
+        assertThat(this.orderController.getOrderList(this.model)).isEqualTo("orderList");
+        verify(this.model).addAttribute("orders", new HashSet<>());
+        verifyNoMoreInteractions(this.model);
     }
 
 }

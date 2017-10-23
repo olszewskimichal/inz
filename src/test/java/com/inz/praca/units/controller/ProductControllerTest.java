@@ -46,12 +46,12 @@ public class ProductControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        controller = new ProductController(productService);
+        this.controller = new ProductController(this.productService);
     }
 
     @Test
     public void shouldReturnRegisterPage() {
-        assertThat(controller.addNewProductPage(model)).isEqualTo("newProduct");
+        assertThat(this.controller.addNewProductPage(this.model)).isEqualTo("newProduct");
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ProductControllerTest {
         productDTO.setPrice(BigDecimal.TEN);
         productDTO.setImageUrl("url");
 
-        assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.controller.confirmNewProduct(productDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "redirect:/products");
         verify(redirectAttributes).addFlashAttribute("createProductDone", true);
     }
@@ -71,61 +71,61 @@ public class ProductControllerTest {
     @Test
     public void shouldShowAgainFormWhenErrorOnCreate() {
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
-        given(bindingResult.hasErrors()).willReturn(true);
+        given(this.bindingResult.hasErrors()).willReturn(true);
 
         ProductDTO productDTO = new ProductDTO();
-        assertThat(controller.confirmNewProduct(productDTO, bindingResult, model, redirectAttributes)).isEqualTo(
+        assertThat(this.controller.confirmNewProduct(productDTO, this.bindingResult, this.model, redirectAttributes)).isEqualTo(
                 "newProduct");
 
-        verify(model).addAttribute("productCreateForm", productDTO);
-        verify(model).addAttribute("categoryList", productService.findAllCategory());
-        verifyNoMoreInteractions(model);
+        verify(this.model).addAttribute("productCreateForm", productDTO);
+        verify(this.model).addAttribute("categoryList", this.productService.findAllCategory());
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
     public void shouldShowProductDetails() {
-        given(productService.getProductById(1L)).willReturn(
+        given(this.productService.getProductById(1L)).willReturn(
                 new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-        assertThat(controller.showProductDetail(1L, model)).isEqualTo("product");
+        assertThat(this.controller.showProductDetail(1L, this.model)).isEqualTo("product");
     }
 
     @Test
     public void shouldShowAllProducts() {
-        given(productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
-        assertThat(controller.showProducts(model, null, null, null)).isEqualTo("products");
+        given(this.productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
+        assertThat(this.controller.showProducts(this.model, null, null, null)).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProducts2() {
-        given(productService.getProducts(2, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
-        assertThat(controller.showProducts(model, 2, 6, null)).isEqualTo("products");
+        given(this.productService.getProducts(2, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
+        assertThat(this.controller.showProducts(this.model, 2, 6, null)).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProductsByCategory() {
-        given(categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a", "a")));
-        given(productService.getProducts(2, 6, null, Optional.ofNullable("a"))).willReturn(new PageImpl<>(new ArrayList<>()));
-        assertThat(controller.showProducts(model, 2, 6, "a")).isEqualTo("products");
-        verify(model).addAttribute("pager", new Pager(1, 1, 5));
+        given(this.categoryRepository.findByName("kategoria")).willReturn(Optional.of(new Category("a", "a")));
+        given(this.productService.getProducts(2, 6, null, Optional.ofNullable("a"))).willReturn(new PageImpl<>(new ArrayList<>()));
+        assertThat(this.controller.showProducts(this.model, 2, 6, "a")).isEqualTo("products");
+        verify(this.model).addAttribute("pager", new Pager(1, 1, 5));
     }
 
     @Test
     public void shouldShowAllProductsWithEmptyCategory() {
-        given(productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
-        assertThat(controller.showProducts(model, null, null, "")).isEqualTo("products");
+        given(this.productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
+        assertThat(this.controller.showProducts(this.model, null, null, "")).isEqualTo("products");
     }
 
     @Test
     public void shouldShowAllProducts3() {
-        given(productService.getProducts(2, 2, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
-        assertThat(controller.showProducts(model, 2, 2, null)).isEqualTo("products");
+        given(this.productService.getProducts(2, 2, null, Optional.empty())).willReturn(new PageImpl<>(new ArrayList<>()));
+        assertThat(this.controller.showProducts(this.model, 2, 2, null)).isEqualTo("products");
     }
 
     @Test
     public void shouldReturnEditProductPage() {
-        given(productService.getProductById(Matchers.anyLong())).willReturn(
+        given(this.productService.getProductById(Matchers.anyLong())).willReturn(
                 new ProductBuilder().withName("nazwa").withPrice(BigDecimal.TEN).createProduct());
-        assertThat(controller.editProduct(Matchers.anyLong(), model)).isEqualTo("editProduct");
+        assertThat(this.controller.editProduct(Matchers.anyLong(), this.model)).isEqualTo("editProduct");
     }
 
     @Test
@@ -136,24 +136,24 @@ public class ProductControllerTest {
         productDTO.setPrice(BigDecimal.TEN);
         productDTO.setImageUrl("url");
 
-        assertThat(controller.confirmEditProduct(1L, productDTO, bindingResult, model)).isEqualTo(
+        assertThat(this.controller.confirmEditProduct(1L, productDTO, this.bindingResult, this.model)).isEqualTo(
                 "redirect:/products/product/1");
     }
 
     @Test
     public void shouldShowAgainFormWhenErrorOnEdit() {
-        given(bindingResult.hasErrors()).willReturn(true);
+        given(this.bindingResult.hasErrors()).willReturn(true);
         ProductDTO productDTO = new ProductDTO();
-        assertThat(controller.confirmEditProduct(1L, productDTO, bindingResult, model)).isEqualTo("editProduct");
+        assertThat(this.controller.confirmEditProduct(1L, productDTO, this.bindingResult, this.model)).isEqualTo("editProduct");
 
-        verify(model).addAttribute("productCreateForm", productDTO);
-        verify(model).addAttribute("categoryList", productService.findAllCategory());
-        verify(model).addAttribute("productId", 1L);
-        verifyNoMoreInteractions(model);
+        verify(this.model).addAttribute("productCreateForm", productDTO);
+        verify(this.model).addAttribute("categoryList", this.productService.findAllCategory());
+        verify(this.model).addAttribute("productId", 1L);
+        verifyNoMoreInteractions(this.model);
     }
 
     @Test
     public void shouldDeleteProductAndRedirectToProducts() {
-        assertThat(controller.deleteProduct(1L)).isEqualTo("redirect:/products");
+        assertThat(this.controller.deleteProduct(1L)).isEqualTo("redirect:/products");
     }
 }

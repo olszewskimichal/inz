@@ -24,39 +24,39 @@ public class ProductRepositoryTest extends JpaTestBase {
 
     @Test
     public void shouldFindProductByName() {
-        productRepository.deleteAll();
-        this.entityManager.persistAndFlush(
-                new ProductBuilder().withName(NAME).withPrice(BigDecimal.TEN).createProduct());
-        Optional<Product> byName = this.productRepository.findByName(NAME);
+        this.productRepository.deleteAll();
+        entityManager.persistAndFlush(
+                new ProductBuilder().withName(ProductRepositoryTest.NAME).withPrice(BigDecimal.TEN).createProduct());
+        Optional<Product> byName = productRepository.findByName(ProductRepositoryTest.NAME);
         assertThat(byName).isNotNull();
         assertThat(byName.isPresent()).isTrue();
-        assertThat(byName.get().getName()).isEqualTo(NAME);
+        assertThat(byName.get().getName()).isEqualTo(ProductRepositoryTest.NAME);
     }
 
     @Test
     public void shouldFindAllPageable() {
-        productRepository.deleteAll();
-        this.entityManager.persist(new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).createProduct());
-        this.entityManager.persist(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).createProduct());
-        this.entityManager.persist(new ProductBuilder().withName("nazwa3").withPrice(BigDecimal.TEN).createProduct());
-        List<Product> content = this.productRepository.findAllByActive(new PageRequest(0, 2), true).getContent();
+        this.productRepository.deleteAll();
+        entityManager.persist(new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).createProduct());
+        entityManager.persist(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).createProduct());
+        entityManager.persist(new ProductBuilder().withName("nazwa3").withPrice(BigDecimal.TEN).createProduct());
+        List<Product> content = productRepository.findAllByActive(new PageRequest(0, 2), true).getContent();
         assertThat(content.size()).isEqualTo(2);
         assertThat(content.get(0).getName()).isEqualTo("nazwa1");
         assertThat(content.get(1).getName()).isEqualTo("nazwa2");
 
-        content = this.productRepository.findAllByActive(new PageRequest(1, 2), true).getContent();
+        content = productRepository.findAllByActive(new PageRequest(1, 2), true).getContent();
         assertThat(content.size()).isEqualTo(1);
         assertThat(content.get(0).getName()).isEqualTo("nazwa3");
     }
 
     @Test
     public void shouldCountProductByCategory() {
-        productRepository.deleteAll();
+        this.productRepository.deleteAll();
 
         Category category = new CategoryBuilder().withName("nazwa1").createCategory();
         Category category2 = new CategoryBuilder().withName("nazwa2").createCategory();
-        entityManager.persistAndFlush(category);
-        entityManager.persistAndFlush(category2);
+        this.entityManager.persistAndFlush(category);
+        this.entityManager.persistAndFlush(category2);
         Product product = new ProductBuilder().withName("nazwa")
                 .withPrice(BigDecimal.TEN)
                 .withCategory("nazwa1")
@@ -72,11 +72,11 @@ public class ProductRepositoryTest extends JpaTestBase {
                 .withCategory("nazwa2")
                 .createProduct();
         product2.changeCategory(category2);
-        entityManager.persistAndFlush(product);
-        entityManager.persistAndFlush(product1);
-        entityManager.persistAndFlush(product2);
+        this.entityManager.persistAndFlush(product);
+        this.entityManager.persistAndFlush(product1);
+        this.entityManager.persistAndFlush(product2);
 
-        List<Object[]> categoryNameAndCountProducts = productRepository.findCategoryNameAndCountProducts();
+        List<Object[]> categoryNameAndCountProducts = this.productRepository.findCategoryNameAndCountProducts();
         assertThat((String) categoryNameAndCountProducts.get(0)[0]).isEqualTo("nazwa1");
         assertThat((Long) categoryNameAndCountProducts.get(0)[1]).isEqualTo(2L);
         assertThat((String) categoryNameAndCountProducts.get(1)[0]).isEqualTo("nazwa2");

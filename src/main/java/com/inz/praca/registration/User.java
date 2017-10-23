@@ -56,34 +56,34 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
-        this.role = Role.USER;
-        this.orders = new HashSet<>();
+        role = Role.USER;
+        orders = new HashSet<>();
         this.active = active;
     }
 
     public Set<Order> getOrders() {
-        if (orders == null)
-            orders = new HashSet<>();
-        return Collections.unmodifiableSet(orders);
+        if (this.orders == null)
+            this.orders = new HashSet<>();
+        return Collections.unmodifiableSet(this.orders);
     }
 
     public void deactivate() {
-        this.active = false;
+        active = false;
     }
 
     public void active() {
-        this.active = true;
+        active = true;
     }
 
     Boolean isActivated() {
-        return active;
+        return this.active;
     }
 
     public void giveAdminAuthorization() {
-        role = Role.ADMIN;
+        this.role = Role.ADMIN;
     }
 
     public void addOrder(Order order) {
-        orders.add(order);
+        this.orders.add(order);
     }
 }

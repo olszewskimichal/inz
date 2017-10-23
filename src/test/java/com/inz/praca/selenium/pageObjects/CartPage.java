@@ -5,62 +5,62 @@ import org.openqa.selenium.WebDriver;
 
 public class CartPage {
 
-    By cartTable = By.xpath("//table[@id='cartTable']/tbody/tr");
-    By cartPrice = By.id("cartPrice");
-    By cartClearButton = By.id("cartClear");
-    By order = By.id("order");
-    private WebDriver webDriver;
+    private final By cartTable = By.xpath("//table[@id='cartTable']/tbody/tr");
+    private final By cartPrice = By.id("cartPrice");
+    private final By cartClearButton = By.id("cartClear");
+    private final By order = By.id("order");
+    private final WebDriver webDriver;
 
     public CartPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    By cartItemName(Integer id) {
+    private By cartItemName(Integer id) {
         return By.id("cartItemName" + id);
     }
 
-    By cartItemPrice(Integer id) {
+    private By cartItemPrice(Integer id) {
         return By.id("cartItemPrice" + id);
     }
 
-    By cartItemProductPrice(Integer id) {
+    private By cartItemProductPrice(Integer id) {
         return By.id("cartItemProductPrice" + id);
     }
 
-    By cartItemRemove(Integer id) {
+    private By cartItemRemove(Integer id) {
         return By.id("cartItemRemove" + id);
     }
 
     public String getCartItemPrice(Integer id) {
-        return webDriver.findElement(cartItemPrice(id)).getText();
+        return this.webDriver.findElement(this.cartItemPrice(id)).getText();
     }
 
     public String getCartItemName(Integer id) {
-        return webDriver.findElement(cartItemName(id)).getText();
+        return this.webDriver.findElement(this.cartItemName(id)).getText();
     }
 
     public String getCartPrice() {
-        return webDriver.findElement(cartPrice).getText();
+        return this.webDriver.findElement(this.cartPrice).getText();
     }
 
     public Integer getCartTableSize() {
-        return webDriver.findElements(cartTable).size();
+        return this.webDriver.findElements(this.cartTable).size();
     }
 
     public String getCartItemProductPrice(Integer id) {
-        return webDriver.findElement(cartItemProductPrice(id)).getText();
+        return this.webDriver.findElement(this.cartItemProductPrice(id)).getText();
     }
 
     public void removeItem(Integer id) {
-        webDriver.findElement(cartItemRemove(id)).click();
+        this.webDriver.findElement(this.cartItemRemove(id)).click();
     }
 
     public void clearCart() {
-        webDriver.findElement(cartClearButton).click();
+        this.webDriver.findElement(this.cartClearButton).click();
     }
 
     public void clickOrder() {
-        webDriver.findElement(order).click();
+        this.webDriver.findElement(this.order).click();
     }
 
 }

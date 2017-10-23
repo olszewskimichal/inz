@@ -14,7 +14,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 
     @Override
     public void initialize(ValidEmail value) {
-        log.debug("Poprawnie zainicjalizowano Validator");
+        EmailValidator.log.debug("Poprawnie zainicjalizowano Validator");
     }
 
     @Override
@@ -22,7 +22,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
         if (value == null) {
             return false;
         }
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Pattern pattern = Pattern.compile(EmailValidator.EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
     }

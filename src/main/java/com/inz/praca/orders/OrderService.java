@@ -37,12 +37,12 @@ public class OrderService {
     }
 
     public Order createOrder(User user, OrderDTO orderDTO) {
-        DiscountService discountService = (DiscountService) context.getBean("discountService");
-        Order order = new Order(getCartFromSession(orderDTO.getCartSession()), orderDTO.getShippingDetail());
+        DiscountService discountService = (DiscountService) this.context.getBean("discountService");
+        Order order = new Order(this.getCartFromSession(orderDTO.getCartSession()), orderDTO.getShippingDetail());
         user.addOrder(order);
         discountService.calculateDiscount(order, orderDTO);
-        repository.saveAndFlush(order);
-        log.info(order.toString());
+        this.repository.saveAndFlush(order);
+        OrderService.log.info(order.toString());
         return order;
     }
 
@@ -51,7 +51,7 @@ public class OrderService {
         Assert.notEmpty(cartSession.getItems(), "Koszyk musi zawierac jakies produkty");
         Set<CartItem> cartItems = new HashSet<>();
         for (CartItemDTO cartItemDTO : cartSession.getItems()) {
-            CartItem cartItem = new CartItem(productRepository.findByName(cartItemDTO.getItem().getName()).orElseThrow(() -> new ProductNotFoundException(cartItemDTO.getItem().getName())), cartItemDTO.getQuantity().longValue());
+            CartItem cartItem = new CartItem(this.productRepository.findByName(cartItemDTO.getItem().getName()).orElseThrow(() -> new ProductNotFoundException(cartItemDTO.getItem().getName())), cartItemDTO.getQuantity().longValue());
             cartItems.add(cartItem);
         }
         return new Cart(cartItems);
@@ -59,10 +59,10 @@ public class OrderService {
 
     OrderDTO confirmShippingDetail(ShippingDetail detail) {
         CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        CartSession cartSession1 = new CartSession(cartSession);
+        CartSession cartSession1 = new CartSession(this.cartSession);
         OrderDTO orderDTO = new OrderDTO(cartSession1, detail);
-        createOrder(user.getUser(), orderDTO);
-        cartSession.clearCart();
+        this.createOrder(user.getUser(), orderDTO);
+        this.cartSession.clearCart();
         return orderDTO;
     }
 

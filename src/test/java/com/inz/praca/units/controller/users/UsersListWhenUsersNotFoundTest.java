@@ -16,12 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UsersListWhenUsersNotFoundTest extends UsersControllerTestBase {
     @Before
     public void returnEmptyUsersList() {
-        given(userService.getAllUsers(0)).willReturn(new PageImpl<>(new ArrayList<>()));
+        given(this.userService.getAllUsers(0)).willReturn(new PageImpl<>(new ArrayList<>()));
     }
 
     @Test
     public void shouldShowEmptyUsersList() throws Exception {
-        mockMvc.perform(get("/users"))
+        this.mockMvc.perform(get("/users"))
                 .andExpect(model().attribute(USERS_LIST, hasSize(0)))
                 .andExpect(model().attribute(SELECTED_PAGE_SIZE, Matchers.equalTo(0)))
                 .andExpect(model().attribute(PAGER, Matchers.notNullValue()));

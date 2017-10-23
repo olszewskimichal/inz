@@ -29,15 +29,15 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
             throws IOException, ServletException {
-        log.info("Bledna autoryzacja uzytkownika");
-        log.info(exception.getMessage());
-        setDefaultFailureUrl("/login-error");
+        CustomAuthenticationFailureHandler.log.info("Bledna autoryzacja uzytkownika");
+        CustomAuthenticationFailureHandler.log.info(exception.getMessage());
+        this.setDefaultFailureUrl("/login-error");
         super.onAuthenticationFailure(request, response, exception);
-        Locale locale = localeResolver.resolveLocale(request);
-        String errorMessage = messages.getMessage("login.error_message", null, locale);
+        Locale locale = this.localeResolver.resolveLocale(request);
+        String errorMessage = this.messages.getMessage("login.error_message", null, locale);
 
         if ("user is disabled".equalsIgnoreCase(exception.getMessage())) {
-            errorMessage = messages.getMessage("auth.message.disabled", null, locale);
+            errorMessage = this.messages.getMessage("auth.message.disabled", null, locale);
         }
         request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, errorMessage);
     }

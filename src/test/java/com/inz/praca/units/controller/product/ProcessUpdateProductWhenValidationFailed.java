@@ -1,6 +1,11 @@
 package com.inz.praca.units.controller.product;
 
 import com.inz.praca.WebTestConstants;
+import com.inz.praca.WebTestConstants.ModelAttributeName;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty;
+import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCT;
+import com.inz.praca.WebTestConstants.ValidationErrorCode;
+import com.inz.praca.WebTestConstants.View;
 import com.inz.praca.products.ProductDTO;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -17,63 +22,63 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""))
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""))
-                .andExpect(view().name(WebTestConstants.View.EDIT_PRODUCT));
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""))
+                .andExpect(view().name(View.EDIT_PRODUCT));
     }
 
     @Test
     public void shouldShowValidationErrorForEmptyName() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""))
-                .andExpect(model().attributeHasFieldErrorCode(WebTestConstants.ModelAttributeName.PRODUCT_CREATE_FORM,
-                        WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, is(WebTestConstants.ValidationErrorCode.SIZE)
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""))
+                .andExpect(model().attributeHasFieldErrorCode(ModelAttributeName.PRODUCT_CREATE_FORM,
+                        PRODUCT.NAME, is(ValidationErrorCode.SIZE)
                 ));
     }
 
     @Test
     public void shouldShowValidationErrorForEmptyCategory() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""))
-                .andExpect(model().attributeHasFieldErrorCode(WebTestConstants.ModelAttributeName.PRODUCT_CREATE_FORM,
-                        WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, is(WebTestConstants.ValidationErrorCode.EMPTY_FIELD)
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""))
+                .andExpect(model().attributeHasFieldErrorCode(ModelAttributeName.PRODUCT_CREATE_FORM,
+                        PRODUCT.CATEGORY, is(ValidationErrorCode.EMPTY_FIELD)
                 ));
     }
 
     @Test
     public void shouldNotModifyIdField() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""))
-                .andExpect(model().attribute(WebTestConstants.ModelAttributeName.PRODUCT_CREATE_FORM,
-                        hasProperty(WebTestConstants.ModelAttributeProperty.PRODUCT.ID, Matchers.nullValue())
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""))
+                .andExpect(model().attribute(ModelAttributeName.PRODUCT_CREATE_FORM,
+                        hasProperty(PRODUCT.ID, Matchers.nullValue())
                 ));
     }
 
     @Test
     public void shouldNotUpdateProduct() throws Exception {
-        mockMvc.perform(post("/products/product/edit/{id}", PRODUCT_ID)
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.NAME, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.PRICE, "")
-                .param(WebTestConstants.ModelAttributeProperty.PRODUCT.CATEGORY, ""));
+        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, "")
+                .param(PRODUCT.PRICE, "")
+                .param(PRODUCT.CATEGORY, ""));
 
-        verify(productService, never()).createProductFromDTO(isA(ProductDTO.class));
+        verify(this.productService, never()).createProductFromDTO(isA(ProductDTO.class));
     }
 
 }
