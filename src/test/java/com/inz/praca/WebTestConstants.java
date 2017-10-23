@@ -8,6 +8,8 @@ public class WebTestConstants {
         public static final String PRODUCT = "product";
         public static final String PRODUCTS = "products";
         public static final String EDIT_PRODUCT = "editProduct";
+        public static final String HOME = "index";
+        public static final String LOGIN = "login";
     }
 
     public class ModelAttributeName {
