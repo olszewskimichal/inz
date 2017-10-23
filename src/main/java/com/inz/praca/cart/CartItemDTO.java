@@ -20,7 +20,7 @@ public class CartItemDTO implements Serializable {
     private BigDecimal price;
 
     public CartItemDTO(ProductDTO item) {
-        Assert.notNull(item,"Produkt nie moze być nullem");
+        Assert.notNull(item, "Produkt nie moze być nullem");
         this.item = item;
         this.quantity = 1;
         this.price = item.getPrice();

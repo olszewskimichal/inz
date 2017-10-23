@@ -18,8 +18,8 @@ public class OrderDTO implements Serializable {
     private ShippingDetail shippingDetail;
 
     public OrderDTO(CartSession cartSession, ShippingDetail shippingDetail) {
-        Assert.notNull(shippingDetail,"Szczegóły zamowienia nie moga być nullem");
-        Assert.notEmpty(cartSession.getItems(),"Nie mozna stworzyc zamowienia z pusta lista przedmiotow");
+        Assert.notNull(shippingDetail, "Szczegóły zamowienia nie moga być nullem");
+        Assert.notEmpty(cartSession.getItems(), "Nie mozna stworzyc zamowienia z pusta lista przedmiotow");
         this.cartSession = cartSession;
         this.shippingDetail = shippingDetail;
     }

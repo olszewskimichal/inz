@@ -17,6 +17,7 @@ public final class WebTestConfig {
 
     /**
      * This method creates a view resolver that simply returns the name of the view.
+     *
      * @return
      */
     public static ViewResolver viewResolver() {

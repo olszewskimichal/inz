@@ -11,14 +11,13 @@ import static org.mockito.Mockito.mock;
 
 public abstract class UsersControllerTestBase {
 
-    UserService userService;
-    MockMvc mockMvc;
-
     static final Long USER_ID = 1L;
     static final Boolean USER_ACTIVITY_TRUE = Boolean.TRUE;
     static final Boolean USER_ACTIVITY_FALSE = Boolean.FALSE;
     static final String USER_POSITIVE_ACTIVATION = "Aktywowano uzytkownika user";
     static final String USER_POSITIVE_DEACTIVATION = "Deaktywowano uzytkownika user";
+    UserService userService;
+    MockMvc mockMvc;
 
     @Before
     public void configureSystemUnderTest() {

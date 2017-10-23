@@ -22,10 +22,10 @@ public abstract class ProductControllerTestBase {
     static final Boolean FEEDBACK_MESSAGE_PRODUCT_CREATED = true;
     static final Long PRODUCT_ID = 1L;
     static final BigDecimal PRICE = BigDecimal.TEN;
-    final String PRODUCT_NAME = "productname";
     static final String CATEGORY = "kat";
     static final String IMAGE_URL = "URL";
     static final String PRODUCT_DESC = "DESC";
+    final String PRODUCT_NAME = "productname";
     ProductService productService;
     MockMvc mockMvc;
     String name;

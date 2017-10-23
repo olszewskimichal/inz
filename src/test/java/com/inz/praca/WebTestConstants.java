@@ -12,17 +12,6 @@ public class WebTestConstants {
         public static final String LOGIN = "login";
     }
 
-    public class ModelAttributeName {
-
-        public static final String USERS_LIST = "Users";
-        public static final String SELECTED_PAGE_SIZE = "selectedPageSize";
-        public static final String PRODUCT_LIST = "products";
-        public static final String PAGER = "pager";
-        public static final String PRODUCT_CREATE_FORM = "productCreateForm";
-        public static final String PRODUCT = "product";
-        public static final String PRODUCT_DTO = "productDTO";   //TODO uwspolnic
-    }
-
     public static class ModelAttributeProperty {
 
         public static class USERS {
@@ -67,5 +56,16 @@ public class WebTestConstants {
     public static class FlashMessageKey {
         public static final String FEEDBACK_MESSAGE = "feedbackMessage";
         public static final String CREATE_PRODUCT_CONFIRM = "createProductDone";
+    }
+
+    public class ModelAttributeName {
+
+        public static final String USERS_LIST = "Users";
+        public static final String SELECTED_PAGE_SIZE = "selectedPageSize";
+        public static final String PRODUCT_LIST = "products";
+        public static final String PAGER = "pager";
+        public static final String PRODUCT_CREATE_FORM = "productCreateForm";
+        public static final String PRODUCT = "product";
+        public static final String PRODUCT_DTO = "productDTO";   //TODO uwspolnic
     }
 }

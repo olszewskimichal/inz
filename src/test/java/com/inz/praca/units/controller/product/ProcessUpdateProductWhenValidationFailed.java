@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class ProcessUpdateProductWhenValidationFailed extends ProductControllerTestBase{
+public class ProcessUpdateProductWhenValidationFailed extends ProductControllerTestBase {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {

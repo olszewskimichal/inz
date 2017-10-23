@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class ShowUpdateProductFormWhenProductIsNotFound extends ProductControllerTestBase{
+public class ShowUpdateProductFormWhenProductIsNotFound extends ProductControllerTestBase {
 
     @Before
     public void throwProductNotFoundException() {

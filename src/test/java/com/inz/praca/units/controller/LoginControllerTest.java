@@ -4,7 +4,6 @@ import com.inz.praca.UnitTest;
 import com.inz.praca.WebTestConstants;
 import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.login.LoginController;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -14,9 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static com.inz.praca.integration.WebTestConfig.exceptionResolver;
 import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Category(UnitTest.class)
 public class LoginControllerTest {
@@ -58,7 +55,7 @@ public class LoginControllerTest {
     @Test
     public void shouldFillModelPropertiesOnLoginError() throws Exception {
         mockMvc.perform(get("/login-error"))
-                .andExpect(model().attribute("loginError",true))
+                .andExpect(model().attribute("loginError", true))
                 .andExpect(model().attribute("errorMessage", nullValue()));
     }
 

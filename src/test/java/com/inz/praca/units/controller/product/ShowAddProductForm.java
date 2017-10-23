@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class ShowAddProductForm extends ProductControllerTestBase{
+public class ShowAddProductForm extends ProductControllerTestBase {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {

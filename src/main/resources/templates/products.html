@@ -57,10 +57,10 @@
             <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
                 <ul class="pagination">
                     <li th:class="${page == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a>
+                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a>
                     </li>
                     <li th:class="${page == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}">&larr;</a>
+                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}">&larr;</a>
                     </li>
                     <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
                         th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a

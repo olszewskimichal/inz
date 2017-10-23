@@ -51,7 +51,7 @@ public class OrderService {
         Assert.notEmpty(cartSession.getItems(), "Koszyk musi zawierac jakies produkty");
         Set<CartItem> cartItems = new HashSet<>();
         for (CartItemDTO cartItemDTO : cartSession.getItems()) {
-            CartItem cartItem = new CartItem(productRepository.findByName(cartItemDTO.getItem().getName()).orElseThrow(()->new ProductNotFoundException(cartItemDTO.getItem().getName())), cartItemDTO.getQuantity().longValue());
+            CartItem cartItem = new CartItem(productRepository.findByName(cartItemDTO.getItem().getName()).orElseThrow(() -> new ProductNotFoundException(cartItemDTO.getItem().getName())), cartItemDTO.getQuantity().longValue());
             cartItems.add(cartItem);
         }
         return new Cart(cartItems);

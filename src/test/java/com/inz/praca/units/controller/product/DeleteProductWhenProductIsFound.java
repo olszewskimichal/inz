@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-public class DeleteProductWhenProductIsFound extends ProductControllerTestBase{
+public class DeleteProductWhenProductIsFound extends ProductControllerTestBase {
     @Test
     public void shouldReturnHttpResponseStatusFound() throws Exception {
         mockMvc.perform(get("/products/product/delete/{productId}", PRODUCT_ID))
