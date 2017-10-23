@@ -12,6 +12,6 @@ class NonAuthenticatedNavigation extends Navigation {
     }
 
     public void clickOnLoginPage() {
-        this.webDriver.findElement(this.login).click();
+        webDriver.findElement(login).click();
     }
 }

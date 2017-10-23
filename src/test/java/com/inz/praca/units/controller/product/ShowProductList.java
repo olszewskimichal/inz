@@ -12,13 +12,13 @@ public class ShowProductList extends ProductControllerTestBase {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(get("/products"))
+        mockMvc.perform(get("/products"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderProductsListView() throws Exception {
-        this.mockMvc.perform(get("/products"))
+        mockMvc.perform(get("/products"))
                 .andExpect(view().name(View.PRODUCTS));
     }
 }

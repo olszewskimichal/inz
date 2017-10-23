@@ -11,13 +11,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ChangeUserActivityTest extends UsersControllerTestBase {
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
+        mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
                 .andExpect(status().is3xxRedirection());
     }
 
     @Test
     public void shouldRenderUsersListView() throws Exception {
-        this.mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
+        mockMvc.perform(get("/user/active/{activity}/{userId}", UsersControllerTestBase.USER_ACTIVITY_TRUE, UsersControllerTestBase.USER_ID))
                 .andExpect(view().name(RedirectView.USERS));
     }
 }

@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductControllerTestBase {
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -30,7 +30,7 @@ public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductContro
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -39,7 +39,7 @@ public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductContro
 
     @Test
     public void shouldShowValidationErrorForEmptyName() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -50,7 +50,7 @@ public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductContro
 
     @Test
     public void shouldShowValidationErrorForEmptyCategory() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -61,7 +61,7 @@ public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductContro
 
     @Test
     public void shouldNotModifyIdField() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -72,17 +72,17 @@ public class ProcessAddProductFormWhenEmptyFormIsSubmitted extends ProductContro
 
     @Test
     public void shouldNotCreateNewProduct() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""));
 
-        verify(this.productService, never()).createProductFromDTO(isA(ProductDTO.class));
+        verify(productService, never()).createProductFromDTO(isA(ProductDTO.class));
     }
 
     @Test
     public void shouldShowEmptyForm() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
+        mockMvc.perform(post("/addProduct")
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))

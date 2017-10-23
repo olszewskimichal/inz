@@ -62,9 +62,9 @@ public class User {
     }
 
     public Set<Order> getOrders() {
-        if (this.orders == null)
-            this.orders = new HashSet<>();
-        return Collections.unmodifiableSet(this.orders);
+        if (orders == null)
+            orders = new HashSet<>();
+        return Collections.unmodifiableSet(orders);
     }
 
     public void deactivate() {
@@ -76,14 +76,14 @@ public class User {
     }
 
     Boolean isActivated() {
-        return this.active;
+        return active;
     }
 
     public void giveAdminAuthorization() {
-        this.role = Role.ADMIN;
+        role = Role.ADMIN;
     }
 
     public void addOrder(Order order) {
-        this.orders.add(order);
+        orders.add(order);
     }
 }

@@ -15,15 +15,15 @@ public class NewCategoryPage {
     }
 
     public void typeName(String name) {
-        this.webDriver.findElement(this.name).sendKeys(name);
+        webDriver.findElement(this.name).sendKeys(name);
     }
 
     public void typeDesctiption(String description) {
-        this.webDriver.findElement(this.description).sendKeys(description);
+        webDriver.findElement(this.description).sendKeys(description);
     }
 
     public void clickOnCreateCategoryButton() {
-        this.webDriver.findElement(this.submitButton).click();
+        webDriver.findElement(submitButton).click();
     }
 
 }

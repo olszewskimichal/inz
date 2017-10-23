@@ -17,10 +17,10 @@ public class CreateCategorySteps extends SeleniumTestBase {
 
     @Given("Mając nazwe kategorii (.*) z opisem (.*)")
     public void useNewProductData(String name, String description) throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
         this.name = name;
         this.description = description;
@@ -28,10 +28,10 @@ public class CreateCategorySteps extends SeleniumTestBase {
 
     @When("Po kliknieciu dodaj kategorie")
     public void shouldPerformNewCategory() {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/addCategory");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/addCategory");
         NewCategoryPage newCategoryPage = new NewCategoryPage(SeleniumTestBase.driver);
-        newCategoryPage.typeName(this.name);
-        newCategoryPage.typeDesctiption(this.description);
+        newCategoryPage.typeName(name);
+        newCategoryPage.typeDesctiption(description);
         newCategoryPage.clickOnCreateCategoryButton();
     }
 

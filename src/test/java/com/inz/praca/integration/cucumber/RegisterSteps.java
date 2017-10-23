@@ -19,7 +19,7 @@ public class RegisterSteps extends SeleniumTestBase {
 
     @Given("Podajac imie= (.*) nazwisko = (.*) email = (.*) oraz hasło (.*) i potwierdzeniu (.*)")
     public void useRegisterData(String name, String lastName, String email, String password, String confirmPassword) throws Exception {
-        this.prepareBeforeTest();
+        prepareBeforeTest();
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -29,13 +29,13 @@ public class RegisterSteps extends SeleniumTestBase {
 
     @When("Przy kliknieciu zarejestruj")
     public void shouldPerformRegister() {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/register");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/register");
         RegisterPage registerPage = new RegisterPage(SeleniumTestBase.driver);
-        registerPage.typeName(this.name);
-        registerPage.typeLastName(this.lastName);
-        registerPage.typeEmail(this.email);
-        registerPage.typePassword(this.password);
-        registerPage.typeConfirmPassword(this.confirmPassword);
+        registerPage.typeName(name);
+        registerPage.typeLastName(lastName);
+        registerPage.typeEmail(email);
+        registerPage.typePassword(password);
+        registerPage.typeConfirmPassword(confirmPassword);
         registerPage.clickOnRegisterButton();
     }
 

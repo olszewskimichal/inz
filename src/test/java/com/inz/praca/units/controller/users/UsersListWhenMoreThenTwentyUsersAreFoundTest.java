@@ -26,15 +26,15 @@ public class UsersListWhenMoreThenTwentyUsersAreFoundTest extends UsersControlle
 
     @Before
     public void returnMoreThen20Users() {
-        IntStream.range(0, 20).forEachOrdered(v -> this.firstPageList.add(new UserBuilder().withEmail(String.format("email%s@o2.pl", v)).withPasswordHash("zaq1@WSX").build()));
-        IntStream.range(0, 3).forEachOrdered(v -> this.secondPageList.add(new UserBuilder().withEmail(String.format("email%s@o2.pl", v)).withPasswordHash("zaq1@WSX").build()));
-        given(this.userService.getAllUsers(0)).willReturn(new PageImpl<>(this.firstPageList));
-        given(this.userService.getAllUsers(1)).willReturn(new PageImpl<>(this.secondPageList));
+        IntStream.range(0, 20).forEachOrdered(v -> firstPageList.add(new UserBuilder().withEmail(String.format("email%s@o2.pl", v)).withPasswordHash("zaq1@WSX").build()));
+        IntStream.range(0, 3).forEachOrdered(v -> secondPageList.add(new UserBuilder().withEmail(String.format("email%s@o2.pl", v)).withPasswordHash("zaq1@WSX").build()));
+        given(userService.getAllUsers(0)).willReturn(new PageImpl<>(firstPageList));
+        given(userService.getAllUsers(1)).willReturn(new PageImpl<>(secondPageList));
     }
 
     @Test
     public void shouldShowUsersListFromFirstPageWhenPageParamIsNotSet() throws Exception {
-        this.mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/users"))
                 .andExpect(model().attribute(USERS_LIST, hasSize(20)))
                 .andExpect(model().attribute(SELECTED_PAGE_SIZE, Matchers.equalTo(0)))
                 .andExpect(model().attribute(PAGER, Matchers.notNullValue()));  //equalsTO
@@ -42,7 +42,7 @@ public class UsersListWhenMoreThenTwentyUsersAreFoundTest extends UsersControlle
 
     @Test
     public void shouldShowUsersListFromFirstPageWhenPageParamIsSet() throws Exception {
-        this.mockMvc.perform(get("/users").
+        mockMvc.perform(get("/users").
                 param(USERS.PAGE, "1"))
                 .andExpect(model().attribute(USERS_LIST, hasSize(20)))
                 .andExpect(model().attribute(SELECTED_PAGE_SIZE, Matchers.equalTo(0)))
@@ -51,7 +51,7 @@ public class UsersListWhenMoreThenTwentyUsersAreFoundTest extends UsersControlle
 
     @Test
     public void shouldShowUsersListFromSecondPageWhenPageParamIsSet() throws Exception {
-        this.mockMvc.perform(get("/users").
+        mockMvc.perform(get("/users").
                 param(USERS.PAGE, "2"))
                 .andExpect(model().attribute(USERS_LIST, hasSize(3)))
                 .andExpect(model().attribute(SELECTED_PAGE_SIZE, Matchers.equalTo(1)))

@@ -19,30 +19,30 @@ public class CartControllerTest extends IntegrationTestBase {
 
     @Test
     public void shouldShowCartPage() throws Exception {
-        this.mvc.perform(get("/cart"))
+        mvc.perform(get("/cart"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("cart"));
     }
 
     @Test
     public void shouldRedirectAfterAddProductToCart() throws Exception {
-        Product product = this.productService.createProductFromDTO(
+        Product product = productService.createProductFromDTO(
                 new ProductBuilder().withName("aaa").withPrice(BigDecimal.TEN).withCategory("inne").createProductDTO());
-        this.mvc.perform(get("/cart/add/" + product.getId()))
+        mvc.perform(get("/cart/add/" + product.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/cart"));
     }
 
     @Test
     public void shouldRedirectAfterRemoveProductFromCart() throws Exception {
-        this.mvc.perform(get("/cart/remove/" + 0))
+        mvc.perform(get("/cart/remove/" + 0))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/cart"));
     }
 
     @Test
     public void shouldRedirectAfterClearCart() throws Exception {
-        this.mvc.perform(get("/cart/clear"))
+        mvc.perform(get("/cart/clear"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/cart"));
     }

@@ -32,15 +32,15 @@ public class OrderRepositoryTest extends JpaTestBase {
      */
     @Test
     public void shouldCreateOrderButNotSaveAnotherProduct() {
-        this.orderRepository.deleteAll();
+        orderRepository.deleteAll();
         Product product = entityManager.persistAndFlush(
                 new ProductBuilder().withName(OrderRepositoryTest.NAME).withPrice(BigDecimal.TEN).createProduct());
-        int sizeBeforePersistOrder = this.productRepository.findAll().size();
+        int sizeBeforePersistOrder = productRepository.findAll().size();
         Set<CartItem> cartItems = new HashSet<>();
         cartItems.add(new CartItem(product, 1L));
         Order order = new Order(new Cart(cartItems), new ShippingDetail("a", "b", "c", "d"));
-        this.orderRepository.save(order);
-        assertThat(this.productRepository.findAll().size()).isEqualTo(sizeBeforePersistOrder);
+        orderRepository.save(order);
+        assertThat(productRepository.findAll().size()).isEqualTo(sizeBeforePersistOrder);
     }
 
 }

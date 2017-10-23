@@ -33,7 +33,7 @@ public class UserBuilder {
     }
 
     public User build() {
-        return new User(this.email, this.name, this.lastName, this.passwordHash, this.active);
+        return new User(email, name, lastName, passwordHash, active);
     }
 
     public User build(UserDTO userDTO) {

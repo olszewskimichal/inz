@@ -16,7 +16,7 @@ public class ProductListPage {
     }
 
     public void clickOnProductInfo(Integer id) {
-        this.webDriver.findElement(this.productInfo(id)).click();
+        webDriver.findElement(productInfo(id)).click();
     }
 
 }

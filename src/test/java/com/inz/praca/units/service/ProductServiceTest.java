@@ -45,7 +45,7 @@ public class ProductServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        productService = new ProductService(this.productRepository, this.categoryRepository);
+        productService = new ProductService(productRepository, categoryRepository);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class ProductServiceTest {
     @Test
     public void shouldThrownCategoryNotFoundExceptionWhenCategoryByNameNotExists() {
         try {
-            given(this.categoryRepository.findByName(anyString())).willReturn(Optional.empty());
+            given(categoryRepository.findByName(anyString())).willReturn(Optional.empty());
             ProductDTO productDTO = new ProductDTO();
             productDTO.setName("nazwa");
             productDTO.setDescription("opis");
@@ -114,8 +114,8 @@ public class ProductServiceTest {
             productDTO.setPrice(BigDecimal.TEN);
             productDTO.setCategory("inne");
 
-            doAnswer(invocation -> invocation.getArguments()[0]).when(this.productRepository).save(any(Product.class));
-            this.productService.createProductFromDTO(productDTO);
+            doAnswer(invocation -> invocation.getArguments()[0]).when(productRepository).save(any(Product.class));
+            productService.createProductFromDTO(productDTO);
             Assert.fail();
         } catch (CategoryNotFoundException e) {
             assertThat(e.getMessage()).isEqualTo("Nie znaleziono kategorii o nazwie inne");
@@ -211,11 +211,11 @@ public class ProductServiceTest {
         productDTO.setPrice(BigDecimal.TEN);
         productDTO.setCategory("inne");
 
-        doAnswer(invocation -> invocation.getArguments()[0]).when(this.productRepository).save(any(Product.class));
+        doAnswer(invocation -> invocation.getArguments()[0]).when(productRepository).save(any(Product.class));
 
-        given(this.categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
+        given(categoryRepository.findByName("inne")).willReturn(Optional.of(new Category("inne", "b")));
 
-        Product product = this.productService.createProductFromDTO(productDTO);
+        Product product = productService.createProductFromDTO(productDTO);
         assertThat(product.getName()).isEqualTo(productDTO.getName());
         assertThat(product.getPrice()).isEqualTo(productDTO.getPrice());
         assertThat(product.getImageUrl()).isEqualTo(productDTO.getImageUrl());
@@ -246,9 +246,9 @@ public class ProductServiceTest {
                                 .withPrice(BigDecimal.TEN)
                                 .createProduct()));
         Category category = new Category("category", "aaa");
-        given(this.categoryRepository.findByName("category")).willReturn(Optional.of(category));
+        given(categoryRepository.findByName("category")).willReturn(Optional.of(category));
         given(productRepository.findByCategory(new PageRequest(0, 5, null, "id"), category)).willReturn(products);
-        List<Product> asc = productService.getProducts(null, null, null, Optional.ofNullable("category")).getContent();
+        List<Product> asc = productService.getProducts(null, null, null, Optional.of("category")).getContent();
         assertThat(asc).isNotNull().isNotEmpty();
         assertThat(asc.size()).isEqualTo(2);
         assertThat(asc.get(0).getName()).isEqualTo("name3");

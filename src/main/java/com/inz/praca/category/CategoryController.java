@@ -41,7 +41,7 @@ public class CategoryController {
         }
         try {
             CategoryController.log.debug("tworzy kategorie");
-            this.productService.createCategoryFromDTO(categoryDTO);
+            productService.createCategoryFromDTO(categoryDTO);
             return "redirect:/";
         } catch (IllegalArgumentException | PersistenceException | DataIntegrityViolationException e) {
             CategoryController.log.debug(e.getMessage());

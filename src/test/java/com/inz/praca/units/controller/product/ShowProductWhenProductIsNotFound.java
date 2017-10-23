@@ -16,18 +16,18 @@ public class ShowProductWhenProductIsNotFound extends ProductControllerTestBase 
 
     @Before
     public void throwTaskNotFoundException() {
-        given(this.productService.getProductDTOById(ProductControllerTestBase.PRODUCT_ID)).willThrow(new ProductNotFoundException(ProductControllerTestBase.PRODUCT_ID));
+        given(productService.getProductDTOById(ProductControllerTestBase.PRODUCT_ID)).willThrow(new ProductNotFoundException(ProductControllerTestBase.PRODUCT_ID));
     }
 
     @Test
     public void shouldReturnHttpStatusCodeNotFound() throws Exception {
-        this.mockMvc.perform(get("/products/product/{productId}", ProductControllerTestBase.PRODUCT_ID))
+        mockMvc.perform(get("/products/product/{productId}", ProductControllerTestBase.PRODUCT_ID))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void shouldRenderNotFoundView() throws Exception {
-        this.mockMvc.perform(get("/products/product/{productId}", ProductControllerTestBase.PRODUCT_ID))
+        mockMvc.perform(get("/products/product/{productId}", ProductControllerTestBase.PRODUCT_ID))
                 .andDo(print())
                 .andExpect(view().name(ErrorView.NOT_FOUND));
     }

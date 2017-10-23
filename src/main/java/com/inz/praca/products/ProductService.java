@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,32 +38,32 @@ public class ProductService {
 
     public ProductDTO getProductDTOById(Long id) {
         Assert.notNull(id, "Podano pusty id produktu");
-        return new ProductDTO(this.productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id)));
+        return new ProductDTO(productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id)));
     }
 
     public Product getProductById(Long id) {
         Assert.notNull(id, "Podano pusty id produktu");
-        return this.productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     public Product getProductByName(String name) {
         Assert.notNull(name, "Podano pusta nazwe produktu");
-        return this.productRepository.findByName(name).orElseThrow(() -> new ProductNotFoundException(name));
+        return productRepository.findByName(name).orElseThrow(() -> new ProductNotFoundException(name));
     }
 
     public Page<Product> getProducts(Integer page, Integer size, String sort, Optional<String> name) {
-        Assert.isTrue(this.setReturnSize(size) >= 1, "Podano rozmiar mniejszy od 1");
-        Assert.isTrue(this.setReturnPage(page) >= 0, "Podano nieprawidlowy numer strony");
-        PageRequest pageRequest = new PageRequest(this.setReturnPage(page), this.setProductOnPageLimit(this.setReturnSize(size)),
-                this.setSortDirection(sort), ProductService.DEFAULT_SORT_BY_ID);
+        Assert.isTrue(setReturnSize(size) >= 1, "Podano rozmiar mniejszy od 1");
+        Assert.isTrue(setReturnPage(page) >= 0, "Podano nieprawidlowy numer strony");
+        PageRequest pageRequest = new PageRequest(setReturnPage(page), setProductOnPageLimit(setReturnSize(size)),
+                setSortDirection(sort), DEFAULT_SORT_BY_ID);
         return name.flatMap(v -> {
-            Category category = this.categoryRepository.findByName(v)
+            Category category = categoryRepository.findByName(v)
                     .orElseThrow(() -> new CategoryNotFoundException(v));
-            return Optional.of(this.productRepository.findByCategory(pageRequest, category));
+            return Optional.of(productRepository.findByCategory(pageRequest, category));
         }).orElseGet(() -> {
-            ProductService.log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}",
-                    this.setReturnPage(page), this.setProductOnPageLimit(this.setReturnSize(size)), this.setSortDirection(sort));
-            return this.productRepository.findAllByActive(pageRequest, true);
+            log.debug("Próba pobrania produktów ze strony {} o liczbie elementow {} z sortowaniem {}",
+                    setReturnPage(page), setProductOnPageLimit(setReturnSize(size)), setSortDirection(sort));
+            return productRepository.findAllByActive(pageRequest, true);
         });
 
 
@@ -73,35 +72,35 @@ public class ProductService {
     @Transactional
     public Product createProductFromDTO(ProductDTO productDTO) {
         Product product = new ProductBuilder().createProduct(productDTO);
-        this.productRepository.save(product);
-        Category category = this.categoryRepository.findByName(productDTO.getCategory())
+        productRepository.save(product);
+        Category category = categoryRepository.findByName(productDTO.getCategory())
                 .orElseThrow(() -> new CategoryNotFoundException(productDTO.getCategory()));
         product.changeCategory(category);
-        ProductService.log.info("Stworzono nowy produkt {}", product);
+        log.info("Stworzono nowy produkt {}", product);
         return product;
     }
 
     public Category createCategoryFromDTO(CategoryDTO categoryDTO) {
         Category category = new Category(categoryDTO.getName(), categoryDTO.getDescription());
-        this.categoryRepository.save(category);
-        ProductService.log.debug("Stworzono kategorie o id {} ", category.getId());
+        categoryRepository.save(category);
+        log.debug("Stworzono kategorie o id {} ", category.getId());
         return category;
     }
 
     public List<Category> findAllCategory() {
-        return this.categoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     private int setReturnPage(Integer pageNumber) {
-        return isNull(pageNumber) ? ProductService.FIRST_PAGE : pageNumber;
+        return isNull(pageNumber) ? FIRST_PAGE : pageNumber;
     }
 
     private int setReturnSize(Integer size) {
-        return isNull(size) ? ProductService.PAGE_LIMIT : size;
+        return isNull(size) ? PAGE_LIMIT : size;
     }
 
     private int setProductOnPageLimit(Integer size) {
-        return size > ProductService.MAX_PRODUCT_ON_PAGE - 1 ? ProductService.MAX_PRODUCT_ON_PAGE : size;
+        return size > MAX_PRODUCT_ON_PAGE - 1 ? MAX_PRODUCT_ON_PAGE : size;
     }
 
     private Direction setSortDirection(String sort) {
@@ -109,20 +108,20 @@ public class ProductService {
     }
 
     public void updateProduct(Long id, ProductDTO productDTO) {
-        this.productRepository.updateProduct(productDTO.getName(), productDTO.getDescription(), productDTO.getPrice(),
+        productRepository.updateProduct(productDTO.getName(), productDTO.getDescription(), productDTO.getPrice(),
                 productDTO.getImageUrl(), id);
     }
 
     public void deleteProductById(Long id) {
         try {
-            ProductService.log.info("Usuwanie produktu o id {}", id);
-            this.productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
-            this.productRepository.deleteProductById(id);
+            log.info("Usuwanie produktu o id {}", id);
+            Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+            productRepository.deleteProductById(product.getId());
         } catch (DataIntegrityViolationException e) {
-            ProductService.log.error("Podany produkt zostal juz zamowiony wiec nie mozna go usunac ale mozna go zdeaktywowac");
-            Product productById = this.getProductById(id);
+            log.error("Podany produkt zostal juz zamowiony wiec nie mozna go usunac ale mozna go zdeaktywowac");
+            Product productById = getProductById(id);
             productById.deactivate();
-            this.productRepository.save(productById);
+            productRepository.save(productById);
         }
     }
 }

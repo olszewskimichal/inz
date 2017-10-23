@@ -23,16 +23,16 @@ public class ProductPage {
     }
 
     public void clickOrderButton() {
-        this.webDriver.findElement(orderButton).click();
+        webDriver.findElement(orderButton).click();
     }
 
     public String getSelectedCategory() {
-        Select categorySelect = new Select(this.webDriver.findElement(this.category));
+        Select categorySelect = new Select(webDriver.findElement(category));
         return categorySelect.getFirstSelectedOption().getText();
     }
 
     public void chooseCategoryByText(String name) {
-        Select categorySelect = new Select(this.webDriver.findElement(this.category));
+        Select categorySelect = new Select(webDriver.findElement(category));
         for (WebElement option : categorySelect.getOptions()) {
             if (option.getText().equals(name)) {
                 option.click();
@@ -41,35 +41,35 @@ public class ProductPage {
     }
 
     public void clickCartButton() {
-        this.webDriver.findElement(cartButton).click();
+        webDriver.findElement(cartButton).click();
     }
 
     public void clickOnEditProductButton() {
-        this.webDriver.findElement(editButton).click();
+        webDriver.findElement(editButton).click();
     }
 
     public void clickOnRemoveProductButton() {
-        this.webDriver.findElement(removeButton).click();
+        webDriver.findElement(removeButton).click();
     }
 
     public void clickOnConfirmRemoveProduct() {
-        this.webDriver.findElement(submitDelete).click();
+        webDriver.findElement(submitDelete).click();
     }
 
 
     public void clickProductsButton() {
-        this.webDriver.findElement(productsButton).click();
+        webDriver.findElement(productsButton).click();
     }
 
     public String getName() {
-        return this.webDriver.findElement(this.name).getText();
+        return webDriver.findElement(name).getText();
     }
 
     public String getDescription() {
-        return this.webDriver.findElement(this.description).getText();
+        return webDriver.findElement(description).getText();
     }
 
     public String getPrice() {
-        return this.webDriver.findElement(this.price).getText();
+        return webDriver.findElement(price).getText();
     }
 }

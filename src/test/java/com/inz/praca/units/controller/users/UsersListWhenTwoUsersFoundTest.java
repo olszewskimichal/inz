@@ -1,12 +1,10 @@
 package com.inz.praca.units.controller.users;
 
 import com.inz.praca.WebTestConstants;
-import com.inz.praca.WebTestConstants.ModelAttributeName;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty.USERS;
 import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserBuilder;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.PageImpl;
@@ -26,14 +24,14 @@ public class UsersListWhenTwoUsersFoundTest extends UsersControllerTestBase {
 
     @Before
     public void returnTwoUsers() {
-        this.first = new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build();
-        this.second = new UserBuilder().withEmail("email2@o2.pl").withPasswordHash("zaq1@WSX").build();
-        given(this.userService.getAllUsers(0)).willReturn(new PageImpl<>(Arrays.asList(this.first, this.second)));
+        first = new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build();
+        second = new UserBuilder().withEmail("email2@o2.pl").withPasswordHash("zaq1@WSX").build();
+        given(userService.getAllUsers(0)).willReturn(new PageImpl<>(Arrays.asList(first, second)));
     }
 
     @Test
     public void shouldShowUsersListThatHasTwoUsers() throws Exception {
-        this.mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/users"))
                 .andExpect(model().attribute(USERS_LIST, hasSize(2)))
                 .andExpect(model().attribute(SELECTED_PAGE_SIZE, equalTo(0)))
                 .andExpect(model().attribute(PAGER, notNullValue()));  //equalsTO
@@ -41,13 +39,13 @@ public class UsersListWhenTwoUsersFoundTest extends UsersControllerTestBase {
 
     @Test
     public void shouldShowTwoUsersInCorrectOrder() throws Exception {
-        this.mockMvc.perform(post("/users"))
-                .andExpect(model().attribute(USERS_LIST, contains(this.first, this.second)));
+        mockMvc.perform(post("/users"))
+                .andExpect(model().attribute(USERS_LIST, contains(first, second)));
     }
 
     @Test
     public void shouldShowCorrectInformationAboutUsers() throws Exception {
-        this.mockMvc.perform(post("/users"))
+        mockMvc.perform(post("/users"))
                 .andExpect(model().attribute(USERS_LIST, allOf(
                         hasItem(allOf(
                                 hasProperty(USERS.EMAIL, is("email@o2.pl")),

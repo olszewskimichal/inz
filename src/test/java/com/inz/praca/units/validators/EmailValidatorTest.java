@@ -20,15 +20,15 @@ public class EmailValidatorTest {
 
     @Test
     public void testIsValid() {
-        assertThat(this.emailValidator.isValid("testowyEmail", this.constraintValidatorContext)).isFalse();
-        assertThat(this.emailValidator.isValid("testowyEmail@", this.constraintValidatorContext)).isFalse();
-        assertThat(this.emailValidator.isValid("testowyEmail@o2", this.constraintValidatorContext)).isFalse();
-        assertThat(this.emailValidator.isValid("testowyEmail@o2.pl", this.constraintValidatorContext)).isTrue();
+        assertThat(emailValidator.isValid("testowyEmail", constraintValidatorContext)).isFalse();
+        assertThat(emailValidator.isValid("testowyEmail@", constraintValidatorContext)).isFalse();
+        assertThat(emailValidator.isValid("testowyEmail@o2", constraintValidatorContext)).isFalse();
+        assertThat(emailValidator.isValid("testowyEmail@o2.pl", constraintValidatorContext)).isTrue();
     }
 
     @Test
     public void shouldReturnFalseWhenArgumentIsNull() {
-        assertThat(this.emailValidator.isValid(null, this.constraintValidatorContext)).isFalse();
+        assertThat(emailValidator.isValid(null, constraintValidatorContext)).isFalse();
     }
 
 }

@@ -40,7 +40,7 @@ public class ProductController {
     @GetMapping("/addProduct")
     public String addNewProductPage(Model model) {
         model.addAttribute(ProductController.PRODUCT_FORM, new ProductDTO());
-        model.addAttribute(ProductController.CATEGORY_LIST, this.productService.findAllCategory());
+        model.addAttribute(ProductController.CATEGORY_LIST, productService.findAllCategory());
         return ProductController.NEW_PRODUCT;
     }
 
@@ -52,10 +52,10 @@ public class ProductController {
         if (result.hasErrors()) {
             ProductController.log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
             model.addAttribute(ProductController.PRODUCT_FORM, productDTO);
-            model.addAttribute(ProductController.CATEGORY_LIST, this.productService.findAllCategory());
+            model.addAttribute(ProductController.CATEGORY_LIST, productService.findAllCategory());
             return ProductController.NEW_PRODUCT;
         }
-        this.productService.createProductFromDTO(productDTO);
+        productService.createProductFromDTO(productDTO);
         redirectAttributes.addFlashAttribute("createProductDone", true);
         return "redirect:/products";
     }
@@ -63,7 +63,7 @@ public class ProductController {
     @GetMapping("/products/product/{productId}")
     public String showProductDetail(@PathVariable Long productId, Model model) {
         ProductController.log.debug("Pobranie produktu o productId {}", productId);
-        ProductDTO productDTO = this.productService.getProductDTOById(productId);
+        ProductDTO productDTO = productService.getProductDTOById(productId);
         model.addAttribute(productDTO);
         return ProductController.PRODUCT;
     }
@@ -74,14 +74,14 @@ public class ProductController {
         int evalPage = page == null ? ProductController.INITIAL_PAGE : page - 1;
         String evalCategory = category != null && category.trim().length() < 1 ? null : category;
         ProductController.log.info("Strona {} elementow na stronie {}", evalPage, evalPageSize);
-        Page<Product> products = this.productService.getProducts(evalPage, evalPageSize, null, Optional.ofNullable(evalCategory));
+        Page<Product> products = productService.getProducts(evalPage, evalPageSize, null, Optional.ofNullable(evalCategory));
         if (products == null) {
             products = new PageImpl<>(new ArrayList<>());
         }
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("page", products.getNumber());
-        model.addAttribute("categoryList", this.productService.findAllCategory());
+        model.addAttribute("categoryList", productService.findAllCategory());
         model.addAttribute("selectedPageSize", evalPageSize);
         model.addAttribute("pager", new Pager(products.getTotalPages(), products.getNumber(), ProductController.BUTTONS_TO_SHOW));
         model.addAttribute("category", category);
@@ -93,9 +93,9 @@ public class ProductController {
     @GetMapping("/products/product/edit/{id}")
     public String editProduct(@PathVariable Long id, Model model) {
         ProductController.log.info("Formularz edycji produktu o id {}", id);
-        ProductDTO productDTO = this.productService.getProductDTOById(id);
+        ProductDTO productDTO = productService.getProductDTOById(id);
         model.addAttribute(ProductController.PRODUCT_FORM, productDTO);
-        model.addAttribute(ProductController.CATEGORY_LIST, this.productService.findAllCategory());
+        model.addAttribute(ProductController.CATEGORY_LIST, productService.findAllCategory());
         model.addAttribute(ProductController.PRODUCT_ID, id);
         return ProductController.EDIT_PRODUCT;
     }
@@ -103,7 +103,7 @@ public class ProductController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/products/product/delete/{productId}")
     public String deleteProduct(@PathVariable Long productId) {
-        this.productService.deleteProductById(productId);   //TODO dodać feedback message
+        productService.deleteProductById(productId);   //TODO dodać feedback message
         return "redirect:/products";
     }
 
@@ -114,11 +114,11 @@ public class ProductController {
         if (result.hasErrors()) {
             ProductController.log.info("wystapil blad {} podczas walidacji produktu {}", result.getAllErrors(), productDTO);
             model.addAttribute(ProductController.PRODUCT_FORM, productDTO);
-            model.addAttribute(ProductController.CATEGORY_LIST, this.productService.findAllCategory());
+            model.addAttribute(ProductController.CATEGORY_LIST, productService.findAllCategory());
             model.addAttribute(ProductController.PRODUCT_ID, productId);
             return ProductController.EDIT_PRODUCT;
         }
-        this.productService.updateProduct(productId, productDTO);   //TODO dodać feedback message
+        productService.updateProduct(productId, productDTO);   //TODO dodać feedback message
         return "redirect:/products/product/" + productId;
     }
 }

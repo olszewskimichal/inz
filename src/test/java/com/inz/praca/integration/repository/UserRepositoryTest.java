@@ -19,7 +19,7 @@ public class UserRepositoryTest extends JpaTestBase {
 
     @Test
     public void shouldFindUserByEmail() {
-        this.repository.deleteAll();
+        repository.deleteAll();
         entityManager.persistFlushFind(new UserBuilder().withEmail(UserRepositoryTest.EMAIL).withPasswordHash("zaq1@WSX").build());
         Optional<User> byEmail = repository.findByEmail(UserRepositoryTest.EMAIL);
         assertThat(byEmail).isNotNull();

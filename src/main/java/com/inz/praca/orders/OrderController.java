@@ -28,7 +28,7 @@ public class OrderController {
 
     @GetMapping("/order")
     public String getShippingDetail(Model model, RedirectAttributes redirectAttributes) {
-        if (this.cartSession.getItems().isEmpty()) {
+        if (cartSession.getItems().isEmpty()) {
             redirectAttributes.addFlashAttribute("emptyCart", true);
             return "redirect:/cart";
         }
@@ -40,7 +40,7 @@ public class OrderController {
     @PostMapping("/order")
     public String postShippingDetail(@Valid @ModelAttribute ShippingDetail detail, Model model) {
         OrderController.log.info("postShipping" + detail);
-        OrderDTO orderDTO = this.orderService.confirmShippingDetail(detail);
+        OrderDTO orderDTO = orderService.confirmShippingDetail(detail);
         model.addAttribute(orderDTO);
         return "orderConfirmation";
     }

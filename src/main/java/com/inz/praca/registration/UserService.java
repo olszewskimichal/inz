@@ -21,36 +21,36 @@ public class UserService {
     public User getUserById(Long id) {
         Assert.notNull(id, "Podano puste id uzytkownika");
         Assert.isTrue(id > 0L, "Nie ma uzytkownikow o id mniejszym niz 1");
-        return this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Timed
     public User getUserByEmail(String email) {
         Assert.notNull(email, "Nie podano adresu email");
         Assert.hasLength(email, "Podano pusty email");
-        return this.userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
     }
 
     @Timed
     public Page<User> getAllUsers(Integer page) {
         PageRequest pageRequest = new PageRequest(page, UserService.MAX_USERS_ON_PAGE);
-        return this.userRepository.findAll(pageRequest);
+        return userRepository.findAll(pageRequest);
     }
 
     public User createUserFromDTO(UserDTO form) {
         User user = new UserBuilder().build(form);
-        this.userRepository.save(user);
+        userRepository.save(user);
         UserService.log.info("Stworzono uzytkownika o id {}", user.getId());
         return user;
     }
 
     public String changeUserActive(Long id, Boolean activity) {
-        User user = this.getUserById(id);
+        User user = getUserById(id);
         if (activity)
             user.active();
         else
             user.deactivate();
-        this.userRepository.save(user);
+        userRepository.save(user);
         return String.format(user.isActivated() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s",
                 user.getEmail());
     }

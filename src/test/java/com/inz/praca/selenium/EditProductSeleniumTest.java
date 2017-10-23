@@ -28,17 +28,17 @@ public class EditProductSeleniumTest extends SeleniumTestBase {
 
     @Test
     public void shouldEditProduct() throws Exception {
-        this.prepareBeforeTest();
+        prepareBeforeTest();
         SeleniumTestBase.driver.manage().deleteAllCookies();
 
-        this.repository.deleteAll();
-        this.categoryRepository.deleteAll();
-        Product product = this.repository.save(new ProductBuilder().withName("test")
+        repository.deleteAll();
+        categoryRepository.deleteAll();
+        Product product = repository.save(new ProductBuilder().withName("test")
                 .withDescription("test2")
                 .withPrice(BigDecimal.valueOf(3))
                 .createProduct());
-        this.categoryRepository.save(new Category("test", "opis"));
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/" + product.getId());
+        categoryRepository.save(new Category("test", "opis"));
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products/product/" + product.getId());
         LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
         ProductPage productPage = new ProductPage(SeleniumTestBase.driver);
@@ -52,19 +52,19 @@ public class EditProductSeleniumTest extends SeleniumTestBase {
 
     @Test
     public void shouldGetErrorWhenTryEditProductAsUser() throws Exception {
-        this.prepareBeforeTest();
+        prepareBeforeTest();
         SeleniumTestBase.driver.manage().deleteAllCookies();
-        this.repository.deleteAll();
-        this.categoryRepository.deleteAll();
-        Product product = this.repository.save(new ProductBuilder().withName("test")
+        repository.deleteAll();
+        categoryRepository.deleteAll();
+        Product product = repository.save(new ProductBuilder().withName("test")
                 .withDescription("test2")
                 .withPrice(BigDecimal.valueOf(3))
                 .createProduct());
-        this.categoryRepository.save(new Category("test", "opis"));
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/" + product.getId());
+        categoryRepository.save(new Category("test", "opis"));
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products/product/" + product.getId());
         LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/edit/" + product.getId());
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products/product/edit/" + product.getId());
         assertThat(SeleniumTestBase.driver.getPageSource().contains("zabroniony")).isTrue();
     }
 }

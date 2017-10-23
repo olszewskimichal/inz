@@ -22,14 +22,14 @@ public class ProductControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_show_newProduct_page() throws Exception {
-        this.mvc.perform(get("/addProduct"))
+        mvc.perform(get("/addProduct"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newProduct"));
     }
 
     @Test
     public void should_process_new_product_create() throws Exception {
-        this.mvc.perform(post("/addProduct")
+        mvc.perform(post("/addProduct")
                 .param("name", "nazwa")
                 .param("imageUrl", "http://localhost")
                 .param("description", "opis")
@@ -40,7 +40,7 @@ public class ProductControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_addProduct() throws Exception {
-        this.mvc.perform(post("/addProduct"))
+        mvc.perform(post("/addProduct"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("newProduct"))
                 .andExpect(model().errorCount(2));
@@ -48,7 +48,7 @@ public class ProductControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_withNotCorrectPrice() throws Exception {
-        this.mvc.perform(post("/addProduct")
+        mvc.perform(post("/addProduct")
                 .param("name", "nazwa")
                 .param("imageUrl", "http://localhost")
                 .param("description", "opis")
@@ -59,7 +59,7 @@ public class ProductControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_withNotCorrectCategory() throws Exception {
-        this.mvc.perform(post("/addProduct")
+        mvc.perform(post("/addProduct")
                 .param("name", "nazwa")
                 .param("imageUrl", "http://localhost")
                 .param("description", "opis")
@@ -69,11 +69,11 @@ public class ProductControllerTest extends IntegrationTestBase {
 
     @Test
     public void shouldShowProductDetailsPage() throws Exception {
-        Product product = this.productService.createProductFromDTO(new ProductBuilder().withName("nameTest123")
+        Product product = productService.createProductFromDTO(new ProductBuilder().withName("nameTest123")
                 .withPrice(BigDecimal.TEN)
                 .withCategory("inne")
                 .createProductDTO());
-        this.mvc.perform(get("/products/product/" + product.getId())
+        mvc.perform(get("/products/product/" + product.getId())
                 .param("name", "nameTest123")
                 .param("imageUrl", "url")
                 .param("description", "desc")

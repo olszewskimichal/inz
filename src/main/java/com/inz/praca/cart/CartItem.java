@@ -31,6 +31,6 @@ public class CartItem {
 
     private CartItem() {
         quantity = null;
-        this.product = null;
+        product = null;
     }
 }

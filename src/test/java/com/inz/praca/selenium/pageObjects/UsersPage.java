@@ -17,10 +17,10 @@ public class UsersPage {
     }
 
     public void activateUser(Integer id) {
-        this.webDriver.findElement(this.activationUserLink(id)).click();
+        webDriver.findElement(activationUserLink(id)).click();
     }
 
     public String getActivationMsg() {
-        return this.webDriver.findElement(this.activationMsg).getText();
+        return webDriver.findElement(activationMsg).getText();
     }
 }

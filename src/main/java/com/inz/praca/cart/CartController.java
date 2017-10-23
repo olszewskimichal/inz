@@ -25,36 +25,36 @@ public class CartController {
     }
 
     public CartSession getForm() {
-        return this.cartSession;
+        return cartSession;
     }
 
     @GetMapping("/cart")
     public String getSessionCart(Model model) {
-        model.addAttribute(this.cartSession);
-        CartController.log.info(this.cartSession.toString());
+        model.addAttribute(cartSession);
+        CartController.log.info(cartSession.toString());
         return CartController.CART;
     }
 
     @GetMapping("/cart/add/{productId}")
     public String addProductToCart(Model model, @PathVariable Long productId) {
-        CartController.log.info("addProduct id {} cart {}", productId, this.cartSession);
-        this.cartSession.addProduct(new ProductDTO(this.productService.getProductById(productId)));
-        model.addAttribute(this.getForm());
+        CartController.log.info("addProduct id {} cart {}", productId, cartSession);
+        cartSession.addProduct(new ProductDTO(productService.getProductById(productId)));
+        model.addAttribute(getForm());
         return CartController.REDIRECT_CART;
     }
 
     @GetMapping("/cart/remove/{rowId}")
     public String removeProductFromCart(@PathVariable Integer rowId) {
-        CartController.log.info("removeProduct rowId {} z {} ", rowId, this.cartSession);
-        this.cartSession.removeProductById(rowId);
+        CartController.log.info("removeProduct rowId {} z {} ", rowId, cartSession);
+        cartSession.removeProductById(rowId);
         return CartController.REDIRECT_CART;
     }
 
     @GetMapping("/cart/clear")
     public String clearCart(Model model) {
         CartController.log.info("Czyszczenie koszyka");
-        this.cartSession.clearCart();
-        model.addAttribute(this.getForm());
+        cartSession.clearCart();
+        model.addAttribute(getForm());
         return CartController.REDIRECT_CART;
     }
 

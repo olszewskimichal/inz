@@ -37,12 +37,12 @@ public class CategoryControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        this.controller = new CategoryController(this.productService);
+        controller = new CategoryController(productService);
     }
 
     @Test
     public void shouldReturnNewCategoryPage() {
-        assertThat(this.controller.addNewCategoryPage(this.model)).isEqualTo("newCategory");
+        assertThat(controller.addNewCategoryPage(model)).isEqualTo("newCategory");
     }
 
     @Test
@@ -50,25 +50,25 @@ public class CategoryControllerTest {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setName("name");
         categoryDTO.setName("desc");
-        assertThat(this.controller.confirmNewCategory(categoryDTO, this.bindingResult, this.model)).isEqualTo("redirect:/");
+        assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("redirect:/");
     }
 
     @Test
     public void shouldFailedCreateCategory() {
-        given(this.productService.createCategoryFromDTO(any(CategoryDTO.class))).willThrow(new PersistenceException());
+        given(productService.createCategoryFromDTO(any(CategoryDTO.class))).willThrow(new PersistenceException());
         CategoryDTO categoryDTO = new CategoryDTO();
-        assertThat(this.controller.confirmNewCategory(categoryDTO, this.bindingResult, this.model)).isEqualTo("newCategory");
-        verify(this.model).addAttribute("categoryCreateForm", categoryDTO);
-        verifyNoMoreInteractions(this.model);
+        assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("newCategory");
+        verify(model).addAttribute("categoryCreateForm", categoryDTO);
+        verifyNoMoreInteractions(model);
     }
 
     @Test
     public void shouldShowAgainFormWhenErrorOnCreate() {
-        given(this.bindingResult.hasErrors()).willReturn(true);
+        given(bindingResult.hasErrors()).willReturn(true);
         CategoryDTO categoryDTO = new CategoryDTO();
-        assertThat(this.controller.confirmNewCategory(categoryDTO, this.bindingResult, this.model)).isEqualTo("newCategory");
-        verify(this.model).addAttribute("categoryCreateForm", categoryDTO);
-        verifyNoMoreInteractions(this.model);
+        assertThat(controller.confirmNewCategory(categoryDTO, bindingResult, model)).isEqualTo("newCategory");
+        verify(model).addAttribute("categoryCreateForm", categoryDTO);
+        verifyNoMoreInteractions(model);
     }
 
 }

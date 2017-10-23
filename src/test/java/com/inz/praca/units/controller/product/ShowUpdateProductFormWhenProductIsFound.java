@@ -20,28 +20,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ShowUpdateProductFormWhenProductIsFound extends ProductControllerTestBase {
     @Before
     public void returnProduct() {
-        ProductDTO productDTO = new ProductBuilder().withName(this.PRODUCT_NAME).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProductDTO();
-        given(this.productService.getProductDTOById(ProductControllerTestBase.PRODUCT_ID)).willReturn(productDTO);
+        ProductDTO productDTO = new ProductBuilder().withName(PRODUCT_NAME).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProductDTO();
+        given(productService.getProductDTOById(ProductControllerTestBase.PRODUCT_ID)).willReturn(productDTO);
     }
 
     @Test
     public void shouldReturnHttpStatusCodeNotFound() throws Exception {
-        this.mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
+        mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderUpdateProductView() throws Exception {
-        this.mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
+        mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
                 .andExpect(view().name(View.EDIT_PRODUCT));
     }
 
     @Test
     public void shouldShowInformationOfUpdatedProduct() throws Exception {
-        this.mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
+        mockMvc.perform(get("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID))
                 .andDo(print())
                 .andExpect(model().attribute(ModelAttributeName.PRODUCT_CREATE_FORM, allOf(
-                        hasProperty(PRODUCT.NAME, is(this.PRODUCT_NAME)),
+                        hasProperty(PRODUCT.NAME, is(PRODUCT_NAME)),
                         hasProperty(PRODUCT.DESCRIPTION, is(ProductControllerTestBase.PRODUCT_DESC)),
                         hasProperty(PRODUCT.PRICE, is(ProductControllerTestBase.PRICE)),
                         hasProperty(PRODUCT.CATEGORY, is(ProductControllerTestBase.CATEGORY)),

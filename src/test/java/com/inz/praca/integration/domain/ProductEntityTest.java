@@ -15,9 +15,9 @@ public class ProductEntityTest extends JpaTestBase {
     @Test
     public void shouldNotPersistWithNotUniqueName() {
         try {
-            this.entityManager.persistFlushFind(
+            entityManager.persistFlushFind(
                     new ProductBuilder().withName("nazwax12345").withPrice(BigDecimal.TEN).createProduct());
-            this.entityManager.persistFlushFind(
+            entityManager.persistFlushFind(
                     new ProductBuilder().withName("nazwax12345").withPrice(BigDecimal.ONE).createProduct());
             Assert.fail();
         } catch (PersistenceException e) {

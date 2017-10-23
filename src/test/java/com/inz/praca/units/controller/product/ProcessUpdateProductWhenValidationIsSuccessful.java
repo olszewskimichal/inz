@@ -22,36 +22,36 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProcessUpdateProductWhenValidationIsSuccessful extends ProductControllerTestBase {
     @Before
     public void configureTestCases() {
-        this.name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MAX_LENGTH_NAME);
-        this.price = BigDecimal.ONE;
-        this.category = "others";
+        name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MAX_LENGTH_NAME);
+        price = BigDecimal.ONE;
+        category = "others";
     }
 
     @Test
     public void shouldReturnHttpStatusCodeIsFound() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(status().isFound());
     }
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(view().name(RedirectView.PRODUCTS + "/product/1"));
     }
 
     @Test
     public void shouldUpdateProduct() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category));
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category));
 
-        verify(this.productService, times(1)).updateProduct(eq(ProductControllerTestBase.PRODUCT_ID), isA(ProductDTO.class));
+        verify(productService, times(1)).updateProduct(eq(ProductControllerTestBase.PRODUCT_ID), isA(ProductDTO.class));
     }
 }

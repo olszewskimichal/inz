@@ -17,19 +17,19 @@ public class ShowAddProductForm extends ProductControllerTestBase {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(get("/addProduct"))
+        mockMvc.perform(get("/addProduct"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderAddProductView() throws Exception {
-        this.mockMvc.perform(get("/addProduct"))
+        mockMvc.perform(get("/addProduct"))
                 .andExpect(view().name(View.ADD_PRODUCT));
     }
 
     @Test
     public void shouldCreateAnEmptyFormObject() throws Exception {
-        this.mockMvc.perform(get("/addProduct"))
+        mockMvc.perform(get("/addProduct"))
                 .andExpect(model().attribute(ModelAttributeName.PRODUCT_CREATE_FORM, allOf(
                         hasProperty(PRODUCT.NAME, nullValue()),
                         hasProperty(PRODUCT.PRICE, nullValue()),

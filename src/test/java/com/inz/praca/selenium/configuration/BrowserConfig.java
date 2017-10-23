@@ -41,7 +41,7 @@ public class BrowserConfig {
                 "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
         String travisCiFlag = System.getenv().get("TRAVIS");
         if (!"true".equals(travisCiFlag)) {
-            return this.htmlUnitDriver();
+            return htmlUnitDriver();
         }
         FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? BrowserConfig.getFirefoxBinaryForTravisCi() : new FirefoxBinary();
         return new FirefoxDriver(firefoxBinary, new FirefoxProfile());

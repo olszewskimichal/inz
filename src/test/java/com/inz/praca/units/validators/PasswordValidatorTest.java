@@ -20,15 +20,15 @@ public class PasswordValidatorTest {
 
     @Test
     public void shouldReturnFalseWhenPasswordIsIncorrect() {
-        assertThat(this.validator.isValid("aaaa", this.constraintValidatorContext)).isFalse();
-        assertThat(this.validator.isValid("zaq12wsx", this.constraintValidatorContext)).isFalse();
-        assertThat(this.validator.isValid("     zaq1@", this.constraintValidatorContext)).isFalse();
-        assertThat(this.validator.isValid(null, this.constraintValidatorContext)).isFalse();
+        assertThat(validator.isValid("aaaa", constraintValidatorContext)).isFalse();
+        assertThat(validator.isValid("zaq12wsx", constraintValidatorContext)).isFalse();
+        assertThat(validator.isValid("     zaq1@", constraintValidatorContext)).isFalse();
+        assertThat(validator.isValid(null, constraintValidatorContext)).isFalse();
     }
 
     @Test
     public void shouldReturnTrueWhenPasswordIsCorrect() {
-        assertThat(this.validator.isValid("zaq1@WSX", this.constraintValidatorContext)).isTrue();
-        this.validator.initialize(null);
+        assertThat(validator.isValid("zaq1@WSX", constraintValidatorContext)).isTrue();
+        validator.initialize(null);
     }
 }

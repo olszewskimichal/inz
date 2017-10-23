@@ -17,27 +17,27 @@ public class RegisterPage {
     }
 
     public void typeEmail(String email) {
-        this.webDriver.findElement(this.email).sendKeys(email);
+        webDriver.findElement(this.email).sendKeys(email);
     }
 
     public void typeName(String name) {
-        this.webDriver.findElement(this.name).sendKeys(name);
+        webDriver.findElement(this.name).sendKeys(name);
     }
 
     public void typeLastName(String lastName) {
-        this.webDriver.findElement(this.lastName).sendKeys(lastName);
+        webDriver.findElement(this.lastName).sendKeys(lastName);
     }
 
     public void typePassword(String pass) {
-        this.webDriver.findElement(this.password).sendKeys(pass);
+        webDriver.findElement(password).sendKeys(pass);
     }
 
     public void typeConfirmPassword(String confirmPassword) {
-        this.webDriver.findElement(this.confirmPassword).sendKeys(confirmPassword);
+        webDriver.findElement(this.confirmPassword).sendKeys(confirmPassword);
     }
 
     public void clickOnRegisterButton() {
-        this.webDriver.findElement(this.registerButton).click();
+        webDriver.findElement(registerButton).click();
     }
 
 

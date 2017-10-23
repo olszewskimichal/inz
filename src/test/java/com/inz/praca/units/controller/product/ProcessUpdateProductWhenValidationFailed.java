@@ -22,7 +22,7 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -31,7 +31,7 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -40,7 +40,7 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldShowValidationErrorForEmptyName() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -51,7 +51,7 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldShowValidationErrorForEmptyCategory() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -62,7 +62,7 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldNotModifyIdField() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""))
@@ -73,12 +73,12 @@ public class ProcessUpdateProductWhenValidationFailed extends ProductControllerT
 
     @Test
     public void shouldNotUpdateProduct() throws Exception {
-        this.mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
+        mockMvc.perform(post("/products/product/edit/{id}", ProductControllerTestBase.PRODUCT_ID)
                 .param(PRODUCT.NAME, "")
                 .param(PRODUCT.PRICE, "")
                 .param(PRODUCT.CATEGORY, ""));
 
-        verify(this.productService, never()).createProductFromDTO(isA(ProductDTO.class));
+        verify(productService, never()).createProductFromDTO(isA(ProductDTO.class));
     }
 
 }

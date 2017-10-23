@@ -23,14 +23,14 @@ public abstract class SeleniumTestBase extends SeleniumProfileTestBase {
         if (SeleniumTestBase.driver == null)
             SeleniumTestBase.driver = SeleniumTestBase.browserConfiguration.firefox();
         else SeleniumTestBase.driver.manage().deleteAllCookies();
-        this.orderRepository.deleteAll();
-        this.userRepository.deleteAll();
-        this.userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
-        this.userRepository.save(
+        orderRepository.deleteAll();
+        userRepository.deleteAll();
+        userRepository.save(new UserBuilder().withEmail("nieaktywny@email.pl").withPasswordHash("zaq1@WSX").build());
+        userRepository.save(
                 new UserBuilder().withEmail("aktywny@email.pl").withPasswordHash("zaq1@WSX").activate().build());
         User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
         admin.giveAdminAuthorization();
-        this.userRepository.save(admin);
+        userRepository.save(admin);
 
     }
 

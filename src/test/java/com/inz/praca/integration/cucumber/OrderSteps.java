@@ -23,48 +23,48 @@ public class OrderSteps extends SeleniumTestBase {
 
     @Given("Posiadajac w koszyku 1 przedmiot wart (.*)")
     public void prepareCartToOrder(String cena) throws Exception {
-        this.prepareBeforeTest();
-        this.productRepository.deleteAll();
-        this.productRepository.save(
+        prepareBeforeTest();
+        productRepository.deleteAll();
+        productRepository.save(
                 new ProductBuilder().withName("name2").withPrice(BigDecimal.valueOf(35)).createProduct());
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         ProductListPage productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(0);
         ProductPage page = new ProductPage(SeleniumTestBase.driver);
         page.clickOrderButton();
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
 
     @Given("Jako staly klient posiadajac w koszyku 1 przedmiot wart (.*)")
     public void prepareCartToOrderAsRegularCustomer(String cena) throws Exception {
-        this.prepareBeforeTest();
-        this.productRepository.deleteAll();
-        this.productRepository.save(
+        prepareBeforeTest();
+        productRepository.deleteAll();
+        productRepository.save(
                 new ProductBuilder().withName("name2").withPrice(BigDecimal.valueOf(35)).createProduct());
-        User user = this.userRepository.findByEmail("aktywny@email.pl").get();
+        User user = userRepository.findByEmail("aktywny@email.pl").get();
         user.addOrder(new Order());
         user.addOrder(new Order());
         user.addOrder(new Order());
-        this.userRepository.save(user);
+        userRepository.save(user);
         System.out.println(user.getOrders().size());
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         ProductListPage productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(0);
         ProductPage page = new ProductPage(SeleniumTestBase.driver);
         page.clickOrderButton();
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
@@ -93,7 +93,7 @@ public class OrderSteps extends SeleniumTestBase {
         assertThat(SeleniumTestBase.driver.getPageSource()).contains("Rachunek");
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Potwierdzenie zamówienia");
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartTableSize()).isEqualTo(2);
     }
@@ -105,7 +105,7 @@ public class OrderSteps extends SeleniumTestBase {
         assertThat(SeleniumTestBase.driver.getPageSource()).contains("Rachunek");
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Potwierdzenie zamówienia");
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartTableSize()).isEqualTo(2);
     }

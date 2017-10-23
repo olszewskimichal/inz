@@ -25,59 +25,59 @@ public class CartSteps extends SeleniumTestBase {
 
     @Given("Zalogowany jako uzytkownik")
     public void loggedAsUser() throws Exception {
-        this.prepareBeforeTest();
-        this.productRepository.deleteAll();
-        this.productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
-        this.productRepository.save(
+        prepareBeforeTest();
+        productRepository.deleteAll();
+        productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
+        productRepository.save(
                 new ProductBuilder().withName("name2").withPrice(BigDecimal.valueOf(35)).createProduct());
-        this.productRepository.save(
+        productRepository.save(
                 new ProductBuilder().withName("name3").withPrice(BigDecimal.valueOf(10)).createProduct());
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
     }
 
     @Given("Jako uzytkownik dodamy 3 produkty do naszego koszyka o lacznej wartosci (.*)")
     public void shouldAdd3ProductToCart(String cena) throws Exception {
-        this.prepareBeforeTest();
-        this.productRepository.deleteAll();
-        this.productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
-        this.productRepository.save(
+        prepareBeforeTest();
+        productRepository.deleteAll();
+        productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
+        productRepository.save(
                 new ProductBuilder().withName("name2").withPrice(BigDecimal.valueOf(35)).createProduct());
-        this.productRepository.save(
+        productRepository.save(
                 new ProductBuilder().withName("name3").withPrice(BigDecimal.valueOf(10)).createProduct());
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
 
         for (int i = 0; i < 3; i++) {
-            SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+            SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
             ProductListPage productListPage = new ProductListPage(SeleniumTestBase.driver);
             productListPage.clickOnProductInfo(i);
             ProductPage page = new ProductPage(SeleniumTestBase.driver);
             page.clickOrderButton();
         }
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
 
     @When("Dodajemy 2x produkt warty (.*) oraz raz produkt warty (.*)")
     public void shouldAdd2TheSameProductAnd1Another(String cena1, String cena2) {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         ProductListPage productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(1);
         ProductPage page = new ProductPage(SeleniumTestBase.driver);
         assertThat(page.getPrice()).isEqualTo(cena1);
         page.clickOrderButton();
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(1);
         page = new ProductPage(SeleniumTestBase.driver);
         page.clickOrderButton();
 
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(0);
         page = new ProductPage(SeleniumTestBase.driver);
@@ -87,7 +87,7 @@ public class CartSteps extends SeleniumTestBase {
 
     @When("Usuniemy 1 produkt warty (.*)")
     public void shouldRemove1Product(String cena) {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartItemPrice(2)).isEqualTo(cena);
         cartPage.removeItem(2);
@@ -95,7 +95,7 @@ public class CartSteps extends SeleniumTestBase {
 
     @Then("Nasz koszyk bedzie wart (.*) oraz bedzie posiadał (.*) pozycje w koszyku")
     public void shouldReturnCartPrice(String cena, int ilosc) {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/cart");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartTableSize()).isEqualTo(ilosc + 2);
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);

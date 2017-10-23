@@ -16,29 +16,29 @@ public class LoginPage {
     }
 
     public void logInToApp(String login, String password) {
-        this.typeUserName(login);
-        this.typePassword(password);
-        this.clickOnLoginButton();
+        typeUserName(login);
+        typePassword(password);
+        clickOnLoginButton();
     }
 
     public void typeUserName(String login) {
-        this.webDriver.findElement(this.username).sendKeys(login);
+        webDriver.findElement(username).sendKeys(login);
 
     }
 
     public void typePassword(String pass) {
-        this.webDriver.findElement(this.password).sendKeys(pass);
+        webDriver.findElement(password).sendKeys(pass);
     }
 
     public String getErrorMsg() {
-        return this.webDriver.findElement(this.errorMsg).getText();
+        return webDriver.findElement(errorMsg).getText();
     }
 
     public void clickOnLoginButton() {
-        this.webDriver.findElement(this.loginButton).click();
+        webDriver.findElement(loginButton).click();
     }
 
     public void clickOnRegisterLink() {
-        this.webDriver.findElement(this.registerLink).click();
+        webDriver.findElement(registerLink).click();
     }
 }

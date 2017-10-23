@@ -11,13 +11,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UsersListTest extends UsersControllerTestBase {
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/users"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderUsersListView() throws Exception {
-        this.mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/users"))
                 .andExpect(view().name(View.USERS));
     }
 }

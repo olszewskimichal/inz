@@ -21,46 +21,46 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProcessAddProductWhenValidationSuccessful extends ProductControllerTestBase {
     @Before
     public void configureTestCases() {
-        this.name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MAX_LENGTH_NAME);
-        this.price = BigDecimal.TEN;
-        this.category = "others";
+        name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MAX_LENGTH_NAME);
+        price = BigDecimal.TEN;
+        category = "others";
     }
 
     @Test
     public void shouldReturnHttpStatusCodeIsFound() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(status().isFound());
     }
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(view().name(RedirectView.PRODUCTS));
     }
 
     @Test
     public void shouldAddFeedbackMessageAsAFlashAttribute() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(flash().attribute(FlashMessageKey.CREATE_PRODUCT_CONFIRM, ProductControllerTestBase.FEEDBACK_MESSAGE_PRODUCT_CREATED
                 ));
     }
 
     @Test
     public void shouldCreateProduct() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category));
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category));
 
-        verify(this.productService, times(1)).createProductFromDTO(isA(ProductDTO.class));
+        verify(productService, times(1)).createProductFromDTO(isA(ProductDTO.class));
     }
 }

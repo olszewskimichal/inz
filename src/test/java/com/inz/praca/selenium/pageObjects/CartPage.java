@@ -32,35 +32,35 @@ public class CartPage {
     }
 
     public String getCartItemPrice(Integer id) {
-        return this.webDriver.findElement(this.cartItemPrice(id)).getText();
+        return webDriver.findElement(cartItemPrice(id)).getText();
     }
 
     public String getCartItemName(Integer id) {
-        return this.webDriver.findElement(this.cartItemName(id)).getText();
+        return webDriver.findElement(cartItemName(id)).getText();
     }
 
     public String getCartPrice() {
-        return this.webDriver.findElement(this.cartPrice).getText();
+        return webDriver.findElement(cartPrice).getText();
     }
 
     public Integer getCartTableSize() {
-        return this.webDriver.findElements(this.cartTable).size();
+        return webDriver.findElements(cartTable).size();
     }
 
     public String getCartItemProductPrice(Integer id) {
-        return this.webDriver.findElement(this.cartItemProductPrice(id)).getText();
+        return webDriver.findElement(cartItemProductPrice(id)).getText();
     }
 
     public void removeItem(Integer id) {
-        this.webDriver.findElement(this.cartItemRemove(id)).click();
+        webDriver.findElement(cartItemRemove(id)).click();
     }
 
     public void clearCart() {
-        this.webDriver.findElement(this.cartClearButton).click();
+        webDriver.findElement(cartClearButton).click();
     }
 
     public void clickOrder() {
-        this.webDriver.findElement(this.order).click();
+        webDriver.findElement(order).click();
     }
 
 }

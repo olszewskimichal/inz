@@ -11,14 +11,14 @@ public class RegisterControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_show_register_page() throws Exception {
-        this.mvc.perform(get("/register"))
+        mvc.perform(get("/register"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("register"));
     }
 
     @Test
     public void should_process_registration() throws Exception {
-        this.mvc.perform(post("/register")
+        mvc.perform(post("/register")
                 .param("name", "adam")
                 .param("lastName", "malysz")
                 .param("email", "a1@o2.pl")
@@ -29,7 +29,7 @@ public class RegisterControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_registration() throws Exception {
-        this.mvc.perform(post("/register"))
+        mvc.perform(post("/register"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("register"))
                 .andExpect(model().errorCount(4));
@@ -37,7 +37,7 @@ public class RegisterControllerTest extends IntegrationTestBase {
 
     @Test
     public void should_failed_with_easy_password() throws Exception {
-        this.mvc.perform(post("/register")
+        mvc.perform(post("/register")
                 .param("name", "adam")
                 .param("lastName", "malysz")
                 .param("email", "a3@o2.pl")

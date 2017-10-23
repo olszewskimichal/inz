@@ -17,24 +17,24 @@ public class EditProductPage {
     }
 
     public void typeName(String name) {
-        this.webDriver.findElement(this.name).sendKeys(name);
+        webDriver.findElement(this.name).sendKeys(name);
     }
 
     public void typeDesctiption(String description) {
-        this.webDriver.findElement(this.description).sendKeys(description);
+        webDriver.findElement(this.description).sendKeys(description);
     }
 
     public void typePrice(String price) {
-        this.webDriver.findElement(this.price).clear();
-        this.webDriver.findElement(this.price).sendKeys(price);
+        webDriver.findElement(this.price).clear();
+        webDriver.findElement(this.price).sendKeys(price);
     }
 
     public void typeUrl(String url) {
-        this.webDriver.findElement(imageURL).sendKeys(url);
+        webDriver.findElement(imageURL).sendKeys(url);
     }
 
     public void clickOnEditProductButton() {
-        this.webDriver.findElement(this.submitButton).click();
+        webDriver.findElement(submitButton).click();
     }
 
 }

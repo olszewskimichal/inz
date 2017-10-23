@@ -13,11 +13,11 @@ class Navigation {
     }
 
     public void clickHome() {
-        this.webDriver.findElement(this.home).click();
+        webDriver.findElement(home).click();
     }
 
     public void clickToPolishLang() {
-        this.webDriver.findElement(this.pl).click();
+        webDriver.findElement(pl).click();
     }
 
 }

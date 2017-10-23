@@ -23,7 +23,7 @@ public class LoginControllerTest {
 
     @Before
     public void configureSystemUnderTest() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new LoginController())
+        mockMvc = MockMvcBuilders.standaloneSetup(new LoginController())
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();
@@ -31,31 +31,31 @@ public class LoginControllerTest {
 
     @Test
     public void shouldReturnHttpStatusCodeOkOnLoginPage() throws Exception {
-        this.mockMvc.perform(get("/login"))
+        mockMvc.perform(get("/login"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderLoginPageView() throws Exception {
-        this.mockMvc.perform(get("/login"))
+        mockMvc.perform(get("/login"))
                 .andExpect(view().name(View.LOGIN));
     }
 
     @Test
     public void shouldReturnHttpStatusCodeOkOnLoginErrorPage() throws Exception {
-        this.mockMvc.perform(get("/login-error"))
+        mockMvc.perform(get("/login-error"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderLoginErrorPageView() throws Exception {
-        this.mockMvc.perform(get("/login-error"))
+        mockMvc.perform(get("/login-error"))
                 .andExpect(view().name(View.LOGIN));
     }
 
     @Test
     public void shouldFillModelPropertiesOnLoginError() throws Exception {
-        this.mockMvc.perform(get("/login-error"))
+        mockMvc.perform(get("/login-error"))
                 .andExpect(model().attribute("loginError", true))
                 .andExpect(model().attribute("errorMessage", nullValue()));
     }

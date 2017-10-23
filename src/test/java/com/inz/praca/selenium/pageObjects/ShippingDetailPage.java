@@ -17,27 +17,27 @@ public class ShippingDetailPage {
     }
 
     public void typeHouseNum(String number) {
-        this.webDriver.findElement(this.houseNum).sendKeys(number);
+        webDriver.findElement(houseNum).sendKeys(number);
     }
 
     public void typeStreet(String string) {
-        this.webDriver.findElement(this.street).sendKeys(string);
+        webDriver.findElement(street).sendKeys(string);
     }
 
     public void typeCity(String city) {
-        this.webDriver.findElement(this.city).sendKeys(city);
+        webDriver.findElement(this.city).sendKeys(city);
     }
 
     public void typePostCode(String postCode) {
-        this.webDriver.findElement(this.postCode).sendKeys(postCode);
+        webDriver.findElement(this.postCode).sendKeys(postCode);
     }
 
     public void typePhoneNumber(String phoneNumber) {
-        this.webDriver.findElement(this.phoneNumber).sendKeys(phoneNumber);
+        webDriver.findElement(this.phoneNumber).sendKeys(phoneNumber);
     }
 
     public void clickOnSubmitButton() {
-        this.webDriver.findElement(this.submitButton).click();
+        webDriver.findElement(submitButton).click();
     }
 
 }

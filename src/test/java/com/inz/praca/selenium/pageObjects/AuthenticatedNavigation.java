@@ -12,15 +12,15 @@ public class AuthenticatedNavigation extends Navigation {
     }
 
     public void clickOnLogout() {
-        this.webDriver.findElement(this.logout).click();
+        webDriver.findElement(logout).click();
     }
 
     public String getLoginName() {
-        return this.webDriver.findElement(this.loginName).getText();
+        return webDriver.findElement(loginName).getText();
     }
 
     public void clickOnLoginName() {
-        this.webDriver.findElement(this.loginName).click();
+        webDriver.findElement(loginName).click();
     }
 
 }

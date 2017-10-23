@@ -16,16 +16,16 @@ public class LoginSteps extends SeleniumTestBase {
 
     @Given("Logujac sie na login (.*) z hasłem (.*)")
     public void loginToApp(String login, String pass) throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.typeUserName(login);
-        this.loginPage.typePassword(pass);
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.typeUserName(login);
+        loginPage.typePassword(pass);
     }
 
     @When("Przy kliknieciu zaloguj")
     public void clickOnLogin() {
-        this.loginPage.clickOnLoginButton();
+        loginPage.clickOnLoginButton();
     }
 
 

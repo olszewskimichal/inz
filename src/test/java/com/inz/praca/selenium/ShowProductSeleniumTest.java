@@ -20,16 +20,16 @@ public class ShowProductSeleniumTest extends SeleniumTestBase {
 
     @Test
     public void shouldShowProductInfo() throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
-        Product product = this.repository.save(new ProductBuilder().withName("nameTest123456")
+        Product product = repository.save(new ProductBuilder().withName("nameTest123456")
                 .withDescription("test2")
                 .withPrice(BigDecimal.valueOf(3))
                 .createProduct());
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/" + product.getId());
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products/product/" + product.getId());
         ProductPage page = new ProductPage(SeleniumTestBase.driver);
         assertThat(page.getName()).isEqualTo("nameTest123456");
         assertThat(page.getDescription()).isEqualTo("test2");

@@ -28,16 +28,16 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
 
     @Test
     public void shouldDeleteProduct() throws Exception {
-        this.orderRepository.deleteAll();
-        this.repository.deleteAll();
-        this.prepareBeforeTest();
+        orderRepository.deleteAll();
+        repository.deleteAll();
+        prepareBeforeTest();
 
-        Product product = this.repository.save(new ProductBuilder().withName("nameTest1234567")
+        Product product = repository.save(new ProductBuilder().withName("nameTest1234567")
                 .withDescription("test2")
                 .withPrice(BigDecimal.valueOf(3))
                 .createProduct());
-        int size = this.repository.findAll().size();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/products/product/" + product.getId());
+        int size = repository.findAll().size();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/products/product/" + product.getId());
         LoginPage loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
         ProductPage productPage = new ProductPage(SeleniumTestBase.driver);
@@ -46,7 +46,7 @@ public class DeleteProductSeleniumTest extends SeleniumTestBase {
         } else {
             SeleniumTestBase.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             productPage.clickOnConfirmRemoveProduct();
-            assertThat(this.repository.findAll().size()).isEqualTo(size - 1);
+            assertThat(repository.findAll().size()).isEqualTo(size - 1);
         }
     }
 }

@@ -48,37 +48,37 @@ public abstract class LocalEqualsHashCodeTest<T> {
     @Before
     public void setUp() {
 
-        this.eq1 = this.createInstance();
-        this.eq2 = this.createInstance();
-        this.eq3 = this.createInstance();
-        this.neq = this.createNotEqualInstance();
+        eq1 = createInstance();
+        eq2 = createInstance();
+        eq3 = createInstance();
+        neq = createNotEqualInstance();
 
         // We want these assertions to yield errors, not failures.
         try {
-            assertNotNull("createInstance() returned null", this.eq1);
-            assertNotNull("2nd createInstance() returned null", this.eq2);
-            assertNotNull("3rd createInstance() returned null", this.eq3);
-            assertNotNull("createNotEqualInstance() returned null", this.neq);
+            assertNotNull("createInstance() returned null", eq1);
+            assertNotNull("2nd createInstance() returned null", eq2);
+            assertNotNull("3rd createInstance() returned null", eq3);
+            assertNotNull("createNotEqualInstance() returned null", neq);
 
-            assertNotSame(this.eq1, this.eq2);
-            assertNotSame(this.eq1, this.eq3);
-            assertNotSame(this.eq1, this.neq);
-            assertNotSame(this.eq2, this.eq3);
-            assertNotSame(this.eq2, this.neq);
-            assertNotSame(this.eq3, this.neq);
+            assertNotSame(eq1, eq2);
+            assertNotSame(eq1, eq3);
+            assertNotSame(eq1, neq);
+            assertNotSame(eq2, eq3);
+            assertNotSame(eq2, neq);
+            assertNotSame(eq3, neq);
 
             assertEquals(
                     "1st and 2nd equal instances of different classes",
-                    this.eq1.getClass(),
-                    this.eq2.getClass());
+                    eq1.getClass(),
+                    eq2.getClass());
             assertEquals(
                     "1st and 3rd equal instances of different classes",
-                    this.eq1.getClass(),
-                    this.eq3.getClass());
+                    eq1.getClass(),
+                    eq3.getClass());
             assertEquals(
                     "1st equal instance and not-equal instance of different classes",
-                    this.eq1.getClass(),
-                    this.neq.getClass());
+                    eq1.getClass(),
+                    neq.getClass());
         } catch (AssertionError ex) {
             throw new IllegalArgumentException(ex.getMessage());
         }
@@ -92,10 +92,10 @@ public abstract class LocalEqualsHashCodeTest<T> {
     public final void testEqualsAgainstNewObject() {
         Object o = new Object();
 
-        assertFalse("new Object() vs. 1st", this.eq1.equals(o));
-        assertFalse("new Object() vs. 2nd", this.eq2.equals(o));
-        assertFalse("new Object() vs. 3rd", this.eq3.equals(o));
-        assertFalse("new Object() vs. not-equal", this.neq.equals(o));
+        assertFalse("new Object() vs. 1st", eq1.equals(o));
+        assertFalse("new Object() vs. 2nd", eq2.equals(o));
+        assertFalse("new Object() vs. 3rd", eq3.equals(o));
+        assertFalse("new Object() vs. not-equal", neq.equals(o));
     }
 
     /**
@@ -103,10 +103,10 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testEqualsAgainstNull() {
-        assertFalse("null vs. 1st", this.eq1.equals(null));
-        assertFalse("null vs. 2nd", this.eq2.equals(null));
-        assertFalse("null vs. 3rd", this.eq3.equals(null));
-        assertFalse("null vs. not-equal", this.neq.equals(null));
+        assertFalse("null vs. 1st", eq1.equals(null));
+        assertFalse("null vs. 2nd", eq2.equals(null));
+        assertFalse("null vs. 3rd", eq3.equals(null));
+        assertFalse("null vs. not-equal", neq.equals(null));
     }
 
     /**
@@ -115,13 +115,13 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testEqualsAgainstUnequalObjects() {
-        assertFalse("1st vs. not-equal", this.eq1.equals(this.neq));
-        assertFalse("2nd vs. not-equal", this.eq2.equals(this.neq));
-        assertFalse("3rd vs. not-equal", this.eq3.equals(this.neq));
+        assertFalse("1st vs. not-equal", eq1.equals(neq));
+        assertFalse("2nd vs. not-equal", eq2.equals(neq));
+        assertFalse("3rd vs. not-equal", eq3.equals(neq));
 
-        assertFalse("not-equal vs. 1st", this.neq.equals(this.eq1));
-        assertFalse("not-equal vs. 2nd", this.neq.equals(this.eq2));
-        assertFalse("not-equal vs. 3rd", this.neq.equals(this.eq3));
+        assertFalse("not-equal vs. 1st", neq.equals(eq1));
+        assertFalse("not-equal vs. 2nd", neq.equals(eq2));
+        assertFalse("not-equal vs. 3rd", neq.equals(eq3));
     }
 
     /**
@@ -130,11 +130,11 @@ public abstract class LocalEqualsHashCodeTest<T> {
     @Test
     public final void testEqualsIsConsistentAcrossInvocations() {
         for (int i = 0; i < LocalEqualsHashCodeTest.NUM_ITERATIONS; ++i) {
-            this.testEqualsAgainstNewObject();
-            this.testEqualsAgainstNull();
-            this.testEqualsAgainstUnequalObjects();
-            this.testEqualsIsReflexive();
-            this.testEqualsIsSymmetricAndTransitive();
+            testEqualsAgainstNewObject();
+            testEqualsAgainstNull();
+            testEqualsAgainstUnequalObjects();
+            testEqualsIsReflexive();
+            testEqualsIsSymmetricAndTransitive();
         }
     }
 
@@ -143,10 +143,10 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testEqualsIsReflexive() {
-        assertEquals("1st equal instance", this.eq1, this.eq1);
-        assertEquals("2nd equal instance", this.eq2, this.eq2);
-        assertEquals("3rd equal instance", this.eq3, this.eq3);
-        assertEquals("not-equal instance", this.neq, this.neq);
+        assertEquals("1st equal instance", eq1, eq1);
+        assertEquals("2nd equal instance", eq2, eq2);
+        assertEquals("3rd equal instance", eq3, eq3);
+        assertEquals("not-equal instance", neq, neq);
     }
 
     /**
@@ -155,14 +155,14 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testEqualsIsSymmetricAndTransitive() {
-        assertEquals("1st vs. 2nd", this.eq1, this.eq2);
-        assertEquals("2nd vs. 1st", this.eq2, this.eq1);
+        assertEquals("1st vs. 2nd", eq1, eq2);
+        assertEquals("2nd vs. 1st", eq2, eq1);
 
-        assertEquals("1st vs. 3rd", this.eq1, this.eq3);
-        assertEquals("3rd vs. 1st", this.eq3, this.eq1);
+        assertEquals("1st vs. 3rd", eq1, eq3);
+        assertEquals("3rd vs. 1st", eq3, eq1);
 
-        assertEquals("2nd vs. 3rd", this.eq2, this.eq3);
-        assertEquals("3rd vs. 2nd", this.eq3, this.eq2);
+        assertEquals("2nd vs. 3rd", eq2, eq3);
+        assertEquals("3rd vs. 2nd", eq3, eq2);
     }
 
     /**
@@ -170,9 +170,9 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testHashCodeContract() {
-        assertEquals("1st vs. 2nd", this.eq1.hashCode(), this.eq2.hashCode());
-        assertEquals("1st vs. 3rd", this.eq1.hashCode(), this.eq3.hashCode());
-        assertEquals("2nd vs. 3rd", this.eq2.hashCode(), this.eq3.hashCode());
+        assertEquals("1st vs. 2nd", eq1.hashCode(), eq2.hashCode());
+        assertEquals("1st vs. 3rd", eq1.hashCode(), eq3.hashCode());
+        assertEquals("2nd vs. 3rd", eq2.hashCode(), eq3.hashCode());
     }
 
     /**
@@ -180,16 +180,16 @@ public abstract class LocalEqualsHashCodeTest<T> {
      */
     @Test
     public final void testHashCodeIsConsistentAcrossInvocations() {
-        int eq1Hash = this.eq1.hashCode();
-        int eq2Hash = this.eq2.hashCode();
-        int eq3Hash = this.eq3.hashCode();
-        int neqHash = this.neq.hashCode();
+        int eq1Hash = eq1.hashCode();
+        int eq2Hash = eq2.hashCode();
+        int eq3Hash = eq3.hashCode();
+        int neqHash = neq.hashCode();
 
         for (int i = 0; i < LocalEqualsHashCodeTest.NUM_ITERATIONS; ++i) {
-            assertEquals("1st equal instance", eq1Hash, this.eq1.hashCode());
-            assertEquals("2nd equal instance", eq2Hash, this.eq2.hashCode());
-            assertEquals("3rd equal instance", eq3Hash, this.eq3.hashCode());
-            assertEquals("not-equal instance", neqHash, this.neq.hashCode());
+            assertEquals("1st equal instance", eq1Hash, eq1.hashCode());
+            assertEquals("2nd equal instance", eq2Hash, eq2.hashCode());
+            assertEquals("3rd equal instance", eq3Hash, eq3.hashCode());
+            assertEquals("not-equal instance", neqHash, neq.hashCode());
         }
     }
 }

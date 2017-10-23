@@ -40,7 +40,7 @@ public class RegisterController {
             return RegisterController.REGISTER;
         }
         try {
-            this.userService.createUserFromDTO(userCreateForm);
+            userService.createUserFromDTO(userCreateForm);
             redirectAttributes.addFlashAttribute("registerDone", true);
             return "redirect:/login";
         } catch (IllegalArgumentException e) {

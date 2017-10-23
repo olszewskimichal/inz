@@ -34,8 +34,8 @@ abstract class ProductControllerTestBase {
 
     @Before
     public void configureSystemUnderTest() {
-        this.productService = mock(ProductService.class);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(this.productService))
+        productService = mock(ProductService.class);
+        mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(productService))
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();

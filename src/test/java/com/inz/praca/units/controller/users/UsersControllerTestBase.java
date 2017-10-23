@@ -21,8 +21,8 @@ abstract class UsersControllerTestBase {
 
     @Before
     public void configureSystemUnderTest() {
-        this.userService = mock(UserService.class);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new UsersController(this.userService))
+        userService = mock(UserService.class);
+        mockMvc = MockMvcBuilders.standaloneSetup(new UsersController(userService))
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .build();
     }

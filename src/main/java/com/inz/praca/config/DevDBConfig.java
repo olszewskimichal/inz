@@ -34,15 +34,15 @@ public class DevDBConfig {
     @PostConstruct
     public void populateDatabase() {
         DevDBConfig.log.info("ładowanie bazy testowej");
-        this.categoryRepository.save(
+        categoryRepository.save(
                 new CategoryBuilder().withName("Komputery").withDescription("Jakies super kompy").createCategory());
-        this.categoryRepository.save(
+        categoryRepository.save(
                 new CategoryBuilder().withName("inne").withDescription("Nie zdefiniowane").createCategory());
         User admin = new UserBuilder().withEmail("admin@email.pl").withPasswordHash("zaq1@WSX").activate().build();
         admin.giveAdminAuthorization();
-        this.userRepository.save(admin);
-        this.userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
-        this.productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN)
+        userRepository.save(admin);
+        userRepository.save(new UserBuilder().withEmail("user@email.pl").withPasswordHash("zaq1@WSX").build());
+        productRepository.save(new ProductBuilder().withPrice(BigDecimal.TEN)
                 .withName("produkt")
                 .withUrl("http://www.best1buy.pl/allegro/bk617e/super_produkt.gif")
                 .createProduct());

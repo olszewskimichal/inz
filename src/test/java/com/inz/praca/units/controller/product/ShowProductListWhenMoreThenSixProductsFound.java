@@ -26,28 +26,28 @@ public class ShowProductListWhenMoreThenSixProductsFound extends ProductControll
 
     @Before
     public void returnMoreThen6Products() {
-        IntStream.range(0, 6).forEachOrdered(v -> this.firstPageList.add(new ProductBuilder().withName(this.PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
-        IntStream.range(0, 3).forEachOrdered(v -> this.secondPageList.add(new ProductBuilder().withName(this.PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
-        given(this.productService.getProducts(0, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(this.firstPageList));
-        given(this.productService.getProducts(1, 6, null, Optional.ofNullable(null))).willReturn(new PageImpl<>(this.secondPageList));
+        IntStream.range(0, 6).forEachOrdered(v -> firstPageList.add(new ProductBuilder().withName(PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
+        IntStream.range(0, 3).forEachOrdered(v -> secondPageList.add(new ProductBuilder().withName(PRODUCT_NAME + v).withPrice(ProductControllerTestBase.PRICE).withCategory(ProductControllerTestBase.CATEGORY).withDescription(ProductControllerTestBase.PRODUCT_DESC).withUrl(ProductControllerTestBase.IMAGE_URL).createProduct()));
+        given(productService.getProducts(0, 6, null, Optional.empty())).willReturn(new PageImpl<>(firstPageList));
+        given(productService.getProducts(1, 6, null, Optional.empty())).willReturn(new PageImpl<>(secondPageList));
     }
 
     @Test
     public void shouldShowProductsListFromFirstPageWhenPageParamIsNotSet() throws Exception {
-        this.mockMvc.perform(get("/products"))
+        mockMvc.perform(get("/products"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(6)));
     }
 
     @Test
     public void shouldShowProductsListFromFirstPageWhenPageParamIsSet() throws Exception {
-        this.mockMvc.perform(get("/products").
+        mockMvc.perform(get("/products").
                 param(PRODUCTS.PAGE, "1"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(6)));
     }
 
     @Test
     public void shouldShowProductsListFromSecondPageWhenPageParamIsSet() throws Exception {
-        this.mockMvc.perform(get("/products").
+        mockMvc.perform(get("/products").
                 param(PRODUCTS.PAGE, "2"))
                 .andExpect(model().attribute(PRODUCT_LIST, hasSize(3)));
     }

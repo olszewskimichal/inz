@@ -32,7 +32,7 @@ public class UserServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        userService = new UserService(this.userRepository);
+        userService = new UserService(userRepository);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class UserServiceTest {
     @Test
     public void shouldThrownUserNotFoundExceptionWhenUserByEmailNotExists() {
         try {
-            given(this.userRepository.findByEmail(anyString())).willReturn(Optional.empty());
+            given(userRepository.findByEmail(anyString())).willReturn(Optional.empty());
             userService.getUserByEmail("email");
             Assert.fail("Nie istnieje uzytkownik o podanym mailu");
         } catch (UserNotFoundException e) {
@@ -89,7 +89,7 @@ public class UserServiceTest {
     @Test
     public void shouldThrownUserNotFoundExceptionWhenUserByIdNotExists() {
         try {
-            given(this.userRepository.findById(anyLong())).willReturn(Optional.empty());
+            given(userRepository.findById(anyLong())).willReturn(Optional.empty());
             userService.getUserById(1L);
             Assert.fail("Nie istnieje uzytkownik o podanym mailu");
         } catch (UserNotFoundException e) {
@@ -99,7 +99,7 @@ public class UserServiceTest {
 
     @Test
     public void shouldFoundUserById() {
-        given(this.userRepository.findById(1L)).willReturn(
+        given(userRepository.findById(1L)).willReturn(
                 Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
         User userById = userService.getUserById(1L);
         assertThat(userById.getEmail()).isEqualTo("email@o2.pl");
@@ -108,7 +108,7 @@ public class UserServiceTest {
 
     @Test
     public void shouldFoundUserByEmail() {
-        given(this.userRepository.findByEmail("email@o2.pl")).willReturn(
+        given(userRepository.findByEmail("email@o2.pl")).willReturn(
                 Optional.of(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build()));
         User userByEmail = userService.getUserByEmail("email@o2.pl");
         assertThat(userByEmail.getEmail()).isEqualTo("email@o2.pl");
@@ -123,9 +123,9 @@ public class UserServiceTest {
         userDTO.setEmail("email@o2.pl");
         userDTO.setName("name");
         userDTO.setLastName("last");
-        doAnswer(invocation -> invocation.getArguments()[0]).when(this.userRepository).save(any(User.class));
+        doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
 
-        User user = this.userService.createUserFromDTO(userDTO);
+        User user = userService.createUserFromDTO(userDTO);
         assertThat(user.getEmail()).isEqualTo(userDTO.getEmail());
         assertThat(user.getName()).isEqualTo(userDTO.getName());
         assertThat(user.getLastName()).isEqualTo(userDTO.getLastName());
@@ -138,19 +138,19 @@ public class UserServiceTest {
                 Arrays.asList(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build(),
                         new UserBuilder().withEmail("name4@o2.pl").withPasswordHash("zaq1@WSX").build()));
         given(userRepository.findAll(new PageRequest(0, 20))).willReturn(users);
-        Page<User> allUsers = this.userService.getAllUsers(0);
+        Page<User> allUsers = userService.getAllUsers(0);
         assertThat(allUsers).isNotEmpty();
         assertThat(allUsers.getTotalElements()).isEqualTo(2);
     }
 
     @Test
     public void shouldActivateUser() {
-        doAnswer(invocation -> invocation.getArguments()[0]).when(this.userRepository).save(any(User.class));
-        given(this.userRepository.findById(1L)).willReturn(
+        doAnswer(invocation -> invocation.getArguments()[0]).when(userRepository).save(any(User.class));
+        given(userRepository.findById(1L)).willReturn(
                 Optional.ofNullable(new UserBuilder().withEmail("name3@o2.pl").withPasswordHash("zaq1@WSX").build()));
-        String result = this.userService.changeUserActive(1L, true);
+        String result = userService.changeUserActive(1L, true);
         assertThat(result).isEqualTo("Aktywowano uzytkownika name3@o2.pl");
-        result = this.userService.changeUserActive(1L, false);
+        result = userService.changeUserActive(1L, false);
         assertThat(result).isEqualTo("Deaktywowano uzytkownika name3@o2.pl");
     }
 }

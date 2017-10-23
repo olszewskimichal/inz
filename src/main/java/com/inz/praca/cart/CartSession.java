@@ -32,43 +32,43 @@ public class CartSession implements Serializable {
     }
 
     public void addProduct(ProductDTO productDTO) {
-        for (CartItemDTO cartItemDTO : this.items) {
+        for (CartItemDTO cartItemDTO : items) {
             if (cartItemDTO.getItem().equals(productDTO)) {
                 cartItemDTO.setQuantity(cartItemDTO.getQuantity() + 1);
                 cartItemDTO.setPrice(
                         cartItemDTO.getItem().getPrice().multiply(BigDecimal.valueOf(cartItemDTO.getQuantity())));
-                this.updatePrice();
+                updatePrice();
                 return;
             }
         }
-        this.items.add(new CartItemDTO(productDTO));
-        this.updatePrice();
+        items.add(new CartItemDTO(productDTO));
+        updatePrice();
     }
 
     public void removeProductById(int rowId) {
-        if (!this.items.isEmpty()) {
-            this.items.remove(rowId);
-            this.updatePrice();
+        if (!items.isEmpty()) {
+            items.remove(rowId);
+            updatePrice();
         }
     }
 
     public void clearCart() {
-        this.items = new ArrayList<>();
-        this.updatePrice();
+        items = new ArrayList<>();
+        updatePrice();
     }
 
     private void updatePrice() {
-        this.totalPrice = this.items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+        totalPrice = items.stream().map(CartItemDTO::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }
 
     public List<CartItemDTO> getItems() {
-        if (this.items == null)
-            this.items = new ArrayList<>();
-        return Collections.unmodifiableList(this.items);
+        if (items == null)
+            items = new ArrayList<>();
+        return Collections.unmodifiableList(items);
     }
 
     public BigDecimal getTotalPrice() {
-        return this.totalPrice.setScale(2, BigDecimal.ROUND_HALF_DOWN);
+        return totalPrice.setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {

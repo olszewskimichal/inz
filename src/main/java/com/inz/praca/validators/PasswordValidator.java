@@ -25,7 +25,7 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
         if (value == null) {
             return false;
         }
-        Matcher matcher = this.pattern.matcher(value);
+        Matcher matcher = pattern.matcher(value);
         return matcher.matches();
     }
 }

@@ -23,7 +23,7 @@ public class HomeControllerTest {
 
     @Before
     public void configureSystemUnderTest() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new HomeController())
+        mockMvc = MockMvcBuilders.standaloneSetup(new HomeController())
                 .setViewResolvers(WebTestConfig.viewResolver())
                 .setHandlerExceptionResolvers(exceptionResolver())
                 .build();
@@ -31,13 +31,13 @@ public class HomeControllerTest {
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(get("/"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderHomePageView() throws Exception {
-        this.mockMvc.perform(get("/"))
+        mockMvc.perform(get("/"))
                 .andExpect(view().name(View.HOME));
     }
 }

@@ -26,7 +26,7 @@ class ScreenshotTestRule implements MethodRule {
                 try {
                     statement.evaluate();
                 } catch (Throwable t) {
-                    this.captureScreenShot(frameworkMethod.getName());
+                    captureScreenShot(frameworkMethod.getName());
 
                     throw t;
                 }
@@ -34,7 +34,7 @@ class ScreenshotTestRule implements MethodRule {
 
             void captureScreenShot(String fileName) throws IOException {
                 new File("target/seleniumTest-reports/").mkdirs();
-                File scrFile = ((TakesScreenshot) ScreenshotTestRule.this.driver).getScreenshotAs(OutputType.FILE);
+                File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
                 fileName += UUID.randomUUID().toString();
                 File targetFile = new File("target/seleniumTest-reports/screenshot-" + fileName + ".png");
                 FileUtils.copyFile(scrFile, targetFile);

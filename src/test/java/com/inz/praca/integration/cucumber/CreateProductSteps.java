@@ -19,10 +19,10 @@ public class CreateProductSteps extends SeleniumTestBase {
 
     @Given("Podajac nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
     public void useNewProductData(String name, String description, String price, String category) throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("admin@email.pl", "zaq1@WSX");
 
         this.name = name;
         this.description = description;
@@ -31,9 +31,9 @@ public class CreateProductSteps extends SeleniumTestBase {
 
     @When("Przy kliknieciu dodaj produkt")
     public void shouldPerformNewProduct() {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/addProduct");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/addProduct");
         NewProductPage productPage = new NewProductPage(SeleniumTestBase.driver);
-        productPage.fillCreateProductForm(this.name, this.description, this.price, "");
+        productPage.fillCreateProductForm(name, description, price, "");
         productPage.clickOnCreateProductButton();
     }
 

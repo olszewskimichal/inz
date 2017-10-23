@@ -16,18 +16,18 @@ public class OrderPage {
     }
 
     public String getStreet() {
-        return this.webDriver.findElement(this.street).getText();
+        return webDriver.findElement(street).getText();
     }
 
     public String getCity() {
-        return this.webDriver.findElement(this.city).getText();
+        return webDriver.findElement(city).getText();
     }
 
     public String getDate() {
-        return this.webDriver.findElement(this.date).getText();
+        return webDriver.findElement(date).getText();
     }
 
     public String getTotalPrice() {
-        return this.webDriver.findElement(this.totalPrice).getText();
+        return webDriver.findElement(totalPrice).getText();
     }
 }

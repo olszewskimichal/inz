@@ -28,13 +28,13 @@ public class UsersController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping("/users")
     public String getUsersPage(Model model, @RequestParam(value = "page", required = false) Integer page) {
-        UsersController.log.info("Pobranie wszystkich uzytkownikow");
-        int evalPage = page == null ? UsersController.INITIAL_PAGE : page - 1;
-        Page<User> users = this.userService.getAllUsers(evalPage);
+        log.info("Pobranie wszystkich uzytkownikow");
+        int evalPage = page == null ? INITIAL_PAGE : page - 1;
+        Page<User> users = userService.getAllUsers(evalPage);
         if (users != null) {
             model.addAttribute("Users", users.getContent());
             model.addAttribute("selectedPageSize", evalPage);
-            model.addAttribute("pager", new Pager(users.getTotalPages(), users.getNumber(), UsersController.BUTTONS_TO_SHOW));
+            model.addAttribute("pager", new Pager(users.getTotalPages(), users.getNumber(), BUTTONS_TO_SHOW));
         }
         return "users";
     }
@@ -42,8 +42,8 @@ public class UsersController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/user/active/{activity}/{userId}", method = RequestMethod.GET)
     public String activateUser(@PathVariable Long userId, @PathVariable Boolean activity, RedirectAttributes redirectAttributes) {
-        UsersController.log.debug("Aktywacja uzytkownika o userId {}", userId);
-        String message = this.userService.changeUserActive(userId, activity);
+        log.debug("Aktywacja uzytkownika o userId {}", userId);
+        String message = userService.changeUserActive(userId, activity);
         redirectAttributes.addFlashAttribute("activate", true);
         redirectAttributes.addFlashAttribute("activateMessage", message);
         return "redirect:/users";

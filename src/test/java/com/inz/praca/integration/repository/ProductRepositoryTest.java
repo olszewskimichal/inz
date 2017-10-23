@@ -24,7 +24,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 
     @Test
     public void shouldFindProductByName() {
-        this.productRepository.deleteAll();
+        productRepository.deleteAll();
         entityManager.persistAndFlush(
                 new ProductBuilder().withName(ProductRepositoryTest.NAME).withPrice(BigDecimal.TEN).createProduct());
         Optional<Product> byName = productRepository.findByName(ProductRepositoryTest.NAME);
@@ -35,7 +35,7 @@ public class ProductRepositoryTest extends JpaTestBase {
 
     @Test
     public void shouldFindAllPageable() {
-        this.productRepository.deleteAll();
+        productRepository.deleteAll();
         entityManager.persist(new ProductBuilder().withName("nazwa1").withPrice(BigDecimal.TEN).createProduct());
         entityManager.persist(new ProductBuilder().withName("nazwa2").withPrice(BigDecimal.TEN).createProduct());
         entityManager.persist(new ProductBuilder().withName("nazwa3").withPrice(BigDecimal.TEN).createProduct());
@@ -51,12 +51,12 @@ public class ProductRepositoryTest extends JpaTestBase {
 
     @Test
     public void shouldCountProductByCategory() {
-        this.productRepository.deleteAll();
+        productRepository.deleteAll();
 
         Category category = new CategoryBuilder().withName("nazwa1").createCategory();
         Category category2 = new CategoryBuilder().withName("nazwa2").createCategory();
-        this.entityManager.persistAndFlush(category);
-        this.entityManager.persistAndFlush(category2);
+        entityManager.persistAndFlush(category);
+        entityManager.persistAndFlush(category2);
         Product product = new ProductBuilder().withName("nazwa")
                 .withPrice(BigDecimal.TEN)
                 .withCategory("nazwa1")
@@ -72,11 +72,11 @@ public class ProductRepositoryTest extends JpaTestBase {
                 .withCategory("nazwa2")
                 .createProduct();
         product2.changeCategory(category2);
-        this.entityManager.persistAndFlush(product);
-        this.entityManager.persistAndFlush(product1);
-        this.entityManager.persistAndFlush(product2);
+        entityManager.persistAndFlush(product);
+        entityManager.persistAndFlush(product1);
+        entityManager.persistAndFlush(product2);
 
-        List<Object[]> categoryNameAndCountProducts = this.productRepository.findCategoryNameAndCountProducts();
+        List<Object[]> categoryNameAndCountProducts = productRepository.findCategoryNameAndCountProducts();
         assertThat((String) categoryNameAndCountProducts.get(0)[0]).isEqualTo("nazwa1");
         assertThat((Long) categoryNameAndCountProducts.get(0)[1]).isEqualTo(2L);
         assertThat((String) categoryNameAndCountProducts.get(1)[0]).isEqualTo("nazwa2");

@@ -29,35 +29,35 @@ public class ProcessAddProductWhenFormIsSubmittedWithTooShortName extends Produc
 
     @Before
     public void createFields() {
-        this.name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MIN_LENGTH_NAME - 1);
-        this.price = BigDecimal.TEN;
-        this.category = "others";
+        name = TestStringUtil.createStringWithLength(ProductControllerTestBase.MIN_LENGTH_NAME - 1);
+        price = BigDecimal.TEN;
+        category = "others";
     }
 
     @Test
     public void shouldReturnHttpStatusCodeOk() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void shouldRenderCreateProductView() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(view().name(View.ADD_PRODUCT));
     }
 
     @Test
     public void shouldShowValidationErrorForToLongName() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(model().attributeHasFieldErrorCode(ModelAttributeName.PRODUCT_CREATE_FORM,
                         PRODUCT.NAME, is(ValidationErrorCode.SIZE)
                 ));
@@ -65,10 +65,10 @@ public class ProcessAddProductWhenFormIsSubmittedWithTooShortName extends Produc
 
     @Test
     public void shouldNotModifyIdField() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(model().attribute(ModelAttributeName.PRODUCT_CREATE_FORM,
                         hasProperty(PRODUCT.ID, Matchers.nullValue())
                 ));
@@ -76,14 +76,14 @@ public class ProcessAddProductWhenFormIsSubmittedWithTooShortName extends Produc
 
     @Test
     public void shouldShowEnteredValues() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category))
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category))
                 .andExpect(model().attribute(ModelAttributeName.PRODUCT_CREATE_FORM, allOf(
-                        hasProperty(PRODUCT.NAME, is(this.name)),
-                        hasProperty(PRODUCT.PRICE, is(this.price)),
-                        hasProperty(PRODUCT.CATEGORY, is(this.category)),
+                        hasProperty(PRODUCT.NAME, is(name)),
+                        hasProperty(PRODUCT.PRICE, is(price)),
+                        hasProperty(PRODUCT.CATEGORY, is(category)),
                         hasProperty(PRODUCT.IMAGE_URL, nullValue()),
                         hasProperty(PRODUCT.ID, nullValue()),
                         hasProperty(PRODUCT.DESCRIPTION, nullValue())
@@ -92,12 +92,12 @@ public class ProcessAddProductWhenFormIsSubmittedWithTooShortName extends Produc
 
     @Test
     public void shouldNotCreateNewProduct() throws Exception {
-        this.mockMvc.perform(post("/addProduct")
-                .param(PRODUCT.NAME, this.name)
-                .param(PRODUCT.PRICE, this.price.toString())
-                .param(PRODUCT.CATEGORY, this.category));
+        mockMvc.perform(post("/addProduct")
+                .param(PRODUCT.NAME, name)
+                .param(PRODUCT.PRICE, price.toString())
+                .param(PRODUCT.CATEGORY, category));
 
-        verify(this.productService, never()).createProductFromDTO(isA(ProductDTO.class));
+        verify(productService, never()).createProductFromDTO(isA(ProductDTO.class));
     }
 
 }

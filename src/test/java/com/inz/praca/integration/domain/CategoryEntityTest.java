@@ -14,8 +14,8 @@ public class CategoryEntityTest extends JpaTestBase {
     @Test
     public void shouldNotPersistWithNotUniqueName() {
         try {
-            this.entityManager.persistFlushFind(new Category("nazwa", "opis"));
-            this.entityManager.persistFlushFind(new Category("nazwa", "opis"));
+            entityManager.persistFlushFind(new Category("nazwa", "opis"));
+            entityManager.persistFlushFind(new Category("nazwa", "opis"));
             Assert.fail();
         } catch (PersistenceException e) {
             assertThat(true).isEqualTo(true);

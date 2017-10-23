@@ -17,29 +17,29 @@ public class NewProductPage {
     }
 
     private void typeName(String name) {
-        this.webDriver.findElement(this.name).sendKeys(name);
+        webDriver.findElement(this.name).sendKeys(name);
     }
 
     private void typeDescription(String description) {
-        this.webDriver.findElement(this.description).sendKeys(description);
+        webDriver.findElement(this.description).sendKeys(description);
     }
 
     private void typePrice(String price) {
-        this.webDriver.findElement(this.price).sendKeys(price);
+        webDriver.findElement(this.price).sendKeys(price);
     }
 
     private void typeUrl(String url) {
-        this.webDriver.findElement(imageURL).sendKeys(url);
+        webDriver.findElement(imageURL).sendKeys(url);
     }
 
     public void clickOnCreateProductButton() {
-        this.webDriver.findElement(this.submitButton).click();
+        webDriver.findElement(submitButton).click();
     }
 
     public void fillCreateProductForm(String name, String description, String price, String url) {
-        this.typeName(name);
-        this.typeDescription(description);
-        this.typePrice(price);
-        this.typeUrl(url);
+        typeName(name);
+        typeDescription(description);
+        typePrice(price);
+        typeUrl(url);
     }
 }

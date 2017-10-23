@@ -24,7 +24,7 @@ public class CurrentUserDetailsService implements UserDetailsService {
     @Override
     public CurrentUser loadUserByUsername(String value) {
         CurrentUserDetailsService.log.info("Autentykacja uzytkownika {}", value);
-        User user = this.userService.getUserByEmail(value);
+        User user = userService.getUserByEmail(value);
         return new CurrentUser(user);
     }
 

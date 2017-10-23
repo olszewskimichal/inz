@@ -16,41 +16,41 @@ public class ActivationUserSteps extends SeleniumTestBase {
 
     @Given("Logujac sie na uzytkownika nieaktywnego")
     public void logAsNotActivatedUser() throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.typeUserName("nieaktywny@email.pl");
-        this.loginPage.typePassword("zaq1@WSX");
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.typeUserName("nieaktywny@email.pl");
+        loginPage.typePassword("zaq1@WSX");
     }
 
     @Given("Logujac sie na zwyklego uzytkownika aktywnego")
     public void logAsActivatedUser() throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.typeUserName("aktywny@email.pl");
-        this.loginPage.typePassword("zaq1@WSX");
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.typeUserName("aktywny@email.pl");
+        loginPage.typePassword("zaq1@WSX");
     }
 
     @Given("Po zalogowaniu na konto administratora, ma dostęp do panelu administracji uzytkowników")
     public void logAsAdmin() throws Exception {
-        this.prepareBeforeTest();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.typeUserName("admin@email.pl");
-        this.loginPage.typePassword("zaq1@WSX");
-        this.loginPage.clickOnLoginButton();
+        prepareBeforeTest();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.typeUserName("admin@email.pl");
+        loginPage.typePassword("zaq1@WSX");
+        loginPage.clickOnLoginButton();
     }
 
     @When("Po kliknieciu zaloguj")
     public void shouldPerformRegister() {
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.clickOnLoginButton();
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.clickOnLoginButton();
     }
 
     @When("Może aktywowac uzytkownika nieaktywnego")
     public void canActivateUser() {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/users");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/users");
         UsersPage usersPage = new UsersPage(SeleniumTestBase.driver);
         usersPage.activateUser(0);
         assertThat(usersPage.getActivationMsg()).isEqualTo("Aktywowano uzytkownika nieaktywny@email.pl");
@@ -58,13 +58,13 @@ public class ActivationUserSteps extends SeleniumTestBase {
 
     @When("Próbujac wejsc na panel administracji uzytkownikami")
     public void cantGoToUsersPage() {
-        this.loginPage.clickOnLoginButton();
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/users");
+        loginPage.clickOnLoginButton();
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/users");
     }
 
     @Then("Zostanie zwrocony komunikat (.*)")
     public void shouldGetErrorMsg(String msg) {
-        assertThat(this.loginPage.getErrorMsg()).isEqualTo(msg);
+        assertThat(loginPage.getErrorMsg()).isEqualTo(msg);
     }
 
     @Then("Nie bedzie mial uprawnien, otrzyma komunikat (.*)")
@@ -74,9 +74,9 @@ public class ActivationUserSteps extends SeleniumTestBase {
 
     @Then("Uzytkownik bedzie mogl sie zalagowac do systemu")
     public void userCanLogToApp() {
-        SeleniumTestBase.driver.get("http://localhost:" + this.port + "/login");
-        this.loginPage = new LoginPage(SeleniumTestBase.driver);
-        this.loginPage.logInToApp("nieaktywny@email.pl", "zaq1@WSX");
+        SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
+        loginPage = new LoginPage(SeleniumTestBase.driver);
+        loginPage.logInToApp("nieaktywny@email.pl", "zaq1@WSX");
         AuthenticatedNavigation navigation = new AuthenticatedNavigation(SeleniumTestBase.driver);
         assertThat(navigation.getLoginName()).isEqualTo("nieaktywny@email.pl");
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Strona główna");
