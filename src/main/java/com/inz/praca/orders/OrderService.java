@@ -57,7 +57,7 @@ public class OrderService {
         return new Cart(cartItems);
     }
 
-    OrderDTO confirmShippingDetail(ShippingDetail detail) {
+    public OrderDTO confirmShippingDetail(ShippingDetail detail) {
         CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CartSession cartSession1 = new CartSession(cartSession);
         OrderDTO orderDTO = new OrderDTO(cartSession1, detail);
