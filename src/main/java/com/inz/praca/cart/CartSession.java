@@ -62,8 +62,6 @@ public class CartSession implements Serializable {
     }
 
     public List<CartItemDTO> getItems() {
-        if (items == null)
-            items = new ArrayList<>();
         return Collections.unmodifiableList(items);
     }
 

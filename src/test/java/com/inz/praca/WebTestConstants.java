@@ -10,6 +10,7 @@ public class WebTestConstants {
         public static final String EDIT_PRODUCT = "editProduct";
         public static final String HOME = "index";
         public static final String LOGIN = "login";
+        public static final String ORDER_LIST = "orderList";
     }
 
     public static class ModelAttributeProperty {

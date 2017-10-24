@@ -8,17 +8,22 @@ import com.inz.praca.discount.RegularCustomerDiscountService;
 import com.inz.praca.orders.*;
 import com.inz.praca.products.ProductBuilder;
 import com.inz.praca.products.ProductRepository;
+import com.inz.praca.registration.CurrentUser;
 import com.inz.praca.registration.UserBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
 
 @Category(UnitTest.class)
@@ -38,7 +43,7 @@ public class OrderServiceTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        orderService = new OrderService(orderRepository, productRepository, null, applicationContext);
+        orderService = new OrderService(orderRepository, productRepository, new CartSession(), applicationContext);
     }
 
     @Test
@@ -95,6 +100,15 @@ public class OrderServiceTest {
                 new UserBuilder().withEmail("aaaa@o2.pl").withPasswordHash("zaq1@WSX").build(), orderDTO);
         assertThat(order).isNotNull();
         assertThat(order.getPrice().stripTrailingZeros()).isEqualTo(BigDecimal.valueOf(49).stripTrailingZeros());
+    }
+
+    @Test
+    public void shouldThrowExceptionWithEmptyCart(){
+        Authentication auth = new UsernamePasswordAuthenticationToken(
+                new CurrentUser(new UserBuilder().withEmail("aaaaa@o2.pl").withPasswordHash("zaq1@WSX").build()), null);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        ShippingDetail shippingDetail=new ShippingDetail("street","city","num","code");
+        assertThatThrownBy(()->orderService.confirmShippingDetail(shippingDetail)).hasMessage("Nie mozna stworzyc zamowienia z pusta lista przedmiotow");
     }
 
 }
