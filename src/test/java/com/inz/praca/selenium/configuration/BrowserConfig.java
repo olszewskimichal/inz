@@ -37,8 +37,6 @@ public class BrowserConfig {
     }
 
     public WebDriver firefox() throws IOException {
-        System.setProperty("webdriver.gecko.driver",
-                "C:\\Users\\Admin\\Downloads\\geckodriver-v0.11.1-win64\\geckodriver.exe");
         String travisCiFlag = System.getenv().get("TRAVIS");
         if (!"true".equals(travisCiFlag)) {
             return htmlUnitDriver();

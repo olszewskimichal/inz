@@ -93,7 +93,6 @@ public class ActivationUserSteps extends SeleniumTestBase {
     }
 
     @Test
-    @Ignore
     public void shouldCanActiveAccountAndThenHeCanLoginToAccount() throws Exception {
         logAsAdmin();
         canActivateUser();

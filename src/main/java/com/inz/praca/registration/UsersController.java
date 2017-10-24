@@ -33,6 +33,8 @@ public class UsersController {
         Page<User> users = userService.getAllUsers(evalPage);
         if (users != null) {
             model.addAttribute("Users", users.getContent());
+            model.addAttribute("totalPages", users.getTotalPages());
+            model.addAttribute("page", users.getNumber());
             model.addAttribute("selectedPageSize", evalPage);
             model.addAttribute("pager", new Pager(users.getTotalPages(), users.getNumber(), BUTTONS_TO_SHOW));
         }

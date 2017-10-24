@@ -45,24 +45,24 @@
             </table>
             <div class="row">
 
-                <div th:if="${Users.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+                <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
                     <ul class="pagination">
-                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink"
+                        <li th:class="${page == 0} ? disabled"><a class="pageLink"
                                                                                th:href="@{/users(page=1)}">&laquo;</a>
                         </li>
-                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink"
-                                                                               th:href="@{/users(page=${Users.getNumber()})}">&larr;</a>
+                        <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                                               th:href="@{/users(page=${page})}">&larr;</a>
                         </li>
-                        <li th:class="${Users.getNumber() == (page - 1)} ? 'active pointer-disabled'"
+                        <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
                             th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
                                 class="pageLink"
                                 th:href="@{/users(page=${page})}"
                                 th:text="${page}"></a></li>
-                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
-                                                                                                       th:href="@{/users(page=${Users.getNumber() + 2})}">&rarr;</a>
+                        <li th:class="${page + 1 == totalPages} ? disabled"><a class="pageLink"
+                                                                                                       th:href="@{/users(page=${page + 2})}">&rarr;</a>
                         </li>
-                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
-                                                                                                       th:href="@{/users(page=${Users.getTotalPages()})}">&raquo;</a>
+                        <li th:class="${page + 1 == totalPages} ? disabled"><a class="pageLink"
+                                                                                                       th:href="@{/users(page=${totalPages})}">&raquo;</a>
                         </li>
                     </ul>
                 </div>
