@@ -2,7 +2,6 @@ package com.inz.praca.units.controller.order;
 
 import com.inz.praca.WebTestConstants.View;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

@@ -1,7 +1,5 @@
 package com.inz.praca.units.controller.product;
 
-import com.inz.praca.WebTestConstants;
-import com.inz.praca.WebTestConstants.ModelAttributeProperty;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCTS;
 import com.inz.praca.products.Product;
 import com.inz.praca.products.ProductBuilder;

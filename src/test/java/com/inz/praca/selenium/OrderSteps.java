@@ -1,4 +1,4 @@
-package com.inz.praca.integration.cucumber;
+package com.inz.praca.selenium;
 
 import com.inz.praca.orders.Order;
 import com.inz.praca.products.ProductBuilder;
@@ -6,9 +6,6 @@ import com.inz.praca.products.ProductRepository;
 import com.inz.praca.registration.User;
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.*;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

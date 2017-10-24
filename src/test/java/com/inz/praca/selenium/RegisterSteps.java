@@ -1,4 +1,4 @@
-package com.inz.praca.integration.cucumber;
+package com.inz.praca.selenium;
 
 import com.inz.praca.selenium.configuration.SeleniumTestBase;
 import com.inz.praca.selenium.pageObjects.RegisterPage;

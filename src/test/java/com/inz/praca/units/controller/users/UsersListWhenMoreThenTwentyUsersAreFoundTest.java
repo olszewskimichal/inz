@@ -1,7 +1,5 @@
 package com.inz.praca.units.controller.users;
 
-import com.inz.praca.WebTestConstants;
-import com.inz.praca.WebTestConstants.ModelAttributeProperty;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty.USERS;
 import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserBuilder;

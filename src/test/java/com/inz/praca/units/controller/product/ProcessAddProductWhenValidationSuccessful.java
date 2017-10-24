@@ -1,8 +1,6 @@
 package com.inz.praca.units.controller.product;
 
-import com.inz.praca.WebTestConstants;
 import com.inz.praca.WebTestConstants.FlashMessageKey;
-import com.inz.praca.WebTestConstants.ModelAttributeProperty;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCT;
 import com.inz.praca.WebTestConstants.RedirectView;
 import com.inz.praca.products.ProductDTO;

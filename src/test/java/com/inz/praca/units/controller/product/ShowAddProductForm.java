@@ -1,8 +1,6 @@
 package com.inz.praca.units.controller.product;
 
-import com.inz.praca.WebTestConstants;
 import com.inz.praca.WebTestConstants.ModelAttributeName;
-import com.inz.praca.WebTestConstants.ModelAttributeProperty;
 import com.inz.praca.WebTestConstants.ModelAttributeProperty.PRODUCT;
 import com.inz.praca.WebTestConstants.View;
 import org.junit.Test;

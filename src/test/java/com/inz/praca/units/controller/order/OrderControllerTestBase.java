@@ -5,7 +5,6 @@ import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.orders.OrderController;
 import com.inz.praca.orders.OrderService;
 import com.inz.praca.registration.CurrentUser;
-import com.inz.praca.registration.User;
 import com.inz.praca.registration.UserBuilder;
 import org.junit.Before;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,6 +1,5 @@
 package com.inz.praca.units.controller.users;
 
-import com.inz.praca.WebTestConstants;
 import com.inz.praca.WebTestConstants.View;
 import org.junit.Test;
 

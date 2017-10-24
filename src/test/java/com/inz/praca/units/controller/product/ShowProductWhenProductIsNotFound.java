@@ -1,6 +1,5 @@
 package com.inz.praca.units.controller.product;
 
-import com.inz.praca.WebTestConstants;
 import com.inz.praca.WebTestConstants.ErrorView;
 import com.inz.praca.products.ProductNotFoundException;
 import org.junit.Before;
