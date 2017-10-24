@@ -22,9 +22,7 @@ public class CartSteps extends SeleniumTestBase {
     @Autowired
     ProductRepository productRepository;
 
-
-    @Given("Zalogowany jako uzytkownik")
-    public void loggedAsUser() throws Exception {
+    private void loggedAsUser() throws Exception {
         prepareBeforeTest();
         productRepository.deleteAll();
         productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
@@ -37,8 +35,7 @@ public class CartSteps extends SeleniumTestBase {
         loginPage.logInToApp("aktywny@email.pl", "zaq1@WSX");
     }
 
-    @Given("Jako uzytkownik dodamy 3 produkty do naszego koszyka o lacznej wartosci (.*)")
-    public void shouldAdd3ProductToCart(String cena) throws Exception {
+    private void whenAdd3ProductToCart(String cena) throws Exception {
         prepareBeforeTest();
         productRepository.deleteAll();
         productRepository.save(new ProductBuilder().withName("name1").withPrice(BigDecimal.valueOf(3)).createProduct());
@@ -62,8 +59,7 @@ public class CartSteps extends SeleniumTestBase {
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
 
-    @When("Dodajemy 2x produkt warty (.*) oraz raz produkt warty (.*)")
-    public void shouldAdd2TheSameProductAnd1Another(String cena1, String cena2) {
+    private void whenAdd2TheSameProductAnd1Another(String cena1, String cena2) {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/products");
         ProductListPage productListPage = new ProductListPage(SeleniumTestBase.driver);
         productListPage.clickOnProductInfo(1);
@@ -85,16 +81,14 @@ public class CartSteps extends SeleniumTestBase {
         page.clickOrderButton();
     }
 
-    @When("Usuniemy 1 produkt warty (.*)")
-    public void shouldRemove1Product(String cena) {
+    private void shouldRemove1Product(String cena) {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartItemPrice(2)).isEqualTo(cena);
         cartPage.removeItem(2);
     }
 
-    @Then("Nasz koszyk bedzie wart (.*) oraz bedzie posiadał (.*) pozycje w koszyku")
-    public void shouldReturnCartPrice(String cena, int ilosc) {
+    private void shouldReturnCartPrice(String cena, int ilosc) {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/cart");
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         assertThat(cartPage.getCartTableSize()).isEqualTo(ilosc + 2);
@@ -102,7 +96,16 @@ public class CartSteps extends SeleniumTestBase {
     }
 
     @Test
-    public void test() {
+    public void shouldAdd2TheSameProductAndAnotherOneWithCorrectPrice() throws Exception {
+        loggedAsUser();
+        whenAdd2TheSameProductAnd1Another("35.00 PLN", "3.00 PLN");
+        shouldReturnCartPrice("73.00 PLN", 2);
+    }
 
+    @Test
+    public void shouldAdd3ProductAndOneRemoveWithCorrectPrice() throws Exception {
+        whenAdd3ProductToCart("48.00 PLN");
+        shouldRemove1Product("10.00");
+        shouldReturnCartPrice("38.00 PLN", 2);
     }
 }

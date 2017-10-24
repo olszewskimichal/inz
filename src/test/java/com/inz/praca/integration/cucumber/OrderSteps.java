@@ -21,8 +21,7 @@ public class OrderSteps extends SeleniumTestBase {
     @Autowired
     private ProductRepository productRepository;
 
-    @Given("Posiadajac w koszyku 1 przedmiot wart (.*)")
-    public void prepareCartToOrder(String cena) throws Exception {
+    private void prepareCartToOrder(String cena) throws Exception {
         prepareBeforeTest();
         productRepository.deleteAll();
         productRepository.save(
@@ -42,8 +41,7 @@ public class OrderSteps extends SeleniumTestBase {
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
 
-    @Given("Jako staly klient posiadajac w koszyku 1 przedmiot wart (.*)")
-    public void prepareCartToOrderAsRegularCustomer(String cena) throws Exception {
+    private void prepareCartToOrderAsRegularCustomer(String cena) throws Exception {
         prepareBeforeTest();
         productRepository.deleteAll();
         productRepository.save(
@@ -69,8 +67,7 @@ public class OrderSteps extends SeleniumTestBase {
         assertThat(cartPage.getCartPrice()).isEqualTo(cena);
     }
 
-    @When("Po kliknieciu kupuje i wypełnieniu danych do wysyłki")
-    public void shouldRedirectToMainPage() {
+    private void whenRedirectToMainPage() {
         CartPage cartPage = new CartPage(SeleniumTestBase.driver);
         cartPage.clickOrder();
         ShippingDetailPage shippingDetailPage = new ShippingDetailPage(SeleniumTestBase.driver);
@@ -83,8 +80,7 @@ public class OrderSteps extends SeleniumTestBase {
     }
 
 
-    @Then("Otrzyma potwierdzenie złożenia zamowienia")
-    public void shouldGetOrderPage() {
+    private void shouldGetOrderPage() {
         OrderPage orderPage = new OrderPage(SeleniumTestBase.driver);
         assertThat(orderPage.getStreet()).isEqualTo("Unknown Street 4");
         assertThat(orderPage.getCity()).isEqualTo("75-814 Bydgoszcz");
@@ -98,8 +94,7 @@ public class OrderSteps extends SeleniumTestBase {
         assertThat(cartPage.getCartTableSize()).isEqualTo(2);
     }
 
-    @Then("Jako staly klient otrzyma potwierdzenie złożenia zamowienia na kwote (.*)")
-    public void shouldGetOrderPageWithDiscount(String price) {
+    private void shouldGetOrderPageWithDiscount(String price) {
         OrderPage orderPage = new OrderPage(SeleniumTestBase.driver);
         assertThat(orderPage.getTotalPrice()).isEqualTo(price);
         assertThat(SeleniumTestBase.driver.getPageSource()).contains("Rachunek");
@@ -111,7 +106,16 @@ public class OrderSteps extends SeleniumTestBase {
     }
 
     @Test
-    public void test() {
+    public void shouldReturnConfirmationForOrder() throws Exception {
+        prepareCartToOrder("35.00 PLN");
+        whenRedirectToMainPage();
+        shouldGetOrderPage();
+    }
 
+    @Test
+    public void shouldReturnConfirmationForOrderWithDiscount() throws Exception {
+        prepareCartToOrderAsRegularCustomer("35.00 PLN");
+        whenRedirectToMainPage();
+        shouldGetOrderPageWithDiscount("31.50 PLN");
     }
 }

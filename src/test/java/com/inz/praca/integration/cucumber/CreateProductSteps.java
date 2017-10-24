@@ -16,9 +16,7 @@ public class CreateProductSteps extends SeleniumTestBase {
     private String description;
     private String price;
 
-
-    @Given("Podajac nazwe= (.*) z opisem = (.*) cena = (.*) oraz wybrana kategoria (.*)")
-    public void useNewProductData(String name, String description, String price, String category) throws Exception {
+    private void useNewProductData(String name, String description, String price, String category) throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -29,27 +27,41 @@ public class CreateProductSteps extends SeleniumTestBase {
         this.price = price;
     }
 
-    @When("Przy kliknieciu dodaj produkt")
-    public void shouldPerformNewProduct() {
+    private void whenPerformNewProduct() {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/addProduct");
         NewProductPage productPage = new NewProductPage(SeleniumTestBase.driver);
         productPage.fillCreateProductForm(name, description, price, "");
         productPage.clickOnCreateProductButton();
     }
 
-    @Then("Otrzymamy (.*) komunikatów błedu, w przypadku 0 błedów - zostanie stworzony nowy produkt")
-    public void shouldGetResponseWithErrorCount(int errorCount) {
+    private void shouldGetResponseWithErrorCount(int errorCount) {
         assertThat(SeleniumTestBase.driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
     }
 
-    @Then("Otrzymamy komunikat (.*)")
-    public void shouldContainsErrorMessage(String error) {
+    private void shouldContainsErrorMessage(String error) {
         SeleniumTestBase.driver.getPageSource().contains(error);
     }
 
     @Test
-    public void test() {
+    public void shouldAddNewProduct() throws Exception {
+        useNewProductData("nazwa","opis","3.0","inne");
+        whenPerformNewProduct();
+        shouldGetResponseWithErrorCount(0);
+    }
 
+    @Test
+    public void shouldReturnErrorWhenNameIsTooShort() throws Exception {
+        useNewProductData("na","opis","4.0","inne");
+        whenPerformNewProduct();
+        shouldContainsErrorMessage("Podana nazwa jest zbyt krótka");
+
+    }
+
+    @Test
+    public void shouldReturnErrorWhenIncorrectPrice() throws Exception {
+        useNewProductData("nazwa","opis","-4.0","inne");
+        whenPerformNewProduct();
+        shouldContainsErrorMessage("Nieprawidłowo podana cena");
     }
 
 }

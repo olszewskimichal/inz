@@ -7,6 +7,7 @@ import com.inz.praca.selenium.pageObjects.UsersPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -14,8 +15,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class ActivationUserSteps extends SeleniumTestBase {
 
-    @Given("Logujac sie na uzytkownika nieaktywnego")
-    public void logAsNotActivatedUser() throws Exception {
+    private void logAsNotActivatedUser() throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -23,8 +23,7 @@ public class ActivationUserSteps extends SeleniumTestBase {
         loginPage.typePassword("zaq1@WSX");
     }
 
-    @Given("Logujac sie na zwyklego uzytkownika aktywnego")
-    public void logAsActivatedUser() throws Exception {
+    private void logAsActivatedUser() throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -32,8 +31,7 @@ public class ActivationUserSteps extends SeleniumTestBase {
         loginPage.typePassword("zaq1@WSX");
     }
 
-    @Given("Po zalogowaniu na konto administratora, ma dostęp do panelu administracji uzytkowników")
-    public void logAsAdmin() throws Exception {
+    private void logAsAdmin() throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -42,38 +40,32 @@ public class ActivationUserSteps extends SeleniumTestBase {
         loginPage.clickOnLoginButton();
     }
 
-    @When("Po kliknieciu zaloguj")
-    public void shouldPerformRegister() {
+    private void shouldPerformRegister() {
         loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.clickOnLoginButton();
     }
 
-    @When("Może aktywowac uzytkownika nieaktywnego")
-    public void canActivateUser() {
+    private void canActivateUser() {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/users");
         UsersPage usersPage = new UsersPage(SeleniumTestBase.driver);
         usersPage.activateUser(0);
         assertThat(usersPage.getActivationMsg()).isEqualTo("Aktywowano uzytkownika nieaktywny@email.pl");
     }
 
-    @When("Próbujac wejsc na panel administracji uzytkownikami")
-    public void cantGoToUsersPage() {
+    private void cantGoToUsersPage() {
         loginPage.clickOnLoginButton();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/users");
     }
 
-    @Then("Zostanie zwrocony komunikat (.*)")
-    public void shouldGetErrorMsg(String msg) {
+    private void shouldGetErrorMsg(String msg) {
         assertThat(loginPage.getErrorMsg()).isEqualTo(msg);
     }
 
-    @Then("Nie bedzie mial uprawnien, otrzyma komunikat (.*)")
-    public void shouldGetAccessDeniedMsg(String msg) {
+    private void shouldGetAccessDeniedMsg(String msg) {
         assertThat(SeleniumTestBase.driver.getPageSource()).contains(msg);
     }
 
-    @Then("Uzytkownik bedzie mogl sie zalagowac do systemu")
-    public void userCanLogToApp() {
+    private void userCanLogToApp() {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
         loginPage.logInToApp("nieaktywny@email.pl", "zaq1@WSX");
@@ -82,8 +74,7 @@ public class ActivationUserSteps extends SeleniumTestBase {
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Strona główna");
     }
 
-    @Then("Poprawnie zaloguje się do systemu")
-    public void shouldGetErrorMsg() {
+    private void shouldCorrectLoginToSystem() {
         AuthenticatedNavigation navigation = new AuthenticatedNavigation(SeleniumTestBase.driver);
         assertThat(navigation.getLoginName()).isEqualTo("aktywny@email.pl");
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Strona główna");
@@ -91,7 +82,31 @@ public class ActivationUserSteps extends SeleniumTestBase {
 
 
     @Test
-    public void test() {
+    public void shouldReturnErrorWhenLoginOnNotActiveAccount() throws Exception {
+        logAsNotActivatedUser();
+        shouldPerformRegister();
+        shouldGetErrorMsg("Twoje konto nie jest aktywne");
+    }
 
+    @Test
+    public void shouldLoginToSystem() throws Exception {
+        logAsActivatedUser();
+        shouldPerformRegister();
+        shouldCorrectLoginToSystem();
+    }
+
+    @Test
+    @Ignore
+    public void shouldCanActiveAccountAndThenHeCanLoginToAccount() throws Exception {
+        logAsAdmin();
+        canActivateUser();
+        userCanLogToApp();
+    }
+
+    @Test
+    public void shouldReturnErrorWhenTryActivateAsNormalUser() throws Exception {
+        logAsActivatedUser();
+        cantGoToUsersPage();
+        shouldGetAccessDeniedMsg("Dost?p zabroniony");
     }
 }

@@ -15,8 +15,7 @@ public class CreateCategorySteps extends SeleniumTestBase {
     private String name;
     private String description;
 
-    @Given("Mając nazwe kategorii (.*) z opisem (.*)")
-    public void useNewProductData(String name, String description) throws Exception {
+    private void useNewCategoryData(String name, String description) throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -26,8 +25,7 @@ public class CreateCategorySteps extends SeleniumTestBase {
         this.description = description;
     }
 
-    @When("Po kliknieciu dodaj kategorie")
-    public void shouldPerformNewCategory() {
+    private void whenClickAddCategory() {
         SeleniumTestBase.driver.get("http://localhost:" + port + "/addCategory");
         NewCategoryPage newCategoryPage = new NewCategoryPage(SeleniumTestBase.driver);
         newCategoryPage.typeName(name);
@@ -35,19 +33,33 @@ public class CreateCategorySteps extends SeleniumTestBase {
         newCategoryPage.clickOnCreateCategoryButton();
     }
 
-    @Then("Otrzymamy (.*) komunikatów błedu, w przypadku 0 błedów - zostanie stworzona nowa kategoria")
-    public void shouldGetResponseWithErrorCount(int errorCount) {
+    private void shouldGetResponseWithErrorCount(int errorCount) {
         assertThat(SeleniumTestBase.driver.findElements(By.className("error")).size()).isEqualTo(errorCount);
     }
 
-    @Then("Dostaniemy bład = (.*)")
-    public void shouldContainsErrorMessage(String error) {
+    private void shouldContainsErrorMessage(String error) {
         SeleniumTestBase.driver.getPageSource().contains(error);
     }
 
     @Test
-    public void test() {
+    public void shouldAddNewCategory() throws Exception {
+        useNewCategoryData("nazwa1","descpription");
+        whenClickAddCategory();
+        shouldGetResponseWithErrorCount(0);
+    }
 
+    @Test
+    public void shouldReturnErrorWhenNameIsTooShort() throws Exception {
+        useNewCategoryData("na","descpriptiopn");
+        whenClickAddCategory();
+        shouldContainsErrorMessage("Podana nazwa jest zbyt krótka");
+    }
+
+    @Test
+    public void shouldReturnErrorWhenDescriptionIsTooShort() throws Exception {
+        useNewCategoryData("nazwa","des");
+        whenClickAddCategory();
+        shouldContainsErrorMessage("Podany opis jest za krótki");
     }
 
 }

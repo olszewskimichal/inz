@@ -14,8 +14,7 @@ public class LoginSteps extends SeleniumTestBase {
 
     private LoginPage loginPage;
 
-    @Given("Logujac sie na login (.*) z hasłem (.*)")
-    public void loginToApp(String login, String pass) throws Exception {
+    private void loginToApp(String login, String pass) throws Exception {
         prepareBeforeTest();
         SeleniumTestBase.driver.get("http://localhost:" + port + "/login");
         loginPage = new LoginPage(SeleniumTestBase.driver);
@@ -23,27 +22,40 @@ public class LoginSteps extends SeleniumTestBase {
         loginPage.typePassword(pass);
     }
 
-    @When("Przy kliknieciu zaloguj")
-    public void clickOnLogin() {
+    private void clickOnLogin() {
         loginPage.clickOnLoginButton();
     }
 
 
-    @Then("Zostanie przekierowany na strone głowna sklepu")
-    public void shouldRedirectToMainPage() {
+    private void shouldRedirectToMainPage() {
         assertThat(SeleniumTestBase.driver.getPageSource()).contains("Witamy w Naszym sklepie");
         assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Strona główna");
     }
 
 
-    @Then("Zostanie wyświetlony bład (.*)")
-    public void shouldGetErrorMsg(String error) {
+    private void shouldGetErrorMsg(String error) {
         Assertions.assertThat(SeleniumTestBase.driver.getPageSource()).contains(error);
         Assertions.assertThat(SeleniumTestBase.driver.getTitle()).isEqualTo("Logowanie");
     }
 
     @Test
-    public void test() {
+    public void shouldCorrectLoginToSystem() throws Exception {
+        loginToApp("admin@email.pl","zaq1@WSX");
+        clickOnLogin();
+        shouldRedirectToMainPage();
+    }
 
+    @Test
+    public void shouldShowErrorWhenIncorrectPassword() throws Exception {
+        loginToApp("admin@email.pl","zaq1@WSX1");
+        clickOnLogin();
+        shouldGetErrorMsg("Niepoprawny użytkownik lub hasło");
+    }
+
+    @Test
+    public void shouldShowErrorWhenInactiveAccount() throws Exception {
+        loginToApp("nieaktywny@email.pl","zaq1@WSX");
+        clickOnLogin();
+        shouldGetErrorMsg("Twoje konto nie jest aktywne");
     }
 }
