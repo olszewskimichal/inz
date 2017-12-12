@@ -3,90 +3,90 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout:decorator="layout"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
-    <title>Produkty</title>
+  <title>Produkty</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="jumbotron">
-        <h1>Produkty</h1>
-        <p th:text="${productDTO.name}">
+  <div class="jumbotron">
+    <h1>Produkty</h1>
+    <p th:text="${productDTO.name}">
+    </p>
+  </div>
+  <section class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <img th:src="${productDTO.imageUrl}" alt="image" style="width:100%"/>
+      </div>
+
+      <div class="col-md-6">
+        <h3 id="name" th:text="${productDTO.name}"></h3>
+        <p id="description" th:text="${productDTO.description}"></p>
+
+        <!--     <p><strong>Liczba sztuk w magazynie: </strong>
+                 <span th:text="${product.unitsInStock}"/>
+             </p> -->
+        <h4 id="price" th:text="${productDTO.price}+' PLN'"></h4>
+        <p>
+          <a id="order" th:href="@{/cart/add/{productId}(productId=${productId})}"
+             class="btn btn-warning btn-large">
+            <span class="glyphicon-shopping-cart glyphicon"></span> Zamów teraz </a>
+
+          <a id="cart" th:href="@{/cart/}" class="btn btn-default">
+            <span class="glyphicon-hand-right glyphicon"></span> Koszyk
+          </a>
+
+          <a id="products" th:href="@{/products}" class="btn btn-default">
+            <span class="glyphicon-hand-left glyphicon"></span> Wstecz
+          </a>
+          <a sec:authorize="hasAuthority('ADMIN')" id="editProduct"
+             th:href="@{/products/product/edit/{productId}(productId=${productId})}" class="btn btn-default">
+            <span class="glyphicon glyphicon-remove"></span> Edytuj
+          </a>
+          <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-default" data-toggle="modal"
+             data-target="#myModal" th:onclick="'deleteProduct(' + ${id} + ')' ">
+            <i id="removeProduct" class="glyphicon glyphicon-remove" aria-hidden="true"
+               th:title="Usuń"
+            ></i> Usuń
+          </a>
+
         </p>
+
+      </div>
     </div>
-    <section class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <img th:src="${productDTO.imageUrl}" alt="image" style="width:100%"/>
-            </div>
+  </section>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
-            <div class="col-md-6">
-                <h3 id="name" th:text="${productDTO.name}"></h3>
-                <p id="description" th:text="${productDTO.description}"></p>
-
-                <!--     <p><strong>Liczba sztuk w magazynie: </strong>
-                         <span th:text="${product.unitsInStock}"/>
-                     </p> -->
-                <h4 id="price" th:text="${productDTO.price}+' PLN'"></h4>
-                <p>
-                    <a id="order" th:href="@{/cart/add/{productId}(productId=${productId})}"
-                       class="btn btn-warning btn-large">
-                        <span class="glyphicon-shopping-cart glyphicon"></span> Zamów teraz </a>
-
-                    <a id="cart" th:href="@{/cart/}" class="btn btn-default">
-                        <span class="glyphicon-hand-right glyphicon"></span> Koszyk
-                    </a>
-
-                    <a id="products" th:href="@{/products}" class="btn btn-default">
-                        <span class="glyphicon-hand-left glyphicon"></span> Wstecz
-                    </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" id="editProduct"
-                       th:href="@{/products/product/edit/{productId}(productId=${productId})}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove"></span> Edytuj
-                    </a>
-                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-default" data-toggle="modal"
-                       data-target="#myModal" th:onclick="'deleteProduct(' + ${id} + ')' ">
-                        <i id="removeProduct" class="glyphicon glyphicon-remove" aria-hidden="true"
-                           th:title="Usuń"
-                        ></i> Usuń
-                    </a>
-
-                </p>
-
-            </div>
+      <div class="modal-content">
+        <div class="modal-header" style="background: #347AB6; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" th:text="#{product.confirmDelete}"></h4>
         </div>
-    </section>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header" style="background: #347AB6; color: white">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" th:text="#{product.confirmDelete}"></h4>
-                </div>
-                <div class="modal-body">
-                    <p th:text="#{product.confirmDeleteText}"></p>
-                </div>
-                <div class="modal-footer">
-                    <form id="deleteform" action="" method="post">
-                        <a th:href="@{/products/product/delete/{productId}(productId=${productId})}" name="submit1"
-                           id="submitdelete"
-                           th:text="Tak"
-                           class="btn btn-primary pull-right"></a>
-                        <input type="button" class="btn btn-default" data-dismiss="modal"
-                               th:value="Anuluj"
-                        />
-                    </form>
-
-                </div>
-            </div>
+        <div class="modal-body">
+          <p th:text="#{product.confirmDeleteText}"></p>
+        </div>
+        <div class="modal-footer">
+          <form id="deleteform" action="" method="post">
+            <a th:href="@{/products/product/delete/{productId}(productId=${productId})}" name="submit1"
+               id="submitdelete"
+               th:text="Tak"
+               class="btn btn-primary pull-right"></a>
+            <input type="button" class="btn btn-default" data-dismiss="modal"
+                   th:value="Anuluj"
+            />
+          </form>
 
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
 <script>
-    $('#myButton').click(function () {
-        $('#myModal').modal();
-    )
-    }
+  $('#myButton').click(function () {
+    $('#myModal').modal();
+  )
+  }
 
 </script>
 </body>

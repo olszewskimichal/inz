@@ -22,17 +22,17 @@ import org.springframework.web.context.WebApplicationContext;
 @Category(IntegrationTest.class)
 public abstract class IntegrationTestBase {
 
-    @LocalServerPort
-    public int port;
+  @LocalServerPort
+  public int port;
 
-    @Autowired
-    protected WebApplicationContext wac;
+  @Autowired
+  protected WebApplicationContext wac;
 
-    protected MockMvc mvc;
+  protected MockMvc mvc;
 
-    @Before
-    public void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+  @Before
+  public void setUp() {
+    mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+  }
 
 }

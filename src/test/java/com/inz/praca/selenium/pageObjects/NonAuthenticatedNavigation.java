@@ -5,13 +5,13 @@ import org.openqa.selenium.WebDriver;
 
 class NonAuthenticatedNavigation extends Navigation {
 
-    private final By login = By.id("loginPage");
+  private final By login = By.id("loginPage");
 
-    public NonAuthenticatedNavigation(WebDriver webDriver) {
-        super(webDriver);
-    }
+  public NonAuthenticatedNavigation(WebDriver webDriver) {
+    super(webDriver);
+  }
 
-    public void clickOnLoginPage() {
-        webDriver.findElement(login).click();
-    }
+  public void clickOnLoginPage() {
+    webDriver.findElement(login).click();
+  }
 }

@@ -10,48 +10,50 @@ import org.springframework.util.Assert;
 @Service
 @Slf4j
 public class UserService {
-    private static final int MAX_USERS_ON_PAGE = 20;
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+  private static final int MAX_USERS_ON_PAGE = 20;
+  private final UserRepository userRepository;
 
-    @Timed
-    public User getUserById(Long id) {
-        Assert.notNull(id, "Podano puste id uzytkownika");
-        Assert.isTrue(id > 0L, "Nie ma uzytkownikow o id mniejszym niz 1");
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-    }
+  public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
-    @Timed
-    public User getUserByEmail(String email) {
-        Assert.notNull(email, "Nie podano adresu email");
-        Assert.hasLength(email, "Podano pusty email");
-        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
-    }
+  @Timed
+  public User getUserById(Long id) {
+    Assert.notNull(id, "Podano puste id uzytkownika");
+    Assert.isTrue(id > 0L, "Nie ma uzytkownikow o id mniejszym niz 1");
+    return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+  }
 
-    @Timed
-    public Page<User> getAllUsers(Integer page) {
-        PageRequest pageRequest = new PageRequest(page, UserService.MAX_USERS_ON_PAGE);
-        return userRepository.findAll(pageRequest);
-    }
+  @Timed
+  public User getUserByEmail(String email) {
+    Assert.notNull(email, "Nie podano adresu email");
+    Assert.hasLength(email, "Podano pusty email");
+    return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
+  }
 
-    public User createUserFromDTO(UserDTO form) {
-        User user = new UserBuilder().build(form);
-        userRepository.save(user);
-        UserService.log.info("Stworzono uzytkownika o id {}", user.getId());
-        return user;
-    }
+  @Timed
+  public Page<User> getAllUsers(Integer page) {
+    PageRequest pageRequest = new PageRequest(page, MAX_USERS_ON_PAGE);
+    return userRepository.findAll(pageRequest);
+  }
 
-    public String changeUserActive(Long id, Boolean activity) {
-        User user = getUserById(id);
-        if (activity)
-            user.active();
-        else
-            user.deactivate();
-        userRepository.save(user);
-        return String.format(user.isActivated() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s",
-                user.getEmail());
+  public User createUserFromDTO(UserDTO form) {
+    User user = new UserBuilder().build(form);
+    userRepository.save(user);
+    log.info("Stworzono uzytkownika o id {}", user.getId());
+    return user;
+  }
+
+  public String changeUserActive(Long id, Boolean activity) {
+    User user = getUserById(id);
+    if (activity) {
+      user.active();
+    } else {
+      user.deactivate();
     }
+    userRepository.save(user);
+    return String.format(user.isActivated() ? "Aktywowano uzytkownika %s" : "Deaktywowano uzytkownika %s",
+        user.getEmail());
+  }
 }

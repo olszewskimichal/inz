@@ -1,21 +1,22 @@
 package com.inz.praca.category;
 
 public class CategoryBuilder {
-    private String name;
-    private String description = "opis";
 
-    public CategoryBuilder withName(String name) {
-        this.name = name;
-        return this;
-    }
+  private String name;
+  private String description = "opis";
 
-    public CategoryBuilder withDescription(String description) {
-        this.description = description;
-        return this;
-    }
+  public CategoryBuilder withName(String name) {
+    this.name = name;
+    return this;
+  }
 
-    public Category createCategory() {
-        return new Category(name, description);
-    }
+  public CategoryBuilder withDescription(String description) {
+    this.description = description;
+    return this;
+  }
+
+  public Category createCategory() {
+    return new Category(name, description);
+  }
 
 }

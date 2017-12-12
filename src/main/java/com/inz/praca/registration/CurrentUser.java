@@ -6,16 +6,16 @@ import org.springframework.security.core.authority.AuthorityUtils;
 @EqualsAndHashCode(callSuper = true)
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
-    private final transient User user;
+  private final transient User user;
 
-    public CurrentUser(User user) {
-        super(user.getEmail(), user.getPasswordHash(), user.isActivated(), true, true, true,
-                AuthorityUtils.createAuthorityList(user.getRole().name()));
-        this.user = user;
-    }
+  public CurrentUser(User user) {
+    super(user.getEmail(), user.getPasswordHash(), user.isActivated(), true, true, true,
+        AuthorityUtils.createAuthorityList(user.getRole().name()));
+    this.user = user;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public User getUser() {
+    return user;
+  }
 
 }

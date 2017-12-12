@@ -7,5 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @FunctionalInterface
 public interface DiscountService {
-    void calculateDiscount(Order order, OrderDTO orderDTO);
+
+  void calculateDiscount(Order order, OrderDTO orderDTO);
 }

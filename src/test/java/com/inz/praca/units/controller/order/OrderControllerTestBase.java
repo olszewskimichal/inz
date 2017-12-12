@@ -1,5 +1,8 @@
 package com.inz.praca.units.controller.order;
 
+import static com.inz.praca.integration.WebTestConfig.exceptionResolver;
+import static org.mockito.Mockito.mock;
+
 import com.inz.praca.cart.CartSession;
 import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.orders.OrderController;
@@ -13,29 +16,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static com.inz.praca.integration.WebTestConfig.exceptionResolver;
-import static org.mockito.Mockito.mock;
-
 public class OrderControllerTestBase {
 
-    OrderService orderService;
-    CartSession cartSession;
-    CurrentUser user;
-    MockMvc mockMvc;
+  OrderService orderService;
+  CartSession cartSession;
+  CurrentUser user;
+  MockMvc mockMvc;
 
-    @Before
-    public void configureSystemUnderTest() {
-        orderService = mock(OrderService.class);
-        cartSession = mock(CartSession.class);
-        mockMvc = MockMvcBuilders.standaloneSetup(new OrderController(cartSession, orderService))
-                .setViewResolvers(WebTestConfig.viewResolver())
-                .setHandlerExceptionResolvers(exceptionResolver())
-                .build();
+  @Before
+  public void configureSystemUnderTest() {
+    orderService = mock(OrderService.class);
+    cartSession = mock(CartSession.class);
+    mockMvc = MockMvcBuilders.standaloneSetup(new OrderController(cartSession, orderService))
+        .setViewResolvers(WebTestConfig.viewResolver())
+        .setHandlerExceptionResolvers(exceptionResolver())
+        .build();
 
-        user = new CurrentUser(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build());
-        Authentication auth = new UsernamePasswordAuthenticationToken(user, null);
+    user = new CurrentUser(new UserBuilder().withEmail("email@o2.pl").withPasswordHash("zaq1@WSX").build());
+    Authentication auth = new UsernamePasswordAuthenticationToken(user, null);
 
-        SecurityContextHolder.getContext().setAuthentication(auth);
+    SecurityContextHolder.getContext().setAuthentication(auth);
 //
-    }
+  }
 }
