@@ -1,149 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="Admin (generated)" id="1494353121972-1">
-        <createSequence sequenceName="hibernate_sequence"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-2">
-        <createTable tableName="CART_PRODUCTS">
-            <column name="CART_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CART_ITEM_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-3">
-        <createTable tableName="Cart">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="CartPK"/>
-            </column>
-            <column name="dateTime" type="BINARY(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-4">
-        <createTable tableName="CartItem">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="CartItemPK"/>
-            </column>
-            <column name="quantity" type="BIGINT"/>
-            <column name="PRODUCT_ID" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-5">
-        <createTable tableName="Category">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="CategoryPK"/>
-            </column>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-6">
-        <createTable tableName="ORDERS">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="ORDERSPK"/>
-            </column>
-            <column name="price" type="DECIMAL(19, 2)"/>
-            <column name="CART_ID" type="BIGINT"/>
-            <column name="DETAIL_ID" type="BIGINT"/>
-            <column name="USER_ORDER" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-7">
-        <createTable tableName="Product">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="ProductPK"/>
-            </column>
-            <column defaultValueNumeric="1" name="active" type="TINYINT(1)"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="imageUrl" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="price" type="DECIMAL(19, 2)"/>
-            <column name="CATEGORY_ID" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-8">
-        <createTable tableName="ShippingDetail">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="ShippingDetailPK"/>
-            </column>
-            <column name="city" type="VARCHAR(255)"/>
-            <column name="houseNum" type="VARCHAR(255)"/>
-            <column name="phoneNumber" type="VARCHAR(255)"/>
-            <column name="postCode" type="VARCHAR(255)"/>
-            <column name="street" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-9">
-        <createTable tableName="USERS">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="USERSPK"/>
-            </column>
-            <column name="active" type="BOOLEAN"/>
-            <column name="email" type="VARCHAR(255)"/>
-            <column name="lastName" type="VARCHAR(255)"/>
-            <column name="name" type="VARCHAR(255)"/>
-            <column name="passwordHash" type="VARCHAR(255)"/>
-            <column name="role" type="INT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-10">
-        <addPrimaryKey columnNames="CART_ID, CART_ITEM_ID" tableName="CART_PRODUCTS"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-11">
-        <addUniqueConstraint columnNames="name" constraintName="UC_CATEGORYNAME_COL" tableName="Category"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-12">
-        <addUniqueConstraint columnNames="name" constraintName="UC_PRODUCTNAME_COL" tableName="Product"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-13">
-        <addUniqueConstraint columnNames="email" constraintName="UC_USERSEMAIL_COL" tableName="USERS"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-14">
-        <addForeignKeyConstraint baseColumnNames="CART_ID" baseTableName="ORDERS"
-                                 constraintName="FK1rkqc6xhvrqvmfcalc4sq6b13" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-15">
-        <addForeignKeyConstraint baseColumnNames="CART_ITEM_ID" baseTableName="CART_PRODUCTS"
-                                 constraintName="FK4ga3l4kxvxtdp66l4or0d77k8" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="CartItem"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-16">
-        <addForeignKeyConstraint baseColumnNames="USER_ORDER" baseTableName="ORDERS"
-                                 constraintName="FK7j0677wwonm5foffikdlxbyaq" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="USERS"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-17">
-        <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="Product"
-                                 constraintName="FKgm7hqnhehl0jm23weqxbb1t0" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Category"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-18">
-        <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CartItem"
-                                 constraintName="FKonvjut6573ev7cois2wgpa2lr" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Product"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-19">
-        <addForeignKeyConstraint baseColumnNames="DETAIL_ID" baseTableName="ORDERS"
-                                 constraintName="FKrugs15dmrpe9mkthfne9k2aee" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id"
-                                 referencedTableName="ShippingDetail"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1494353121972-20">
-        <addForeignKeyConstraint baseColumnNames="CART_ID" baseTableName="CART_PRODUCTS"
-                                 constraintName="FKwenfoxyuwmd5fjqohmustlpq" deferrable="false"
-                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1508260419192-1">
-        <addColumn tableName="Cart">
-            <column name="test" type="bigint"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="Admin (generated)" id="1508260513065-1">
-        <dropColumn columnName="TEST" tableName="CART"/>
-    </changeSet>
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet author="Admin (generated)" id="1494353121972-1">
+    <createSequence sequenceName="hibernate_sequence"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-2">
+    <createTable tableName="CART_PRODUCTS">
+      <column name="CART_ID" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="CART_ITEM_ID" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-3">
+    <createTable tableName="Cart">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="CartPK"/>
+      </column>
+      <column name="dateTime" type="BINARY(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-4">
+    <createTable tableName="CartItem">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="CartItemPK"/>
+      </column>
+      <column name="quantity" type="BIGINT"/>
+      <column name="PRODUCT_ID" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-5">
+    <createTable tableName="Category">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="CategoryPK"/>
+      </column>
+      <column name="description" type="VARCHAR(255)"/>
+      <column name="name" type="VARCHAR(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-6">
+    <createTable tableName="ORDERS">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="ORDERSPK"/>
+      </column>
+      <column name="price" type="DECIMAL(19, 2)"/>
+      <column name="CART_ID" type="BIGINT"/>
+      <column name="DETAIL_ID" type="BIGINT"/>
+      <column name="USER_ORDER" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-7">
+    <createTable tableName="Product">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="ProductPK"/>
+      </column>
+      <column defaultValueNumeric="1" name="active" type="TINYINT(1)"/>
+      <column name="description" type="VARCHAR(255)"/>
+      <column name="imageUrl" type="VARCHAR(255)"/>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="price" type="DECIMAL(19, 2)"/>
+      <column name="CATEGORY_ID" type="BIGINT"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-8">
+    <createTable tableName="ShippingDetail">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="ShippingDetailPK"/>
+      </column>
+      <column name="city" type="VARCHAR(255)"/>
+      <column name="houseNum" type="VARCHAR(255)"/>
+      <column name="phoneNumber" type="VARCHAR(255)"/>
+      <column name="postCode" type="VARCHAR(255)"/>
+      <column name="street" type="VARCHAR(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-9">
+    <createTable tableName="USERS">
+      <column autoIncrement="true" name="id" type="BIGINT">
+        <constraints primaryKey="true" primaryKeyName="USERSPK"/>
+      </column>
+      <column name="active" type="BOOLEAN"/>
+      <column name="email" type="VARCHAR(255)"/>
+      <column name="lastName" type="VARCHAR(255)"/>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="passwordHash" type="VARCHAR(255)"/>
+      <column name="role" type="INT"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-10">
+    <addPrimaryKey columnNames="CART_ID, CART_ITEM_ID" tableName="CART_PRODUCTS"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-11">
+    <addUniqueConstraint columnNames="name" constraintName="UC_CATEGORYNAME_COL" tableName="Category"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-12">
+    <addUniqueConstraint columnNames="name" constraintName="UC_PRODUCTNAME_COL" tableName="Product"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-13">
+    <addUniqueConstraint columnNames="email" constraintName="UC_USERSEMAIL_COL" tableName="USERS"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-14">
+    <addForeignKeyConstraint baseColumnNames="CART_ID" baseTableName="ORDERS"
+      constraintName="FK1rkqc6xhvrqvmfcalc4sq6b13" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-15">
+    <addForeignKeyConstraint baseColumnNames="CART_ITEM_ID" baseTableName="CART_PRODUCTS"
+      constraintName="FK4ga3l4kxvxtdp66l4or0d77k8" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="CartItem"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-16">
+    <addForeignKeyConstraint baseColumnNames="USER_ORDER" baseTableName="ORDERS"
+      constraintName="FK7j0677wwonm5foffikdlxbyaq" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="USERS"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-17">
+    <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="Product"
+      constraintName="FKgm7hqnhehl0jm23weqxbb1t0" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Category"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-18">
+    <addForeignKeyConstraint baseColumnNames="PRODUCT_ID" baseTableName="CartItem"
+      constraintName="FKonvjut6573ev7cois2wgpa2lr" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Product"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-19">
+    <addForeignKeyConstraint baseColumnNames="DETAIL_ID" baseTableName="ORDERS"
+      constraintName="FKrugs15dmrpe9mkthfne9k2aee" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id"
+      referencedTableName="ShippingDetail"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1494353121972-20">
+    <addForeignKeyConstraint baseColumnNames="CART_ID" baseTableName="CART_PRODUCTS"
+      constraintName="FKwenfoxyuwmd5fjqohmustlpq" deferrable="false"
+      initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Cart"/>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1508260419192-1">
+    <addColumn tableName="Cart">
+      <column name="test" type="bigint"/>
+    </addColumn>
+  </changeSet>
+  <changeSet author="Admin (generated)" id="1508260513065-1">
+    <dropColumn columnName="TEST" tableName="CART"/>
+  </changeSet>
 </databaseChangeLog>

@@ -5,18 +5,18 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductListPage {
 
-    private WebDriver webDriver;
+  private final WebDriver webDriver;
 
-    public ProductListPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-    }
+  public ProductListPage(WebDriver webDriver) {
+    this.webDriver = webDriver;
+  }
 
-    By productInfo(Integer id) {
-        return By.id("product" + id);
-    }
+  private By productInfo(Integer id) {
+    return By.id("product" + id);
+  }
 
-    public void clickOnProductInfo(Integer id) {
-        webDriver.findElement(productInfo(id)).click();
-    }
+  public void clickOnProductInfo(Integer id) {
+    webDriver.findElement(productInfo(id)).click();
+  }
 
 }

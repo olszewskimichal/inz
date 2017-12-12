@@ -2,76 +2,76 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" lang="pl"
       layout:decorator="layout">
 <head>
-    <title>Użytkownicy</title>
+  <title>Użytkownicy</title>
 </head>
 
 <body>
 
 <div layout:fragment="content">
-    <div class="jumbotron">
-        <h1>Użytkownicy</h1>
-    </div>
-    <section class="container">
-        <div class="panel-body">
-            <div id="activationMsg" th:if="${activate}" class="alert alert-success" role="alert"
-                 th:text="${activateMessage}">Usunieto uzytkownika
-            </div>
-            <table class="table table-striped table-bordered grid" cellspacing="0" width="100%">
-                <thead>
-                <tr>
-                    <th>Login</th>
-                    <th>Imię i nazwisko</th>
-                    <th>Rola</th>
-                    <th>Opcje</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="user,rowStat : ${Users}">
-                    <td th:text="${user.email}"></td>
-                    <td th:text="${user.name + ' ' + user.lastName}"></td>
-                    <td th:text="${user.role}"></td>
-                    <td>
-                        <a th:id="'user'+${rowStat.index}" th:if="!${user.active}"
-                           th:href=" ${'/user/active/true/' + user.id}">Aktywacja
-                            <span class="glyphicon glyphicon-ok pull-right"></span>
-                        </a>
-                        <a th:id="'user'+${rowStat.index}" th:if="${user.active}"
-                           th:href=" ${'/user/active/false/' +user.id}">Dezaktywacja
-                            <span class="glyphicon glyphicon-remove pull-right"></span>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="row">
+  <div class="jumbotron">
+    <h1>Użytkownicy</h1>
+  </div>
+  <section class="container">
+    <div class="panel-body">
+      <div id="activationMsg" th:if="${activate}" class="alert alert-success" role="alert"
+           th:text="${activateMessage}">Usunieto uzytkownika
+      </div>
+      <table class="table table-striped table-bordered grid" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+          <th>Login</th>
+          <th>Imię i nazwisko</th>
+          <th>Rola</th>
+          <th>Opcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user,rowStat : ${Users}">
+          <td th:text="${user.email}"></td>
+          <td th:text="${user.name + ' ' + user.lastName}"></td>
+          <td th:text="${user.role}"></td>
+          <td>
+            <a th:id="'user'+${rowStat.index}" th:if="!${user.active}"
+               th:href=" ${'/user/active/true/' + user.id}">Aktywacja
+              <span class="glyphicon glyphicon-ok pull-right"></span>
+            </a>
+            <a th:id="'user'+${rowStat.index}" th:if="${user.active}"
+               th:href=" ${'/user/active/false/' +user.id}">Dezaktywacja
+              <span class="glyphicon glyphicon-remove pull-right"></span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="row">
 
-                <div th:if="${Users.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
-                    <ul class="pagination">
-                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink"
-                                                                               th:href="@{/users(page=1)}">&laquo;</a>
-                        </li>
-                        <li th:class="${Users.getNumber() == 0} ? disabled"><a class="pageLink"
-                                                                               th:href="@{/users(page=${Users.getNumber()})}">&larr;</a>
-                        </li>
-                        <li th:class="${Users.getNumber() == (page - 1)} ? 'active pointer-disabled'"
-                            th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
-                                class="pageLink"
-                                th:href="@{/users(page=${page})}"
-                                th:text="${page}"></a></li>
-                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
-                                                                                                       th:href="@{/users(page=${Users.getNumber() + 2})}">&rarr;</a>
-                        </li>
-                        <li th:class="${Users.getNumber() + 1 == Users.getTotalPages()} ? disabled"><a class="pageLink"
-                                                                                                       th:href="@{/users(page=${Users.getTotalPages()})}">&raquo;</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
+          <ul class="pagination">
+            <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                      th:href="@{/users(page=1)}">&laquo;</a>
+            </li>
+            <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                      th:href="@{/users(page=${page})}">&larr;</a>
+            </li>
+            <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
+                th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
+                class="pageLink"
+                th:href="@{/users(page=${page})}"
+                th:text="${page}"></a></li>
+            <li th:class="${page + 1 == totalPages} ? disabled"><a class="pageLink"
+                                                                   th:href="@{/users(page=${page + 2})}">&rarr;</a>
+            </li>
+            <li th:class="${page + 1 == totalPages} ? disabled"><a class="pageLink"
+                                                                   th:href="@{/users(page=${totalPages})}">&raquo;</a>
+            </li>
+          </ul>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div> <!-- /container -->
 </body>
 <script layout:fragment="customScripts">
-    document.getElementById("usersTab").className = "active";
+  document.getElementById("usersTab").className = "active";
 </script>
 </html>

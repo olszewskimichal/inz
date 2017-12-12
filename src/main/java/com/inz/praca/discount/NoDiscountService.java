@@ -6,8 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class NoDiscountService implements DiscountService {
-    @Override
-    public void calculateDiscount(Order order, OrderDTO orderDTO) {
-        log.info("Brak znizki");
-    }
+
+  @Override
+  public void calculateDiscount(Order order, OrderDTO orderDTO) {
+    log.info("Brak znizki");
+  }
 }

@@ -2,69 +2,69 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>Produkty</title>
+  <title>Produkty</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <form th:action="@{/order}" th:object="${cartSession}" method="post" class="form">
-        <div class="jumbotron">
-            <h1>Koszyk</h1>
-            <p>Twój koszyk</p>
+  <form th:action="@{/order}" th:object="${cartSession}" method="post" class="form">
+    <div class="jumbotron">
+      <h1>Koszyk</h1>
+      <p>Twój koszyk</p>
+    </div>
+    <section class="container">
+      <div th:if="${emptyCart}" class="alert alert-danger" role="alert"> Twój koszyk jest pusty
+      </div>
+      <div>
+        <div>
+          <a id="cartClear" th:href="@{/cart/clear}" class="btn btn-danger pull-left"> <span
+              class="glyphicon glyphicon-remove-sign"></span>
+            Wyczyść koszyk
+          </a>
+          <a id="order" th:href="@{/order}" class="btn btn-success pull-right"> <span
+              class="glyphicon-shopping-cart glyphicon"></span>
+            Kupuję
+          </a>
         </div>
-        <section class="container">
-            <div th:if="${emptyCart}" class="alert alert-danger" role="alert"> Twój koszyk jest pusty
-            </div>
-            <div>
-                <div>
-                    <a id="cartClear" th:href="@{/cart/clear}" class="btn btn-danger pull-left"> <span
-                            class="glyphicon glyphicon-remove-sign"></span>
-                        Wyczyść koszyk
-                    </a>
-                    <a id="order" th:href="@{/order}" class="btn btn-success pull-right"> <span
-                            class="glyphicon-shopping-cart glyphicon"></span>
-                        Kupuję
-                    </a>
-                </div>
-                <table id="cartTable" class="table table-hover">
-                    <tr>
-                        <th>Produkt</th>
-                        <th>Cena za sztukę</th>
-                        <th>Liczba sztuk</th>
-                        <th>Cena</th>
-                        <th>Akcja</th>
-                    </tr>
-                    <tr th:id="'cartItem'+${rowStat.index}" th:each="row,rowStat : *{items}">
-                        <td th:id="'cartItemName'+${rowStat.index}"
-                            th:text="*{items[__${rowStat.index}__].item.name}"></td>
-                        <td th:id="'cartItemProductPrice'+${rowStat.index}"
-                            th:text="*{items[__${rowStat.index}__].item.price}"></td>
-                        <td th:id="'cartItemQuantity'+${rowStat.index}"
-                            th:text="*{items[__${rowStat.index}__].quantity}"></td>
-                        <td th:id="'cartItemPrice'+${rowStat.index}"
-                            th:text="*{items[__${rowStat.index}__].price}"></td>
-                        <td>
-                            <a th:id="'cartItemRemove'+${rowStat.index}"
-                               th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
+        <table id="cartTable" class="table table-hover">
+          <tr>
+            <th>Produkt</th>
+            <th>Cena za sztukę</th>
+            <th>Liczba sztuk</th>
+            <th>Cena</th>
+            <th>Akcja</th>
+          </tr>
+          <tr th:id="'cartItem'+${rowStat.index}" th:each="row,rowStat : *{items}">
+            <td th:id="'cartItemName'+${rowStat.index}"
+                th:text="*{items[__${rowStat.index}__].item.name}"></td>
+            <td th:id="'cartItemProductPrice'+${rowStat.index}"
+                th:text="*{items[__${rowStat.index}__].item.price}"></td>
+            <td th:id="'cartItemQuantity'+${rowStat.index}"
+                th:text="*{items[__${rowStat.index}__].quantity}"></td>
+            <td th:id="'cartItemPrice'+${rowStat.index}"
+                th:text="*{items[__${rowStat.index}__].price}"></td>
+            <td>
+              <a th:id="'cartItemRemove'+${rowStat.index}"
+                 th:href="@{/cart/remove/{rowId}(rowId=${rowStat.index})}" class="label label-danger">
                             <span class="glyphicon glyphicon-remove">
                             </span> Usuń
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Razem</th>
-                        <th th:id="'cartPrice'" th:text="${cartSession.totalPrice}+' PLN'"></th>
-                        <th></th>
-                    </tr>
-                </table>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Razem</th>
+            <th th:id="'cartPrice'" th:text="${cartSession.totalPrice}+' PLN'"></th>
+            <th></th>
+          </tr>
+        </table>
 
-                <a th:href="@{/products}" href="" class="btn btn-default">
-                    <span class="glyphicon-hand-left glyphicon"></span> Kontynuuj zakupy
-                </a>
-            </div>
-        </section>
-    </form>
+        <a th:href="@{/products}" href="" class="btn btn-default">
+          <span class="glyphicon-hand-left glyphicon"></span> Kontynuuj zakupy
+        </a>
+      </div>
+    </section>
+  </form>
 </div>
 </body>
 <div layout:fragment="script">

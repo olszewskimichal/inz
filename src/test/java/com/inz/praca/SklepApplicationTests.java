@@ -8,9 +8,9 @@ import org.springframework.test.context.ActiveProfiles;
 @Category(IntegrationTest.class)
 public class SklepApplicationTests {
 
-    @Test
-    public void contextLoads() {
-        SklepApplication.main(new String[]{"aa"});
-    }
+  @Test
+  public void contextLoads() {
+    SklepApplication.main(new String[]{"aa"});
+  }
 
 }

@@ -1,52 +1,64 @@
 package com.inz.praca.units.controller;
 
+import static com.inz.praca.integration.WebTestConfig.exceptionResolver;
+import static org.hamcrest.Matchers.nullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 import com.inz.praca.UnitTest;
+import com.inz.praca.WebTestConstants.View;
+import com.inz.praca.integration.WebTestConfig;
 import com.inz.praca.login.LoginController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mockito.Mock;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.security.web.WebAttributes;
-import org.springframework.ui.Model;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Optional;
-
-import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.MockitoAnnotations.initMocks;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @Category(UnitTest.class)
 public class LoginControllerTest {
 
-    @Mock
-    private Model model;
+  private MockMvc mockMvc;
 
-    private LoginController controller;
+  @Before
+  public void configureSystemUnderTest() {
+    mockMvc = MockMvcBuilders.standaloneSetup(new LoginController())
+        .setViewResolvers(WebTestConfig.viewResolver())
+        .setHandlerExceptionResolvers(exceptionResolver())
+        .build();
+  }
 
-    @Before
-    public void setUp() {
-        initMocks(this);
-        controller = new LoginController();
-    }
+  @Test
+  public void shouldReturnHttpStatusCodeOkOnLoginPage() throws Exception {
+    mockMvc.perform(get("/login"))
+        .andExpect(status().isOk());
+  }
 
-    @Test
-    public void shouldReturnLoginPage() {
-        assertThat(controller.loginPage(model, Optional.empty())).isEqualTo("login");
-    }
+  @Test
+  public void shouldRenderLoginPageView() throws Exception {
+    mockMvc.perform(get("/login"))
+        .andExpect(view().name(View.LOGIN));
+  }
 
-    @Test
-    public void shouldReturnErrorLoginPage() {
-        HttpServletRequest request = new MockHttpServletRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, "Nieprawidłowy użytkownik");
-        assertThat(controller.loginError(model, request)).isEqualTo("login");
-        verify(model).addAttribute("loginError", true);
-        verify(model).addAttribute("errorMessage", "Nieprawidłowy użytkownik");
-        verifyNoMoreInteractions(model);
-    }
+  @Test
+  public void shouldReturnHttpStatusCodeOkOnLoginErrorPage() throws Exception {
+    mockMvc.perform(get("/login-error"))
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void shouldRenderLoginErrorPageView() throws Exception {
+    mockMvc.perform(get("/login-error"))
+        .andExpect(view().name(View.LOGIN));
+  }
+
+  @Test
+  public void shouldFillModelPropertiesOnLoginError() throws Exception {
+    mockMvc.perform(get("/login-error"))
+        .andExpect(model().attribute("loginError", true))
+        .andExpect(model().attribute("errorMessage", nullValue()));
+  }
 
 }

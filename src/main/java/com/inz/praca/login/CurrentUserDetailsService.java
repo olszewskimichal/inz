@@ -14,18 +14,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Profile("development")
 public class CurrentUserDetailsService implements UserDetailsService {
-    private final UserService userService;
 
-    @Autowired
-    public CurrentUserDetailsService(UserService userService) {
-        this.userService = userService;
-    }
+  private final UserService userService;
 
-    @Override
-    public CurrentUser loadUserByUsername(String value) {
-        log.info("Autentykacja uzytkownika {}", value);
-        User user = userService.getUserByEmail(value);
-        return new CurrentUser(user);
-    }
+  @Autowired
+  public CurrentUserDetailsService(UserService userService) {
+    this.userService = userService;
+  }
+
+  @Override
+  public CurrentUser loadUserByUsername(String value) {
+    log.info("Autentykacja uzytkownika {}", value);
+    User user = userService.getUserByEmail(value);
+    return new CurrentUser(user);
+  }
 
 }

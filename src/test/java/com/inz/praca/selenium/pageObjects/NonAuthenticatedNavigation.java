@@ -3,15 +3,15 @@ package com.inz.praca.selenium.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NonAuthenticatedNavigation extends Navigation {
+class NonAuthenticatedNavigation extends Navigation {
 
-    By login = By.id("loginPage");
+  private final By login = By.id("loginPage");
 
-    public NonAuthenticatedNavigation(WebDriver webDriver) {
-        super(webDriver);
-    }
+  public NonAuthenticatedNavigation(WebDriver webDriver) {
+    super(webDriver);
+  }
 
-    public void clickOnLoginPage() {
-        webDriver.findElement(login).click();
-    }
+  public void clickOnLoginPage() {
+    webDriver.findElement(login).click();
+  }
 }

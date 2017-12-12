@@ -4,23 +4,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AuthenticatedNavigation extends Navigation {
-    By loginName = By.id("loginName");
-    By logout = By.id("logout");
 
-    public AuthenticatedNavigation(WebDriver webDriver) {
-        super(webDriver);
-    }
+  private final By loginName = By.id("loginName");
+  private final By logout = By.id("logout");
 
-    public void clickOnLogout() {
-        webDriver.findElement(logout).click();
-    }
+  public AuthenticatedNavigation(WebDriver webDriver) {
+    super(webDriver);
+  }
 
-    public String getLoginName() {
-        return webDriver.findElement(loginName).getText();
-    }
+  public void clickOnLogout() {
+    webDriver.findElement(logout).click();
+  }
 
-    public void clickOnLoginName() {
-        webDriver.findElement(loginName).click();
-    }
+  public String getLoginName() {
+    return webDriver.findElement(loginName).getText();
+  }
+
+  public void clickOnLoginName() {
+    webDriver.findElement(loginName).click();
+  }
 
 }

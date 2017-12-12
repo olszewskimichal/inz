@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    changePageAndSize();
+  changePageAndSize();
 });
 
 function changePageAndSize() {
-    $('#pageSizeSelect').change(function () {
-        window.location.replace("/products?pageSize=" + this.value + "&page=1");
-    });
+  $('#pageSizeSelect').change(function () {
+    window.location.replace("/products?pageSize=" + this.value + "&page=1");
+  });
 }

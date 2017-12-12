@@ -1,12 +1,11 @@
 package com.inz.praca.units;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class TestStringUtil {
 
-    public static String createStringWithLength(int length) {
-        StringBuilder string = new StringBuilder();
-        for (int index = 0; index < length; index++) {
-            string.append("a");
-        }
-        return string.toString();
-    }
+  public static String createStringWithLength(int length) {
+    return IntStream.range(0, length).mapToObj(index -> "a").collect(Collectors.joining());
+  }
 }

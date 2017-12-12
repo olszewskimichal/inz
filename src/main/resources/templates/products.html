@@ -1,31 +1,31 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
       layout:decorator="layout">
 <head>
-    <title>Produkty</title>
+  <title>Produkty</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="jumbotron">
-        <h1>Produkty</h1>
-        <p>
-            Wszystkie produkty
-        </p>
+  <div class="jumbotron">
+    <h1>Produkty</h1>
+    <p>
+      Wszystkie produkty
+    </p>
+  </div>
+  <section class="container">
+    <div th:if="${createProductDone}" class="alert alert-success" role="alert"> Pomyślnie dodano produkt
     </div>
-    <section class="container">
-        <div th:if="${createProductDone}" class="alert alert-success" role="alert"> Pomyślnie dodano produkt
+    <div class="row">
+      <div class="col-md-2">
+        <p class="lead">Kategorie</p>
+        <div class="list-group">
+          <a th:each="row,rowStat : *{categoryList}" class="list-group-item"
+             th:href="@{/products(category=*{categoryList[__${rowStat.index}__].name})}"
+             th:text="*{categoryList[__${rowStat.index}__].name}"></a>
+          <a th:href="@{/products}" id="all" class="list-group-item">Wszystko</a>
         </div>
+      </div>
+      <div class="col-md-10">
         <div class="row">
-            <div class="col-md-2">
-                <p class="lead">Kategorie</p>
-                <div class="list-group">
-                    <a th:each="row,rowStat : *{categoryList}" class="list-group-item"
-                       th:href="@{/products(category=*{categoryList[__${rowStat.index}__].name})}"
-                       th:text="*{categoryList[__${rowStat.index}__].name}"></a>
-                    <a th:href="@{/products}" id="all" class="list-group-item">Wszystko</a>
-                </div>
-            </div>
-            <div class="col-md-10">
-                <div class="row">
                     <span th:each="product,rowStat : *{products}">
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
@@ -44,48 +44,48 @@
                             </div>
                         </div>
                     </span>
-                </div>
-            </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-1">
-                <select class="form-control pagination" id="pageSizeSelect">
-                    <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
-                            th:selected="${pageSize} == ${selectedPageSize}"></option>
-                </select>
-            </div>
-            <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
-                <ul class="pagination">
-                    <li th:class="${page == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a>
-                    </li>
-                    <li th:class="${page == 0} ? disabled"><a class="pageLink"
-                                                                              th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}">&larr;</a>
-                    </li>
-                    <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
-                        th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
-                            class="pageLink"
-                            th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}"
-                            th:text="${page}"></a></li>
-                    <li th:class="${page + 1 == totalPages} ? disabled"><a
-                            class="pageLink"
-                            th:href="@{/products(pageSize=${selectedPageSize}, page=${page + 2},category=${category})}">&rarr;</a>
-                    </li>
-                    <li th:class="${page + 1 == totalPages} ? disabled"><a
-                            class="pageLink"
-                            th:href="@{/products(pageSize=${selectedPageSize},page=${totalPages},category=${category})}">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-1">
+        <select class="form-control pagination" id="pageSizeSelect">
+          <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" th:value="${pageSize}"
+                  th:selected="${pageSize} == ${selectedPageSize}"></option>
+        </select>
+      </div>
+      <div th:if="${totalPages != 1}" class="form-group col-md-11 pagination-centered">
+        <ul class="pagination">
+          <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                    th:href="@{/products(pageSize=${selectedPageSize}, page=1,category=${category})}">&laquo;</a>
+          </li>
+          <li th:class="${page == 0} ? disabled"><a class="pageLink"
+                                                    th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}">&larr;</a>
+          </li>
+          <li th:class="${page == (page - 1)} ? 'active pointer-disabled'"
+              th:each="page : ${#numbers.sequence(pager.getStartPage(), pager.getEndPage())}"><a
+              class="pageLink"
+              th:href="@{/products(pageSize=${selectedPageSize}, page=${page},category=${category})}"
+              th:text="${page}"></a></li>
+          <li th:class="${page + 1 == totalPages} ? disabled"><a
+              class="pageLink"
+              th:href="@{/products(pageSize=${selectedPageSize}, page=${page + 2},category=${category})}">&rarr;</a>
+          </li>
+          <li th:class="${page + 1 == totalPages} ? disabled"><a
+              class="pageLink"
+              th:href="@{/products(pageSize=${selectedPageSize},page=${totalPages},category=${category})}">&raquo;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </div>
 </body>
 <div layout:fragment="script">
-    <script>
-        document.getElementById("products").className = 'active';
+  <script>
+    document.getElementById("products").className = 'active';
 
-    </script>
-    <script th:src="@{/app.js}"></script>
+  </script>
+  <script th:src="@{/app.js}"></script>
 </div>
 </html>

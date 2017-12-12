@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 @Category(IntegrationTest.class)
 public abstract class JpaTestBase {
-    @Autowired
-    protected TestEntityManager entityManager;
+
+  @Autowired
+  protected TestEntityManager entityManager;
 }

@@ -6,41 +6,42 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 public class Pager {
-    private int buttonsToShow;
 
-    private int startPage;
+  private int buttonsToShow;
 
-    private int endPage;
+  private int startPage;
 
-    public Pager(int totalPages, int currentPage, int buttonsToShow) {
+  private int endPage;
 
-        this.setButtonsToShow(buttonsToShow);
+  public Pager(int totalPages, int currentPage, int buttonsToShow) {
 
-        int halfPagesToShow = this.buttonsToShow / 2;
+    setButtonsToShow(buttonsToShow);
 
-        if (totalPages == 0) {
-            this.startPage = 1;
-            this.endPage = 1;
-        } else if (totalPages <= this.buttonsToShow) {
-            this.startPage = 1;
-            this.endPage = totalPages;
+    int halfPagesToShow = this.buttonsToShow / 2;
 
-        } else if ((currentPage - halfPagesToShow) <= 0) {
-            this.startPage = 1;
-            this.endPage = this.getButtonsToShow();
+    if (totalPages == 0) {
+      startPage = 1;
+      endPage = 1;
+    } else if (totalPages <= this.buttonsToShow) {
+      startPage = 1;
+      endPage = totalPages;
 
-        } else if ((currentPage + halfPagesToShow) == totalPages) {
-            this.startPage = currentPage - halfPagesToShow;
-            this.endPage = totalPages;
+    } else if ((currentPage - halfPagesToShow) <= 0) {
+      startPage = 1;
+      endPage = getButtonsToShow();
 
-        } else if (currentPage + halfPagesToShow > totalPages) {
-            this.setStartPage(totalPages - this.getButtonsToShow() + 1);
-            this.setEndPage(totalPages);
+    } else if ((currentPage + halfPagesToShow) == totalPages) {
+      startPage = currentPage - halfPagesToShow;
+      endPage = totalPages;
 
-        } else {
-            this.setStartPage(currentPage - halfPagesToShow);
-            this.setEndPage(currentPage + halfPagesToShow);
-        }
+    } else if (currentPage + halfPagesToShow > totalPages) {
+      setStartPage(totalPages - getButtonsToShow() + 1);
+      setEndPage(totalPages);
 
+    } else {
+      setStartPage(currentPage - halfPagesToShow);
+      setEndPage(currentPage + halfPagesToShow);
     }
+
+  }
 }
