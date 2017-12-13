@@ -41,6 +41,8 @@ public class BrowserConfig {
       return htmlUnitDriver();
     }
     FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
-    return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
+    FirefoxProfile profile = new FirefoxProfile();
+    profile.setPreference(FirefoxProfile.ALLOWED_HOSTS_PREFERENCE, "localhost");
+    return new FirefoxDriver(firefoxBinary, profile);
   }
 }
