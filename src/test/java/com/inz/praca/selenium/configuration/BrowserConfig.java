@@ -15,8 +15,8 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class BrowserConfig {
 
   private static FirefoxBinary getFirefoxBinaryForTravisCi() throws IOException {
-    String firefoxPath = BrowserConfig.getFirefoxPath();
-    BrowserConfig.log.info("Firefox path: " + firefoxPath);
+    String firefoxPath = getFirefoxPath();
+    log.info("Firefox path: " + firefoxPath);
 
     return new FirefoxBinary(new File(firefoxPath));
   }
@@ -40,7 +40,7 @@ public class BrowserConfig {
     if (!"true".equals(travisCiFlag)) {
       return htmlUnitDriver();
     }
-    FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? BrowserConfig.getFirefoxBinaryForTravisCi() : new FirefoxBinary();
+    FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
     return new FirefoxDriver(firefoxBinary, new FirefoxProfile());
   }
 }
