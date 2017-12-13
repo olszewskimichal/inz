@@ -36,13 +36,13 @@ public class BrowserConfig {
   }
 
   public WebDriver firefox() throws IOException {
-    String travisCiFlag = System.getenv().get("TRAVIS");
-    if (!"true".equals(travisCiFlag)) {
+    /*String travisCiFlag = System.getenv().get("TRAVIS");
+    if (!"true".equals(travisCiFlag)) {*/
       return htmlUnitDriver();
-    }
+    /*}
     FirefoxBinary firefoxBinary = "true".equals(travisCiFlag) ? getFirefoxBinaryForTravisCi() : new FirefoxBinary();
     FirefoxProfile profile = new FirefoxProfile();
     profile.setPreference(FirefoxProfile.ALLOWED_HOSTS_PREFERENCE, "localhost");
-    return new FirefoxDriver(firefoxBinary, profile);
+    return new FirefoxDriver(firefoxBinary, profile);*/
   }
 }
