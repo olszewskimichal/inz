@@ -259,4 +259,9 @@ public class ProductServiceTest {
     assertThat(asc.get(0).getName()).isEqualTo("name3");
     assertThat(asc.get(1).getName()).isEqualTo("name2");
   }
+
+  @Test
+  void test1(){
+    Assert.fail();
+  }
 }
