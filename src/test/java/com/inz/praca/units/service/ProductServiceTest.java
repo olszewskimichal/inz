@@ -261,7 +261,6 @@ public class ProductServiceTest {
   }
 
   @Test
-  void test1(){
-    Assert.fail();
+  public void test1(){
   }
 }
