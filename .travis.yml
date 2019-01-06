@@ -8,12 +8,14 @@ cache:
   directories:
     - .autoconf
     - $HOME/.m2
+addons:
+  firefox: "46.0"
+
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 4 # give xvfb some time to start
-  addons:
-    firefox: "46.0"
+
 script:
   - mvn verify
 after_success:
