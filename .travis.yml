@@ -9,14 +9,16 @@ cache:
     - .autoconf
     - $HOME/.m2
 addons:
-  firefox: "46.0"
-
+  sonarcloud:
+    organization: "sklep"
+    token:
+      secure: ${SONAR_TOKEN}
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 4 # give xvfb some time to start
 
 script:
-  - mvn verify
+  - mvn verify sonar:sonar -B
 after_success:
   - bash <(curl -s https://codecov.io/bash)
