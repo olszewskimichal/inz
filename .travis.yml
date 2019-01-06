@@ -4,7 +4,6 @@ jdk: oraclejdk8
 
 install:
   - mvn compile
-
 cache:
   directories:
     - .autoconf
